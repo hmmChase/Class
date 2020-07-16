@@ -1,5 +1,7 @@
 # Challenge Board
 
+## [Trello board](https://trello.com/b/rBx6i0Lt/challenge-board)
+
 ## data schema
 ```
 User {
