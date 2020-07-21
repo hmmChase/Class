@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 // import PropTypes from 'prop-types';
-import * as sc from "./Question.style";
+import * as sc from './Question.style';
 
 // - li.question
 // - span.author-name
@@ -16,13 +16,13 @@ import * as sc from "./Question.style";
 //   * onClick
 //     * display question-detail view
 
-const Question = (props) => (
+const Question = props => (
   <sc.Container>
     <sc.Author>{props.author}</sc.Author>
 
     <sc.Created>{props.createdAt}</sc.Created>
 
-    {props.answerCount && <sc.Answered>answeredsvg</sc.Answered>}
+    {props.answerCount && <sc.Answeredd />}
 
     <sc.Body>{props.body}</sc.Body>
 
@@ -32,7 +32,7 @@ const Question = (props) => (
       <sc.CommentCount>{props.commentCount}</sc.CommentCount>
     )}
 
-    <sc.ViewThread href="">View Thread</sc.ViewThread>
+    <sc.ViewThread href=''>View Thread</sc.ViewThread>
   </sc.Container>
 );
 

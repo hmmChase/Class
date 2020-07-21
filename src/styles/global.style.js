@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import styledNormalize from "styled-normalize";
+import { createGlobalStyle } from 'styled-components';
+import styledNormalize from 'styled-normalize';
 
 export default createGlobalStyle`
   ${styledNormalize}
@@ -16,7 +16,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: ${(props) => props.theme.colors.backgrounds.body};
-    color: ${(props) => props.theme.colors.text.primaryText};
+    background: ${props => props.theme.colors.backgrounds.body};
+    color: ${props => props.theme.colors.text.primaryText};
   }
 `;

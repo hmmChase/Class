@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import * as sc from "./Layout.style";
+import React from 'react';
+import PropTypes from 'prop-types';
+import * as sc from './Layout.style';
 
-const Layout = (props) => (
+const Layout = props => (
   <sc.Container>
     <sc.Header>{props.header}</sc.Header>
 
@@ -13,7 +13,7 @@ const Layout = (props) => (
 Layout.propTypes = {
   header: PropTypes.element,
   content: PropTypes.element,
-  footer: PropTypes.element,
+  footer: PropTypes.element
 };
 
 export default React.memo(Layout);

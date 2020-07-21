@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react';
 // import PropTypes from 'prop-types';
-import * as sc from "./Challenge.style";
+import * as sc from './Challenge.style';
 
-const Challenge = (props) => (
+const Challenge = props => (
   <sc.Container>
-    <p>CHALLENGE #1</p>
+    <sc.Label>CHALLENGE #1</sc.Label>
 
-    <h2>Turn any Design into HTML</h2>
+    <sc.Title>Turn any Design into HTML</sc.Title>
 
     <sc.Video>
       <iframe
-        title="challenge"
-        src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG"
-        frameBorder="0"
-        allow="autoplay; encrypted-media"
+        title='challenge'
+        src='https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG'
+        frameBorder='0'
+        allow='autoplay; encrypted-media'
         allowFullScreen
       />
     </sc.Video>

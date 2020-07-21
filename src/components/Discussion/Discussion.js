@@ -1,16 +1,19 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Questions from '../Questions/Questions';
-import Button from '../Button/Button';
 import * as sc from './Discussion.style';
 
 const Discussion = props => (
   <sc.Container>
-    <sc.Label>DISCUSSION</sc.Label>
+    <sc.Flexed>
+      <div>
+        <sc.Label>DISCUSSION</sc.Label>
 
-    <sc.Title>Ask a Question</sc.Title>
+        <sc.Title>Ask a Question</sc.Title>
+      </div>
 
-    <Button>Post a Question</Button>
+      <sc.Buttonn>Post a Question</sc.Buttonn>
+    </sc.Flexed>
 
     <Questions />
   </sc.Container>

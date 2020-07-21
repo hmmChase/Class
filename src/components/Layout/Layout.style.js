@@ -1,19 +1,17 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 //! Mobile first
 
 export const Container = styled.div`
+  background-color: ${props => props.theme.colors.backgrounds.fullApp};
   margin: 0 auto;
-  background-color: ${(props) => props.theme.colors.backgrounds.fullApp};
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* min-height: 100vh; */
+  max-width: max(900px);
 
-  @media screen and (min-width: 900px) {
-    max-width: 900px;
-  }
+  /* display: flex;	*/
+  /* flex-direction: column;	*/
+  /* justify-content: center;	*/
+  /* align-items: center;	*/
+  /* min-height: 100vh;	*/
 `;
 
 export const Header = styled.header`
@@ -21,5 +19,5 @@ export const Header = styled.header`
 `;
 
 export const Main = styled.main`
-  /* margin: 2rem; */
+  /* margin: 2rem;	*/
 `;

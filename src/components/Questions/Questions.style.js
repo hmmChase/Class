@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.ul`
-  list-style: none;
-  padding: 0;
+	list-style: none;
+	padding: 0;
 `;

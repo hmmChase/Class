@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 // import PropTypes from 'prop-types';
-import * as sc from "./Header.style";
+import * as sc from './Header.style';
 
-const Header = (props) => (
+const Header = props => (
   <sc.Container>
     <sc.KnightIcon />
 
