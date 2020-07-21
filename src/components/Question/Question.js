@@ -26,10 +26,12 @@ const Question = props => (
 
     <sc.Body>{props.body}</sc.Body>
 
-    {props.answerCount && <sc.AnswerCount>{props.answerCount}</sc.AnswerCount>}
+    {props.answerCount && (
+      <sc.AnswerCount>{props.answerCount} Answers</sc.AnswerCount>
+    )}
 
     {props.commentCount && (
-      <sc.CommentCount>{props.commentCount}</sc.CommentCount>
+      <sc.CommentCount>{props.commentCount} Comments</sc.CommentCount>
     )}
 
     <sc.ViewThread href=''>View Thread</sc.ViewThread>

@@ -31,6 +31,30 @@ const mockQuestions = [
       'When I open my editor, I get alot of errors about not closing my parenthesis.  What should I do?',
     answerCount: 2,
     commentCount: 12
+  },
+  {
+    author: 'Jay Koontz',
+    createdAt: '26/26/2020',
+    body:
+      'When I open my editor, I get alot of errors about not closing my parenthesis.  What should I do?',
+    answerCount: 2,
+    commentCount: 12
+  },
+  {
+    author: 'Jay Koontz',
+    createdAt: '26/26/2020',
+    body:
+      'When I open my editor, I get alot of errors about not closing my parenthesis.  What should I do?',
+    answerCount: 2,
+    commentCount: 12
+  },
+  {
+    author: 'Jay Koontz',
+    createdAt: '26/26/2020',
+    body:
+      'When I open my editor, I get alot of errors about not closing my parenthesis.  What should I do?',
+    answerCount: 2,
+    commentCount: 12
   }
 ];
 

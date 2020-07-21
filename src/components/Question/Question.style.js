@@ -3,6 +3,7 @@ import { ReactComponent as Answered } from '../../images/answered.svg';
 
 export const Container = styled.li`
   background-color: ${props => props.theme.colors.backgrounds.cards};
+  border-radius: 10px;
   display: grid;
   grid-template-areas:
     'top-left top-mid top-right'
@@ -10,16 +11,18 @@ export const Container = styled.li`
     'bottom-left bottom-mid bottom-right';
   grid-gap: 1rem;
   grid-template-columns: min-content;
+  margin-bottom: 0.5rem;
   padding: 1rem;
-
-  /* margin: 0.4rem; */
 `;
 
 export const Author = styled.span`
+  font-size: 0.9rem;
   grid-area: top-left;
 `;
 
 export const Created = styled.span`
+  font-size: 0.9rem;
+  color: ${props => props.theme.colors.text.terciaryText};
   grid-area: top-mid;
 `;
 
@@ -36,15 +39,23 @@ export const Body = styled.p`
 `;
 
 export const AnswerCount = styled.span`
+  color: ${props => props.theme.colors.text.terciaryText};
+  font-size: 0.9rem;
   grid-area: bottom-left;
 `;
 
 export const CommentCount = styled.span`
+  color: ${props => props.theme.colors.text.terciaryText};
+  font-size: 0.9rem;
   grid-area: bottom-mid;
 `;
 
 export const ViewThread = styled.a`
   color: ${props => props.theme.colors.buttons.actionButton};
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 0.9rem;
+  font-weight: 800;
   grid-area: bottom-right;
   justify-self: end;
+  text-decoration: none;
 `;

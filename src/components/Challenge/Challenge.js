@@ -18,11 +18,11 @@ const Challenge = props => (
       />
     </sc.Video>
 
-    <p>
+    <sc.Desc>
       First challenge, turning any design into HTML, and CSS. First challenge,
       turning any design into HTML, and CSS. First challenge, turning any design
       into HTML, and CSS.
-    </p>
+    </sc.Desc>
   </sc.Container>
 );
 
