@@ -2,20 +2,6 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import * as sc from './Question.style';
 
-// - li.question
-// - span.author-name
-// - span.date-created
-// * if teacher commented
-//   - img.answered
-// - p.question-title
-// * if teacher commented
-//   - span.answer-count
-// * if has comments
-//   - span.comment-count
-// - a.view-thread
-//   * onClick
-//     * display question-detail view
-
 const Question = props => (
   <sc.Container>
     <sc.Author>{props.author}</sc.Author>

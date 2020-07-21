@@ -3,15 +3,12 @@ import { ReactComponent as Answered } from '../../images/answered.svg';
 
 export const Container = styled.li`
   background-color: ${props => props.theme.colors.backgrounds.cards};
-  border-radius: 10px;
   display: grid;
   grid-template-areas:
     'top-left top-mid top-right'
     'body body body'
     'bottom-left bottom-mid bottom-right';
   grid-gap: 1rem;
-  grid-template-columns: min-content;
-  margin-bottom: 0.5rem;
   padding: 1rem;
 `;
 
@@ -36,6 +33,7 @@ export const Answeredd = styled(Answered)`
 
 export const Body = styled.p`
   grid-area: body;
+  margin: 0;
 `;
 
 export const AnswerCount = styled.span`

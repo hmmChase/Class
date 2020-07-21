@@ -3,7 +3,7 @@ import React from 'react';
 import * as sc from './Challenge.style';
 
 const Challenge = props => (
-  <sc.Container>
+  <sc.Container className={props.className}>
     <sc.Label>CHALLENGE #1</sc.Label>
 
     <sc.Title>Turn any Design into HTML</sc.Title>

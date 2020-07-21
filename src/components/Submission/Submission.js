@@ -3,15 +3,8 @@ import React from 'react';
 import Button from '../Button/Button';
 import * as sc from './Submission.style';
 
-// - p.label
-// - h3
-// - p.desc
-// - button.submit.Submission
-//   * onClick
-//     * display submit-Submission modal
-
 const Submission = props => (
-  <sc.Container>
+  <sc.Container className={props.className}>
     <sc.Label>SUBMISSION</sc.Label>
 
     <sc.Title>Submit Your Project</sc.Title>

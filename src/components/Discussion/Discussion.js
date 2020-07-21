@@ -1,10 +1,9 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Questions from '../Questions/Questions';
 import * as sc from './Discussion.style';
 
 const Discussion = props => (
-  <sc.Container>
+  <sc.Container className={props.className}>
     <sc.Flexed>
       <div>
         <sc.Label>DISCUSSION</sc.Label>
@@ -15,7 +14,7 @@ const Discussion = props => (
       <sc.Buttonn>Post a Question</sc.Buttonn>
     </sc.Flexed>
 
-    <Questions />
+    <sc.Questionss />
   </sc.Container>
 );
 
