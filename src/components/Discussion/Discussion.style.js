@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '../Button/Button';
-import Questions from '../Questions/Questions';
+import Threads from '../Threads/Threads';
 
 export const Container = styled.section`
   background-color: ${props => props.theme.colors.backgrounds.widgetsHeader};
@@ -33,7 +33,7 @@ export const Buttonn = styled(Button)`
   align-self: flex-start;
 `;
 
-export const Questionss = styled(Questions)`
+export const Threadss = styled(Threads)`
   height: 800px;
   margin: 0 0.5rem 0.5rem 0.5rem;
 

@@ -1,9 +1,7 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-
 import * as sc from './Main.style';
 
-const Main = props => (
+const Main = () => (
   <sc.Container>
     <sc.Challengee />
 
@@ -13,8 +11,4 @@ const Main = props => (
   </sc.Container>
 );
 
-// Main.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
-
-export default React.memo(Main);
+export default Main;

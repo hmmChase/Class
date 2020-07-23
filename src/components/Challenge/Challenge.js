@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import * as sc from './Challenge.style';
 
 const Challenge = props => (
@@ -26,8 +26,8 @@ const Challenge = props => (
   </sc.Container>
 );
 
-// Challenge.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
+Challenge.propTypes = {
+  className: PropTypes.string
+};
 
 export default React.memo(Challenge);

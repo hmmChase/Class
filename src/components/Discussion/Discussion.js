@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import * as sc from './Discussion.style';
 
 const Discussion = props => (
@@ -14,12 +14,12 @@ const Discussion = props => (
       <sc.Buttonn>Post a Question</sc.Buttonn>
     </sc.Flexed>
 
-    <sc.Questionss />
+    <sc.Threadss />
   </sc.Container>
 );
 
-// Discussion.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
+Discussion.propTypes = {
+  className: PropTypes.string
+};
 
 export default React.memo(Discussion);

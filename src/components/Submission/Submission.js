@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import * as sc from './Submission.style';
 
@@ -17,8 +17,8 @@ const Submission = props => (
   </sc.Container>
 );
 
-// Submission.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
+Submission.propTypes = {
+  className: PropTypes.string
+};
 
 export default React.memo(Submission);

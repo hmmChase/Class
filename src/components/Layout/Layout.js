@@ -12,8 +12,7 @@ const Layout = props => (
 
 Layout.propTypes = {
   header: PropTypes.element,
-  content: PropTypes.element,
-  footer: PropTypes.element
+  content: PropTypes.element
 };
 
 export default React.memo(Layout);

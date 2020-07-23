@@ -1,8 +1,7 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import * as sc from './Header.style';
 
-const Header = props => (
+const Header = () => (
   <sc.Container>
     <sc.KnightIcon />
 
@@ -12,8 +11,4 @@ const Header = props => (
   </sc.Container>
 );
 
-// Header.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
-
-export default React.memo(Header);
+export default Header;
