@@ -1,14 +1,27 @@
 import React from 'react';
+import useModal from '../../utils/useModal';
+import Modal from '../Modal/Modal';
+import Login from '../Login/Login';
 import * as sc from './Header.style';
 
-const Header = () => (
-  <sc.Container>
-    <sc.KnightIcon />
+const Header = () => {
+  const [isModalOpen, toggleModal] = useModal();
 
-    <sc.Title>challenge board</sc.Title>
+  return (
+    <sc.Container>
+      <sc.KnightIcon />
 
-    <sc.UserIcon />
-  </sc.Container>
-);
+      <sc.Title>challenge board</sc.Title>
+
+      <sc.UserIcon onClick={toggleModal} />
+
+      {isModalOpen && (
+        <Modal close={toggleModal}>
+          <Login />
+        </Modal>
+      )}
+    </sc.Container>
+  );
+};
 
 export default Header;

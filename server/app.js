@@ -13,13 +13,15 @@ var app = express();
 
 const whitelist = [];
 if (app.get('env') === 'development') whitelist.push('http://localhost:3000');
-else whitelist.push('challenge-board.vercel.app/');
+else whitelist.push('https://challenge-board.vercel.app/');
 
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) callback(null, true);
     else callback(Error('Not allowed by CORS'));
-  }
+  },
+
+  credentials: true
 };
 
 app.use(cors(corsOptions));

@@ -1,7 +1,7 @@
-const urlBase = 'http://localhost:4000';
-
 export default async (route, options) => {
-  const url = `${urlBase}/${route}`;
+  const urlBase = 'http://localhost:4000';
+
+  const url = `${urlBase}${route}`;
 
   try {
     const response = await fetch(url, options);

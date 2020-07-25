@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import request from './request';
 
-const useThreads = () => {
+export default () => {
   const [threads, setThreads] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
-        const data = await request('threads');
+        const data = await request('/threads');
 
         setThreads(data);
       } catch (err) {
@@ -18,5 +18,3 @@ const useThreads = () => {
 
   return threads;
 };
-
-export default useThreads;

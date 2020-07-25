@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import request from './request';
 
-const userUsers = () => {
+export default () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
-        const data = await request('users');
+        const data = await request('/users');
 
         setUsers(data);
       } catch (err) {
@@ -18,5 +18,3 @@ const userUsers = () => {
 
   return users;
 };
-
-export default userUsers;
