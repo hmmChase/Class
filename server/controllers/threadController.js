@@ -1,6 +1,6 @@
-var { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@prisma/client');
 
-var prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
 exports.getThreads = async (req, res, next) => {
   // const id = req.params.id;

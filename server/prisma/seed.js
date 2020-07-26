@@ -1,6 +1,7 @@
 // run `npm run seed` to seed
 
 const { PrismaClient } = require('@prisma/client');
+const argon2 = require('argon2');
 
 const prisma = new PrismaClient();
 
@@ -19,7 +20,9 @@ const moreThreads = () => {
 const main = async () => {
   const user1 = await prisma.user.create({
     data: {
-      name: 'Jay',
+      password: await argon2.hash('user1', 10),
+      name: 'User1',
+      email: 'user1@email.com',
       avatarUrl: 'http://picsum.photos/40',
       threads: { create: { body: 'This is a message 1.', isAnswer: true } }
     }
@@ -27,7 +30,9 @@ const main = async () => {
 
   const user2 = await prisma.user.create({
     data: {
-      name: 'Morgan',
+      password: await argon2.hash('user2', 10),
+      name: 'User2',
+      email: 'user2@email.com',
       avatarUrl: 'http://picsum.photos/40',
       threads: { create: moreThreads() }
     }

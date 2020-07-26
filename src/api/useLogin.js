@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import request from './request';
+import request from '../utils/request';
 
 export default (email, password) => {
   const [user, setUser] = useState([]);

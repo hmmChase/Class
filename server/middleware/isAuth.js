@@ -1,5 +1,5 @@
-var jwt = require('express-jwt');
-var cookie = require('cookie');
+const jwt = require('express-jwt');
+const cookie = require('cookie');
 
 const getTokenFromHeader = req => {
   if (req.headers) {

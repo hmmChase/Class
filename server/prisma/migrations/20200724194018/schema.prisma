@@ -8,7 +8,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -35,3 +35,8 @@ model Thread {
   body      String
   isAnswer  Boolean  @default(false)
 }
+
+// • Added the required column `updatedAt` to the `Thread` table without a default value. There are 41 rows in this table, it is not possible to execute this migration.
+// • Added the required column `updatedAt` to the `User` table without a default value. There are 21 rows in this table, it is not possible to execute this migration.
+// • Added the required column `password` to the `User` table without a default value. There are 21 rows in this table, it is not possible to execute this migration.
+// • Added the required column `email` to the `User` table without a default value. There are 21 rows in this table, it is not possible to execute this migration.

@@ -1,15 +1,17 @@
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
-var bodyParser = require('body-parser');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var threadsRouter = require('./routes/threads');
-var errorHandlers = require('./handlers/errorHandlers');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const threadsRouter = require('./routes/threads');
+const errorHandlers = require('./handlers/errorHandlers');
 
-var app = express();
+const app = express();
+
+app.set('view engine', 'ejs');
 
 const whitelist = [];
 if (app.get('env') === 'development') whitelist.push('http://localhost:3000');
@@ -26,6 +28,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,10 +41,7 @@ app.use('/threads', threadsRouter);
 app.use(errorHandlers.notFound);
 
 // error handlers:
-if (app.get('env') === 'development') {
-  app.use(errorHandlers.developmentErrors);
-} else {
-  app.use(errorHandlers.productionErrors);
-}
+if (app.get('env') === 'development') app.use(errorHandlers.developmentErrors);
+else app.use(errorHandlers.productionErrors);
 
 module.exports = app;

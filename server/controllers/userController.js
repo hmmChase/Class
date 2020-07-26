@@ -1,7 +1,8 @@
-var { PrismaClient } = require('@prisma/client');
-var { generateJWT } = require('../utils/auth');
+const argon2 = require('argon2');
+const { PrismaClient } = require('@prisma/client');
+const { generateJWT } = require('../utils/auth');
 
-var prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
 exports.getUsers = async (req, res, next) => {
   // const id = req.params.id;
@@ -45,14 +46,28 @@ exports.login = async function (req, res) {
 
   if (!correctPassword) throw Error('Incorrect password');
 
-  const user = { id: user.id, username: user.username, email: user.email };
+  const user = {
+    id: userRecord.id,
+    name: userRecord.name,
+    email: userRecord.email
+  };
 
-  res.cookie('jwt', generateJWT(user), { httpOnly: true, maxAge: 3600000 });
+  const payload = generateJWT(user);
+
+  const cookieOptions = {
+    httpOnly: true,
+    path: '/',
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 3600000,
+    sameSite: 'strict'
+  };
+
+  res.cookie('jwt', payload, cookieOptions);
 
   res.json({
     id: userRecord.id,
     email: userRecord.email,
-    username: userRecord.username,
+    name: userRecord.name,
     avatarUrl: userRecord.avatarUrl
   });
 };
