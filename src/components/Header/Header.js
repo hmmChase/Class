@@ -1,11 +1,15 @@
 import React from 'react';
 import useModal from '../../utils/useModal';
 import Modal from '../Modal/Modal';
-import Login from '../Login/Login';
+import SignOn from '../SignOn/SignOn';
 import * as sc from './Header.style';
 
-const Header = () => {
+const Header = props => {
   const [isModalOpen, toggleModal] = useModal();
+
+  // const [user] = useLogin();
+
+  // console.log('Header user:', user);
 
   return (
     <sc.Container>
@@ -13,11 +17,18 @@ const Header = () => {
 
       <sc.Title>challenge board</sc.Title>
 
-      <sc.UserIcon onClick={toggleModal} />
+      <sc.UserIcon onClick={toggleModal}>
+        {props.user ? (
+          // <img src={props.user.avatarUrl} />
+          <sc.UserIconDefined src={'http://picsum.photos/40'} />
+        ) : (
+          <sc.UserIconDefault />
+        )}
+      </sc.UserIcon>
 
       {isModalOpen && (
         <Modal close={toggleModal}>
-          <Login />
+          <SignOn />
         </Modal>
       )}
     </sc.Container>

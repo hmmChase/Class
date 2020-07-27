@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ReactComponent as Knight } from '../../images/knight.svg';
-import { ReactComponent as User } from '../../images/user.svg';
+import { ReactComponent as KnightSvg } from '../../images/knight.svg';
+import { ReactComponent as UserSvg } from '../../images/user.svg';
 
 export const Container = styled.div`
   align-items: center;
@@ -20,7 +20,7 @@ export const Title = styled.h1`
   text-transform: uppercase;
 `;
 
-export const KnightIcon = styled(Knight)`
+export const KnightIcon = styled(KnightSvg)`
   background-color: ${props => props.theme.colors.text.secondaryText};
   border-radius: 50%;
   fill: ${props => props.theme.colors.backgrounds.widgetsHeader};
@@ -33,14 +33,34 @@ export const KnightIcon = styled(Knight)`
   }
 `;
 
-export const UserIcon = styled(User)`
+export const UserIcon = styled.div`
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
   background-color: ${props => props.theme.colors.text.secondaryText};
   border-radius: 50%;
-  fill: ${props => props.theme.colors.backgrounds.widgetsHeader};
   height: 2rem;
+  width: 2rem;
   padding: 2px;
+
+  /* background-image: url(${props => props.icon}); */
 
   :hover {
     background-color: ${props => props.theme.colors.text.primaryText};
   }
+`;
+
+export const UserIconDefault = styled(UserSvg)`
+  fill: ${props => props.theme.colors.backgrounds.widgetsHeader};
+  border-radius: 50%;
+`;
+
+export const UserIconDefined = styled.img`
+  height: 2rem;
+  width: 2rem;
+  /* overflow: hidden; */
+  /* text-align: center; */
+  /* margin: auto; */
+  border-radius: 50%;
+  padding: 2px;
 `;

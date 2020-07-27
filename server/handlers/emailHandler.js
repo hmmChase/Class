@@ -22,7 +22,7 @@ exports.sendEmail = async options => {
   const emailHtml = await generateHTML(options.filename, options);
 
   const mailOptions = {
-    from: 'Jay Koontz <jay@jaykoontz.com>',
+    from: 'Bob <bob@email.com>',
     to: options.user.email,
     subject: options.subject,
     html: emailHtml

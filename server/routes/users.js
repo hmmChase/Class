@@ -16,4 +16,10 @@ router.post('/create', userController.signup);
 /* POST authenticate a user */
 router.post('/login', userController.login);
 
+// POST /users/reset-password
+router.post('/reset-password', userController.generatePasswordReset);
+
+// POST /users/reset-password/:token
+router.post('/reset-password/:token', userController.resetPassword);
+
 module.exports = router;
