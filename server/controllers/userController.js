@@ -89,19 +89,33 @@ exports.generatePasswordReset = async (req, res) => {
   } else {
     // generate token and expiry, set it on user row
     const resetPassToken = crypto.randomBytes(25).toString('hex');
-    const resetPassTokenExpiry = Date.now() + 1000 * 60 * 60; // 1 hour
+    const expiryDate = Date.now() + 1000 * 60 * 60; // 1 hour
+    const resetPassTokenExpiry = new Date(expiryDate).toISOString();
 
-    await prisma.user.update(
-      { resetPassToken, resetPassTokenExpiry },
-      { where: { email: userRecord.email } }
-    );
+    // await prisma.user.update(
+    //   { where: { email: userRecord.email } },
+    //   {
+    //     data: {
+    //       resetPassToken: resetPassToken,
+    //       resetPassTokenExpiry: resetPassTokenExpiry
+    //     }
+    //   }
+    // );
+
+    await prisma.user.update({
+      where: { email: userRecord.email },
+      data: {
+        resetPassToken: resetPassToken,
+        resetPassTokenExpiry: resetPassTokenExpiry
+      }
+    });
 
     // send email with reset password in a link
     // TODO: https if prod
-    const resetPasswordUrl = `http://${req.headers.host}/users/password-reset/${resetToken}`;
+    const resetPasswordUrl = `http://${req.headers.host}/users/password-reset/${resetPassToken}`;
 
-    emailHandler.sendEmail({
-      subject: 'Password Reset for Message Boardia',
+    sendEmail({
+      subject: 'Password Reset for the Challenge Board',
       filename: 'resetPassEmail',
       user: { email },
       resetPasswordUrl

@@ -14,12 +14,12 @@ const ResetPass = () => {
 
     const options = {
       method: 'POST',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email }),
       headers: { 'Content-Type': 'application/json; charset=utf-8' }
     };
 
     try {
-      await request('/users/resetpass', options);
+      await request('/users/reset-password', options);
     } catch (err) {
       console.error(err);
     }
