@@ -10,8 +10,7 @@
       "use": "@now/node-server"
     },
     {
-      "src": "frontend/src/index.js",
-      "use": "@now/node"
+      "src": "frontend/src/index.js"
     }
   ],
   "routes": [
