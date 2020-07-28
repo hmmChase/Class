@@ -7,7 +7,7 @@
   "builds": [
     {
       "src": "backend/bin/www",
-      "use": "@vercel/node-server"
+      "use": "@now/node-server"
     }
   ],
   "routes": [
