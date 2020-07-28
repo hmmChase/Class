@@ -19,7 +19,6 @@
       "src": "/api/(.*)",
       "dest": "backend/bin/www"
     },
-    ,
     {
       "src": "/(.*)",
       "dest": "frontend/$1",
