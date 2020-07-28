@@ -1,7 +1,12 @@
 {
+  "alias": "challenge-board",
+  "version": 2,
+  "github": {
+    "silent": true
+  },
   "builds": [
     {
-      "src": "backend/package.json",
+      "src": "backend/bin/www",
       "use": "@vercel/node-server"
     }
   ],
@@ -9,7 +14,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/package.json"
+      "dest": "backend/bin/www"
     }
   ]
 }
