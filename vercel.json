@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "index.js",
+      "src": "backend/package.json",
       "use": "@now/node-server"
     }
   ],
@@ -14,7 +14,7 @@
         "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
       },
       "src": "/.*",
-      "dest": "backend/index.js"
+      "dest": "backend/package.json"
     }
   ]
 }
