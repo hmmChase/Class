@@ -6,22 +6,22 @@
   },
   "builds": [
     {
-      "src": "backend/app.js",
-      "use": "@now/node-server"
+      "src": "backend/package.json",
+      "use": "@vercel/node-server"
     },
     {
-      "src": "frontend/src/index.js",
-      "use": "@now/node"
+      "src": "frontend/package.json",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "backend/app.js"
+      "dest": "backend/package.json"
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/src/$1",
+      "dest": "frontend/$1",
       "continue": true
     }
   ]
