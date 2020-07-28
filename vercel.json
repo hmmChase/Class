@@ -8,6 +8,10 @@
     {
       "src": "backend/bin/www",
       "use": "@now/node-server"
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@now/node"
     }
   ],
   "routes": [
