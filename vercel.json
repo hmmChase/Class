@@ -8,21 +8,12 @@
     {
       "src": "backend/bin/www",
       "use": "@vercel/node-server"
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "backend/bin/www"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/$1",
-      "continue": true
     }
   ]
 }
