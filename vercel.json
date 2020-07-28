@@ -2,18 +2,13 @@
   "builds": [
     {
       "src": "backend/package.json",
-      "use": "@now/node-server"
+      "use": "@vercel/node-server"
     }
   ],
 
   "routes": [
     {
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
-      },
-      "src": "/.*",
+      "src": "/api/(.*)",
       "dest": "backend/package.json"
     }
   ]
