@@ -3,26 +3,5 @@
   "version": 2,
   "github": {
     "silent": true
-  },
-  "builds": [
-    {
-      "src": "backend/package.json",
-      "use": "@vercel/node-server"
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "backend/package.json"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/$1",
-      "continue": true
-    }
-  ]
+  }
 }
