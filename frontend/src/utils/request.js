@@ -1,5 +1,8 @@
 export default async (route, options) => {
-  const urlBase = 'http://localhost:4000';
+  const urlBase =
+    process.env.NODE_ENV === 'production'
+      ? 'https://challenge-board.vercel.app'
+      : 'http://localhost:4000';
 
   const url = `${urlBase}${route}`;
 
