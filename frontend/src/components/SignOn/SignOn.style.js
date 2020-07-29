@@ -4,7 +4,7 @@ export const Container = styled.div`
   padding: 1rem;
   height: 200px;
   width: 300px;
-  color: ${props => props.theme.colors.terciaryText};
+  color: black;
 `;
 
 export const Nav = styled.nav`
