@@ -8,7 +8,6 @@ import * as sc from './Threads.style';
 const Threads = props => {
   const threads = useThreads();
 
-
   const threadCards = threads.map((thread, i) => {
     return (
       <Thread

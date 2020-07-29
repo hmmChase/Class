@@ -10,8 +10,11 @@ const threadsRouter = require('./routes/threads');
 const errorHandlers = require('./handlers/errorHandlers');
 
 const app = express();
+// const router = express.Router();
 
 app.set('view engine', 'ejs');
+
+// app.use('/v1', router);
 
 const whitelist = [];
 if (app.get('env') === 'development') whitelist.push('http://localhost:3000');
@@ -33,6 +36,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// app.use('/api/v1', router);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
