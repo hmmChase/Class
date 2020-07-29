@@ -1,8 +1,10 @@
 export default async (route, options) => {
+  const RESTversion = 'v1';
+
   const urlBase =
     process.env.NODE_ENV === 'production'
-      ? 'https://challenge-board.vercel.app/api'
-      : 'http://localhost:4000';
+      ? `https://challenge-board.vercel.app/api/${RESTversion}`
+      : `http://localhost:4000/api/${RESTversion}`;
 
   const url = `${urlBase}${route}`;
 

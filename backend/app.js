@@ -10,22 +10,27 @@ const threadsRouter = require('./routes/threads');
 const errorHandlers = require('./handlers/errorHandlers');
 
 const app = express();
-// const router = express.Router();
 
 app.set('view engine', 'ejs');
 
-// app.use('/v1', router);
+// const whitelist = [];
+// if (app.get('env') === 'development') whitelist.push('http://localhost:4000');
+// else whitelist.push('https://challenge-board.vercel.app/');
 
-const whitelist = [];
-if (app.get('env') === 'development') whitelist.push('http://localhost:3000');
-else whitelist.push('https://challenge-board.vercel.app/');
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (whitelist.indexOf(origin) !== -1) callback(null, true);
+//     else callback(Error('Not allowed by CORS'));
+//   },
+
+//   credentials: true
+// };
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) callback(null, true);
-    else callback(Error('Not allowed by CORS'));
-  },
-
+  origin:
+    process.env.NODE_ENV === 'production'
+      ? 'https://challenge-board.vercel.app'
+      : 'http://localhost:4000',
   credentials: true
 };
 
@@ -37,15 +42,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// app.use('/api/v1', router);
-
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/threads', threadsRouter);
+app.use('/api', indexRouter);
 
-app.use(errorHandlers.notFound);
+const v1 = express.Router();
+app.use('/api/v1', v1);
+
+v1.use('/', indexRouter);
+v1.use('/threads', threadsRouter);
+v1.use('/users', usersRouter);
 
 // error handlers:
+app.use(errorHandlers.notFound);
+
 if (app.get('env') === 'development') app.use(errorHandlers.developmentErrors);
 else app.use(errorHandlers.productionErrors);
 
