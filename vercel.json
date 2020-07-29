@@ -11,7 +11,8 @@
     },
     {
       "src": "frontend/package.json",
-      "use": "@now/node"
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
     }
   ],
   "routes": [
