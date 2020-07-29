@@ -6,7 +6,6 @@ const Layout = props => (
   <sc.Container>
     <sc.Header>{props.header}</sc.Header>
 
-
     <sc.Main>{props.main}</sc.Main>
   </sc.Container>
 );
