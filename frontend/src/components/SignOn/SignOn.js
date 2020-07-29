@@ -18,6 +18,9 @@ const SignOn = () => {
       case 'tab3':
         return <SignUp />;
 
+      case 'tab4':
+        return <SignUp />;
+
       default:
         break;
     }
@@ -58,6 +61,17 @@ const SignOn = () => {
         />
 
         <label htmlFor='tab3'>Sign Up</label>
+
+        <input
+          type='radio'
+          name='tab'
+          id='tab4'
+          value=''
+          checked={tab === 'tab4'}
+          onChange={() => setTab('tab4')}
+        />
+
+        <label htmlFor='tab4'>Discord</label>
       </sc.Nav>
 
       {dispayPanel(tab)}
