@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import * as sc from './Button.style';
 
 const Button = props => (
-  <sc.Button className={props.className}>{props.children}</sc.Button>
+  <sc.Button className={props.className} onClick={props.onClick}>
+    {props.children}
+  </sc.Button>
 );
 
 Button.propTypes = {
+  children: PropTypes.string.isRequired,
   className: PropTypes.string,
-  children: PropTypes.string.isRequired
+  onClick: PropTypes.func
 };
 
 export default React.memo(Button);

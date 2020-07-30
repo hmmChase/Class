@@ -11,7 +11,7 @@ const Discussion = props => (
         <sc.Title>Ask a Question</sc.Title>
       </div>
 
-      <sc.Buttonn>Post a Question</sc.Buttonn>
+      <sc.QuestionBtnn />
     </sc.Flexed>
 
     <sc.Threadss />

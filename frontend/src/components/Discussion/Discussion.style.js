@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Button from '../Button/Button';
 import Threads from '../Threads/Threads';
+import QuestionBtn from '../QuestionBtn/QuestionBtn';
 
 export const Container = styled.section`
   background-color: ${props => props.theme.colors.backgrounds.widgetsHeader};
@@ -29,22 +29,11 @@ export const Title = styled.h3`
   margin: 0;
 `;
 
-export const Buttonn = styled(Button)`
+export const QuestionBtnn = styled(QuestionBtn)`
   align-self: flex-start;
 `;
 
 export const Threadss = styled(Threads)`
   height: 800px;
   margin: 0 0.5rem 0.5rem 0.5rem;
-
-  /* overflow: hidden; */
-
-  /* border-radius: 10px; */
-
-  /* margin-right: 5px; */
-
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* height: 100%; */
-  /* overflow: hidden; */
 `;

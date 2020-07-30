@@ -56,7 +56,7 @@ exports.signup = async function (req, res) {
   res.cookie('jwt', payload, cookieOptions);
 
   // return parts of the created model (name, email, avatarUrl)
-  res.json(userData);
+  return res.json(userData);
 };
 
 exports.login = async function (req, res) {
@@ -88,7 +88,7 @@ exports.login = async function (req, res) {
 
   res.cookie('jwt', payload, cookieOptions);
 
-  res.json({ ...userData, avatarUrl: userRecord.avatarUrl });
+  return res.json({ ...userData, avatarUrl: userRecord.avatarUrl });
 };
 
 exports.generatePasswordReset = async (req, res) => {
@@ -137,7 +137,7 @@ exports.generatePasswordReset = async (req, res) => {
       resetPasswordUrl
     });
 
-    res.json({ message: emailSentMessage });
+    return res.json({ message: emailSentMessage });
   }
 };
 
@@ -185,5 +185,5 @@ exports.resetPassword = async (req, res) => {
   // log them back in
   res.cookie('jwt', payload, cookieOptions);
 
-  res.json({ ...user, avatarUrl: userRecord.avatarUrl });
+  return res.json({ ...user, avatarUrl: userRecord.avatarUrl });
 };
