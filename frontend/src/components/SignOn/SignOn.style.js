@@ -3,8 +3,13 @@ import styled from 'styled-components';
 export const Container = styled.div`
   padding: 1rem;
   height: 200px;
-  width: 300px;
+  width: 400px;
   color: black;
+  margin: 0 auto;
+
+  > nav {
+    text-align: center;
+  }
 `;
 
 export const Nav = styled.nav`

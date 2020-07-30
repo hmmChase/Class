@@ -3,7 +3,10 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 exports.getThreads = async (req, res, next) => {
-  const threads = await prisma.thread.findMany({ include: { author: true } });
+  const threads = await prisma.thread.findMany({
+    orderBy: { id: 'desc' },
+    include: { author: true }
+  });
 
   return res.json(threads);
 };

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Login from '../Login/Login';
 import ResetPass from '../ResetPass/ResetPass';
 import SignUp from '../SignUp/SignUp';
+import Discord from '../Discord/Discord';
 import * as sc from './SignOn.style';
 
 const SignOn = () => {
@@ -19,7 +20,7 @@ const SignOn = () => {
         return <SignUp />;
 
       case 'tab4':
-        return <SignUp />;
+        return <Discord />;
 
       default:
         break;
