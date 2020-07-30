@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 1rem;
-  height: 200px;
+  height: 300px;
   width: 400px;
-  color: black;
-  margin: 0 auto;
 
   > nav {
-    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
   }
 `;
 
@@ -16,10 +16,15 @@ export const Nav = styled.nav`
   margin-bottom: 1rem;
 
   > input {
-    visibility: hidden;
+    display: none;
+  }
+
+  input :hover {
+    border-bottom: 2px solid
+      ${props => props.theme.colors.buttons.actionButtonHover};
   }
 
   > input:checked + label {
-    background: red;
+    border-bottom: 2px solid ${props => props.theme.colors.buttons.actionButton};
   }
 `;

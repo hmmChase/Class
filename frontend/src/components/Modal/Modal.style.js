@@ -23,6 +23,6 @@ export const Outer = styled.div`
 
 export const Inner = styled.div`
   z-index: 999;
-  padding: 10px;
-  background-color: white;
+  padding: 1rem;
+  background-color: ${props => props.theme.colors.backgrounds.cards};
 `;

@@ -28,7 +28,7 @@ const Login = () => {
 
   return (
     <sc.Form onSubmit={onSubmit}>
-      <label>
+      <sc.Label>
         Email:
         <input
           type='email'
@@ -36,9 +36,9 @@ const Login = () => {
           placeholder='Email'
           onChange={e => setEmail(e.target.value)}
         />
-      </label>
+      </sc.Label>
 
-      <label>
+      <sc.Label>
         Password:
         <input
           type='password'
@@ -46,9 +46,9 @@ const Login = () => {
           placeholder='Password'
           onChange={e => setPassword(e.target.value)}
         />
-      </label>
+      </sc.Label>
 
-      <button type='submit'>Log in</button>
+      <sc.Buttonn type='submit'>Log in</sc.Buttonn>
     </sc.Form>
   );
 };

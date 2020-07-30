@@ -24,13 +24,13 @@ const Question = () => {
 
   return (
     <sc.Form onSubmit={onSubmit}>
-      <textarea
+      <sc.TextArea
         value={body}
-        placeholder='Type your Question here'
+        placeholder=''
         onChange={e => setBody(e.target.value)}
       />
 
-      <button type='submit'>Post Question</button>
+      <sc.Buttonn type='submit'>Post Question</sc.Buttonn>
     </sc.Form>
   );
 };

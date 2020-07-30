@@ -27,7 +27,7 @@ const ResetPass = () => {
 
   return (
     <sc.Form onSubmit={onSubmit}>
-      <label>
+      <sc.Label>
         Email:
         <input
           type='email'
@@ -35,9 +35,9 @@ const ResetPass = () => {
           placeholder='Email'
           onChange={e => setEmail(e.target.value)}
         />
-      </label>
+      </sc.Label>
 
-      <button type='submit'>Reset Password</button>
+      <sc.Buttonn type='submit'>Reset Password</sc.Buttonn>
     </sc.Form>
   );
 };

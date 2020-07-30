@@ -33,7 +33,7 @@ const SignUp = () => {
 
   return (
     <sc.Form onSubmit={onSubmit}>
-      <label>
+      <sc.Label>
         Name:
         <input
           type='text'
@@ -41,9 +41,9 @@ const SignUp = () => {
           placeholder='Name'
           onChange={e => setName(e.target.value)}
         />
-      </label>
+      </sc.Label>
 
-      <label>
+      <sc.Label>
         Email:
         <input
           type='email'
@@ -51,9 +51,9 @@ const SignUp = () => {
           placeholder='Email'
           onChange={e => setEmail(e.target.value)}
         />
-      </label>
+      </sc.Label>
 
-      <label>
+      <sc.Label>
         Password:
         <input
           type='password'
@@ -61,18 +61,18 @@ const SignUp = () => {
           placeholder='Password'
           onChange={e => setPassword(e.target.value)}
         />
-      </label>
+      </sc.Label>
 
-      <label>
+      <sc.Label>
         Teacher?
         <input
           type='checkbox'
           checked={isTeacher}
           onChange={() => setIsTeacher(!isTeacher)}
         />
-      </label>
+      </sc.Label>
 
-      <button type='submit'>Sign Up</button>
+      <sc.Buttonn type='submit'>Sign Up</sc.Buttonn>
     </sc.Form>
   );
 };
