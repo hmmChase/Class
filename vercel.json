@@ -25,5 +25,19 @@
       "dest": "frontend/$1",
       "continue": true
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "ACCESS_TOKEN_SECRET": "@cb_access_token_secret",
+      "DATABASE_URL": "@cb_database_url",
+      "MAIL_USER": "@cb_mail_user",
+      "MAIL_PASS": "@cb_mail_pass"
+    }
+  },
+  "env": {
+    "ACCESS_TOKEN_SECRET": "@cb_access_token_secret",
+    "DATABASE_URL": "@cb_database_url",
+    "MAIL_USER": "@cb_mail_user",
+    "MAIL_PASS": "@cb_mail_pass"
+  }
 }
