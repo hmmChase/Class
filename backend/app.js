@@ -30,7 +30,7 @@ const corsOptions = {
   origin:
     process.env.NODE_ENV === 'production'
       ? 'https://challenge-board.vercel.app'
-      : 'http://localhost:4000',
+      : 'http://localhost:3000',
   credentials: true
 };
 
