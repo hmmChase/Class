@@ -2,21 +2,21 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-exports.getThreads = async (req, res, next) => {
-  const threads = await prisma.thread.findMany({
+exports.getQuestions = async (req, res, next) => {
+  const questions = await prisma.question.findMany({
     orderBy: { id: 'desc' },
     include: { author: true }
   });
 
-  return res.json(threads);
+  return res.json(questions);
 };
 
 exports.create = async function (req, res, next) {
   const { authorId, body } = req.body;
 
-  const threadModel = await prisma.thread.create({
+  const questionModel = await prisma.question.create({
     data: { body: body, author: { connect: { id: authorId } } }
   });
 
-  return res.json(threadModel);
+  return res.json(questionModel);
 };

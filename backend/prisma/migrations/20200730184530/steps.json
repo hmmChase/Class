@@ -202,8 +202,8 @@
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "threads",
-      "type": "Thread",
+      "field": "questions",
+      "type": "Question",
       "arity": "List"
     },
     {
@@ -222,11 +222,11 @@
     },
     {
       "tag": "CreateModel",
-      "model": "Thread"
+      "model": "Question"
     },
     {
       "tag": "CreateField",
-      "model": "Thread",
+      "model": "Question",
       "field": "id",
       "type": "Int",
       "arity": "Required"
@@ -236,7 +236,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "id"
         },
         "directive": "id"
@@ -247,7 +247,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "id"
         },
         "directive": "default"
@@ -259,7 +259,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "id"
         },
         "directive": "default"
@@ -269,7 +269,7 @@
     },
     {
       "tag": "CreateField",
-      "model": "Thread",
+      "model": "Question",
       "field": "createdAt",
       "type": "DateTime",
       "arity": "Required"
@@ -279,7 +279,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "createdAt"
         },
         "directive": "default"
@@ -291,7 +291,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "createdAt"
         },
         "directive": "default"
@@ -301,7 +301,7 @@
     },
     {
       "tag": "CreateField",
-      "model": "Thread",
+      "model": "Question",
       "field": "updatedAt",
       "type": "DateTime",
       "arity": "Required"
@@ -311,7 +311,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "updatedAt"
         },
         "directive": "updatedAt"
@@ -319,7 +319,7 @@
     },
     {
       "tag": "CreateField",
-      "model": "Thread",
+      "model": "Question",
       "field": "author",
       "type": "User",
       "arity": "Required"
@@ -329,7 +329,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "author"
         },
         "directive": "relation"
@@ -341,7 +341,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "author"
         },
         "directive": "relation"
@@ -355,7 +355,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "author"
         },
         "directive": "relation"
@@ -365,21 +365,21 @@
     },
     {
       "tag": "CreateField",
-      "model": "Thread",
+      "model": "Question",
       "field": "authorId",
       "type": "Int",
       "arity": "Required"
     },
     {
       "tag": "CreateField",
-      "model": "Thread",
+      "model": "Question",
       "field": "body",
       "type": "String",
       "arity": "Required"
     },
     {
       "tag": "CreateField",
-      "model": "Thread",
+      "model": "Question",
       "field": "isAnswer",
       "type": "Boolean",
       "arity": "Required"
@@ -389,7 +389,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "isAnswer"
         },
         "directive": "default"
@@ -401,7 +401,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Thread",
+          "model": "Question",
           "field": "isAnswer"
         },
         "directive": "default"

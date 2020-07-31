@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useThreads from '../../api/useThreads';
-import Thread from '../Thread/Thread';
+import useQuestions from '../../api/useQuestions';
+import Thread from '../QuestionCard/QuestionCard';
 import formatDate from '../../utils/formatDate';
-import * as sc from './Threads.style';
+import * as sc from './Questions.style';
 
-const Threads = props => {
-  const threads = useThreads();
+const Questions = props => {
+  const questions = useQuestions();
 
-  const threadCards = threads.map((thread, i) => {
+  const threadCards = questions.map((thread, i) => {
     return (
       <Thread
         key={thread.id}
@@ -25,8 +25,8 @@ const Threads = props => {
   return <sc.Container className={props.className}>{threadCards}</sc.Container>;
 };
 
-Threads.propTypes = {
+Questions.propTypes = {
   className: PropTypes.string
 };
 
-export default React.memo(Threads);
+export default React.memo(Questions);

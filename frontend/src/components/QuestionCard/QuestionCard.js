@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as sc from './Thread.style';
+import * as sc from './QuestionCard.style';
 
-const Thread = props => (
+const QuestionCard = props => (
   <sc.Container>
     <sc.Author>{props.authorName}</sc.Author>
 
@@ -20,15 +20,15 @@ const Thread = props => (
       <sc.CommentCount>{props.commentCount} Comments</sc.CommentCount>
     )} */}
 
-    <sc.ViewThread href=''>View Thread</sc.ViewThread>
+    <sc.ViewQuestion href=''>View Question</sc.ViewQuestion>
   </sc.Container>
 );
 
-Thread.propTypes = {
+QuestionCard.propTypes = {
   createdAt: PropTypes.any,
   authorName: PropTypes.string,
   body: PropTypes.string.isRequired,
   isAnswer: PropTypes.bool.isRequired
 };
 
-export default React.memo(Thread);
+export default React.memo(QuestionCard);

@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const threadsRouter = require('./routes/threads');
+const questionsRouter = require('./routes/questions');
 const errorHandlers = require('./handlers/errorHandlers');
 
 const app = express();
@@ -49,7 +49,7 @@ const v1 = express.Router();
 app.use('/api/v1', v1);
 
 v1.use('/', indexRouter);
-v1.use('/threads', threadsRouter);
+v1.use('/questions', questionsRouter);
 v1.use('/users', usersRouter);
 
 // error handlers:

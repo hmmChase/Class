@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Threads from '../Threads/Threads';
+import Questions from '../Questions/Questions';
 import QuestionBtn from '../QuestionBtn/QuestionBtn';
 
 export const Container = styled.section`
@@ -33,7 +33,7 @@ export const QuestionBtnn = styled(QuestionBtn)`
   align-self: flex-start;
 `;
 
-export const Threadss = styled(Threads)`
+export const Questionss = styled(Questions)`
   height: 800px;
   margin: 0 0.5rem 0.5rem 0.5rem;
 `;

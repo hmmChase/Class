@@ -48,7 +48,7 @@ export const CommentCount = styled.span`
   grid-area: bottom-mid;
 `;
 
-export const ViewThread = styled.a`
+export const ViewQuestion = styled.a`
   color: ${props => props.theme.colors.buttons.actionButton};
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 0.9rem;

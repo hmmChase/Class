@@ -61,7 +61,7 @@ body
             - span.answer-count
           * if has comments
             - span.comment-count
-          - a.view-thread
+          - a.view-question
             * onClick
               * display question-detail view
 ```

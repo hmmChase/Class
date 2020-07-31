@@ -14,7 +14,7 @@ const Discussion = props => (
       <sc.QuestionBtnn />
     </sc.Flexed>
 
-    <sc.Threadss />
+    <sc.Questionss />
   </sc.Container>
 );
 

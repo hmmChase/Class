@@ -2,19 +2,19 @@ import { useState, useEffect } from 'react';
 import request from '../utils/request';
 
 export default () => {
-  const [threads, setThreads] = useState([]);
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
-        const data = await request('/threads');
+        const data = await request('/questions');
 
-        setThreads(data);
+        setQuestions(data);
       } catch (err) {
         console.error(err);
       }
     })();
   }, []);
 
-  return threads;
+  return questions;
 };

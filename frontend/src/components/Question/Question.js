@@ -16,7 +16,7 @@ const Question = () => {
     };
 
     try {
-      await request('/threads/create', options);
+      await request('/questions/create', options);
     } catch (err) {
       console.error(err);
     }

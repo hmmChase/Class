@@ -5,16 +5,16 @@ const argon2 = require('argon2');
 
 const prisma = new PrismaClient();
 
-const moreThreads = () => {
-  const amtThreads = 4;
-  const threads = [];
+const moreQuestions = () => {
+  const amtQuestions = 4;
+  const questions = [];
 
   const randBool = () => Boolean(Math.random() >= 0.5);
 
-  for (let i = 1; i <= amtThreads; i++)
-    threads.push({ body: 'seeded question ' + i, isAnswer: randBool() });
+  for (let i = 1; i <= amtQuestions; i++)
+    questions.push({ body: 'seeded question ' + i, isAnswer: randBool() });
 
-  return threads;
+  return questions;
 };
 
 const main = async () => {
@@ -35,7 +35,7 @@ const main = async () => {
       email: 'student1@email.com',
       role: 'STUDENT',
       avatarUrl: 'http://picsum.photos/40',
-      threads: { create: moreThreads() }
+      questions: { create: moreQuestions() }
     }
   });
 
@@ -46,7 +46,7 @@ const main = async () => {
       email: 'student2@email.com',
       role: 'STUDENT',
       avatarUrl: 'http://picsum.photos/40',
-      threads: { create: moreThreads() }
+      questions: { create: moreQuestions() }
     }
   });
 
