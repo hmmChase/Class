@@ -1,10 +1,31 @@
 import React from 'react';
-import Layout from './components/Layout/Layout';
-import Header from './components/Header/Header';
-import Main from './components/Main/Main';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import SignUpPage from './pages/signUp';
+import DiscordPage from './pages/discord';
+import ChallengePage from './pages/challenge';
 
-function App() {
-  return <Layout header={<Header />} main={<Main />}></Layout>;
-}
+const App = () => {
+  return (
+    <div>
+      <Router>
+        <div>
+          <Switch>
+            <Route path='/signup'>
+              <SignUpPage />
+            </Route>
+
+            <Route path='/discord-login'>
+              <DiscordPage />
+            </Route>
+
+            <Route path='/challenge'>
+              <ChallengePage />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </div>
+  );
+};
 
 export default App;

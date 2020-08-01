@@ -20,9 +20,10 @@ const moreQuestions = () => {
 const main = async () => {
   const teacher = await prisma.user.create({
     data: {
+      email: 'teacher@email.com',
+      username: 'Teacher',
       password: await argon2.hash('teacher', 10),
       name: 'Teacher',
-      email: 'teacher@email.com',
       role: 'TEACHER',
       avatarUrl: 'http://picsum.photos/40'
     }
@@ -30,9 +31,10 @@ const main = async () => {
 
   const student1 = await prisma.user.create({
     data: {
+      email: 'student1@email.com',
+      username: 'Student 1',
       password: await argon2.hash('student1', 10),
       name: 'Student 1',
-      email: 'student1@email.com',
       role: 'STUDENT',
       avatarUrl: 'http://picsum.photos/40',
       questions: { create: moreQuestions() }
@@ -41,9 +43,10 @@ const main = async () => {
 
   const student2 = await prisma.user.create({
     data: {
+      email: 'student2@email.com',
+      username: 'Student 2',
       password: await argon2.hash('student2', 10),
       name: 'Student 2',
-      email: 'student2@email.com',
       role: 'STUDENT',
       avatarUrl: 'http://picsum.photos/40',
       questions: { create: moreQuestions() }

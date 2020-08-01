@@ -10,7 +10,7 @@ const getTokenFromHeader = req => {
 };
 
 exports.isAuth = jwt({
-  secret: Buffer.from(process.env.JWT_SECRET, 'base64'),
+  secret: Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64'),
   userProperty: 'token', // the encoded data now shows up in req.token
   getToken: getTokenFromHeader,
   algorithms: ['HS256']
