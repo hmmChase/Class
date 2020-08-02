@@ -4,14 +4,14 @@ const authService = require('./authService');
 
 // Set up the service with some base information
 const oauth = new DiscordOauth2({
-  // Provided when you sign up on Discord for anapp
-  clientId: process.env.DISCORD_CLIENT,
+  // Provided when you sign up on Discord for an app
+  clientId: process.env.DISCORD_CLIENT_ID,
 
   // Provided when you sign up on Discord for an app
   clientSecret: process.env.DISCORD_SECRET,
 
   // Add this as redirect URI in Discord app config
-  redirectUri: 'http://localhost/discord-login'
+  redirectUri: 'http://localhost:3000/login'
 });
 
 // Wraps DiscordOauth2's generate auth url
@@ -29,11 +29,12 @@ exports.generateDiscordURL = () => {
 
 exports.createDiscordUser = async code => {
   // Grab an access_token from Discord based on the code and any prior scope
+
   const tokenResponse = await oauth.tokenRequest({
-    code,
+    code: code,
     scope: 'identify email',
-    grantType: 'authorization_code'
     // check the Discord OAuth docs for various grantTypes
+    grantType: 'authorization_code'
   });
 
   // Now that we have the access_token, let's get some user information

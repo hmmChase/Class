@@ -17,23 +17,25 @@ const getParameterByName = (name, url) => {
 };
 
 const getStateFromHeader = req => {
-  if (req.headers) {
-    const state = cookie.parse(req.headers.cookie).state;
-
-    return state;
-  }
+  if (req.headers) return cookie.parse(req.headers.cookie).state;
 };
 
 exports.getDiscordUrl = (req, res) => {
   const url = discordOAuthService.generateDiscordURL();
 
-  const paramName = getParameterByName('state', url);
+  const stateParam = getParameterByName('state', url);
 
-  const options = { maxAge: 1000 * 60 * 20 }; // 20m for CSRF protection
+  const options = {
+    httpOnly: true,
+    // path: '/',
+    // secure: process.env.NODE_ENV === 'production',
+    // sameSite: 'strict',
+    maxAge: 1000 * 60 * 20 // 20m for CSRF protection
+  };
 
-  res.cookie('state', paramName, options);
+  res.cookie('state', stateParam, options);
 
-  res.json({ discordUrl: url });
+  return res.json({ discordUrl: url });
 };
 
 exports.authenticateDiscordUser = async (req, res) => {
@@ -49,10 +51,7 @@ exports.authenticateDiscordUser = async (req, res) => {
     return res.status(401).json({ message: invalidMessage });
 
   // By taking this out of the controller function, we keep our responsibilities low
-  const { user, jwt } = await discordOAuthService.createDiscordUser(
-    code,
-    state
-  );
+  const { user, jwt } = await discordOAuthService.createDiscordUser(code);
 
   // We're good. Let's log them in with a JWT
   res.cookie('jwt', jwt, COOKIE_CONFIG);

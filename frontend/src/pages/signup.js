@@ -1,6 +1,13 @@
 import React from 'react';
-import SignUp from '../components/SignUp/SignUp';
+import SignUpDiscord from '../components/SignUpDiscord/SignUpDiscord';
+// import SignUpEmail from '../components/SignUpEmail/SignUpEmail';
 
-const SignUpPage = () => <SignUp />;
+const SignUpPage = () => (
+  <>
+    <SignUpDiscord />
+
+    {/* <SignUpEmail /> */}
+  </>
+);
 
 export default SignUpPage;

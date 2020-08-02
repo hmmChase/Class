@@ -5,8 +5,56 @@ const { sendEmail } = require('../handlers/emailHandler');
 
 const prisma = new PrismaClient();
 
+const createPasswordUser = async (
+  email,
+  username,
+  password,
+  role,
+  avatarUrl
+) => {
+  const hashedPassword = await argon2.hash(password);
+
+  const user = { username, email, password: hashedPassword, role, avatarUrl };
+
+  const userRecord = await prisma.user.create({ data: user });
+
+  const userData = {
+    id: userRecord.id,
+    email: userRecord.email,
+    username: userRecord.username,
+    role: userRecord.role,
+    avatarUrl: userRecord.avatarUrl
+  };
+
+  return userData;
+};
+
+const createDiscordUser = async (email, username) => {
+  const user = { email, username, hasDiscordLogin: true };
+
+  const userRecord = await prisma.user.create({ data: user });
+
+  const userData = {
+    id: userRecord.id,
+    email: userRecord.email,
+    username: userRecord.username,
+    role: userRecord.role,
+    avatarUrl: userRecord.avatarUrl
+  };
+
+  return userData;
+};
+
+const sendWelcomeSignupEmail = (email, username) => {
+  sendEmail({
+    subject: 'Welcome to the Challange Board!',
+    filename: 'signupEmail',
+    user: { email, username }
+  });
+};
+
 exports.generateJWT = payload => {
-  const secret = Buffer.from(process.env.JWT_SECRET, 'base64');
+  const secret = Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64');
   const options = { expiresIn: '6h' };
 
   return jwt.sign(payload, secret, options);
@@ -54,52 +102,4 @@ exports.signupDiscordUser = async (email, username) => {
   sendWelcomeSignupEmail(email, username);
 
   return createdUser;
-};
-
-const createPasswordUser = async (
-  email,
-  username,
-  password,
-  role,
-  avatarUrl
-) => {
-  const hashedPassword = await argon2.hash(password);
-
-  const user = { username, email, password: hashedPassword, role, avatarUrl };
-
-  const userRecord = await prisma.user.create({ data: user });
-
-  const userData = {
-    id: userRecord.id,
-    email: userRecord.email,
-    username: userRecord.username,
-    role: userRecord.role,
-    avatarUrl: userRecord.avatarUrl
-  };
-
-  return userData;
-};
-
-const createDiscordUser = async (email, username) => {
-  const user = { email, username, hasDiscordLogin: true };
-
-  const userRecord = await prisma.user.create({ data: user });
-
-  const userData = {
-    id: userRecord.id,
-    email: userRecord.email,
-    username: userRecord.username,
-    role: userRecord.role,
-    avatarUrl: userRecord.avatarUrl
-  };
-
-  return userData;
-};
-
-const sendWelcomeSignupEmail = (email, username) => {
-  sendEmail({
-    subject: 'Welcome to the Challange Board!',
-    filename: 'signupEmail',
-    user: { email, username }
-  });
 };

@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import SignUpPage from './pages/signUp';
-import DiscordPage from './pages/discord';
 import ChallengePage from './pages/challenge';
+import LoginPage from './pages/login';
+import SignUpPage from './pages/signup';
+import IndexPage from './pages/index';
 
 const App = () => {
   return (
@@ -10,16 +11,20 @@ const App = () => {
       <Router>
         <div>
           <Switch>
+            <Route path='/challenge'>
+              <ChallengePage />
+            </Route>
+
+            <Route path='/login'>
+              <LoginPage />
+            </Route>
+
             <Route path='/signup'>
               <SignUpPage />
             </Route>
 
-            <Route path='/discord-login'>
-              <DiscordPage />
-            </Route>
-
-            <Route path='/challenge'>
-              <ChallengePage />
+            <Route path='/'>
+              <IndexPage />
             </Route>
           </Switch>
         </div>

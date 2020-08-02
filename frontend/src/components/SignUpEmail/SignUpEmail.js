@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 // import useSignUp from '../../api/useSignUp';
 import request from '../../utils/request';
-import * as sc from './SignUp.style';
+import * as sc from './SignUpEmail.style';
 
-const SignUp = () => {
+const SignUpEmail = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -77,4 +77,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpEmail;

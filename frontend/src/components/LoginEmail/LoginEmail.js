@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 // import useLogin from '../../api/useLogin';
 import request from '../../utils/request';
-import * as sc from './Login.style';
+import * as sc from './LoginEmail.style';
 
-const Login = () => {
+const LoginEmail = () => {
   const [email, setEmail] = useState('teacher@email.com');
   const [password, setPassword] = useState('teacher');
   // const [user, login] = useLogin(email, password);
@@ -53,4 +53,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginEmail;
