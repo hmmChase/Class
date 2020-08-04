@@ -131,6 +131,70 @@
     {
       "tag": "CreateField",
       "model": "User",
+      "field": "hasDiscordLogin",
+      "type": "Boolean",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "hasDiscordLogin"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "hasDiscordLogin"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "false"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "role",
+      "type": "Role",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "role"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "role"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "STUDENT"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
       "field": "email",
       "type": "String",
       "arity": "Required"
@@ -170,48 +234,9 @@
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "role",
-      "type": "Role",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "role"
-        },
-        "directive": "default"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "role"
-        },
-        "directive": "default"
-      },
-      "argument": "",
-      "value": "STUDENT"
-    },
-    {
-      "tag": "CreateField",
-      "model": "User",
       "field": "avatarUrl",
       "type": "String",
       "arity": "Optional"
-    },
-    {
-      "tag": "CreateField",
-      "model": "User",
-      "field": "questions",
-      "type": "Question",
-      "arity": "List"
     },
     {
       "tag": "CreateField",
@@ -230,34 +255,16 @@
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "hasDiscordLogin",
-      "type": "Boolean",
-      "arity": "Required"
+      "field": "questions",
+      "type": "Question",
+      "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "hasDiscordLogin"
-        },
-        "directive": "default"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "hasDiscordLogin"
-        },
-        "directive": "default"
-      },
-      "argument": "",
-      "value": "false"
+      "tag": "CreateField",
+      "model": "User",
+      "field": "replies",
+      "type": "Reply",
+      "arity": "List"
     },
     {
       "tag": "CreateModel",
@@ -359,6 +366,20 @@
     {
       "tag": "CreateField",
       "model": "Question",
+      "field": "body",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Question",
+      "field": "replies",
+      "type": "Reply",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Question",
       "field": "author",
       "type": "User",
       "arity": "Required"
@@ -410,17 +431,14 @@
       "arity": "Required"
     },
     {
-      "tag": "CreateField",
-      "model": "Question",
-      "field": "body",
-      "type": "String",
-      "arity": "Required"
+      "tag": "CreateModel",
+      "model": "Reply"
     },
     {
       "tag": "CreateField",
-      "model": "Question",
-      "field": "isAnswer",
-      "type": "Boolean",
+      "model": "Reply",
+      "field": "id",
+      "type": "Int",
       "arity": "Required"
     },
     {
@@ -428,8 +446,19 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Question",
-          "field": "isAnswer"
+          "model": "Reply",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Reply",
+          "field": "id"
         },
         "directive": "default"
       }
@@ -440,13 +469,176 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Question",
-          "field": "isAnswer"
+          "model": "Reply",
+          "field": "id"
         },
         "directive": "default"
       },
       "argument": "",
-      "value": "false"
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reply",
+      "field": "createdAt",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Reply",
+          "field": "createdAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reply",
+          "field": "createdAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reply",
+      "field": "updatedAt",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Reply",
+          "field": "updatedAt"
+        },
+        "directive": "updatedAt"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reply",
+      "field": "body",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reply",
+      "field": "question",
+      "type": "Question",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Reply",
+          "field": "question"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reply",
+          "field": "question"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[questionId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reply",
+          "field": "question"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reply",
+      "field": "questionId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reply",
+      "field": "author",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Reply",
+          "field": "author"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reply",
+          "field": "author"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[authorId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reply",
+          "field": "author"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reply",
+      "field": "authorId",
+      "type": "Int",
+      "arity": "Required"
     }
   ]
 }

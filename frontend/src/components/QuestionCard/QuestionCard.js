@@ -8,7 +8,7 @@ const QuestionCard = props => (
 
     <sc.Created>{props.createdAt}</sc.Created>
 
-    {props.isAnswer && <sc.Answeredd />}
+    {/* {props.isAnswer && <sc.Answeredd />} */}
 
     <sc.Body>{props.body}</sc.Body>
 
@@ -27,8 +27,8 @@ const QuestionCard = props => (
 QuestionCard.propTypes = {
   createdAt: PropTypes.any,
   authorName: PropTypes.string,
-  body: PropTypes.string.isRequired,
-  isAnswer: PropTypes.bool.isRequired
+  body: PropTypes.string.isRequired
+  // isAnswer: PropTypes.bool.isRequired
 };
 
 export default React.memo(QuestionCard);

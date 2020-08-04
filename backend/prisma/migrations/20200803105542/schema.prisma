@@ -19,26 +19,38 @@ model User {
   id                   Int        @id @default(autoincrement())
   createdAt            DateTime   @default(now())
   updatedAt            DateTime   @updatedAt
+  hasDiscordLogin      Boolean    @default(false)
+  role                 Role       @default(STUDENT)
   email                String     @unique
   username             String
   password             String?
   name                 String?
-  role                 Role       @default(STUDENT)
   avatarUrl            String?
-  questions            Question[]
   resetPassToken       String?
   resetPassTokenExpiry DateTime?
-  hasDiscordLogin      Boolean    @default(false)
+  questions            Question[]
+  replies              Reply[]
 }
 
 model Question {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  body      String
+  replies   Reply[]
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
-  body      String
-  isAnswer  Boolean  @default(false)
+}
+
+model Reply {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  body       String
+  question   Question @relation(fields: [questionId], references: [id])
+  questionId Int
+  author     User     @relation(fields: [authorId], references: [id])
+  authorId   Int
 }
 
 enum Role {

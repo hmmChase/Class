@@ -5,8 +5,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const questionsRouter = require('./routes/questions');
+const repliesRouter = require('./routes/replies');
+const usersRouter = require('./routes/users');
 const discordRouter = require('./routes/discord');
 
 const errorHandlers = require('./handlers/errorHandlers');
@@ -52,6 +53,7 @@ app.use('/api/v1', v1);
 
 v1.use('/', indexRouter);
 v1.use('/questions', questionsRouter);
+v1.use('/replies', repliesRouter);
 v1.use('/users', usersRouter);
 v1.use('/discord', discordRouter);
 

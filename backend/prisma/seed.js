@@ -6,16 +6,24 @@ const argon2 = require('argon2');
 const prisma = new PrismaClient();
 
 const moreQuestions = () => {
-  const amtQuestions = 4;
+  const amtQuestions = 5;
   const questions = [];
 
-  const randBool = () => Boolean(Math.random() >= 0.5);
-
   for (let i = 1; i <= amtQuestions; i++)
-    questions.push({ body: 'seeded question ' + i, isAnswer: randBool() });
+    questions.push({ body: 'seeded question ' + i });
 
   return questions;
 };
+
+// const moreReplies = () => {
+//   const amtReplies = 20;
+//   const replies = [];
+
+//   for (let i = 1; i <= amtReplies; i++)
+//     replies.push({ body: 'seeded reply ' + i });
+
+//   return questions;
+// };
 
 const main = async () => {
   const teacher = await prisma.user.create({
@@ -53,8 +61,25 @@ const main = async () => {
     }
   });
 
-  console.log({ teacher, student1, student2 });
+  const reply1 = await prisma.reply.create({
+    data: {
+      body: 'seeded reply 1',
+      author: { connect: { id: 1 } },
+      question: { connect: { id: 1 } }
+    }
+  });
+
+  console.log({ teacher, student1, student2, reply1 });
 };
+
+//   +   question: {
+//   +     create?: QuestionCreateWithoutRepliesInput,
+//   +     connect?: QuestionWhereUniqueInput
+//   +   },
+//   +   author: {
+//   +     create?: UserCreateWithoutRepliesInput,
+//   +     connect?: UserWhereUniqueInput
+//   +   },
 
 main()
   .catch(e => {
