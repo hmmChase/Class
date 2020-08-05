@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LoginEmail from '../LoginEmail/LoginEmail';
-import ResetPass from '../ResetPass/ResetPass';
+import ResetPass from '../RequestPassReset/RequestPassReset';
 import SignUpEmail from '../SignUpEmail/SignUpEmail';
 import LoginDiscord from '../LoginDiscord/LoginDiscord';
 import SignUpDiscord from '../SignUpDiscord/SignUpDiscord';

@@ -21,7 +21,8 @@ const Discussion = props => {
       </sc.Flexed>
 
       <sc.Questionss questions={questions} />
-      <sc.QuestionDetail questions={questions} />
+
+      {/* <sc.QuestionDetail questions={questions} /> */}
     </sc.Container>
   );
 };

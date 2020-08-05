@@ -1,3 +1,4 @@
+const cookie = require('cookie');
 const DiscordOauth2 = require('discord-oauth2');
 const crypto = require('crypto');
 const authService = require('./authService');
@@ -13,6 +14,24 @@ const oauth = new DiscordOauth2({
   // Add this as redirect URI in Discord app config
   redirectUri: 'http://localhost:3000/login'
 });
+
+exports.getParameterByName = (name, url) => {
+  const parsedName = name.replace(/[\[\]]/g, '\\$&');
+
+  const regex = new RegExp('[?&]' + parsedName + '(=([^&#]*)|&|#|$)');
+
+  const results = regex.exec(url);
+
+  if (!results) return null;
+
+  if (!results[2]) return '';
+
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+};
+
+exports.getStateFromHeader = req => {
+  if (req.headers) return cookie.parse(req.headers.cookie).state;
+};
 
 // Wraps DiscordOauth2's generate auth url
 exports.generateDiscordURL = () => {

@@ -4,15 +4,13 @@ const userController = require('../controllers/userController');
 // const { isAuth } = require('../middleware/isAuth');
 
 /* GET all users */
-router.get('/', (req, res, next) => {
-  return res.send(' respond with a resource');
-});
-
-/* POST authenticate a user */
-router.post('/login', userController.loginUser);
+router.get('/', userController.getUsers);
 
 /* POST create a user */
-router.post('/signup', userController.signupUser);
+router.post('/signup', userController.signup);
+
+/* POST authenticate a user */
+router.post('/login', userController.login);
 
 // POST /users/reset-password
 router.post('/reset-password', userController.generatePasswordReset);

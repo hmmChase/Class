@@ -26,7 +26,7 @@ model User {
   password             String?
   name                 String?
   avatarUrl            String?
-  resetPassToken       String?
+  resetPassToken       String?    @unique
   resetPassTokenExpiry DateTime?
   questions            Question[]
   replies              Reply[]

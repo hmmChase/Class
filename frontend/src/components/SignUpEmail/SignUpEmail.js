@@ -36,6 +36,7 @@ const SignUpEmail = () => {
       <sc.Label>
         Name:
         <input
+          required
           type='text'
           value={name}
           placeholder='Name'
@@ -46,6 +47,7 @@ const SignUpEmail = () => {
       <sc.Label>
         Email:
         <input
+          required
           type='email'
           value={email}
           placeholder='Email'
@@ -56,6 +58,8 @@ const SignUpEmail = () => {
       <sc.Label>
         Password:
         <input
+          required
+          minLength='8'
           type='password'
           value={password}
           placeholder='Password'

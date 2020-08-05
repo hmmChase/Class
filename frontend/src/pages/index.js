@@ -13,6 +13,10 @@ const IndexPage = () => (
     </p>
 
     <p>
+      <Link to='/reset-password'>reset-password</Link>
+    </p>
+
+    <p>
       <Link to='/signup'>signup</Link>
     </p>
 

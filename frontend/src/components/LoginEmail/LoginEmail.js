@@ -31,6 +31,7 @@ const LoginEmail = () => {
       <sc.Label>
         Email:
         <input
+          required
           type='email'
           value={email}
           placeholder='Email'
@@ -41,6 +42,7 @@ const LoginEmail = () => {
       <sc.Label>
         Password:
         <input
+          required
           type='password'
           value={password}
           placeholder='Password'

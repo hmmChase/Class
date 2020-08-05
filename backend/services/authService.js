@@ -63,11 +63,16 @@ exports.generateJWT = payload => {
 exports.loginUserWithJWT = async (email, password) => {
   const userRecord = await prisma.user.findOne({ where: { email } });
 
+  console.log('password1:', password);
+  console.log('password2:', userRecord.password);
+
   if (!userRecord) throw Error('User not found');
 
-  const correctPassword = await argon2.verify(userRecord.password, password);
+  const isCorrectPass = await argon2.verify(userRecord.password, password);
 
-  if (!correctPassword) throw Error('Incorrect password');
+  console.log('isCorrectPass:', isCorrectPass);
+
+  if (!isCorrectPass) throw Error('Incorrect password');
 
   const userData = {
     id: userRecord.id,

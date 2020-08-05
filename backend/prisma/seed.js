@@ -72,15 +72,6 @@ const main = async () => {
   console.log({ teacher, student1, student2, reply1 });
 };
 
-//   +   question: {
-//   +     create?: QuestionCreateWithoutRepliesInput,
-//   +     connect?: QuestionWhereUniqueInput
-//   +   },
-//   +   author: {
-//   +     create?: UserCreateWithoutRepliesInput,
-//   +     connect?: UserWhereUniqueInput
-//   +   },
-
 main()
   .catch(e => {
     throw e;

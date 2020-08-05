@@ -11,7 +11,7 @@ exports.getReplies = async (req, res, next) => {
   return res.json(replies);
 };
 
-exports.create = async function (req, res, next) {
+exports.create = async (req, res, next) => {
   const { authorId, questionID, body } = req.body;
 
   const replyRecord = await prisma.reply.create({

@@ -3,7 +3,7 @@ const argon2 = require('argon2');
 const { PrismaClient } = require('@prisma/client');
 const authService = require('../services/authService');
 const { sendEmail } = require('../handlers/emailHandler');
-const COOKE_CONFIG = require('../config').COOKIE_CONFIG;
+const COOKIE_CONFIG = require('../config').COOKIE_CONFIG;
 
 const prisma = new PrismaClient();
 
@@ -13,7 +13,7 @@ exports.getUsers = async (req, res, next) => {
   res.json(users);
 };
 
-exports.signupUser = async function (req, res) {
+exports.signup = async (req, res) => {
   const { username, email, password, role, avatarUrl } = req.body;
 
   const createdUser = authService.signupUser(
@@ -33,7 +33,7 @@ exports.signupUser = async function (req, res) {
   return res.json(createdUser);
 };
 
-exports.loginUser = async function (req, res) {
+exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   const { jwt, user } = authService.loginUserWithJWT(email, password);
@@ -66,7 +66,13 @@ exports.generatePasswordReset = async (req, res) => {
 
   // send email with reset password in a link
   // TODO: https if prod
-  const resetPasswordUrl = `http://${req.headers.host}/users/password-reset/${resetPassToken}`;
+  // const resetPasswordUrl = `http://${req.headers.host}/users/password-reset/${resetPassToken}`;
+  const baseUrl =
+    process.env.NODE_ENV === 'production'
+      ? 'https://challenge-board.vercel.app'
+      : 'http://localhost:3000';
+
+  const resetPasswordUrl = `${baseUrl}/reset-password?token=${resetPassToken}`;
 
   sendEmail({
     subject: 'Password Reset for the Challenge Board',
@@ -80,31 +86,45 @@ exports.generatePasswordReset = async (req, res) => {
 
 exports.resetPassword = async (req, res) => {
   const { token } = req.params;
-  const { password } = req.body;
+
+  const { newPassword } = req.body;
 
   const userRecord = await prisma.user.findOne({
     where: {
-      resetPasswordToken: token,
-      resetPasswordExpiry: {
-        // if the expiration is after right now, it's valid
-        gt: Date.now()
-      }
+      resetPassToken: token
+      // resetPassTokenExpiry: {
+      //   // if the expiration is after right now, it's valid
+      //   gt: Date.now()
+      // }
     }
   });
+
+  const isTokenExpired = Date.now() > userRecord.resetPassTokenExpiry;
 
   const tokenInvalidMessage =
     'Token not found or expired. Try resetting your password again.';
 
-  if (!userRecord) return res.json({ message: tokenInvalidMessage });
+  if (!userRecord || isTokenExpired)
+    return res.json({ message: tokenInvalidMessage });
 
   // hash the password
-  const hashedPassword = await argon2.hash(password);
+  const hashedPassword = await argon2.hash(newPassword);
 
   // update the record
-  userRecord.update({ password: hashedPassword });
+  const updatedUser = await prisma.user.update({
+    where: { id: userRecord.id },
+    data: {
+      password: hashedPassword,
+      resetPassToken: null,
+      resetPassTokenExpiry: null
+    }
+  });
 
   // log them back in
-  const { jwt, user } = authService.loginUserWithJWT(email, password);
+  const { jwt, user } = await authService.loginUserWithJWT(
+    updatedUser.email,
+    newPassword
+  );
 
   res.cookie('jwt', jwt, COOKIE_CONFIG);
 

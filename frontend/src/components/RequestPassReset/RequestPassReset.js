@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 // import useResetPass from '../../api/useResetPass';
 import request from '../../utils/request';
-import * as sc from './ResetPass.style';
+import * as sc from './RequestPassReset.style';
 
-const ResetPass = () => {
+const RequestPassReset = () => {
   const [email, setEmail] = useState('');
   // const [user, ResetPass] = useResetPass(email, password);
 
@@ -30,6 +30,7 @@ const ResetPass = () => {
       <sc.Label>
         Email:
         <input
+          required
           type='email'
           value={email}
           placeholder='Email'
@@ -37,9 +38,9 @@ const ResetPass = () => {
         />
       </sc.Label>
 
-      <sc.Buttonn type='submit'>Reset Password</sc.Buttonn>
+      <sc.Buttonn type='submit'>Request Password Reset</sc.Buttonn>
     </sc.Form>
   );
 };
 
-export default ResetPass;
+export default RequestPassReset;
