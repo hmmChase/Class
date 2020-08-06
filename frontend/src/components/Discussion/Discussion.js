@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import useQuestions from '../../api/useQuestions';
-import useReplies from '../../api/useReplies';
+import useFetch from '../../api/useFetch';
 import * as sc from './Discussion.style';
 
 const Discussion = props => {
-  const questions = useQuestions();
-  console.log('questions:', questions);
+  const [questions, setQuestions] = useState([]);
+
+  const [getData, { loading, error }] = useFetch('/questions');
+
+  useEffect(() => {
+    (async () => {
+      const data = await getData();
+
+      if (!loading && !error && data) setQuestions(data);
+    })();
+  }, []);
 
   return (
     <sc.Container className={props.className}>

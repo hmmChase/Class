@@ -7,13 +7,13 @@ const userController = require('../controllers/userController');
 router.get('/', userController.getUsers);
 
 /* POST create a user */
-router.post('/signup', userController.signup);
+router.post('/signup', userController.signupByEmail);
 
 /* POST authenticate a user */
-router.post('/login', userController.login);
+router.post('/login', userController.loginByEmail);
 
 // POST /users/reset-password
-router.post('/reset-password', userController.generatePasswordReset);
+router.post('/reset-password', userController.generatePassReset);
 
 // POST /users/reset-password/:token
 router.post('/reset-password/:token', userController.resetPassword);

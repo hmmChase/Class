@@ -1,6 +1,6 @@
 import React from 'react';
-import ResetPassword from '../components/ResetPassword/ResetPassword';
-import RequestPassReset from '../components/RequestPassReset/RequestPassReset';
+import ResetPass from '../components/ResetPass/ResetPass';
+import ResetPassRequest from '../components/ResetPassRequest/ResetPassRequest';
 import getParameterByName from '../utils/getParameterByName';
 
 const ResetPasswordPage = () => {
@@ -9,9 +9,9 @@ const ResetPasswordPage = () => {
   return (
     <>
       {resetToken ? (
-        <ResetPassword resetToken={resetToken} />
+        <ResetPass resetToken={resetToken} />
       ) : (
-        <RequestPassReset />
+        <ResetPassRequest />
       )}
     </>
   );

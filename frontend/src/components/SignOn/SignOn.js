@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LoginEmail from '../LoginEmail/LoginEmail';
-import ResetPass from '../RequestPassReset/RequestPassReset';
+import ResetPassRequest from '../ResetPassRequest/ResetPassRequest';
 import SignUpEmail from '../SignUpEmail/SignUpEmail';
 import LoginDiscord from '../LoginDiscord/LoginDiscord';
 import SignUpDiscord from '../SignUpDiscord/SignUpDiscord';
@@ -15,13 +15,13 @@ const SignOn = () => {
         return <LoginEmail />;
 
       case 'tab2':
-        return <ResetPass />;
+        return <LoginDiscord />;
 
       case 'tab3':
-        return <SignUpEmail />;
+        return <ResetPassRequest />;
 
       case 'tab4':
-        return <LoginDiscord />;
+        return <SignUpEmail />;
 
       case 'tab5':
         return <SignUpDiscord />;
@@ -54,7 +54,7 @@ const SignOn = () => {
           onChange={() => setTab('tab2')}
         />
 
-        <label htmlFor='tab2'>Reset Password</label>
+        <label htmlFor='tab2'>Login Discord</label>
 
         <input
           type='radio'
@@ -65,7 +65,7 @@ const SignOn = () => {
           onChange={() => setTab('tab3')}
         />
 
-        <label htmlFor='tab3'>Sign Up Email</label>
+        <label htmlFor='tab3'>Reset Pass Request</label>
 
         <input
           type='radio'
@@ -76,7 +76,7 @@ const SignOn = () => {
           onChange={() => setTab('tab4')}
         />
 
-        <label htmlFor='tab4'>Login Discord</label>
+        <label htmlFor='tab4'>SignUp Email</label>
 
         <input
           type='radio'
@@ -87,7 +87,7 @@ const SignOn = () => {
           onChange={() => setTab('tab5')}
         />
 
-        <label htmlFor='tab5'>Sign Up Discord</label>
+        <label htmlFor='tab5'>SignUp Discord</label>
       </sc.Nav>
 
       {dispayPanel(tab)}

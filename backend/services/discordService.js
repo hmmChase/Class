@@ -1,7 +1,9 @@
-const cookie = require('cookie');
 const DiscordOauth2 = require('discord-oauth2');
 const crypto = require('crypto');
 const authService = require('./authService');
+const emailHandler = require('../handlers/emailHandler');
+
+const prisma = new PrismaClient();
 
 // Set up the service with some base information
 const oauth = new DiscordOauth2({
@@ -12,26 +14,8 @@ const oauth = new DiscordOauth2({
   clientSecret: process.env.DISCORD_SECRET,
 
   // Add this as redirect URI in Discord app config
-  redirectUri: 'http://localhost:3000/login'
+  redirectUri: 'http://localhost:3000/login-discord'
 });
-
-exports.getParameterByName = (name, url) => {
-  const parsedName = name.replace(/[\[\]]/g, '\\$&');
-
-  const regex = new RegExp('[?&]' + parsedName + '(=([^&#]*)|&|#|$)');
-
-  const results = regex.exec(url);
-
-  if (!results) return null;
-
-  if (!results[2]) return '';
-
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
-};
-
-exports.getStateFromHeader = req => {
-  if (req.headers) return cookie.parse(req.headers.cookie).state;
-};
 
 // Wraps DiscordOauth2's generate auth url
 exports.generateDiscordURL = () => {
@@ -46,7 +30,7 @@ exports.generateDiscordURL = () => {
   return url;
 };
 
-exports.createDiscordUser = async code => {
+exports.createUserByDiscord = async code => {
   // Grab an access_token from Discord based on the code and any prior scope
 
   const tokenResponse = await oauth.tokenRequest({
@@ -60,7 +44,7 @@ exports.createDiscordUser = async code => {
   const discordUser = await oauth.getUser(tokenResponse.access_token);
 
   // authService will handle creating the user in the database for us
-  const createdUser = await authService.signupDiscordUser(
+  const createdUser = await signupUserByDiscord(
     discordUser.email,
     discordUser.username
   );
@@ -69,4 +53,28 @@ exports.createDiscordUser = async code => {
   const jwt = authService.generateJWT(createdUser);
 
   return { jwt, user: createdUser };
+};
+
+const createUser = async (email, username) => {
+  const user = { email, username, hasDiscordLogin: true };
+
+  const userRecord = await prisma.user.create({ data: user });
+
+  const userData = {
+    id: userRecord.id,
+    email: userRecord.email,
+    username: userRecord.username,
+    role: userRecord.role,
+    avatarUrl: userRecord.avatarUrl
+  };
+
+  return userData;
+};
+
+exports.signupUserByDiscord = async (email, username) => {
+  const createdUser = await createUser(email, username);
+
+  emailHandler.sendEmailSignup(email, username);
+
+  return createdUser;
 };

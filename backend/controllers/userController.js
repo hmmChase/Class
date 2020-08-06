@@ -2,8 +2,9 @@ const crypto = require('crypto');
 const argon2 = require('argon2');
 const { PrismaClient } = require('@prisma/client');
 const authService = require('../services/authService');
-const { sendEmail } = require('../handlers/emailHandler');
-const COOKIE_CONFIG = require('../config').COOKIE_CONFIG;
+const userService = require('../services/userService');
+const emailHandler = require('../handlers/emailHandler');
+const { COOKIE_CONFIG, BASE_URL } = require('../config');
 
 const prisma = new PrismaClient();
 
@@ -13,10 +14,10 @@ exports.getUsers = async (req, res, next) => {
   res.json(users);
 };
 
-exports.signup = async (req, res) => {
+exports.signupByEmail = async (req, res) => {
   const { username, email, password, role, avatarUrl } = req.body;
 
-  const createdUser = authService.signupUser(
+  const createdUser = userService.signupUserByEmail(
     email,
     username,
     password,
@@ -24,26 +25,24 @@ exports.signup = async (req, res) => {
     avatarUrl
   );
 
-  // const { jwt, user } = authService.loginUserWithJWT(email, password);
-
-  // res.cookie('jwt', jwt, COOKIE_CONFIG);
-
-  // return res.json(user);
-
-  return res.json(createdUser);
-};
-
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
-
-  const { jwt, user } = authService.loginUserWithJWT(email, password);
+  const { jwt, user } = authService.loginWithJWT(email, password);
 
   res.cookie('jwt', jwt, COOKIE_CONFIG);
 
   return res.json(user);
 };
 
-exports.generatePasswordReset = async (req, res) => {
+exports.loginByEmail = async (req, res) => {
+  const { email, password } = req.body;
+
+  const { jwt, user } = await authService.loginWithJWT(email, password);
+
+  res.cookie('jwt', jwt, COOKIE_CONFIG);
+
+  return res.json(user);
+};
+
+exports.generatePassReset = async (req, res) => {
   const { email } = req.body;
 
   // if can find email, begin reset flow
@@ -67,19 +66,10 @@ exports.generatePasswordReset = async (req, res) => {
   // send email with reset password in a link
   // TODO: https if prod
   // const resetPasswordUrl = `http://${req.headers.host}/users/password-reset/${resetPassToken}`;
-  const baseUrl =
-    process.env.NODE_ENV === 'production'
-      ? 'https://challenge-board.vercel.app'
-      : 'http://localhost:3000';
 
-  const resetPasswordUrl = `${baseUrl}/reset-password?token=${resetPassToken}`;
+  const resetPasswordUrl = `${BASE_URL}/reset-password?token=${resetPassToken}`;
 
-  sendEmail({
-    subject: 'Password Reset for the Challenge Board',
-    filename: 'resetPassEmail',
-    user: { email },
-    resetPasswordUrl
-  });
+  emailHandler.sendEmailPasswordReset(email, resetPasswordUrl);
 
   return res.json({ message: emailSentMessage });
 };
@@ -121,7 +111,7 @@ exports.resetPassword = async (req, res) => {
   });
 
   // log them back in
-  const { jwt, user } = await authService.loginUserWithJWT(
+  const { jwt, user } = await authService.loginWithJWT(
     updatedUser.email,
     newPassword
   );

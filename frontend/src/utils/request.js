@@ -11,9 +11,9 @@ export default async (route, options) => {
   try {
     const response = await fetch(url, options);
 
-    if (response.status === 200) {
-      return response.json();
-    }
+    // if (response.status === 200) {
+    return await response.json();
+    // }
   } catch (err) {
     console.error(err);
   }

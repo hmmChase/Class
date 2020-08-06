@@ -5,7 +5,7 @@ import getParameterByName from '../../utils/getParameterByName';
 
 const LoginDiscord = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loginError, setLoginError] = useState(undefined);
+  const [loginError, setLoginError] = useState(null);
 
   // useEffect(() => {
   //   const code = getParameterByName('code');

@@ -1,13 +1,6 @@
 import React from 'react';
-import LoginDiscord from '../components/LoginDiscord/LoginDiscord';
-// import LoginEmail from '../components/LoginEmail/LoginEmail';
+import LoginEmail from '../components/LoginEmail/LoginEmail';
 
-const LoginPage = () => (
-  <>
-    <LoginDiscord />
-
-    {/* <LoginEmail /> */}
-  </>
-);
+const LoginPage = () => <LoginEmail />;
 
 export default LoginPage;

@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
-// import useLogin from '../../api/useLogin';
-import request from '../../utils/request';
+import { useHistory } from 'react-router-dom';
+import useFetch from '../../api/useFetch';
 import * as sc from './LoginEmail.style';
 
 const LoginEmail = () => {
   const [email, setEmail] = useState('teacher@email.com');
   const [password, setPassword] = useState('teacher');
-  // const [user, login] = useLogin(email, password);
+  const [user, setUser] = useState([]);
 
-  const onSubmit = async e => {
+  const history = useHistory();
+
+  const [getData, { loading, error }] = useFetch('/users/login', {
+    method: 'POST'
+  });
+
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    // const user = await login(email, password);
+    const data = await getData({ email, password });
 
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json; charset=utf-8' }
-    };
+    if (!loading && !error && data) {
+      setUser(data);
 
-    try {
-      await request('/users/login', options);
-    } catch (err) {
-      console.error(err);
+      history.push('/challenge');
     }
   };
 
   return (
-    <sc.Form onSubmit={onSubmit}>
+    <sc.Form onSubmit={handleSubmit}>
       <sc.Label>
         Email:
         <input

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import request from '../../utils/request';
-import * as sc from './ResetPassword.style';
+import * as sc from './ResetPass.style';
 
-const ResetPassword = props => {
+const ResetPass = props => {
   const [newPassword, setNewPassword] = useState('');
   // const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -41,4 +41,4 @@ const ResetPassword = props => {
   );
 };
 
-export default ResetPassword;
+export default ResetPass;

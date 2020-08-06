@@ -30,3 +30,20 @@ exports.sendEmail = async options => {
 
   return transport.sendMail(mailOptions);
 };
+
+exports.sendEmailSignup = (email, username) => {
+  sendEmail({
+    subject: 'Welcome to the Challange Board!',
+    filename: 'signupEmail',
+    user: { email, username }
+  });
+};
+
+exports.sendEmailPasswordReset = (email, resetPasswordUrl) => {
+  sendEmail({
+    subject: 'Password Reset for the Challenge Board',
+    filename: 'resetPassEmail',
+    user: { email },
+    resetPasswordUrl
+  });
+};

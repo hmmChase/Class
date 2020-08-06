@@ -11,6 +11,7 @@ const usersRouter = require('./routes/users');
 const discordRouter = require('./routes/discord');
 
 const errorHandlers = require('./handlers/errorHandlers');
+const { BASE_URL } = require('./config');
 
 const app = express();
 
@@ -29,13 +30,7 @@ app.set('view engine', 'ejs');
 //   credentials: true
 // };
 
-const corsOptions = {
-  origin:
-    process.env.NODE_ENV === 'production'
-      ? 'https://challenge-board.vercel.app'
-      : 'http://localhost:3000',
-  credentials: true
-};
+const corsOptions = { origin: BASE_URL, credentials: true };
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
