@@ -246,6 +246,17 @@
       "arity": "Optional"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "resetPassToken"
+        },
+        "directive": "unique"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "User",
       "field": "resetPassTokenExpiry",
@@ -407,7 +418,7 @@
         "directive": "relation"
       },
       "argument": "fields",
-      "value": "[authorId]"
+      "value": "[user_id]"
     },
     {
       "tag": "CreateArgument",
@@ -426,7 +437,7 @@
     {
       "tag": "CreateField",
       "model": "Question",
-      "field": "authorId",
+      "field": "user_id",
       "type": "Int",
       "arity": "Required"
     },
@@ -564,7 +575,7 @@
         "directive": "relation"
       },
       "argument": "fields",
-      "value": "[questionId]"
+      "value": "[question_id]"
     },
     {
       "tag": "CreateArgument",
@@ -583,7 +594,7 @@
     {
       "tag": "CreateField",
       "model": "Reply",
-      "field": "questionId",
+      "field": "question_id",
       "type": "Int",
       "arity": "Required"
     },
@@ -617,7 +628,7 @@
         "directive": "relation"
       },
       "argument": "fields",
-      "value": "[authorId]"
+      "value": "[user_id]"
     },
     {
       "tag": "CreateArgument",
@@ -636,7 +647,7 @@
     {
       "tag": "CreateField",
       "model": "Reply",
-      "field": "authorId",
+      "field": "user_id",
       "type": "Int",
       "arity": "Required"
     }

@@ -1,4 +1,5 @@
 const DiscordOauth2 = require('discord-oauth2');
+const { PrismaClient } = require('@prisma/client');
 const crypto = require('crypto');
 const authService = require('./authService');
 const emailHandler = require('../handlers/emailHandler');

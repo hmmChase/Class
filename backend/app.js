@@ -5,10 +5,10 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
-const questionsRouter = require('./routes/questions');
-const repliesRouter = require('./routes/replies');
 const usersRouter = require('./routes/users');
 const discordRouter = require('./routes/discord');
+const questionsRouter = require('./routes/questions');
+const repliesRouter = require('./routes/replies');
 
 const errorHandlers = require('./handlers/errorHandlers');
 const { BASE_URL } = require('./config');
@@ -47,10 +47,10 @@ const v1 = express.Router();
 app.use('/api/v1', v1);
 
 v1.use('/', indexRouter);
-v1.use('/questions', questionsRouter);
-v1.use('/replies', repliesRouter);
 v1.use('/users', usersRouter);
 v1.use('/discord', discordRouter);
+v1.use('/questions', questionsRouter);
+v1.use('/replies', repliesRouter);
 
 app.use(errorHandlers.notFound);
 

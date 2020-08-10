@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Questions from '../Questions/Questions';
+import QuestionDetail from '../QuestionDetail/QuestionDetail';
 import QuestionBtn from '../QuestionBtn/QuestionBtn';
 
 export const Container = styled.section`
@@ -34,6 +35,11 @@ export const QuestionBtnn = styled(QuestionBtn)`
 `;
 
 export const Questionss = styled(Questions)`
+  height: 800px;
+  margin: 0 0.5rem 0.5rem 0.5rem;
+`;
+
+export const QuestionDetaill = styled(QuestionDetail)`
   height: 800px;
   margin: 0 0.5rem 0.5rem 0.5rem;
 `;

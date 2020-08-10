@@ -8,6 +8,7 @@ const Questions = props => {
   const questionCards = props.questions.map(question => (
     <QuestionCard
       key={question.id}
+      questionId={question.id}
       createdAt={formatDate(question.createdAt)}
       authorName={question.author.name}
       body={question.body}

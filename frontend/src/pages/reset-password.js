@@ -1,10 +1,10 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import ResetPass from '../components/ResetPass/ResetPass';
 import ResetPassRequest from '../components/ResetPassRequest/ResetPassRequest';
-import getParameterByName from '../utils/getParameterByName';
 
 const ResetPasswordPage = () => {
-  const resetToken = getParameterByName('token');
+  const { resetToken } = useParams();
 
   return (
     <>

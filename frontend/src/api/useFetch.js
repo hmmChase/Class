@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-const request = async (route, options, body) => {
-  const RESTversion = 'v1';
+const request = async (pathName, options, body) => {
+  const APIversion = 'v1';
 
   const urlBase =
     process.env.NODE_ENV === 'production'
-      ? `https://challenge-board.vercel.app/api/${RESTversion}`
-      : `http://localhost:4000/api/${RESTversion}`;
+      ? `https://challenge-board.vercel.app/api/${APIversion}`
+      : `http://localhost:4000/api/${APIversion}`;
 
-  const url = `${urlBase}${route}`;
+  const url = `${urlBase}${pathName}`;
 
   try {
     let response;

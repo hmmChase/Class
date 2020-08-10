@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as sc from './QuestionCard.style';
 
 const QuestionCard = props => (
@@ -20,7 +21,9 @@ const QuestionCard = props => (
       <sc.CommentCount>{props.commentCount} Comments</sc.CommentCount>
     )} */}
 
-    <sc.ViewQuestion href=''>View Question</sc.ViewQuestion>
+    <Link to={`/challenge/${props.questionId}`}>View Question</Link>
+
+    {/* <sc.ViewQuestion href=''>View Question</sc.ViewQuestion> */}
   </sc.Container>
 );
 

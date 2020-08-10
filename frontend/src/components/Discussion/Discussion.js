@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useFetch from '../../api/useFetch';
 import * as sc from './Discussion.style';
 
 const Discussion = props => {
   const [questions, setQuestions] = useState([]);
-
+  const { questionId } = useParams();
   const [getData, { loading, error }] = useFetch('/questions');
 
   useEffect(() => {
     (async () => {
       const data = await getData();
+
+      console.log('data:', data);
 
       if (!loading && !error && data) setQuestions(data);
     })();
@@ -28,9 +31,11 @@ const Discussion = props => {
         <sc.QuestionBtnn />
       </sc.Flexed>
 
-      <sc.Questionss questions={questions} />
-
-      {/* <sc.QuestionDetail questions={questions} /> */}
+      {questionId ? (
+        <sc.QuestionDetaill question={question} />
+      ) : (
+        <sc.Questionss questions={questions} />
+      )}
     </sc.Container>
   );
 };

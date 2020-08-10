@@ -14,6 +14,10 @@ const App = () => {
       <Router>
         <div>
           <Switch>
+            <Route path='/challenge/:questionId'>
+              <ChallengePage />
+            </Route>
+
             <Route path='/challenge'>
               <ChallengePage />
             </Route>
@@ -24,6 +28,10 @@ const App = () => {
 
             <Route path='/login-discord'>
               <LoginDiscordPage />
+            </Route>
+
+            <Route path='/reset-password/:resetToken'>
+              <ResetPasswordPage />
             </Route>
 
             <Route path='/reset-password'>
