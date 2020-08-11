@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import useQuestion from '../../api/useQuestion';
 import request from '../../utils/request';
-import * as sc from './Question.style';
+import * as sc from './QuestionCreate.style';
 
 const Question = () => {
   const [body, setBody] = useState('');

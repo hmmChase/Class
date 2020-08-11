@@ -8,6 +8,8 @@ const LoginEmail = () => {
   const [password, setPassword] = useState('teacher');
   const [user, setUser] = useState([]);
 
+  console.log('user:', user);
+
   const history = useHistory();
 
   const [getData, { loading, error }] = useFetch('/users/login', {

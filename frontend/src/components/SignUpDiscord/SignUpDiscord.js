@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { getDiscordUrl } from '../../api/DiscordApi';
+import useFetch from '../../api/useFetch';
 import * as sc from './SignUpDiscord.style';
 
 const SignUpDiscord = () => {
   const [discordUrl, setDiscordUrl] = useState(undefined);
 
+  const [getData] = useFetch('/discord');
+
   useEffect(() => {
     (async () => {
-      const gotDiscordUrl = await getDiscordUrl();
+      const gotDiscordUrl = await getData();
 
-      setDiscordUrl(gotDiscordUrl);
+      setDiscordUrl(gotDiscordUrl.discordUrl);
     })();
   }, []);
 

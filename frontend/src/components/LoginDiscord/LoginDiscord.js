@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { discordSignup } from '../../api/DiscordApi';
+import useFetch from '../../api/useFetch';
 import getParameterByName from '../../utils/getParameterByName';
 
 const LoginDiscord = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginError, setLoginError] = useState(null);
+
+  const [getData] = useFetch('/discord/signup');
 
   // useEffect(() => {
   //   const code = getParameterByName('code');
@@ -22,7 +24,8 @@ const LoginDiscord = () => {
     const code = getParameterByName('code');
     const state = getParameterByName('state');
 
-    const user = await discordSignup(code, state);
+    const user = await getData({ code, state });
+    console.log('user:', user);
 
     if (user && user.id) setIsLoggedIn(true);
     if (user && user.message) setLoginError(user.message);

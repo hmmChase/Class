@@ -67,7 +67,7 @@ exports.generatePassReset = async (req, res) => {
   // TODO: https if prod
   // const resetPasswordUrl = `http://${req.headers.host}/users/password-reset/${resetPassToken}`;
 
-  const resetPasswordUrl = `${BASE_URL}/reset-password?token=${resetPassToken}`;
+  const resetPasswordUrl = `${BASE_URL}/reset-password?resetToken=${resetPassToken}`;
 
   emailHandler.sendEmailPasswordReset(email, resetPasswordUrl);
 
@@ -75,13 +75,13 @@ exports.generatePassReset = async (req, res) => {
 };
 
 exports.resetPassword = async (req, res) => {
-  const { token } = req.params;
+  const { resetToken } = req.params;
 
   const { newPassword } = req.body;
 
   const userRecord = await prisma.user.findOne({
     where: {
-      resetPassToken: token
+      resetPassToken: resetToken
       // resetPassTokenExpiry: {
       //   // if the expiration is after right now, it's valid
       //   gt: Date.now()
@@ -92,7 +92,7 @@ exports.resetPassword = async (req, res) => {
   const isTokenExpired = Date.now() > userRecord.resetPassTokenExpiry;
 
   const tokenInvalidMessage =
-    'Token not found or expired. Try resetting your password again.';
+    'Reset token not found or expired. Try resetting your password again.';
 
   if (!userRecord || isTokenExpired)
     return res.json({ message: tokenInvalidMessage });

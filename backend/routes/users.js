@@ -15,7 +15,7 @@ router.post('/login', userController.loginByEmail);
 // POST /users/reset-password
 router.post('/reset-password', userController.generatePassReset);
 
-// POST /users/reset-password/:token
-router.post('/reset-password/:token', userController.resetPassword);
+// POST /users/reset-password/:resetToken
+router.post('/reset-password/:resetToken', userController.resetPassword);
 
 module.exports = router;

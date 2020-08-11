@@ -13,8 +13,9 @@ const request = async (pathName, options, body) => {
   try {
     let response;
 
-    if (options) {
+    if (body) {
       const optionsObj = {
+        method: 'POST',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         credentials: 'include',
@@ -23,7 +24,13 @@ const request = async (pathName, options, body) => {
 
       response = await fetch(url, optionsObj);
     } else {
-      response = await fetch(url);
+      const optionsObj = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        credentials: 'include',
+        ...options
+      };
+      response = await fetch(url, optionsObj);
     }
 
     return await response.json();

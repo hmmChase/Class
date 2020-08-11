@@ -1,11 +1,15 @@
 import styled from 'styled-components';
+import Button from '../Button/Button';
 import Questions from '../Questions/Questions';
 import QuestionDetail from '../QuestionDetail/QuestionDetail';
-import QuestionBtn from '../QuestionBtn/QuestionBtn';
+import QuestionNew from '../QuestionNew/QuestionNew';
 
 export const Container = styled.section`
   background-color: ${props => props.theme.colors.backgrounds.widgetsHeader};
   box-shadow: 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.1);
+  padding: 0 0.5rem 0.5rem 0.5rem;
+  /* height: 800px; */
+  /* overflow: scroll; */
 
   p {
     color: ${props => props.theme.colors.text.secondaryText};
@@ -14,6 +18,7 @@ export const Container = styled.section`
 
 export const Flexed = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   padding: 1.5rem 1.2rem;
 `;
@@ -30,16 +35,14 @@ export const Title = styled.h3`
   margin: 0;
 `;
 
-export const QuestionBtnn = styled(QuestionBtn)`
-  align-self: flex-start;
+export const BackBtn = styled(Button)`
+  margin-top: 1rem;
 `;
 
-export const Questionss = styled(Questions)`
-  height: 800px;
-  margin: 0 0.5rem 0.5rem 0.5rem;
+export const QuestionNeww = styled(QuestionNew)`
+  margin-top: 1rem;
 `;
 
-export const QuestionDetaill = styled(QuestionDetail)`
-  height: 800px;
-  margin: 0 0.5rem 0.5rem 0.5rem;
-`;
+export const QuestionDetaill = styled(QuestionDetail)``;
+
+export const Questionss = styled(Questions)``;

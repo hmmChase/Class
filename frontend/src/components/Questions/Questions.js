@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import QuestionCard from '../QuestionCard/QuestionCard';
+import useFetch from '../../api/useFetch';
 import formatDate from '../../utils/formatDate';
 import * as sc from './Questions.style';
 
 const Questions = props => {
-  const questionCards = props.questions.map(question => (
+  const [questions, setQuestions] = useState([]);
+  console.log('questions:', questions);
+
+  const [getData, { loading, error }] = useFetch('/questions');
+
+  useEffect(() => {
+    (async () => {
+      const data = await getData();
+
+      if (!loading && !error && data) setQuestions(data);
+    })();
+  }, []);
+
+  const questionCards = questions.map(question => (
     <QuestionCard
       key={question.id}
       questionId={question.id}
@@ -13,7 +27,7 @@ const Questions = props => {
       authorName={question.author.name}
       body={question.body}
       // answerCount={question.answerCount}
-      // commentCount={question.commentCount}
+      answerCount={question.answers.length}
     />
   ));
 

@@ -8,7 +8,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const discordRouter = require('./routes/discord');
 const questionsRouter = require('./routes/questions');
-const repliesRouter = require('./routes/replies');
+const commentsRouter = require('./routes/comments');
 
 const errorHandlers = require('./handlers/errorHandlers');
 const { BASE_URL } = require('./config');
@@ -50,7 +50,7 @@ v1.use('/', indexRouter);
 v1.use('/users', usersRouter);
 v1.use('/discord', discordRouter);
 v1.use('/questions', questionsRouter);
-v1.use('/replies', repliesRouter);
+v1.use('/comments', commentsRouter);
 
 app.use(errorHandlers.notFound);
 

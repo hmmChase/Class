@@ -1,24 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useModal from '../../utils/useModal';
 import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
-import Question from '../Question/Question';
-import * as sc from './QuestionBtn.style';
+import QuestionCreate from '../QuestionCreate/QuestionCreate';
+import * as sc from './QuestionNew.style';
 
-const QuestionBtn = () => {
+const QuestionNew = props => {
   const [isModalOpen, toggleModal] = useModal();
 
   return (
-    <sc.Container>
+    <sc.Container className={props.className}>
       <Button onClick={toggleModal}>Post a Question</Button>
 
       {isModalOpen && (
         <Modal close={toggleModal}>
-          <Question />
+          <QuestionCreate />
         </Modal>
       )}
     </sc.Container>
   );
 };
 
-export default QuestionBtn;
+QuestionNew.propTypes = {
+  className: PropTypes.string
+};
+
+export default QuestionNew;

@@ -6,6 +6,9 @@ const questionController = require('../controllers/questionController');
 /* GET all questions */
 router.get('/', questionController.getQuestions);
 
+/* GET a question */
+router.get('/:questionId', questionController.getQuestion);
+
 /* POST create a question */
 router.post('/create', questionController.create);
 

@@ -15,16 +15,6 @@ const moreQuestions = () => {
   return questions;
 };
 
-// const moreReplies = () => {
-//   const amtReplies = 20;
-//   const replies = [];
-
-//   for (let i = 1; i <= amtReplies; i++)
-//     replies.push({ body: 'seeded reply ' + i });
-
-//   return questions;
-// };
-
 const main = async () => {
   const teacher = await prisma.user.create({
     data: {
@@ -61,15 +51,17 @@ const main = async () => {
     }
   });
 
-  const reply1 = await prisma.reply.create({
-    data: {
-      body: 'seeded reply 1',
-      author: { connect: { id: 1 } },
-      question: { connect: { id: 1 } }
-    }
-  });
+  for (let i = 1; i <= 10; i++) {
+    await prisma.comment.create({
+      data: {
+        body: `seeded comment ${i}`,
+        author: { connect: { id: 1 } },
+        question: { connect: { id: 1 } }
+      }
+    });
+  }
 
-  console.log({ teacher, student1, student2, reply1 });
+  console.log({ teacher, student1, student2, comment1 });
 };
 
 main()

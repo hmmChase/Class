@@ -29,7 +29,7 @@ model User {
   resetPassToken       String?    @unique
   resetPassTokenExpiry DateTime?
   questions            Question[]
-  replies              Reply[]
+  answers              Answer[]
 }
 
 model Question {
@@ -37,12 +37,12 @@ model Question {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   body      String
-  replies   Reply[]
+  answers   Answer[]
   author    User     @relation(fields: [user_id], references: [id])
   user_id   Int
 }
 
-model Reply {
+model Answer {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
