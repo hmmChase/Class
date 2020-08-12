@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import QuestionCardDetail from '../QuestionCardDetail/QuestionCardDetail';
-import Answers from '../Answers/Answers';
+import Comments from '../Comments/Comments';
 import useFetch from '../../api/useFetch';
 import formatDate from '../../utils/formatDate';
 import * as sc from './QuestionDetail.style';
@@ -17,18 +17,12 @@ const QuestionDetail = props => {
     (async () => {
       const data = await getData();
 
-      console.log('data:', data);
-
       if (!loading && !error && data) setQuestion(data);
     })();
   }, []);
 
   return (
     <sc.Container className={props.className}>
-      {console.log('question:', question)}
-      {console.log('loading:', !!!loading)}
-      {console.log('error:', !!!error)}
-
       {!loading && !error && question.id && (
         <>
           <QuestionCardDetail
@@ -36,12 +30,10 @@ const QuestionDetail = props => {
             createdAt={formatDate(question.createdAt)}
             // authorName={question.author.name}
             body={question.body}
-            // answerCount={question.answerCount}
-            // answerCount={question.answers.length}
           />
 
-          {question.answers.length > 0 && (
-            <Answers answers={question.answers} />
+          {question.comments.length > 0 && (
+            <Comments comments={question.comments} />
           )}
         </>
       )}

@@ -35,4 +35,13 @@ export const Container = styled.div`
     background-color: ${props => props.theme.colors.backgrounds.cards};
     border: 5px solid ${props => props.theme.colors.backgrounds.features};
   }
+
+  @media screen and (min-width: 1000px) {
+    position: absolute;
+    left: 5px;
+    top: 280px;
+    right: 5px;
+    bottom: 5px;
+    overflow: auto;
+  }
 `;

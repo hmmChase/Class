@@ -27,7 +27,7 @@ const Questions = props => {
       authorName={question.author.name}
       body={question.body}
       // answerCount={question.answerCount}
-      answerCount={question.answers.length}
+      answerCount={question.comments.length}
     />
   ));
 

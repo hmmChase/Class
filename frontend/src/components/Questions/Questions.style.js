@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   border-radius: 10px;
   list-style: none;
-  overflow-y: scroll;
 
   > li {
     margin-bottom: 0.5rem;
@@ -34,5 +33,14 @@ export const Container = styled.div`
     border-radius: 10px;
     background-color: ${props => props.theme.colors.backgrounds.cards};
     border: 5px solid ${props => props.theme.colors.backgrounds.features};
+  }
+
+  @media screen and (min-width: 1000px) {
+    position: absolute;
+    left: 5px;
+    top: 200px;
+    right: 5px;
+    bottom: 5px;
+    overflow: auto;
   }
 `;

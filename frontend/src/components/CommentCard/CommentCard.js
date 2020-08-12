@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as sc from './AnswerCard.style';
+import * as sc from './CommentCard.style';
 
-const AnswerCard = props => (
+const CommentCard = props => (
   <sc.Container>
     <sc.Author>{props.authorName}</sc.Author>
 
@@ -12,11 +12,10 @@ const AnswerCard = props => (
   </sc.Container>
 );
 
-AnswerCard.propTypes = {
+CommentCard.propTypes = {
   createdAt: PropTypes.any,
   authorName: PropTypes.string,
   body: PropTypes.string.isRequired
-  // isAnswer: PropTypes.bool.isRequired
 };
 
-export default React.memo(AnswerCard);
+export default React.memo(CommentCard);

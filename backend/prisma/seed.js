@@ -61,7 +61,7 @@ const main = async () => {
     });
   }
 
-  console.log({ teacher, student1, student2, comment1 });
+  // console.log({ teacher, student1, student2 });
 };
 
 main()
@@ -69,5 +69,7 @@ main()
     throw e;
   })
   .finally(async () => {
+    console.log('Seeding complete.');
+
     await prisma.disconnect();
   });

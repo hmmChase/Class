@@ -9,7 +9,7 @@ const Discussion = props => {
 
   return (
     <sc.Container className={props.className}>
-      <sc.Flexed>
+      <sc.Heading>
         <sc.Label>DISCUSSION</sc.Label>
 
         <sc.Title>Ask a Question</sc.Title>
@@ -21,7 +21,7 @@ const Discussion = props => {
         )}
 
         {!questionId && <sc.QuestionNeww />}
-      </sc.Flexed>
+      </sc.Heading>
 
       {questionId ? (
         <sc.QuestionDetaill questionId={questionId} />

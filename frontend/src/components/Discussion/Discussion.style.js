@@ -8,15 +8,18 @@ export const Container = styled.section`
   background-color: ${props => props.theme.colors.backgrounds.widgetsHeader};
   box-shadow: 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.1);
   padding: 0 0.5rem 0.5rem 0.5rem;
-  /* height: 800px; */
-  /* overflow: scroll; */
+  min-height: 800px;
 
   p {
     color: ${props => props.theme.colors.text.secondaryText};
   }
+
+  @media screen and (min-width: 1000px) {
+    position: relative;
+  }
 `;
 
-export const Flexed = styled.div`
+export const Heading = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
