@@ -1,5 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useHistory
+} from 'react-router-dom';
 import ChallengePage from './pages/challenge';
 import LoginPage from './pages/login';
 import LoginDiscordPage from './pages/login-discord';
@@ -7,8 +12,21 @@ import ResetPasswordPage from './pages/reset-password';
 import SignUpPage from './pages/signup';
 import SignUpDiscordPage from './pages/signup-discord';
 import IndexPage from './pages/index';
+import useFetch from './api/useFetch';
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [getData] = useFetch('/users/login-token');
+
+  useEffect(() => {
+    (async () => {
+      const data = await getData();
+
+      if (data && data.user && data.user.id) setIsLoggedIn(true);
+    })();
+  }, []);
+
   return (
     <div>
       <Router>
@@ -47,7 +65,7 @@ const App = () => {
             </Route>
 
             <Route path='/'>
-              <IndexPage />
+              <IndexPage isLoggedIn={isLoggedIn} />
             </Route>
           </Switch>
         </div>

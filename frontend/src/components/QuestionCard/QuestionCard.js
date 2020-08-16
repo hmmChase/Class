@@ -13,13 +13,13 @@ const QuestionCard = props => (
 
     <sc.Body>{props.body}</sc.Body>
 
-    {/* {props.commentCount && (
+    {props.commentCount && (
       <sc.CommentCount>{props.commentCount} Comments</sc.CommentCount>
-    )} */}
-
-    {props.answerCount && (
-      <sc.AnswerCount>{props.answerCount} Answers</sc.AnswerCount>
     )}
+
+    {/* {props.answerCount && (
+      <sc.AnswerCount>{props.answerCount} Answers</sc.AnswerCount>
+    )} */}
 
     <Link to={`/challenge/${props.questionId}`}>View Question</Link>
 

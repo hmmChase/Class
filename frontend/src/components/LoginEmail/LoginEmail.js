@@ -8,20 +8,16 @@ const LoginEmail = () => {
   const [password, setPassword] = useState('teacher');
   const [user, setUser] = useState([]);
 
-  console.log('user:', user);
-
   const history = useHistory();
 
-  const [getData, { loading, error }] = useFetch('/users/login', {
-    method: 'POST'
-  });
+  const [getData, { loading, error }] = useFetch('/users/login-email');
 
   const handleSubmit = async e => {
     e.preventDefault();
 
     const data = await getData({ email, password });
 
-    if (!loading && !error && data) {
+    if (!loading && !error && data && data.user && data.user.id) {
       setUser(data);
 
       history.push('/challenge');

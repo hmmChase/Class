@@ -7,7 +7,6 @@ import * as sc from './Questions.style';
 
 const Questions = props => {
   const [questions, setQuestions] = useState([]);
-  console.log('questions:', questions);
 
   const [getData, { loading, error }] = useFetch('/questions');
 
@@ -19,17 +18,27 @@ const Questions = props => {
     })();
   }, []);
 
-  const questionCards = questions.map(question => (
-    <QuestionCard
-      key={question.id}
-      questionId={question.id}
-      createdAt={formatDate(question.createdAt)}
-      authorName={question.author.name}
-      body={question.body}
-      // answerCount={question.answerCount}
-      answerCount={question.comments.length}
-    />
-  ));
+  const questionCards = questions.map(question => {
+    let answerCount = 0;
+
+    question.comments.reduce(comment => {
+      console.log('comment:', comment);
+
+      return comment;
+    }, 0);
+
+    return (
+      <QuestionCard
+        key={question.id}
+        questionId={question.id}
+        createdAt={formatDate(question.createdAt)}
+        authorName={question.author.name}
+        body={question.body}
+        commentCount={question.comments.length}
+        // answerCount={question.answerCount}
+      />
+    );
+  });
 
   return (
     <sc.Container className={props.className}>{questionCards}</sc.Container>

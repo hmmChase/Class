@@ -6,11 +6,14 @@ const userController = require('../controllers/userController');
 /* GET all users */
 router.get('/', userController.getUsers);
 
+/* GET login with Access token */
+router.get('/login-token', userController.loginByToken);
+
 /* POST create a user */
 router.post('/signup', userController.signupByEmail);
 
 /* POST authenticate a user */
-router.post('/login', userController.loginByEmail);
+router.post('/login-email', userController.loginByEmail);
 
 // POST /users/reset-password
 router.post('/reset-password', userController.generatePassReset);

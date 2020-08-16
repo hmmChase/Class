@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 const argon2 = require('argon2');
+const jwt = require('jsonwebtoken');
 const { PrismaClient } = require('@prisma/client');
 const authService = require('../services/authService');
 const userService = require('../services/userService');
@@ -25,17 +26,38 @@ exports.signupByEmail = async (req, res) => {
     avatarUrl
   );
 
-  const { jwt, user } = authService.loginWithJWT(email, password);
+  const { jwt, user } = userService.loginWithEmail(email, password);
 
   res.cookie('jwt', jwt, COOKIE_CONFIG);
 
   return res.json(user);
 };
 
+exports.loginByToken = async (req, res) => {
+  const at = req.cookies.jwt;
+  const atSecret = Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64');
+
+  try {
+    const data = jwt.verify(at, atSecret);
+
+    const user = { user: data.user };
+
+    const refreshedJWT = authService.generateJWT(user);
+
+    res.cookie('jwt', refreshedJWT, COOKIE_CONFIG);
+
+    return res.json(user);
+  } catch (error) {
+    return res.json({});
+  }
+
+  // return res.json(user);
+};
+
 exports.loginByEmail = async (req, res) => {
   const { email, password } = req.body;
 
-  const { jwt, user } = await authService.loginWithJWT(email, password);
+  const { jwt, user } = await userService.loginWithEmail(email, password);
 
   res.cookie('jwt', jwt, COOKIE_CONFIG);
 
@@ -111,7 +133,7 @@ exports.resetPassword = async (req, res) => {
   });
 
   // log them back in
-  const { jwt, user } = await authService.loginWithJWT(
+  const { jwt, user } = await userService.loginWithEmail(
     updatedUser.email,
     newPassword
   );

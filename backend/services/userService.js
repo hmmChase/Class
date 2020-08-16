@@ -1,6 +1,7 @@
 const argon2 = require('argon2');
 const { PrismaClient } = require('@prisma/client');
 const emailHandler = require('../handlers/emailHandler');
+const authService = require('../services/authService');
 
 const prisma = new PrismaClient();
 
@@ -40,4 +41,20 @@ exports.signupUserByEmail = async (
   emailHandler.sendEmailSignup(email, username);
 
   return createdUser;
+};
+
+exports.loginWithEmail = async (email, password) => {
+  const userRecord = await prisma.user.findOne({ where: { email } });
+
+  if (!userRecord) throw Error('User not found');
+
+  const isCorrectPass = await argon2.verify(userRecord.password, password);
+
+  if (!isCorrectPass) throw Error('Incorrect password');
+
+  const user = { user: { id: userRecord.id } };
+
+  const jwt = authService.generateJWT(user);
+
+  return { jwt, user };
 };
