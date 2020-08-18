@@ -43,18 +43,30 @@ exports.signupUserByEmail = async (
   return createdUser;
 };
 
-exports.loginWithEmail = async (email, password) => {
+exports.loginWithEmail = async (res, email, password) => {
   const userRecord = await prisma.user.findOne({ where: { email } });
 
-  if (!userRecord) throw Error('User not found');
+  if (!userRecord)
+    return res.status(401).json({ error: 'login.invalidCredentials' });
 
   const isCorrectPass = await argon2.verify(userRecord.password, password);
 
-  if (!isCorrectPass) throw Error('Incorrect password');
+  if (!isCorrectPass)
+    return res.status(401).json({ error: 'login.invalidCredentials' });
 
-  const user = { user: { id: userRecord.id } };
+  const userJWT = { user: { id: userRecord.id } };
 
-  const jwt = authService.generateJWT(user);
+  const newJWT = authService.generateJWT(userJWT);
 
-  return { jwt, user };
+  const userClient = {
+    id: userRecord.id,
+    hasDiscordLogin: userRecord.hasDiscordLogin,
+    role: userRecord.role,
+    email: userRecord.email,
+    username: userRecord.username,
+    name: userRecord.name,
+    avatarUrl: userRecord.avatarUrl
+  };
+
+  return { newJWT, userClient };
 };

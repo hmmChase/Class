@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import * as sc from './QuestionCardDetail.style';
 
 const QuestionCardDetail = props => {
-  // console.log('props:', props);
-
   return (
     <sc.Container>
       <sc.Author>{props.authorName}</sc.Author>

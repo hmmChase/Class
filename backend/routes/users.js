@@ -1,24 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
-// const { isAuth } = require('../middleware/isAuth');
+const { asyncErrorWrapper } = require('../handlers/errorHandlers');
+const { isAuth } = require('../middleware/isAuth');
 
-/* GET all users */
-router.get('/', userController.getUsers);
+router.get('/', asyncErrorWrapper(userController.getUsers));
 
-/* GET login with Access token */
-router.get('/login-token', userController.loginByToken);
+router.get('/login-token', asyncErrorWrapper(userController.loginByToken));
 
-/* POST create a user */
-router.post('/signup', userController.signupByEmail);
+router.post('/login-email', asyncErrorWrapper(userController.loginByEmail));
 
-/* POST authenticate a user */
-router.post('/login-email', userController.loginByEmail);
+router.post('/signup', asyncErrorWrapper(userController.signupByEmail));
 
-// POST /users/reset-password
-router.post('/reset-password', userController.generatePassReset);
+router.post(
+  '/reset-password',
+  asyncErrorWrapper(userController.generatePassReset)
+);
 
-// POST /users/reset-password/:resetToken
-router.post('/reset-password/:resetToken', userController.resetPassword);
+router.post(
+  '/reset-password/:resetToken',
+  asyncErrorWrapper(userController.resetPassword)
+);
 
 module.exports = router;

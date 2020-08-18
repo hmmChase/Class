@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useHistory
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ChallengePage from './pages/challenge';
 import LoginPage from './pages/login';
 import LoginDiscordPage from './pages/login-discord';
@@ -16,15 +11,20 @@ import useFetch from './api/useFetch';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [user, setUser] = useState({});
   const [getData] = useFetch('/users/login-token');
 
   useEffect(() => {
     (async () => {
       const data = await getData();
 
-      if (data && data.user && data.user.id) setIsLoggedIn(true);
+      if (data && data.user && data.user.id) {
+        setUser(data.user);
+
+        setIsLoggedIn(true);
+      }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -33,15 +33,15 @@ const App = () => {
         <div>
           <Switch>
             <Route path='/challenge/:questionId'>
-              <ChallengePage />
+              <ChallengePage isLoggedIn={isLoggedIn} />
             </Route>
 
             <Route path='/challenge'>
-              <ChallengePage />
+              <ChallengePage isLoggedIn={isLoggedIn} />
             </Route>
 
             <Route path='/login'>
-              <LoginPage />
+              <LoginPage setIsLoggedIn={setIsLoggedIn} />
             </Route>
 
             <Route path='/login-discord'>
@@ -65,7 +65,10 @@ const App = () => {
             </Route>
 
             <Route path='/'>
-              <IndexPage isLoggedIn={isLoggedIn} />
+              <IndexPage
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
+              />
             </Route>
           </Switch>
         </div>

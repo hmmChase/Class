@@ -5,7 +5,6 @@ import formatDate from '../../utils/formatDate';
 import * as sc from './Comments.style';
 
 const Comments = props => {
-  console.log('props:', props);
   const commentCards = props.comments.map(comment => (
     <CommentCard
       key={comment.id}

@@ -3,13 +3,11 @@ import { useHistory } from 'react-router-dom';
 import useFetch from '../../api/useFetch';
 import * as sc from './LoginEmail.style';
 
-const LoginEmail = () => {
+const LoginEmail = props => {
   const [email, setEmail] = useState('teacher@email.com');
   const [password, setPassword] = useState('teacher');
   const [user, setUser] = useState([]);
-
   const history = useHistory();
-
   const [getData, { loading, error }] = useFetch('/users/login-email');
 
   const handleSubmit = async e => {
@@ -18,7 +16,9 @@ const LoginEmail = () => {
     const data = await getData({ email, password });
 
     if (!loading && !error && data && data.user && data.user.id) {
-      setUser(data);
+      setUser(data.user);
+
+      props.setIsLoggedIn(true);
 
       history.push('/challenge');
     }
@@ -47,6 +47,8 @@ const LoginEmail = () => {
           onChange={e => setPassword(e.target.value)}
         />
       </sc.Label>
+
+      {error && <p>{error}</p>}
 
       <sc.Buttonn type='submit'>Log in</sc.Buttonn>
     </sc.Form>

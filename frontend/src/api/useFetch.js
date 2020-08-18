@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import { BASE_URL, API_VERSION, errorCodeToMessage } from '../config';
+
+// const handleErrorArray = errCodeArray => errCodeArray.map(handleErrors);
+
+const handleErrors = errorCode => {
+  const loginErrorMessage = errorCodeToMessage[errorCode];
+
+  if (loginErrorMessage) return loginErrorMessage;
+
+  return errorCodeToMessage.default;
+};
 
 const request = async (pathName, options, body) => {
-  const APIversion = 'v1';
-
-  const urlBase =
-    process.env.NODE_ENV === 'production'
-      ? `https://challenge-board.vercel.app/api/${APIversion}`
-      : `http://localhost:4000/api/${APIversion}`;
-
-  const url = `${urlBase}${pathName}`;
+  const url = `${BASE_URL}/api/${API_VERSION}${pathName}`;
 
   try {
     let response;
@@ -26,10 +30,10 @@ const request = async (pathName, options, body) => {
     } else {
       const optionsObj = {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
         credentials: 'include',
         ...options
       };
+
       response = await fetch(url, optionsObj);
     }
 
@@ -48,6 +52,12 @@ const useFetch = (pathName, options) => {
 
     try {
       const response = await request(pathName, options, body);
+
+      if (response && response.error) {
+        const errorMessage = handleErrors(response.error);
+
+        setError(errorMessage);
+      }
 
       setLoading(false);
 

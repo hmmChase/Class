@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const { PrismaClient } = require('@prisma/client');
+const isEmail = require('isemail');
 const authService = require('../services/authService');
 const userService = require('../services/userService');
 const emailHandler = require('../handlers/emailHandler');
@@ -16,12 +17,21 @@ exports.getUsers = async (req, res, next) => {
 };
 
 exports.signupByEmail = async (req, res) => {
-  const { username, email, password, role, avatarUrl } = req.body;
+  const { email, password, username, role, avatarUrl } = req.body;
+
+  const notString = typeof email !== 'string';
+  if (notString) return res.status(400).json({ error: 'signup.notString' });
+
+  const emailNormalized = email.trim().toLowerCase();
+
+  const isvalid = isEmail.validate(email);
+
+  if (!isvalid) return res.status(400).json({ error: 'signup.invalidEmail' });
 
   const createdUser = userService.signupUserByEmail(
-    email,
-    username,
+    emailNormalized,
     password,
+    username,
     role,
     avatarUrl
   );
@@ -38,15 +48,25 @@ exports.loginByToken = async (req, res) => {
   const atSecret = Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64');
 
   try {
-    const data = jwt.verify(at, atSecret);
+    const decodedJWT = jwt.verify(at, atSecret);
 
-    const user = { user: data.user };
+    const userRecord = await prisma.user.findOne({
+      where: { id: decodedJWT.user.id }
+    });
 
-    const refreshedJWT = authService.generateJWT(user);
+    if (!userRecord) {
+      throw Error('User not found');
+    }
 
-    res.cookie('jwt', refreshedJWT, COOKIE_CONFIG);
+    const userJWT = { user: { id: userRecord.id } };
 
-    return res.json(user);
+    const newJWT = authService.generateJWT(userJWT);
+
+    const userClient = authService.userClientCleaner(userRecord);
+
+    res.cookie('jwt', newJWT, COOKIE_CONFIG);
+
+    return res.json(userClient);
   } catch (error) {
     return res.json({});
   }
@@ -57,11 +77,27 @@ exports.loginByToken = async (req, res) => {
 exports.loginByEmail = async (req, res) => {
   const { email, password } = req.body;
 
-  const { jwt, user } = await userService.loginWithEmail(email, password);
+  const userRecord = await prisma.user.findOne({ where: { email } });
 
-  res.cookie('jwt', jwt, COOKIE_CONFIG);
+  if (!userRecord)
+    return res.status(401).json({ error: 'login.invalidCredentials' });
 
-  return res.json(user);
+  const isCorrectPass = await argon2.verify(userRecord.password, password);
+
+  if (!isCorrectPass)
+    return res.status(401).json({ error: 'login.invalidCredentials' });
+
+  const userJWT = { user: { id: userRecord.id } };
+
+  const newJWT = authService.generateJWT(userJWT);
+
+  const userClient = authService.userClientCleaner(userRecord);
+
+  // const { newJWT, userClient } = await userService.loginWithEmail(res, email, password);
+
+  res.cookie('jwt', newJWT, COOKIE_CONFIG);
+
+  return res.json(userClient);
 };
 
 exports.generatePassReset = async (req, res) => {

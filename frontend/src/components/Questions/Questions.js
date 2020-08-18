@@ -16,14 +16,13 @@ const Questions = props => {
 
       if (!loading && !error && data) setQuestions(data);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const questionCards = questions.map(question => {
     let answerCount = 0;
 
     question.comments.reduce(comment => {
-      console.log('comment:', comment);
-
       return comment;
     }, 0);
 

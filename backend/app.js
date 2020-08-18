@@ -3,6 +3,8 @@ const logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
+const helmet = require('helmet');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -32,13 +34,15 @@ app.set('view engine', 'ejs');
 
 const corsOptions = { origin: BASE_URL, credentials: true };
 
-app.use(cors(corsOptions));
-app.use(bodyParser.json());
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(compression());
+app.use(helmet());
 
 app.use('/', indexRouter);
 app.use('/api', indexRouter);

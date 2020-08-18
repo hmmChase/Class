@@ -3,16 +3,14 @@ import { Redirect } from 'react-router-dom';
 import SignOn from '../components/SignOn/SignOn';
 import { Link } from 'react-router-dom';
 
-const IndexPage = isLoggedIn => {
-  if (isLoggedIn.isLoggedIn) {
-    return <Redirect to='/challenge' />;
-  }
+const IndexPage = props => {
+  if (props.isLoggedIn) return <Redirect to='/challenge' />;
 
   return (
     <>
       <h1>Challenge Board</h1>
 
-      <SignOn />
+      <SignOn setIsLoggedIn={props.setIsLoggedIn} />
 
       <p>
         <Link to='/challenge'>challenge</Link>
