@@ -10,7 +10,7 @@ const IndexPage = props => {
     <>
       <h1>Challenge Board</h1>
 
-      <SignOn setIsLoggedIn={props.setIsLoggedIn} />
+      <SignOn setUser={props.setUser} setIsLoggedIn={props.setIsLoggedIn} />
 
       <p>
         <Link to='/challenge'>challenge</Link>

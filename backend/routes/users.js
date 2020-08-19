@@ -4,7 +4,7 @@ const userController = require('../controllers/userController');
 const { asyncErrorWrapper } = require('../handlers/errorHandlers');
 const { isAuth } = require('../middleware/isAuth');
 
-router.get('/', asyncErrorWrapper(userController.getUsers));
+router.get('/', isAuth, asyncErrorWrapper(userController.getUsers));
 
 router.get('/login-token', asyncErrorWrapper(userController.loginByToken));
 

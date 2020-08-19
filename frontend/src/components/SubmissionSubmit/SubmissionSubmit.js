@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button/Button';
-import * as sc from './Submission.style';
+import * as sc from './SubmissionSubmit.style';
 
-const Submission = props => (
+const SubmissionSubmit = props => (
   <sc.Container className={props.className}>
     <sc.Label>SUBMISSION</sc.Label>
 
@@ -17,8 +17,8 @@ const Submission = props => (
   </sc.Container>
 );
 
-Submission.propTypes = {
+SubmissionSubmit.propTypes = {
   className: PropTypes.string
 };
 
-export default React.memo(Submission);
+export default React.memo(SubmissionSubmit);

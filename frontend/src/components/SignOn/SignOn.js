@@ -12,7 +12,12 @@ const SignOn = props => {
   const dispayPanel = tab => {
     switch (tab) {
       case 'tab1':
-        return <LoginEmail setIsLoggedIn={props.setIsLoggedIn} />;
+        return (
+          <LoginEmail
+            setUser={props.setUser}
+            setIsLoggedIn={props.setIsLoggedIn}
+          />
+        );
 
       case 'tab2':
         return <LoginDiscord />;

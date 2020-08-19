@@ -6,7 +6,6 @@ import * as sc from './LoginEmail.style';
 const LoginEmail = props => {
   const [email, setEmail] = useState('teacher@email.com');
   const [password, setPassword] = useState('teacher');
-  const [user, setUser] = useState([]);
   const history = useHistory();
   const [getData, { loading, error }] = useFetch('/users/login-email');
 
@@ -16,7 +15,7 @@ const LoginEmail = props => {
     const data = await getData({ email, password });
 
     if (!loading && !error && data && data.user && data.user.id) {
-      setUser(data.user);
+      props.setUser(data.user);
 
       props.setIsLoggedIn(true);
 

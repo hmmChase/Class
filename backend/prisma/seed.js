@@ -10,7 +10,10 @@ const moreQuestions = () => {
   const questions = [];
 
   for (let i = 1; i <= amtQuestions; i++)
-    questions.push({ body: 'seeded question ' + i });
+    questions.push({
+      title: 'seeded question ' + i,
+      body: 'this is a question'
+    });
 
   return questions;
 };
@@ -21,7 +24,6 @@ const main = async () => {
       email: 'teacher@email.com',
       username: 'Teacher',
       password: await argon2.hash('teacher', 10),
-      name: 'Teacher',
       role: 'TEACHER',
       avatarUrl: 'http://picsum.photos/40'
     }
@@ -32,7 +34,6 @@ const main = async () => {
       email: 'student1@email.com',
       username: 'Student 1',
       password: await argon2.hash('student1', 10),
-      name: 'Student 1',
       role: 'STUDENT',
       avatarUrl: 'http://picsum.photos/40',
       questions: { create: moreQuestions() }
@@ -44,10 +45,31 @@ const main = async () => {
       email: 'student2@email.com',
       username: 'Student 2',
       password: await argon2.hash('student2', 10),
-      name: 'Student 2',
-      role: 'STUDENT',
       avatarUrl: 'http://picsum.photos/40',
+      role: 'STUDENT',
+      hasDiscordLogin: true,
       questions: { create: moreQuestions() }
+    }
+  });
+
+  const challenge1 = await prisma.challenge.create({
+    data: {
+      title: 'Turn any Design into HTML',
+      body: `First challenge, turning any design into HTML, and CSS. First challenge,
+      turning any design into HTML, and CSS. First challenge, turning any
+      design into HTML, and CSS.`,
+      videoUrl:
+        'https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG',
+      author: { connect: { id: 1 } }
+    }
+  });
+
+  const project1 = await prisma.project.create({
+    data: {
+      githubLink: 'www.github.com',
+      additionalLink: 'www.google.com',
+      body: 'Here is my project',
+      author: { connect: { id: 2 } }
     }
   });
 
@@ -55,8 +77,9 @@ const main = async () => {
     await prisma.comment.create({
       data: {
         body: `seeded comment ${i}`,
-        author: { connect: { id: 1 } },
-        question: { connect: { id: 1 } }
+        isAnswer: Math.random() >= 0.8,
+        question: { connect: { id: 1 } },
+        author: { connect: { id: 2 } }
       }
     });
   }

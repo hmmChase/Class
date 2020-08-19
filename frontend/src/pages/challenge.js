@@ -7,7 +7,12 @@ import Main from '../components/Main/Main';
 const ChallengePage = props => {
   if (!props.isLoggedIn) return <Redirect to='/' />;
 
-  return <Layout header={<Header />} main={<Main />}></Layout>;
+  return (
+    <Layout
+      header={<Header user={props.user} />}
+      main={<Main user={props.user} />}
+    ></Layout>
+  );
 };
 
 export default ChallengePage;

@@ -7,7 +7,6 @@ import * as sc from './Questions.style';
 
 const Questions = props => {
   const [questions, setQuestions] = useState([]);
-
   const [getData, { loading, error }] = useFetch('/questions');
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const Questions = props => {
         key={question.id}
         questionId={question.id}
         createdAt={formatDate(question.createdAt)}
-        authorName={question.author.name}
+        authorName={question.author.username}
         body={question.body}
         commentCount={question.comments.length}
         // answerCount={question.answerCount}

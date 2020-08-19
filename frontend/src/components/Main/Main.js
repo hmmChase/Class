@@ -1,14 +1,18 @@
 import React from 'react';
 import * as sc from './Main.style';
 
-const Main = () => (
-  <sc.Container>
-    <sc.Challengee />
+const Main = props => {
+  return (
+    <sc.Container>
+      {props.user.role === 'TEACHER' && <sc.SubmissionVieww />}
 
-    <sc.Submissionn />
+      <sc.Challengee user={props.user} />
 
-    <sc.Discussionn />
-  </sc.Container>
-);
+      {props.user.role === 'STUDENT' && <sc.SubmissionSubmitt />}
+
+      <sc.Discussionn user={props.user} />
+    </sc.Container>
+  );
+};
 
 export default Main;

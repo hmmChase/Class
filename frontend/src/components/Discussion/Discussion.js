@@ -12,7 +12,11 @@ const Discussion = props => {
       <sc.Heading>
         <sc.Label>DISCUSSION</sc.Label>
 
-        <sc.Title>Ask a Question</sc.Title>
+        {props.user.role === 'TEACHER' ? (
+          <sc.Title>Challenge Questions</sc.Title>
+        ) : (
+          <sc.Title>Ask a Question</sc.Title>
+        )}
 
         {questionId && (
           <Link to={'/challenge'}>
@@ -20,7 +24,7 @@ const Discussion = props => {
           </Link>
         )}
 
-        {!questionId && <sc.QuestionNeww />}
+        {props.user.role === 'STUDENT' && !questionId && <sc.QuestionNeww />}
       </sc.Heading>
 
       {questionId ? (

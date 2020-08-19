@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const jwt = require('jsonwebtoken');
 
 const prisma = new PrismaClient();
 
@@ -23,10 +24,11 @@ exports.getQuestion = async (req, res, next) => {
 };
 
 exports.create = async (req, res, next) => {
-  const { authorId, body } = req.body;
+  const { body } = req.body;
+  const { id } = req.user.user;
 
   const questionRecord = await prisma.question.create({
-    data: { body: body, author: { connect: { id: authorId } } }
+    data: { body, author: { connect: { id } } }
   });
 
   return res.json(questionRecord);

@@ -1,33 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import { useParams } from 'react-router-dom';
+import useFetch from '../../api/useFetch';
+
 import * as sc from './Challenge.style';
 
 const Challenge = props => {
-  // const { id } = useParams();
-  // console.log('id:', id);
+  const [challenge, setChallenge] = useState([]);
+  const [getData, { loading, error }] = useFetch('/challenges');
+
+  useEffect(() => {
+    (async () => {
+      const data = await getData();
+
+      if (!loading && !error && data) setChallenge(data);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <sc.Container className={props.className}>
-      <sc.Label>CHALLENGE #1</sc.Label>
+      {challenge.length > 0 && (
+        <>
+          <sc.Label>CHALLENGE #1</sc.Label>
 
-      <sc.Title>Turn any Design into HTML</sc.Title>
+          <sc.Title>{challenge[0].title}</sc.Title>
 
-      <sc.Video>
-        <iframe
-          title='challenge'
-          src='https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG'
-          frameBorder='0'
-          allow='autoplay; encrypted-media'
-          allowFullScreen
-        />
-      </sc.Video>
+          <sc.Video>
+            <iframe
+              title='challenge'
+              src={challenge[0].videoUrl}
+              frameBorder='0'
+              allow='autoplay; encrypted-media'
+              allowFullScreen
+            />
+          </sc.Video>
 
-      <sc.Desc>
-        First challenge, turning any design into HTML, and CSS. First challenge,
-        turning any design into HTML, and CSS. First challenge, turning any
-        design into HTML, and CSS.
-      </sc.Desc>
+          <sc.Desc>{challenge[0].body}</sc.Desc>
+        </>
+      )}
     </sc.Container>
   );
 };

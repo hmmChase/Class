@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 import Challenge from '../Challenge/Challenge';
-import Submission from '../Submission/Submission';
+import SubmissionSubmit from '../SubmissionSubmit/SubmissionSubmit';
+import SubmissionView from '../SubmissionView/SubmissionView';
 import Discussion from '../Discussion/Discussion';
 
 export const Container = styled.div`
-  display: grid;
-  gap: 0.7rem;
-  grid-template-areas:
-    'challenge'
-    'submission'
-    'discussion';
-
+  display: flex;
+  flex-direction: column;
   padding-bottom: 2rem;
 
   @media screen and (min-width: 500px) {
@@ -18,23 +14,34 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1000px) {
+    display: grid;
+    gap: 0.7rem;
     grid-template-areas:
-      'challenge discussion'
-      'submission discussion';
+      'left-top right'
+      'left-bottom right';
     grid-template-columns: 1fr 1fr;
   }
 `;
 
 export const Challengee = styled(Challenge)`
-  grid-area: challenge;
+  grid-area: ${props =>
+    props.user.role === 'TEACHER' ? 'left-bottom' : 'left-top'};
 
   @media screen and (min-width: 500px) {
     border-radius: 10px;
   }
 `;
 
-export const Submissionn = styled(Submission)`
-  grid-area: submission;
+export const SubmissionSubmitt = styled(SubmissionSubmit)`
+  grid-area: left-bottom;
+
+  @media screen and (min-width: 500px) {
+    border-radius: 10px;
+  }
+`;
+
+export const SubmissionVieww = styled(SubmissionView)`
+  grid-area: left-top;
 
   @media screen and (min-width: 500px) {
     border-radius: 10px;
@@ -42,7 +49,7 @@ export const Submissionn = styled(Submission)`
 `;
 
 export const Discussionn = styled(Discussion)`
-  grid-area: discussion;
+  grid-area: right;
 
   @media screen and (min-width: 500px) {
     border-radius: 10px;

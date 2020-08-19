@@ -16,26 +16,50 @@ generator client {
 }
 
 model User {
-  id                   Int        @id @default(autoincrement())
-  createdAt            DateTime   @default(now())
-  updatedAt            DateTime   @updatedAt
-  hasDiscordLogin      Boolean    @default(false)
-  role                 Role       @default(STUDENT)
-  email                String     @unique
+  id                   Int         @id @default(autoincrement())
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+  email                String      @unique
   username             String
   password             String?
-  name                 String?
   avatarUrl            String?
-  resetPassToken       String?    @unique
+  role                 Role        @default(STUDENT)
+  hasDiscordLogin      Boolean     @default(false)
+  resetPassToken       String?     @unique
   resetPassTokenExpiry DateTime?
+  projects             Project[]
   questions            Question[]
   comments             Comment[]
+  challenges           Challenge[]
+}
+
+model Challenge {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  body      String
+  videoUrl  String
+  author    User     @relation(fields: [user_id], references: [id])
+  user_id   Int
+}
+
+model Project {
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  githubLink     String
+  additionalLink String?
+  body           String
+  author         User     @relation(fields: [user_id], references: [id])
+  user_id        Int
 }
 
 model Question {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  title     String
   body      String
   comments  Comment[]
   author    User      @relation(fields: [user_id], references: [id])
@@ -47,6 +71,7 @@ model Comment {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   body        String
+  isAnswer    Boolean  @default(false)
   question    Question @relation(fields: [question_id], references: [id])
   question_id Int
   author      User     @relation(fields: [user_id], references: [id])

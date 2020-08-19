@@ -12,6 +12,7 @@ import useFetch from './api/useFetch';
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({});
+
   const [getData] = useFetch('/users/login-token');
 
   useEffect(() => {
@@ -33,11 +34,11 @@ const App = () => {
         <div>
           <Switch>
             <Route path='/challenge/:questionId'>
-              <ChallengePage isLoggedIn={isLoggedIn} />
+              <ChallengePage isLoggedIn={isLoggedIn} user={user} />
             </Route>
 
             <Route path='/challenge'>
-              <ChallengePage isLoggedIn={isLoggedIn} />
+              <ChallengePage isLoggedIn={isLoggedIn} user={user} />
             </Route>
 
             <Route path='/login'>
@@ -66,6 +67,7 @@ const App = () => {
 
             <Route path='/'>
               <IndexPage
+                setUser={setUser}
                 setIsLoggedIn={setIsLoggedIn}
                 isLoggedIn={isLoggedIn}
               />

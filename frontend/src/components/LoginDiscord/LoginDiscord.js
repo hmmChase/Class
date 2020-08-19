@@ -25,7 +25,6 @@ const LoginDiscord = () => {
     const state = getParameterByName('state');
 
     const user = await getData({ code, state });
-    console.log('user:', user);
 
     if (user && user.id) setIsLoggedIn(true);
     if (user && user.message) setLoginError(user.message);

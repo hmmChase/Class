@@ -9,6 +9,8 @@ const helmet = require('helmet');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const discordRouter = require('./routes/discord');
+const challengesRouter = require('./routes/challenges');
+const projectsRouter = require('./routes/projects');
 const questionsRouter = require('./routes/questions');
 const commentsRouter = require('./routes/comments');
 
@@ -53,6 +55,8 @@ app.use('/api/v1', v1);
 v1.use('/', indexRouter);
 v1.use('/users', usersRouter);
 v1.use('/discord', discordRouter);
+v1.use('/challenges', challengesRouter);
+v1.use('/projects', projectsRouter);
 v1.use('/questions', questionsRouter);
 v1.use('/comments', commentsRouter);
 
