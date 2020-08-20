@@ -19,4 +19,4 @@ SubmissionView.propTypes = {
   className: PropTypes.string
 };
 
-export default React.memo(SubmissionView);
+export default SubmissionView;

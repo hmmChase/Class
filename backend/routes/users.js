@@ -4,13 +4,11 @@ const userController = require('../controllers/userController');
 const { asyncErrorWrapper } = require('../handlers/errorHandlers');
 const { isAuth } = require('../middleware/isAuth');
 
-router.get('/', isAuth, asyncErrorWrapper(userController.getUsers));
+router.get('/', isAuth, asyncErrorWrapper(userController.getCurrentUser));
 
-router.get('/login-token', asyncErrorWrapper(userController.loginByToken));
+router.post('/signup', asyncErrorWrapper(userController.signup));
 
-router.post('/login-email', asyncErrorWrapper(userController.loginByEmail));
-
-router.post('/signup', asyncErrorWrapper(userController.signupByEmail));
+router.post('/login', asyncErrorWrapper(userController.login));
 
 router.post(
   '/reset-password',

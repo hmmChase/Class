@@ -10,13 +10,31 @@ const { COOKIE_CONFIG, BASE_URL } = require('../config');
 
 const prisma = new PrismaClient();
 
-exports.getUsers = async (req, res, next) => {
-  const users = await prisma.user.findMany();
+exports.getCurrentUser = async (req, res) => {
+  const { id } = req.user.user;
 
-  res.json(users);
+  try {
+    const userRecord = await prisma.user.findOne({ where: { id } });
+
+    if (!userRecord) return req.status(404).json({ error: 'user.notFound' });
+
+    const userJWT = { user: { id: userRecord.id } };
+
+    const newJWT = authService.generateJWT(userJWT);
+
+    const userClient = authService.userClientCleaner(userRecord);
+
+    res.cookie('jwt', newJWT, COOKIE_CONFIG);
+
+    return res.json(userClient);
+  } catch (error) {
+    return res.json({});
+  }
+
+  // return res.json(user);
 };
 
-exports.signupByEmail = async (req, res) => {
+exports.signup = async (req, res) => {
   const { email, password, username, role, avatarUrl } = req.body;
 
   const notString = typeof email !== 'string';
@@ -43,38 +61,7 @@ exports.signupByEmail = async (req, res) => {
   return res.json(user);
 };
 
-exports.loginByToken = async (req, res) => {
-  const at = req.cookies.jwt;
-  const atSecret = Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64');
-
-  try {
-    const decodedJWT = jwt.verify(at, atSecret);
-
-    const userRecord = await prisma.user.findOne({
-      where: { id: decodedJWT.user.id }
-    });
-
-    if (!userRecord) {
-      throw Error('User not found');
-    }
-
-    const userJWT = { user: { id: userRecord.id } };
-
-    const newJWT = authService.generateJWT(userJWT);
-
-    const userClient = authService.userClientCleaner(userRecord);
-
-    res.cookie('jwt', newJWT, COOKIE_CONFIG);
-
-    return res.json(userClient);
-  } catch (error) {
-    return res.json({});
-  }
-
-  // return res.json(user);
-};
-
-exports.loginByEmail = async (req, res) => {
+exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   const userRecord = await prisma.user.findOne({ where: { email } });
@@ -178,3 +165,9 @@ exports.resetPassword = async (req, res) => {
 
   return res.json(user);
 };
+
+// exports.getUsers = async (req, res, next) => {
+//   const users = await prisma.user.findMany();
+
+//   res.json(users);
+// };

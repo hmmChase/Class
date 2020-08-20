@@ -3,29 +3,41 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as sc from './QuestionCard.style';
 
-const QuestionCard = props => (
-  <sc.Container>
-    <sc.Author>{props.authorName}</sc.Author>
+const QuestionCard = props => {
+  return (
+    <sc.Container>
+      <sc.Row>
+        <sc.Author>{props.authorName}</sc.Author>
 
-    <sc.Created>{props.createdAt}</sc.Created>
+        <sc.Created>{props.createdAt}</sc.Created>
 
-    {/* {props.isAnswer && <sc.Answeredd />} */}
+        {props.isAnswered && <sc.Answeredd />}
+      </sc.Row>
 
-    <sc.Body>{props.body}</sc.Body>
+      <sc.Row>
+        <sc.Body>{props.body}</sc.Body>
+      </sc.Row>
 
-    {props.commentCount && (
-      <sc.CommentCount>{props.commentCount} Comments</sc.CommentCount>
-    )}
+      <sc.Row>
+        {!!props.answerCount && (
+          <sc.AnswerCount>{`${props.answerCount} Answer${
+            props.answerCount > 1 ? 's' : ''
+          }`}</sc.AnswerCount>
+        )}
 
-    {/* {props.answerCount && (
-      <sc.AnswerCount>{props.answerCount} Answers</sc.AnswerCount>
-    )} */}
+        {!!props.commentCount && (
+          <sc.CommentCount>{`${props.commentCount} Comment${
+            props.commentCount > 1 ? 's' : ''
+          }`}</sc.CommentCount>
+        )}
 
-    <Link to={`/challenge/${props.questionId}`}>View Question</Link>
-
-    {/* <sc.ViewQuestion href=''>View Question</sc.ViewQuestion> */}
-  </sc.Container>
-);
+        <Link to={`/challenge/${props.questionId}`}>
+          <sc.ViewQuestion>View Question</sc.ViewQuestion>
+        </Link>
+      </sc.Row>
+    </sc.Container>
+  );
+};
 
 QuestionCard.propTypes = {
   createdAt: PropTypes.any,

@@ -8,7 +8,6 @@ import * as sc from './QuestionDetail.style';
 
 const QuestionDetail = props => {
   const [question, setQuestion] = useState({});
-
   const [getData, { loading, error }] = useFetch(
     `/questions/${props.questionId}`
   );
@@ -19,6 +18,7 @@ const QuestionDetail = props => {
 
       if (!loading && !error && data) setQuestion(data);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -28,7 +28,7 @@ const QuestionDetail = props => {
           <QuestionCardDetail
             key={question.id}
             createdAt={formatDate(question.createdAt)}
-            // authorName={question.author.name}
+            authorName={question.author.username}
             body={question.body}
           />
 

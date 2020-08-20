@@ -1,46 +1,37 @@
 import React, { useState } from 'react';
-// import useSignUp from '../../api/useSignUp';
-import request from '../../utils/request';
+import { useHistory } from 'react-router-dom';
+import useFetch from '../../api/useFetch';
 import * as sc from './SignUpEmail.style';
 
 const SignUpEmail = () => {
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [isTeacher, setIsTeacher] = useState(false);
-  // const [user, SignUp] = useSignUp(email, password);
+  const history = useHistory();
+  const [getData, { loading, error }] = useFetch('/users/signup');
 
   const onSubmit = async e => {
     e.preventDefault();
 
-    // const user = await SignUp(email, password);
-
     const role = isTeacher ? 'TEACHER' : 'STUDENT';
     const avatarUrl = 'http://picsum.photos/40';
 
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({ name, email, password, role, avatarUrl }),
-      headers: { 'Content-Type': 'application/json; charset=utf-8' }
-    };
+    const data = await getData({ email, password, username, role, avatarUrl });
 
-    try {
-      await request('/users/signup', options);
-    } catch (err) {
-      console.error(err);
-    }
+    if (!loading && !error && data && data.user) history.push('/challenge');
   };
 
   return (
     <sc.Form onSubmit={onSubmit}>
       <sc.Label>
-        Name:
+        Username:
         <input
           required
           type='text'
-          value={name}
-          placeholder='Name'
-          onChange={e => setName(e.target.value)}
+          value={username}
+          placeholder='Username'
+          onChange={e => setUsername(e.target.value)}
         />
       </sc.Label>
 

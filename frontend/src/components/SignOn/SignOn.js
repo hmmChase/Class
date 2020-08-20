@@ -6,18 +6,13 @@ import LoginDiscord from '../LoginDiscord/LoginDiscord';
 import SignUpDiscord from '../SignUpDiscord/SignUpDiscord';
 import * as sc from './SignOn.style';
 
-const SignOn = props => {
+const SignOn = () => {
   const [tab, setTab] = useState('tab1');
 
   const dispayPanel = tab => {
     switch (tab) {
       case 'tab1':
-        return (
-          <LoginEmail
-            setUser={props.setUser}
-            setIsLoggedIn={props.setIsLoggedIn}
-          />
-        );
+        return <LoginEmail />;
 
       case 'tab2':
         return <LoginDiscord />;

@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import useFetch from '../../api/useFetch';
+import AppContext from '../../context/app';
 import * as sc from './LoginEmail.style';
 
-const LoginEmail = props => {
+const LoginEmail = () => {
   const [email, setEmail] = useState('teacher@email.com');
   const [password, setPassword] = useState('teacher');
+  const { setCurrentUser } = useContext(AppContext);
+  const [getData, { loading, error }] = useFetch('/users/login');
   const history = useHistory();
-  const [getData, { loading, error }] = useFetch('/users/login-email');
 
   const handleSubmit = async e => {
     e.preventDefault();
 
     const data = await getData({ email, password });
 
-    if (!loading && !error && data && data.user && data.user.id) {
-      props.setUser(data.user);
-
-      props.setIsLoggedIn(true);
+    if (!loading && !error && data && data.user) {
+      setCurrentUser(data.user);
 
       history.push('/challenge');
     }

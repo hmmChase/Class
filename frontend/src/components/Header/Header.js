@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../../context/app';
 import * as sc from './Header.style';
 
-const Header = props => {
+const Header = () => {
+  const { currentUser } = useContext(AppContext);
+
   return (
     <sc.Container>
       <sc.KnightIcon />
@@ -9,8 +12,8 @@ const Header = props => {
       <sc.Title>challenge board</sc.Title>
 
       <sc.UserIcon>
-        {props.user && props.user.avatarUrl ? (
-          <sc.UserIconDefined src={props.user.avatarUrl} />
+        {currentUser && currentUser.avatarUrl ? (
+          <sc.UserIconDefined src={currentUser.avatarUrl} />
         ) : (
           <sc.UserIconDefault />
         )}

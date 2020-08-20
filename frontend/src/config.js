@@ -9,5 +9,7 @@ export const errorCodeToMessage = {
   default: 'Error, please try again.',
   'login.invalidCredentials': 'Invalid credentials, please try again.',
   'signup.invalidEmail': 'Invalid email, please try again,',
-  'signup.notString': 'Invalid email, please try again,'
+  'signup.notString': 'Invalid email, please try again,',
+  'user.notFound': 'Login failed, please try again,',
+  'user.unauthorized': 'Not Authorized.'
 };

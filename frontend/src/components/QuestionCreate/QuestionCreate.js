@@ -1,25 +1,15 @@
 import React, { useState } from 'react';
-// import useQuestion from '../../api/useQuestion';
-import request from '../../utils/request';
+import useFetch from '../../api/useFetch';
 import * as sc from './QuestionCreate.style';
 
 const Question = () => {
   const [body, setBody] = useState('');
+  const [getData] = useFetch('/questions/create');
 
   const onSubmit = async e => {
     e.preventDefault();
 
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({ authorId: 3, body }),
-      headers: { 'Content-Type': 'application/json; charset=utf-8' }
-    };
-
-    try {
-      await request('/questions/create', options);
-    } catch (err) {
-      console.error(err);
-    }
+    await getData({ authorId: 3, body });
   };
 
   return (

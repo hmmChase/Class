@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../../context/app';
 import * as sc from './Main.style';
 
-const Main = props => {
+const Main = () => {
+  const { currentUser } = useContext(AppContext);
+
   return (
     <sc.Container>
-      {props.user.role === 'TEACHER' && <sc.SubmissionVieww />}
+      {currentUser && currentUser.role === 'TEACHER' && <sc.SubmissionVieww />}
 
-      <sc.Challengee user={props.user} />
+      <sc.Challengee />
 
-      {props.user.role === 'STUDENT' && <sc.SubmissionSubmitt />}
+      {currentUser && currentUser.role === 'STUDENT' && (
+        <sc.SubmissionSubmitt />
+      )}
 
-      <sc.Discussionn user={props.user} />
+      <sc.Discussionn />
     </sc.Container>
   );
 };

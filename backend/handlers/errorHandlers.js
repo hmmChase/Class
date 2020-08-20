@@ -26,8 +26,5 @@ exports.notFound = (req, res, next) => {
   next(err);
 };
 
-exports.asyncErrorWrapper = fn => {
-  return (req, res, next) => {
-    return fn(req, res, next).catch(next);
-  };
-};
+exports.asyncErrorWrapper = fn => (req, res, next) =>
+  fn(req, res, next).catch(next);

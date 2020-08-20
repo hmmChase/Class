@@ -8,73 +8,67 @@ import SignUpPage from './pages/signup';
 import SignUpDiscordPage from './pages/signup-discord';
 import IndexPage from './pages/index';
 import useFetch from './api/useFetch';
+import AppContext from './context/app';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({});
-
-  const [getData] = useFetch('/users/login-token');
+  const [currentUser, setCurrentUser] = useState({});
+  const [getData, { loading, error }] = useFetch('/users');
 
   useEffect(() => {
     (async () => {
       const data = await getData();
 
-      if (data && data.user && data.user.id) {
-        setUser(data.user);
-
-        setIsLoggedIn(true);
-      }
+      if (!loading && !error && data && data.user && data.user.id)
+        setCurrentUser(data.user);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
-      <Router>
-        <div>
-          <Switch>
-            <Route path='/challenge/:questionId'>
-              <ChallengePage isLoggedIn={isLoggedIn} user={user} />
-            </Route>
+      <AppContext.Provider value={{ currentUser, setCurrentUser }}>
+        <Router>
+          <div>
+            <Switch>
+              <Route path='/challenge/:questionId'>
+                <ChallengePage />
+              </Route>
 
-            <Route path='/challenge'>
-              <ChallengePage isLoggedIn={isLoggedIn} user={user} />
-            </Route>
+              <Route path='/challenge'>
+                <ChallengePage />
+              </Route>
 
-            <Route path='/login'>
-              <LoginPage setIsLoggedIn={setIsLoggedIn} />
-            </Route>
+              <Route path='/login'>
+                <LoginPage />
+              </Route>
 
-            <Route path='/login-discord'>
-              <LoginDiscordPage />
-            </Route>
+              <Route path='/login-discord'>
+                <LoginDiscordPage />
+              </Route>
 
-            <Route path='/reset-password/:resetToken'>
-              <ResetPasswordPage />
-            </Route>
+              <Route path='/reset-password/:resetToken'>
+                <ResetPasswordPage />
+              </Route>
 
-            <Route path='/reset-password'>
-              <ResetPasswordPage />
-            </Route>
+              <Route path='/reset-password'>
+                <ResetPasswordPage />
+              </Route>
 
-            <Route path='/signup'>
-              <SignUpPage />
-            </Route>
+              <Route path='/signup'>
+                <SignUpPage />
+              </Route>
 
-            <Route path='/signup-discord'>
-              <SignUpDiscordPage />
-            </Route>
+              <Route path='/signup-discord'>
+                <SignUpDiscordPage />
+              </Route>
 
-            <Route path='/'>
-              <IndexPage
-                setUser={setUser}
-                setIsLoggedIn={setIsLoggedIn}
-                isLoggedIn={isLoggedIn}
-              />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+              <Route path='/'>
+                <IndexPage />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </AppContext.Provider>
     </div>
   );
 };

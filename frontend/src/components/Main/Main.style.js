@@ -24,9 +24,6 @@ export const Container = styled.div`
 `;
 
 export const Challengee = styled(Challenge)`
-  grid-area: ${props =>
-    props.user.role === 'TEACHER' ? 'left-bottom' : 'left-top'};
-
   @media screen and (min-width: 500px) {
     border-radius: 10px;
   }

@@ -1,16 +1,18 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import AppContext from '../context/app';
 import SignOn from '../components/SignOn/SignOn';
-import { Link } from 'react-router-dom';
 
-const IndexPage = props => {
-  if (props.isLoggedIn) return <Redirect to='/challenge' />;
+const IndexPage = () => {
+  const { currentUser } = useContext(AppContext);
+
+  if (currentUser && currentUser.id) return <Redirect to='/challenge' />;
 
   return (
     <>
       <h1>Challenge Board</h1>
 
-      <SignOn setUser={props.setUser} setIsLoggedIn={props.setIsLoggedIn} />
+      <SignOn />
 
       <p>
         <Link to='/challenge'>challenge</Link>

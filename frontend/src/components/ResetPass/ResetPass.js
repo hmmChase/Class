@@ -1,25 +1,15 @@
 import React, { useState } from 'react';
-import request from '../../utils/request';
+import useFetch from '../../api/useFetch';
 import * as sc from './ResetPass.style';
 
 const ResetPass = props => {
   const [newPassword, setNewPassword] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
+  const [getData] = useFetch(`/users/reset-password/${props.resetToken}`);
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({ newPassword }),
-      headers: { 'Content-Type': 'application/json; charset=utf-8' }
-    };
-
-    try {
-      await request(`/users/reset-password/${props.resetToken}`, options);
-    } catch (err) {
-      console.error(err);
-    }
+    await getData({ newPassword });
   };
 
   return (

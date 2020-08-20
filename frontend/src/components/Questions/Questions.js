@@ -19,10 +19,10 @@ const Questions = props => {
   }, []);
 
   const questionCards = questions.map(question => {
-    let answerCount = 0;
+    const answerCount = question.comments.reduce((total, comment) => {
+      if (comment.isAnswer) total++;
 
-    question.comments.reduce(comment => {
-      return comment;
+      return total;
     }, 0);
 
     return (
@@ -33,7 +33,8 @@ const Questions = props => {
         authorName={question.author.username}
         body={question.body}
         commentCount={question.comments.length}
-        // answerCount={question.answerCount}
+        answerCount={answerCount}
+        isAnswered={!!answerCount}
       />
     );
   });
@@ -47,4 +48,4 @@ Questions.propTypes = {
   className: PropTypes.string
 };
 
-export default React.memo(Questions);
+export default Questions;

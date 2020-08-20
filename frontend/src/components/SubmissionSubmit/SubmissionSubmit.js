@@ -21,4 +21,4 @@ SubmissionSubmit.propTypes = {
   className: PropTypes.string
 };
 
-export default React.memo(SubmissionSubmit);
+export default SubmissionSubmit;

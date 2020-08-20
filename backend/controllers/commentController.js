@@ -25,3 +25,33 @@ exports.create = async (req, res, next) => {
 
   return res.json(commentRecord);
 };
+
+exports.answer = async (req, res, next) => {
+  const { questionId, body } = req.body;
+  const { id } = req.user.user;
+
+  const commentRecord = await prisma.comment.create({
+    data: {
+      author: { connect: { id } },
+      question: { connect: { id: questionId } },
+      body
+    }
+  });
+
+  return res.json(commentRecord);
+};
+
+exports.answerCount = async (req, res, next) => {
+  const { questionId, body } = req.body;
+  const { id } = req.user.user;
+
+  const commentRecord = await prisma.comment.count({
+    data: {
+      author: { connect: { id } },
+      question: { connect: { id: questionId } },
+      body
+    }
+  });
+
+  return res.json(commentRecord);
+};

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../../api/useFetch';
-
 import * as sc from './Challenge.style';
 
 const Challenge = props => {
@@ -46,4 +45,4 @@ Challenge.propTypes = {
   className: PropTypes.string
 };
 
-export default React.memo(Challenge);
+export default Challenge;
