@@ -1,7 +1,7 @@
-const argon2 = require('argon2');
-const { PrismaClient } = require('@prisma/client');
-const emailHandler = require('../handlers/emailHandler');
-const authService = require('../services/authService');
+import { PrismaClient } from '@prisma/client';
+import argon2 from 'argon2';
+import * as emailHandler from '../handlers/emailHandler';
+import * as authService from '../services/authService';
 
 const prisma = new PrismaClient();
 
@@ -23,7 +23,7 @@ const createUser = async (email, username, password, role, avatarUrl) => {
   return userData;
 };
 
-exports.signupUserByEmail = async (
+export const signupUserByEmail = async (
   email,
   username,
   password,
@@ -43,7 +43,7 @@ exports.signupUserByEmail = async (
   return createdUser;
 };
 
-exports.loginWithEmail = async (res, email, password) => {
+export const loginWithEmail = async (res, email, password) => {
   const userRecord = await prisma.user.findOne({ where: { email } });
 
   if (!userRecord)

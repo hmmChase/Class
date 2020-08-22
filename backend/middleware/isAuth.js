@@ -1,7 +1,6 @@
-const jwt = require('express-jwt');
-// const jsonwebtoken = require('jsonwebtoken');
+import jwt from 'express-jwt';
 
-exports.isAuth = jwt({
+export const isAuth = jwt({
   secret: Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64'),
   // userProperty: 'jwt', // the encoded data now shows up in req.jwt
   // requestProperty: 'user',

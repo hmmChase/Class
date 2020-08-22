@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express';
+import * as userController from '../controllers/userController';
+import { asyncErrorWrapper } from '../handlers/errorHandlers';
+import { isAuth } from '../middleware/isAuth';
+
 const router = express.Router();
-const userController = require('../controllers/userController');
-const { asyncErrorWrapper } = require('../handlers/errorHandlers');
-const { isAuth } = require('../middleware/isAuth');
 
 router.get('/', isAuth, asyncErrorWrapper(userController.getCurrentUser));
 
@@ -20,4 +21,4 @@ router.post(
   asyncErrorWrapper(userController.resetPassword)
 );
 
-module.exports = router;
+export default router;

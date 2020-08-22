@@ -1,6 +1,6 @@
-const nodemailer = require('nodemailer');
-const ejs = require('ejs');
-const juice = require('juice');
+import nodemailer from 'nodemailer';
+import ejs from 'ejs';
+import juice from 'juice';
 
 const transport = nodemailer.createTransport({
   host: 'smtp.mailtrap.io',
@@ -18,7 +18,7 @@ const generateHTML = async (filename, options) => {
   return juice(html);
 };
 
-exports.sendEmail = async options => {
+export const sendEmail = async options => {
   const emailHtml = await generateHTML(options.filename, options);
 
   const mailOptions = {
@@ -31,7 +31,7 @@ exports.sendEmail = async options => {
   return transport.sendMail(mailOptions);
 };
 
-exports.sendEmailSignup = (email, username) => {
+export const sendEmailSignup = (email, username) => {
   sendEmail({
     subject: 'Welcome to the Challange Board!',
     filename: 'signupEmail',
@@ -39,7 +39,7 @@ exports.sendEmailSignup = (email, username) => {
   });
 };
 
-exports.sendEmailPasswordReset = (email, resetPasswordUrl) => {
+export const sendEmailPasswordReset = (email, resetPasswordUrl) => {
   sendEmail({
     subject: 'Password Reset for the Challenge Board',
     filename: 'resetPassEmail',

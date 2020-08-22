@@ -1,13 +1,13 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-exports.generateJWT = payload => {
+export const generateJWT = payload => {
   const secret = Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64');
   const options = { expiresIn: '6h' };
 
   return jwt.sign(payload, secret, options);
 };
 
-exports.getParameterByName = (name, url) => {
+export const getParameterByName = (name, url) => {
   const parsedName = name.replace(/[\[\]]/g, '\\$&');
 
   const regex = new RegExp('[?&]' + parsedName + '(=([^&#]*)|&|#|$)');
@@ -21,7 +21,7 @@ exports.getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
 
-exports.getStateFromHeader = req => {
+export const getStateFromHeader = req => {
   console.log('getStateFromHeader req: ', req);
 
   // if (req && req.headers) return cookie.parse(req.headers.cookie).state;
@@ -29,7 +29,7 @@ exports.getStateFromHeader = req => {
   if (req && req.headers) return req.cookies.state;
 };
 
-exports.userClientCleaner = user => ({
+export const userClientCleaner = user => ({
   user: {
     id: user.id,
     hasDiscordLogin: user.hasDiscordLogin,

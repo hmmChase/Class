@@ -1,16 +1,15 @@
-const crypto = require('crypto');
-const argon2 = require('argon2');
-const jwt = require('jsonwebtoken');
-const { PrismaClient } = require('@prisma/client');
-const isEmail = require('isemail');
-const authService = require('../services/authService');
-const userService = require('../services/userService');
-const emailHandler = require('../handlers/emailHandler');
-const { COOKIE_CONFIG, BASE_URL } = require('../config');
+import { PrismaClient } from '@prisma/client';
+import crypto from 'crypto';
+import argon2 from 'argon2';
+import isEmail from 'isemail';
+import * as authService from '../services/authService';
+import * as userService from '../services/userService';
+import * as emailHandler from '../handlers/emailHandler';
+import { COOKIE_CONFIG, BASE_URL } from '../config';
 
 const prisma = new PrismaClient();
 
-exports.getCurrentUser = async (req, res) => {
+export const getCurrentUser = async (req, res) => {
   const { id } = req.user.user;
 
   try {
@@ -34,7 +33,7 @@ exports.getCurrentUser = async (req, res) => {
   // return res.json(user);
 };
 
-exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   const { email, password, username, role, avatarUrl } = req.body;
 
   const notString = typeof email !== 'string';
@@ -61,7 +60,7 @@ exports.signup = async (req, res) => {
   return res.json(user);
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
 
   const userRecord = await prisma.user.findOne({ where: { email } });
@@ -87,7 +86,7 @@ exports.login = async (req, res) => {
   return res.json(userClient);
 };
 
-exports.generatePassReset = async (req, res) => {
+export const generatePassReset = async (req, res) => {
   const { email } = req.body;
 
   // if can find email, begin reset flow
@@ -119,7 +118,7 @@ exports.generatePassReset = async (req, res) => {
   return res.json({ message: emailSentMessage });
 };
 
-exports.resetPassword = async (req, res) => {
+export const resetPassword = async (req, res) => {
   const { resetToken } = req.params;
 
   const { newPassword } = req.body;
@@ -166,7 +165,7 @@ exports.resetPassword = async (req, res) => {
   return res.json(user);
 };
 
-// exports.getUsers = async (req, res, next) => {
+// export const getUsers = async (req, res, next) => {
 //   const users = await prisma.user.findMany();
 
 //   res.json(users);

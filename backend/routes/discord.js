@@ -1,9 +1,10 @@
-const express = require('express');
+import express from 'express';
+import * as discordController from '../controllers/discordController';
+
 const router = express.Router();
-const discordController = require('../controllers/discordController');
 
 router.get('/', discordController.getDiscordUrl);
 
 router.post('/signup', discordController.authenticateUserDiscord);
 
-module.exports = router;
+export default router;

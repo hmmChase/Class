@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+import * as questionController from '../controllers/questionController';
+import { isAuth } from '../middleware/isAuth';
+
 const router = express.Router();
-const questionController = require('../controllers/questionController');
-const { isAuth } = require('../middleware/isAuth');
 
 router.get('/', isAuth, questionController.getQuestions);
 
@@ -9,4 +10,4 @@ router.get('/:questionId', questionController.getQuestion);
 
 router.post('/create', questionController.create);
 
-module.exports = router;
+export default router;

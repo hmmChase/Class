@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import AppContext from '../../context/app';
 import { Link } from 'react-router-dom';
 import * as sc from './QuestionCard.style';
 
 const QuestionCard = props => {
+  const { currentUser } = useContext(AppContext);
+
   return (
     <sc.Container>
       <sc.Row>
@@ -11,7 +14,11 @@ const QuestionCard = props => {
 
         <sc.Created>{props.createdAt}</sc.Created>
 
-        {props.isAnswered && <sc.Answeredd />}
+        <sc.RightSide>
+          {props.isAnswered && <sc.Answeredd />}
+
+          {currentUser.role === 'TEACHER' && <sc.DotDotDot>...</sc.DotDotDot>}
+        </sc.RightSide>
       </sc.Row>
 
       <sc.Row>

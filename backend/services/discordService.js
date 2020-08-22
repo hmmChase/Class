@@ -1,8 +1,8 @@
-const DiscordOauth2 = require('discord-oauth2');
-const { PrismaClient } = require('@prisma/client');
-const crypto = require('crypto');
-const authService = require('./authService');
-const emailHandler = require('../handlers/emailHandler');
+import { PrismaClient } from '@prisma/client';
+import crypto from 'crypto';
+import DiscordOauth2 from 'discord-oauth2';
+import * as authService from './authService';
+import * as emailHandler from '../handlers/emailHandler';
 
 const prisma = new PrismaClient();
 
@@ -19,7 +19,7 @@ const oauth = new DiscordOauth2({
 });
 
 // Wraps DiscordOauth2's generate auth url
-exports.generateDiscordURL = () => {
+export const generateDiscordURL = () => {
   const url = oauth.generateAuthUrl({
     // See Discord OAuth docs for scope info
     scope: ['identify', 'email'],
@@ -31,7 +31,7 @@ exports.generateDiscordURL = () => {
   return url;
 };
 
-exports.createUserByDiscord = async code => {
+export const createUserByDiscord = async code => {
   // Grab an access_token from Discord based on the code and any prior scope
 
   const tokenResponse = await oauth.tokenRequest({
@@ -72,7 +72,7 @@ const createUser = async (email, username) => {
   return userData;
 };
 
-exports.signupUserByDiscord = async (email, username) => {
+export const signupUserByDiscord = async (email, username) => {
   const createdUser = await createUser(email, username);
 
   emailHandler.sendEmailSignup(email, username);

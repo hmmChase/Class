@@ -1,8 +1,8 @@
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-exports.getComments = async (req, res, next) => {
+export const getComments = async (req, res, next) => {
   const comments = await prisma.comment.findMany({
     orderBy: { id: 'desc' },
     include: { author: true }
@@ -11,7 +11,7 @@ exports.getComments = async (req, res, next) => {
   return res.json(comments);
 };
 
-exports.create = async (req, res, next) => {
+export const create = async (req, res, next) => {
   const { questionId, body } = req.body;
   const { id } = req.user.user;
 
@@ -26,7 +26,7 @@ exports.create = async (req, res, next) => {
   return res.json(commentRecord);
 };
 
-exports.answer = async (req, res, next) => {
+export const answer = async (req, res, next) => {
   const { questionId, body } = req.body;
   const { id } = req.user.user;
 
@@ -41,7 +41,7 @@ exports.answer = async (req, res, next) => {
   return res.json(commentRecord);
 };
 
-exports.answerCount = async (req, res, next) => {
+export const answerCount = async (req, res, next) => {
   const { questionId, body } = req.body;
   const { id } = req.user.user;
 

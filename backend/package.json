@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./bin/www",
+    "start": "cross-env NODE_ENV=production node --exec babel-node ./bin/www",
     "seed": "node ./prisma/seed"
   },
   "dependencies": {
@@ -27,7 +28,11 @@
     "nodemailer": "^6.4.10"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
     "@prisma/cli": "^2.3.0",
+    "cross-env": "^7.0.2",
     "nodemon": "^2.0.4"
   }
 }

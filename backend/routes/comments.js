@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express';
+import * as commentController from '../controllers/commentController';
+import { isAuth } from '../middleware/isAuth';
+import { authRole } from '../middleware/authRole';
+
 const router = express.Router();
-const commentController = require('../controllers/commentController');
-const { isAuth } = require('../middleware/isAuth');
-const { authRole } = require('../middleware/authRole');
 
 router.get('/', isAuth, commentController.getComments);
 
@@ -10,4 +11,4 @@ router.post('/create', isAuth, commentController.create);
 
 router.post('/answer', isAuth, authRole('TEACHER'), commentController.answer);
 
-module.exports = router;
+export default router;

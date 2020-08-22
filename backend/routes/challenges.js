@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express';
+import * as challengeController from '../controllers/challengeController';
+import { isAuth } from '../middleware/isAuth';
+
 const router = express.Router();
-const challengeController = require('../controllers/challengeController');
-const { isAuth } = require('../middleware/isAuth');
 
 router.get('/', isAuth, challengeController.getChallenges);
 
-module.exports = router;
+export default router;

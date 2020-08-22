@@ -1,8 +1,8 @@
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-exports.getProjects = async (req, res, next) => {
+export const getProjects = async (req, res, next) => {
   const projectRecords = await prisma.project.findMany({
     orderBy: { id: 'desc' },
     include: { author: true }
@@ -11,7 +11,7 @@ exports.getProjects = async (req, res, next) => {
   return res.json(projectRecords);
 };
 
-exports.create = async (req, res, next) => {
+export const create = async (req, res, next) => {
   const { githubLink, additionalLink, body } = req.body;
 
   const projectRecord = await prisma.question.create({

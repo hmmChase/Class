@@ -1,8 +1,8 @@
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-exports.authRole = requiredRoles => {
+export const authRole = requiredRoles => {
   return async (req, res, next) => {
     const decodedJWT = req.jwt;
     console.log('decodedJWT:', decodedJWT);

@@ -1,4 +1,4 @@
-exports.COOKIE_CONFIG = {
+export const COOKIE_CONFIG = {
   httpOnly: true,
   path: '/',
   secure: process.env.NODE_ENV === 'production',
@@ -6,7 +6,7 @@ exports.COOKIE_CONFIG = {
   sameSite: 'strict'
 };
 
-exports.BASE_URL =
+export const BASE_URL =
   process.env.NODE_ENV === 'production'
     ? 'https://challenge-board.vercel.app'
     : 'http://localhost:3000';

@@ -1,4 +1,4 @@
-exports.developmentErrors = (err, req, res, next) => {
+export const developmentErrors = (err, req, res, next) => {
   err.stack = err.stack || '';
 
   const errorDetails = {
@@ -12,13 +12,13 @@ exports.developmentErrors = (err, req, res, next) => {
   res.json(errorDetails);
 };
 
-exports.productionErrors = (err, req, res, next) => {
+export const productionErrors = (err, req, res, next) => {
   res.status(err.status || 500);
 
   res.json({ message: err.message, error: {} });
 };
 
-exports.notFound = (req, res, next) => {
+export const notFound = (req, res, next) => {
   const err = Error('Not Found');
 
   err.status = 404;
@@ -26,5 +26,5 @@ exports.notFound = (req, res, next) => {
   next(err);
 };
 
-exports.asyncErrorWrapper = fn => (req, res, next) =>
+export const asyncErrorWrapper = fn => (req, res, next) =>
   fn(req, res, next).catch(next);

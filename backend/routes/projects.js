@@ -1,10 +1,11 @@
-const express = require('express');
+import express from 'express';
+import * as projectController from '../controllers/projectController';
+import { isAuth } from '../middleware/isAuth';
+
 const router = express.Router();
-const projectController = require('../controllers/projectController');
-const { isAuth } = require('../middleware/isAuth');
 
 router.get('/', isAuth, projectController.getProjects);
 
 router.post('/create', projectController.create);
 
-module.exports = router;
+export default router;

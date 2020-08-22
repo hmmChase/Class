@@ -10,53 +10,66 @@ export const Container = styled.li`
     'bottom-left bottom-left bottom-right';
   grid-gap: 1rem; */
 
-  /* display: flex;
-  flex-direction: column; */
   padding: 1rem;
 
   a {
     text-decoration: none;
+    margin-left: auto;
   }
 `;
 
 export const Row = styled.div`
   display: flex;
-  justify-content: space-between;
 `;
 
 export const Author = styled.span`
   font-size: 0.9rem;
+  margin-right: 0.5rem;
+
   /* grid-area: top-left; */
 `;
 
 export const Created = styled.span`
   font-size: 0.9rem;
   color: ${props => props.theme.colors.text.terciaryText};
+
   /* grid-area: top-mid; */
+`;
+
+export const RightSide = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0 auto;
 `;
 
 export const Answeredd = styled(Answered)`
   fill: ${props => props.theme.colors.text.secondaryText};
-  /* grid-area: top-right; */
   height: 20px;
-  justify-self: end;
+  align-self: flex-end;
   width: 20px;
+
+  /* grid-area: top-right; */
 `;
 
-export const Body = styled.p`
-  /* grid-area: body; */
-  margin: 0;
+export const DotDotDot = styled.div`
+  /* margin: 0 0 0 auto; */
+  margin-left: 1rem;
 `;
+
+export const Body = styled.p``;
 
 export const AnswerCount = styled.span`
   color: ${props => props.theme.colors.text.terciaryText};
   font-size: 0.9rem;
+  margin-right: 0.5rem;
+
   /* grid-area: bottom-left; */
 `;
 
 export const CommentCount = styled.span`
   color: ${props => props.theme.colors.text.terciaryText};
   font-size: 0.9rem;
+
   /* grid-area: bottom-left; */
 `;
 
@@ -65,8 +78,7 @@ export const ViewQuestion = styled.p`
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 0.9rem;
   font-weight: 800;
-  margin: 0;
+  margin: 0 0 0 auto;
+
   /* grid-area: bottom-right; */
-  align-self: flex-end;
-  justify-self: flex-end;
 `;

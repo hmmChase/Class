@@ -1,8 +1,8 @@
-const authService = require('../services/authService');
-const discordService = require('../services/discordService');
-const { COOKIE_CONFIG } = require('../config');
+import * as authService from '../services/authService';
+import * as discordService from '../services/discordService';
+import { COOKIE_CONFIG } from '../config';
 
-exports.getDiscordUrl = (req, res) => {
+export const getDiscordUrl = (req, res) => {
   const url = discordService.generateDiscordURL();
 
   const stateParam = authService.getParameterByName('state', url);
@@ -20,7 +20,7 @@ exports.getDiscordUrl = (req, res) => {
   return res.json({ discordUrl: url });
 };
 
-exports.authenticateUserDiscord = async (req, res) => {
+export const authenticateUserDiscord = async (req, res) => {
   const { code, state } = req.body;
 
   // We need to check the state

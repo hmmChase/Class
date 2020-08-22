@@ -1,21 +1,21 @@
-const express = require('express');
-const logger = require('morgan');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const compression = require('compression');
-const helmet = require('helmet');
+import express from 'express';
+import logger from 'morgan';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import compression from 'compression';
+import helmet from 'helmet';
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const discordRouter = require('./routes/discord');
-const challengesRouter = require('./routes/challenges');
-const projectsRouter = require('./routes/projects');
-const questionsRouter = require('./routes/questions');
-const commentsRouter = require('./routes/comments');
+import indexRouter from './routes/index';
+import usersRouter from './routes/users';
+import discordRouter from './routes/discord';
+import challengesRouter from './routes/challenges';
+import projectsRouter from './routes/projects';
+import questionsRouter from './routes/questions';
+import commentsRouter from './routes/comments';
 
-const errorHandlers = require('./handlers/errorHandlers');
-const { BASE_URL } = require('./config');
+import * as errorHandlers from './handlers/errorHandlers';
+import { BASE_URL } from './config';
 
 const app = express();
 
@@ -65,4 +65,5 @@ app.use(errorHandlers.notFound);
 if (app.get('env') === 'development') app.use(errorHandlers.developmentErrors);
 else app.use(errorHandlers.productionErrors);
 
+// export default app;
 module.exports = app;

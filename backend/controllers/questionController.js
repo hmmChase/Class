@@ -1,9 +1,8 @@
-const { PrismaClient } = require('@prisma/client');
-const jwt = require('jsonwebtoken');
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-exports.getQuestions = async (req, res, next) => {
+export const getQuestions = async (req, res, next) => {
   const questions = await prisma.question.findMany({
     orderBy: { id: 'desc' },
     include: { author: true, comments: true }
@@ -12,7 +11,7 @@ exports.getQuestions = async (req, res, next) => {
   return res.json(questions);
 };
 
-exports.getQuestion = async (req, res, next) => {
+export const getQuestion = async (req, res, next) => {
   const { questionId } = req.params;
 
   const questions = await prisma.question.findOne({
@@ -23,7 +22,7 @@ exports.getQuestion = async (req, res, next) => {
   return res.json(questions);
 };
 
-exports.create = async (req, res, next) => {
+export const create = async (req, res, next) => {
   const { body } = req.body;
   const { id } = req.user.user;
 
