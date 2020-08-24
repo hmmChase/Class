@@ -8,6 +8,7 @@ import * as sc from './QuestionDetail.style';
 
 const QuestionDetail = props => {
   const [question, setQuestion] = useState({});
+  console.log('question:', question);
   const [getData, { loading, error }] = useFetch(
     `/questions/${props.questionId}`
   );
@@ -25,6 +26,7 @@ const QuestionDetail = props => {
     <sc.Container className={props.className}>
       {!loading && !error && question.id && (
         <>
+          {console.log(question.comments.length > 0)}
           <QuestionCardDetail
             key={question.id}
             createdAt={formatDate(question.createdAt)}
@@ -32,9 +34,7 @@ const QuestionDetail = props => {
             body={question.body}
           />
 
-          {question.comments.length > 0 && (
-            <Comments comments={question.comments} />
-          )}
+  
         </>
       )}
     </sc.Container>

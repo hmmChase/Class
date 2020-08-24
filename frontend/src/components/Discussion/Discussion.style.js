@@ -7,23 +7,63 @@ import QuestionNew from '../QuestionNew/QuestionNew';
 export const Container = styled.section`
   background-color: ${props => props.theme.colors.backgrounds.widgetsHeader};
   box-shadow: 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.1);
-  padding: 0 0.5rem 0.5rem 0.5rem;
+  padding: 1.5rem 0.5rem 0.5rem 0.5rem;
   min-height: 800px;
+  display: flex;
+  flex-direction: column;
 
   p {
     color: ${props => props.theme.colors.text.secondaryText};
   }
+`;
 
+export const Relative = styled.div`
   @media screen and (min-width: 1000px) {
     position: relative;
+
+    height: 100%;
+    /* width: 100%; */
+
+    overflow: auto;
+    /* overflow: visible; */
+
+    ::-webkit-scrollbar {
+      width: 1.5rem;
+    }
+
+    ::-webkit-scrollbar-track:vertical {
+      background-color: ${props => props.theme.colors.backgrounds.features};
+      border-bottom-right-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+
+    ::-webkit-scrollbar-track-piece:vertical {
+      background-color: ${props => props.theme.colors.backgrounds.features};
+      border-bottom-right-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      margin: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+      border-radius: 1rem;
+      background-color: ${props => props.theme.colors.backgrounds.cards};
+      border: 5px solid ${props => props.theme.colors.backgrounds.features};
+    }
+  }
+`;
+
+export const Absolute = styled.div`
+  @media screen and (min-width: 1000px) {
+    position: absolute;
+
+    width: 100%;
   }
 `;
 
 export const Heading = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem 1.2rem;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
 `;
 
 export const Label = styled.p`

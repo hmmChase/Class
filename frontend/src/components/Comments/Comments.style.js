@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  border-radius: 10px;
+  /* border-radius: 10px; */
   list-style: none;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 
   > li {
     margin-bottom: 0.5rem;
@@ -13,7 +13,7 @@ export const Container = styled.div`
     margin-bottom: 0;
   }
 
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     width: 1.5rem;
   }
 
@@ -43,5 +43,5 @@ export const Container = styled.div`
     right: 5px;
     bottom: 5px;
     overflow: auto;
-  }
+  } */
 `;

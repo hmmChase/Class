@@ -44,9 +44,9 @@ export const RightSide = styled.div`
 
 export const Answeredd = styled(Answered)`
   fill: ${props => props.theme.colors.text.secondaryText};
-  height: 20px;
+  height: 1rem;
+  width: auto;
   align-self: flex-end;
-  width: 20px;
 
   /* grid-area: top-right; */
 `;

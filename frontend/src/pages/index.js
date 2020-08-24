@@ -4,9 +4,9 @@ import AppContext from '../context/app';
 import SignOn from '../components/SignOn/SignOn';
 
 const IndexPage = () => {
-  const { currentUser } = useContext(AppContext);
+  // const { currentUser } = useContext(AppContext);
 
-  if (currentUser && currentUser.id) return <Redirect to='/challenge' />;
+  // if (currentUser && currentUser.id) return <Redirect to='/challenge' />;
 
   return (
     <>

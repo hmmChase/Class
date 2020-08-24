@@ -6,9 +6,9 @@ import Header from '../components/Header/Header';
 import Main from '../components/Main/Main';
 
 const ChallengePage = () => {
-  const { currentUser } = useContext(AppContext);
+  // const { currentUser } = useContext(AppContext);
 
-  if (!currentUser || !currentUser.id) return <Redirect to='/' />;
+  // if (!currentUser || !currentUser.id) return <Redirect to='/' />;
 
   return <Layout header={<Header />} main={<Main />}></Layout>;
 };
