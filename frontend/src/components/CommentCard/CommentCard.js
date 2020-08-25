@@ -2,15 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as sc from './CommentCard.style';
 
-const CommentCard = props => (
-  <sc.Container>
-    <sc.Author>{props.authorName}</sc.Author>
+const CommentCard = props => {
+  return (
+    <sc.Container>
+      <sc.Author>{props.authorName}</sc.Author>
 
-    <sc.Created>{props.createdAt}</sc.Created>
+      <sc.Created>{props.createdAt}</sc.Created>
 
-    <sc.Body>{props.body}</sc.Body>
-  </sc.Container>
-);
+      <sc.Body>{props.body}</sc.Body>
+    </sc.Container>
+  );
+};
 
 CommentCard.propTypes = {
   createdAt: PropTypes.any,

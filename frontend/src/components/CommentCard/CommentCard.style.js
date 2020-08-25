@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.li`
-  background-color: ${props => props.theme.colors.backgrounds.cards};
   display: grid;
   grid-template-areas:
     'top-left top-mid top-right'
@@ -12,6 +11,7 @@ export const Container = styled.li`
 `;
 
 export const Author = styled.span`
+  color: ${props => props.theme.colors.text.primaryText};
   font-size: 0.9rem;
   grid-area: top-left;
 `;
@@ -23,6 +23,7 @@ export const Created = styled.span`
 `;
 
 export const Body = styled.p`
+  color: ${props => props.theme.colors.text.secondaryText};
   grid-area: body;
   margin: 0;
 `;

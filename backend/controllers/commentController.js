@@ -3,7 +3,10 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const getComments = async (req, res, next) => {
+  const { questionId } = req.params;
+
   const comments = await prisma.comment.findMany({
+    where: { question: { id: parseInt(questionId) } },
     orderBy: { id: 'desc' },
     include: { author: true }
   });

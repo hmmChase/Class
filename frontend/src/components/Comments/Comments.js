@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import useFetch from '../../api/useFetch';
 import CommentCard from '../CommentCard/CommentCard';
-import formatDate from '../../utils/formatDate';
+import formatDate, { timeStamp } from '../../utils/formatDate';
 import * as sc from './Comments.style';
 
 const Comments = props => {
-  const commentCards = props.comments.map(comment => (
+  const [comments, setComments] = useState([]);
+  const [getData, { loading, error }] = useFetch(
+    `/comments/${props.questionId}`
+  );
+
+  useEffect(() => {
+    (async () => {
+      const data = await getData();
+
+      if (!loading && !error && data) setComments(data);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // {console.log(question.comments.length > 0)}
+
+  const commentCards = comments.map(comment => (
     <CommentCard
       key={comment.id}
+      authorName={comment.author.username}
       createdAt={formatDate(comment.createdAt)}
-      // authorName={comment.author.name}
       body={comment.body}
     />
   ));
@@ -20,8 +37,7 @@ const Comments = props => {
 };
 
 Comments.propTypes = {
-  className: PropTypes.string,
-  comments: PropTypes.array
+  className: PropTypes.string
 };
 
 export default React.memo(Comments);

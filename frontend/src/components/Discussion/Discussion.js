@@ -11,26 +11,32 @@ const Discussion = props => {
 
   return (
     <sc.Container className={props.className}>
-      <sc.Label>DISCUSSION</sc.Label>
+      <sc.Heading>
+        <sc.Label>DISCUSSION</sc.Label>
 
-      <sc.Title>
-        {currentUser.role === 'TEACHER'
-          ? 'Challenge Questions'
-          : 'Ask a Question'}
-      </sc.Title>
+        <sc.Title>
+          {currentUser.role === 'TEACHER'
+            ? 'Challenge Questions'
+            : 'Ask a Question'}
+        </sc.Title>
 
-      {questionId && (
-        <Link to={'/challenge'}>
-          <sc.BackBtn>Back</sc.BackBtn>
-        </Link>
-      )}
+        {questionId && (
+          <>
+            <Link to={'/challenge'}>
+              <sc.BackBtn>Back</sc.BackBtn>
+            </Link>
+          </>
+        )}
 
-      {currentUser.role === 'STUDENT' && !questionId && <sc.QuestionNeww />}
+        {currentUser.role === 'STUDENT' && !questionId && <sc.QuestionNeww />}
+      </sc.Heading>
+
+      {questionId && <sc.QuestionDetaill questionId={questionId} />}
 
       <sc.Relative>
         <sc.Absolute>
           {questionId ? (
-            <sc.QuestionDetaill questionId={questionId} />
+            <sc.Commentss questionId={questionId} />
           ) : (
             <sc.Questionss />
           )}

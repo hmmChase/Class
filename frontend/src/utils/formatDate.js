@@ -11,3 +11,7 @@ export default date => {
 
   return [day, month, year].join('/');
 };
+
+export const timeStamp = date => {
+  return date;
+};

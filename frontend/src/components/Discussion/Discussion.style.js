@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '../Button/Button';
+import Comments from '../Comments/Comments';
 import Questions from '../Questions/Questions';
 import QuestionDetail from '../QuestionDetail/QuestionDetail';
 import QuestionNew from '../QuestionNew/QuestionNew';
@@ -12,20 +13,17 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
 
-  p {
+  /* p {
     color: ${props => props.theme.colors.text.secondaryText};
-  }
+  } */
 `;
 
 export const Relative = styled.div`
   @media screen and (min-width: 1000px) {
     position: relative;
-
+    border-radius: 0.5rem;
     height: 100%;
-    /* width: 100%; */
-
     overflow: auto;
-    /* overflow: visible; */
 
     ::-webkit-scrollbar {
       width: 1.5rem;
@@ -55,15 +53,12 @@ export const Relative = styled.div`
 export const Absolute = styled.div`
   @media screen and (min-width: 1000px) {
     position: absolute;
-
     width: 100%;
   }
 `;
 
 export const Heading = styled.div`
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: space-between; */
+  padding: 1.5rem;
 `;
 
 export const Label = styled.p`
@@ -88,4 +83,10 @@ export const QuestionNeww = styled(QuestionNew)`
 
 export const QuestionDetaill = styled(QuestionDetail)``;
 
-export const Questionss = styled(Questions)``;
+export const Commentss = styled(Comments)`
+  border-radius: 0.5rem;
+`;
+
+export const Questionss = styled(Questions)`
+  border-radius: 0.5rem;
+`;

@@ -34,16 +34,10 @@ export const KnightIcon = styled(KnightSvg)`
 `;
 
 export const UserIcon = styled.div`
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
   background-color: ${props => props.theme.colors.text.secondaryText};
   border-radius: 50%;
   height: 2rem;
   width: 2rem;
-  padding: 2px;
-
-  /* background-image: url(${props => props.icon}); */
 
   :hover {
     background-color: ${props => props.theme.colors.text.primaryText};
@@ -58,9 +52,6 @@ export const UserIconDefault = styled(UserSvg)`
 export const UserIconDefined = styled.img`
   height: 2rem;
   width: 2rem;
-  /* overflow: hidden; */
-  /* text-align: center; */
-  /* margin: auto; */
   border-radius: 50%;
   padding: 2px;
 `;
