@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../../api/useFetch';
-import CommentCard from '../CommentCard/CommentCard';
 import formatDate, { timeStamp } from '../../utils/formatDate';
 import * as sc from './Comments.style';
 
@@ -20,10 +19,8 @@ const Comments = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // {console.log(question.comments.length > 0)}
-
   const commentCards = comments.map(comment => (
-    <CommentCard
+    <sc.CommentCardd
       key={comment.id}
       authorName={comment.author.username}
       createdAt={formatDate(comment.createdAt)}
@@ -32,7 +29,13 @@ const Comments = props => {
   ));
 
   return (
-    <sc.Container className={props.className}>{commentCards}</sc.Container>
+    <sc.Container className={props.className}>
+      <sc.Relative>
+        <sc.Absolute>
+          <sc.CommentsList>{commentCards}</sc.CommentsList>
+        </sc.Absolute>
+      </sc.Relative>
+    </sc.Container>
   );
 };
 

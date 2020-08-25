@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import AppContext from '../../context/app';
+import QuestionDetail from '../QuestionDetail/QuestionDetail';
+import Questions from '../Questions/Questions';
 import * as sc from './Discussion.style';
 
 const Discussion = props => {
   const { questionId } = useParams();
+
   const { currentUser } = useContext(AppContext);
 
   return (
@@ -21,27 +24,15 @@ const Discussion = props => {
         </sc.Title>
 
         {questionId && (
-          <>
-            <Link to={'/challenge'}>
-              <sc.BackBtn>Back</sc.BackBtn>
-            </Link>
-          </>
+          <Link to={'/challenge'}>
+            <sc.BackBtn>Back</sc.BackBtn>
+          </Link>
         )}
-
-        {currentUser.role === 'STUDENT' && !questionId && <sc.QuestionNeww />}
       </sc.Heading>
 
-      {questionId && <sc.QuestionDetaill questionId={questionId} />}
+      {currentUser.role === 'STUDENT' && !questionId && <sc.QuestionNeww />}
 
-      <sc.Relative>
-        <sc.Absolute>
-          {questionId ? (
-            <sc.Commentss questionId={questionId} />
-          ) : (
-            <sc.Questionss />
-          )}
-        </sc.Absolute>
-      </sc.Relative>
+      {questionId ? <QuestionDetail questionId={questionId} /> : <Questions />}
     </sc.Container>
   );
 };

@@ -8,7 +8,7 @@ const QuestionCard = props => {
   const { currentUser } = useContext(AppContext);
 
   return (
-    <sc.Container>
+    <sc.Container className={props.className}>
       <sc.Row>
         <sc.Author>{props.authorName}</sc.Author>
 

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import Button from '../Button/Button';
-import Comments from '../Comments/Comments';
-import Questions from '../Questions/Questions';
-import QuestionDetail from '../QuestionDetail/QuestionDetail';
+// import Comments from '../Comments/Comments';
+// import Questions from '../Questions/Questions';
 import QuestionNew from '../QuestionNew/QuestionNew';
 
 export const Container = styled.section`
@@ -18,47 +17,9 @@ export const Container = styled.section`
   } */
 `;
 
-export const Relative = styled.div`
-  @media screen and (min-width: 1000px) {
-    position: relative;
-    border-radius: 0.5rem;
-    height: 100%;
-    overflow: auto;
-
-    ::-webkit-scrollbar {
-      width: 1.5rem;
-    }
-
-    ::-webkit-scrollbar-track:vertical {
-      background-color: ${props => props.theme.colors.backgrounds.features};
-      border-bottom-right-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
-    }
-
-    ::-webkit-scrollbar-track-piece:vertical {
-      background-color: ${props => props.theme.colors.backgrounds.features};
-      border-bottom-right-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
-      margin: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb:vertical {
-      border-radius: 1rem;
-      background-color: ${props => props.theme.colors.backgrounds.cards};
-      border: 5px solid ${props => props.theme.colors.backgrounds.features};
-    }
-  }
-`;
-
-export const Absolute = styled.div`
-  @media screen and (min-width: 1000px) {
-    position: absolute;
-    width: 100%;
-  }
-`;
-
 export const Heading = styled.div`
-  padding: 1.5rem;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
 `;
 
 export const Label = styled.p`
@@ -81,12 +42,10 @@ export const QuestionNeww = styled(QuestionNew)`
   margin-top: 1rem;
 `;
 
-export const QuestionDetaill = styled(QuestionDetail)``;
+// export const Commentss = styled(Comments)`
+//   border-radius: 0.5rem;
+// `;
 
-export const Commentss = styled(Comments)`
-  border-radius: 0.5rem;
-`;
-
-export const Questionss = styled(Questions)`
-  border-radius: 0.5rem;
-`;
+// export const Questionss = styled(Questions)`
+//   border-radius: 0.5rem;
+// `;

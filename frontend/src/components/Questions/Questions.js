@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import QuestionCard from '../QuestionCard/QuestionCard';
 import useFetch from '../../api/useFetch';
 import formatDate from '../../utils/formatDate';
 import * as sc from './Questions.style';
@@ -26,7 +25,7 @@ const Questions = props => {
     }, 0);
 
     return (
-      <QuestionCard
+      <sc.QuestionCardd
         key={question.id}
         questionId={question.id}
         createdAt={formatDate(question.createdAt)}
@@ -40,7 +39,13 @@ const Questions = props => {
   });
 
   return (
-    <sc.Container className={props.className}>{questionCards}</sc.Container>
+    <sc.Container className={props.className}>
+      <sc.Relative>
+        <sc.Absolute>
+          <sc.QuestionsList>{questionCards}</sc.QuestionsList>
+        </sc.Absolute>
+      </sc.Relative>
+    </sc.Container>
   );
 };
 

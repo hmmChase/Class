@@ -4,7 +4,7 @@ import * as sc from './CommentCard.style';
 
 const CommentCard = props => {
   return (
-    <sc.Container>
+    <sc.Container className={props.className}>
       <sc.Author>{props.authorName}</sc.Author>
 
       <sc.Created>{props.createdAt}</sc.Created>
