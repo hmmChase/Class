@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import helmet from 'helmet';
+import 'dotenv/config';
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
@@ -15,7 +16,7 @@ import questionsRouter from './routes/questions';
 import commentsRouter from './routes/comments';
 
 import * as errorHandlers from './handlers/errorHandlers';
-import { BASE_URL } from './config';
+import { BASE_URL, port } from './config';
 
 const app = express();
 
@@ -66,4 +67,10 @@ if (app.get('env') === 'development') app.use(errorHandlers.developmentErrors);
 else app.use(errorHandlers.productionErrors);
 
 // export default app;
-module.exports = app;
+// module.exports = app;
+
+app.listen({ port: port || 4000 }, err => {
+  if (err) throw err;
+
+  console.log(`Server ready at http://localhost:${port}/api/v1/`);
+});
