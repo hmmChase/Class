@@ -6,7 +6,7 @@
   },
   "builds": [
     {
-      "src": "backend/bin/www",
+      "src": "backend/app.js",
       "use": "@now/node-server"
     },
     {
@@ -18,7 +18,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/bin/www"
+      "dest": "backend/app.js"
     },
     {
       "src": "/(.*)",
