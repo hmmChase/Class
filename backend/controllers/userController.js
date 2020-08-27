@@ -1,19 +1,30 @@
 import { PrismaClient } from '@prisma/client';
 import crypto from 'crypto';
 import argon2 from 'argon2';
+import jwt from 'jsonwebtoken';
 import isEmail from 'isemail';
 import * as authService from '../services/authService';
 import * as userService from '../services/userService';
 import * as emailHandler from '../handlers/emailHandler';
+
 import { COOKIE_CONFIG, BASE_URL } from '../config';
 
 const prisma = new PrismaClient();
 
 export const getCurrentUser = async (req, res) => {
-  const { id } = req.user.user;
+  if (!req || !req.cookies || !req.cookies.jwt) return res.json({});
+
+  const user = jwt.verify(
+    req.cookies.jwt,
+    Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64')
+  );
 
   try {
-    const userRecord = await prisma.user.findOne({ where: { id } });
+    const userRecord = await prisma.user.findOne({
+      where: { id: user.user.id }
+    });
+
+    console.log('userRecord:', userRecord);
 
     if (!userRecord) return req.status(404).json({ error: 'user.notFound' });
 

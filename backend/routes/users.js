@@ -1,11 +1,11 @@
 import express from 'express';
 import * as userController from '../controllers/userController';
 import { asyncErrorWrapper } from '../handlers/errorHandlers';
-import { isAuth } from '../middleware/isAuth';
+// import { isAuth } from '../middleware/isAuth';
 
 const router = express.Router();
 
-router.get('/', isAuth, asyncErrorWrapper(userController.getCurrentUser));
+router.get('/', asyncErrorWrapper(userController.getCurrentUser));
 
 router.post('/signup', asyncErrorWrapper(userController.signup));
 

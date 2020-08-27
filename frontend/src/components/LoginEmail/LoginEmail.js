@@ -5,8 +5,8 @@ import AppContext from '../../context/app';
 import * as sc from './LoginEmail.style';
 
 const LoginEmail = () => {
-  const [email, setEmail] = useState('teacher@email.com');
-  const [password, setPassword] = useState('teacher');
+  const [email, setEmail] = useState('student1@email.com');
+  const [password, setPassword] = useState('student1');
   const { setCurrentUser } = useContext(AppContext);
   const [getData, { loading, error }] = useFetch('/users/login');
   const history = useHistory();
