@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import AppContext from '../../context/app';
 import * as sc from './CommentCard.style';
 
 const CommentCard = props => {
+  const { currentUser } = useContext(AppContext);
+
   return (
     <sc.Container className={props.className}>
-      <sc.Author>{props.authorName}</sc.Author>
+      <sc.Flex>
+        <sc.Author>{props.authorName}</sc.Author>
 
-      <sc.Created>{props.createdAt}</sc.Created>
+        <sc.Timestamp>{props.timestamp}</sc.Timestamp>
+
+        <sc.CreatedAt>{props.createdAt}</sc.CreatedAt>
+
+        {currentUser.role === 'TEACHER' && <sc.DotDotDot>...</sc.DotDotDot>}
+      </sc.Flex>
 
       <sc.Body>{props.body}</sc.Body>
     </sc.Container>

@@ -86,6 +86,12 @@ export const login = async (req, res) => {
   return res.json(userClient);
 };
 
+export const logout = async (req, res) => {
+  res.clearCookie('jwt');
+
+  return res.json('');
+};
+
 export const generatePassReset = async (req, res) => {
   const { email } = req.body;
 

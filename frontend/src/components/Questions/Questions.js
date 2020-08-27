@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../../api/useFetch';
-import formatDate from '../../utils/formatDate';
+import { formatDate } from '../../utils/dateTime';
 import * as sc from './Questions.style';
 
 const Questions = props => {

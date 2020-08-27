@@ -18,10 +18,14 @@ export const create = async (req, res, next) => {
   const { questionId, body } = req.body;
   const { id } = req.user.user;
 
+  console.log('questionId:', questionId);
+  console.log('body:', body);
+  console.log('id:', id);
+
   const commentRecord = await prisma.comment.create({
     data: {
       author: { connect: { id } },
-      question: { connect: { id: questionId } },
+      question: { connect: { id: parseInt(questionId) } },
       body
     }
   });

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../../api/useFetch';
-import formatDate, { timeStamp } from '../../utils/formatDate';
+import { formatDate, timestamp } from '../../utils/dateTime';
 import * as sc from './Comments.style';
 
 const Comments = props => {
@@ -23,6 +23,7 @@ const Comments = props => {
     <sc.CommentCardd
       key={comment.id}
       authorName={comment.author.username}
+      timestamp={timestamp(comment.createdAt)}
       createdAt={formatDate(comment.createdAt)}
       body={comment.body}
     />

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import AppContext from '../context/app';
+// import AppContext from '../context/app';
 import SignOn from '../components/SignOn/SignOn';
 
 const IndexPage = () => {

@@ -6,14 +6,14 @@ const Question = () => {
   const [body, setBody] = useState('');
   const [getData] = useFetch('/questions/create');
 
-  const onSubmit = async e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     await getData({ authorId: 3, body });
   };
 
   return (
-    <sc.Form onSubmit={onSubmit}>
+    <sc.Form onSubmit={handleSubmit}>
       <sc.TextArea
         value={body}
         placeholder=''

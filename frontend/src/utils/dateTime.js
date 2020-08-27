@@ -1,6 +1,4 @@
-export default date => {
-  // formats ISO date to dd/mm/yyyy
-
+export const formatDate = date => {
   const d = new Date(date);
   let month = '' + (d.getMonth() + 1);
   let day = '' + d.getDate();
@@ -12,6 +10,12 @@ export default date => {
   return [day, month, year].join('/');
 };
 
-export const timeStamp = date => {
-  return date;
+export const timestamp = date => {
+  const d = new Date(date);
+
+  return d
+    .toLocaleTimeString([], { timeStyle: 'short' })
+    .replace(' ', '')
+    .replace('AM', 'am')
+    .replace('PM', 'pm');
 };

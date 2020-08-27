@@ -4,6 +4,8 @@ import useFetch from '../../api/useFetch';
 // import formatDate from '../../utils/formatDate';
 import Comments from '../Comments/Comments';
 import QuestionCardDetail from '../QuestionCardDetail/QuestionCardDetail';
+import CommentAdd from '../CommentAdd/CommentAdd';
+// import CommentAnswer from '../CommentAnswer/CommentAnswer';
 import * as sc from './QuestionDetail.style';
 
 const QuestionDetail = props => {
@@ -29,7 +31,11 @@ const QuestionDetail = props => {
         <>
           <QuestionCardDetail question={question} />
 
+          {/* <CommentAnswer /> */}
+
           <Comments questionId={props.questionId} />
+
+          <CommentAdd questionId={props.questionId} />
         </>
       )}
     </sc.Container>

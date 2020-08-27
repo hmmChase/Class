@@ -11,6 +11,8 @@ router.post('/signup', asyncErrorWrapper(userController.signup));
 
 router.post('/login', asyncErrorWrapper(userController.login));
 
+router.get('/logout', asyncErrorWrapper(userController.logout));
+
 router.post(
   '/reset-password',
   asyncErrorWrapper(userController.generatePassReset)

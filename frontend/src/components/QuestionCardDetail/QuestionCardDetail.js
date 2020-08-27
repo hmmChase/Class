@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { formatDate } from '../../utils/dateTime';
 import * as sc from './QuestionCardDetail.style';
 
 const QuestionCardDetail = props => {
@@ -7,7 +8,7 @@ const QuestionCardDetail = props => {
     <sc.Container>
       <sc.Author>{props.question.author.username}</sc.Author>
 
-      <sc.Created>{props.question.createdAt}</sc.Created>
+      <sc.Created>{formatDate(props.question.createdAt)}</sc.Created>
 
       <sc.Title>{props.question.title}</sc.Title>
 

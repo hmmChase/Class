@@ -39,8 +39,11 @@ export const Answeredd = styled(Answered)`
   align-self: flex-end;
 `;
 
-export const DotDotDot = styled.div`
+export const DotDotDot = styled.span`
   margin-left: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  color: ${props => props.theme.colors.buttons.iconDefault};
 `;
 
 export const Body = styled.p`

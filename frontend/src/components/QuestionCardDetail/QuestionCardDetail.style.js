@@ -22,4 +22,5 @@ export const Title = styled.p`
 
 export const Body = styled.p`
   margin: 0;
+  color: ${props => props.theme.colors.text.secondaryText};
 `;

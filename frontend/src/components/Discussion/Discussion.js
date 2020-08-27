@@ -29,8 +29,9 @@ const Discussion = props => {
           </Link>
         )}
       </sc.Heading>
-
       {currentUser.role === 'STUDENT' && !questionId && <sc.QuestionNeww />}
+
+      {console.log('questionId:', questionId)}
 
       {questionId ? <QuestionDetail questionId={questionId} /> : <Questions />}
     </sc.Container>

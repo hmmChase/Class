@@ -4,8 +4,6 @@ import CommentCard from '../CommentCard/CommentCard';
 export const Container = styled.div`
   background-color: ${props => props.theme.colors.backgrounds.fullApp};
   height: 100%;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
 `;
 
 export const Relative = styled.div`

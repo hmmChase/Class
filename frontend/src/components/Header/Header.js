@@ -1,9 +1,17 @@
 import React, { useContext } from 'react';
+import useFetch from '../../api/useFetch';
 import AppContext from '../../context/app';
 import * as sc from './Header.style';
 
 const Header = () => {
   const { currentUser } = useContext(AppContext);
+  const [getData] = useFetch('/users/logout');
+
+  const handleClick = async e => {
+    e.preventDefault();
+
+    await getData();
+  };
 
   return (
     <sc.Container>
@@ -11,7 +19,7 @@ const Header = () => {
 
       <sc.Title>challenge board</sc.Title>
 
-      <sc.UserIcon>
+      <sc.UserIcon onClick={handleClick}>
         {currentUser && currentUser.avatarUrl ? (
           <sc.UserIconDefined src={currentUser.avatarUrl} />
         ) : (
