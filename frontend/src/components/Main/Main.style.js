@@ -8,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 2rem;
+  max-height: 800px;
 
   @media screen and (min-width: 500px) {
     padding-bottom: 0;

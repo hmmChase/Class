@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node app.js",
-    "start": "cross-env NODE_ENV=production node --exec babel-node app.js",
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./bin/www",
+    "start": "cross-env NODE_ENV=production node --exec babel-node ./bin/www",
     "seed": "node ./prisma/seed"
   },
   "dependencies": {
