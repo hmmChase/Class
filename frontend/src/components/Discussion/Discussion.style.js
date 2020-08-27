@@ -11,6 +11,8 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   height: 100%;
+  /* max-height: 800px; */
+  /* overflow: auto; */
 
   /* p {
     color: ${props => props.theme.colors.text.secondaryText};
