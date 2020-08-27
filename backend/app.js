@@ -66,12 +66,11 @@ app.use(errorHandlers.notFound);
 if (app.get('env') === 'development') app.use(errorHandlers.developmentErrors);
 else app.use(errorHandlers.productionErrors);
 
-export default app;
-
+// export default app;
 // module.exports = app;
 
-// app.listen({ port: port || 4000 }, err => {
-//   if (err) throw err;
+app.listen({ port: port || 4000 }, err => {
+  if (err) throw err;
 
-//   console.log(`Server ready at http://localhost:${port}/api/v1/`);
-// });
+  console.log(`Server ready at http://localhost:${port}/api/v1/`);
+});
