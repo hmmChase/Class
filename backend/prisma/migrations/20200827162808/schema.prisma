@@ -27,20 +27,27 @@ model User {
   hasDiscordLogin      Boolean     @default(false)
   resetPassToken       String?     @unique
   resetPassTokenExpiry DateTime?
+  challenges           Challenge[]
   projects             Project[]
   questions            Question[]
   comments             Comment[]
-  challenges           Challenge[]
+}
+
+enum Role {
+  TEACHER
+  STUDENT
 }
 
 model Challenge {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  path      String     @unique
   title     String
-  body      String
+  desc      String
   videoUrl  String
-  author    User     @relation(fields: [user_id], references: [id])
+  questions Question[]
+  author    User       @relation(fields: [user_id], references: [id])
   user_id   Int
 }
 
@@ -56,14 +63,16 @@ model Project {
 }
 
 model Question {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  title     String
-  body      String
-  comments  Comment[]
-  author    User      @relation(fields: [user_id], references: [id])
-  user_id   Int
+  id           Int       @id @default(autoincrement())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  title        String
+  body         String
+  comments     Comment[]
+  author       User      @relation(fields: [user_id], references: [id])
+  user_id      Int
+  challenge    Challenge @relation(fields: [challenge_Id], references: [id])
+  challenge_Id Int
 }
 
 model Comment {
@@ -72,13 +81,8 @@ model Comment {
   updatedAt   DateTime @updatedAt
   body        String
   isAnswer    Boolean  @default(false)
-  question    Question @relation(fields: [question_id], references: [id])
-  question_id Int
   author      User     @relation(fields: [user_id], references: [id])
   user_id     Int
-}
-
-enum Role {
-  TEACHER
-  STUDENT
+  question    Question @relation(fields: [question_id], references: [id])
+  question_id Int
 }

@@ -5,13 +5,10 @@ const prisma = new PrismaClient();
 export const authRole = requiredRoles => {
   return async (req, res, next) => {
     const decodedJWT = req.jwt;
-    console.log('decodedJWT:', decodedJWT);
 
     const userRecord = await prisma.user.findOne({
       where: { id: decodedJWT.id }
     });
-
-    console.log('userRecord:', userRecord);
 
     const { role } = userRecord;
 

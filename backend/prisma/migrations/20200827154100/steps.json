@@ -259,6 +259,13 @@
     {
       "tag": "CreateField",
       "model": "User",
+      "field": "challenges",
+      "type": "Challenge",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
       "field": "projects",
       "type": "Project",
       "arity": "List"
@@ -275,13 +282,6 @@
       "model": "User",
       "field": "comments",
       "type": "Comment",
-      "arity": "List"
-    },
-    {
-      "tag": "CreateField",
-      "model": "User",
-      "field": "challenges",
-      "type": "Challenge",
       "arity": "List"
     },
     {
@@ -384,6 +384,13 @@
     {
       "tag": "CreateField",
       "model": "Challenge",
+      "field": "path",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Challenge",
       "field": "title",
       "type": "String",
       "arity": "Required"
@@ -391,7 +398,7 @@
     {
       "tag": "CreateField",
       "model": "Challenge",
-      "field": "body",
+      "field": "desc",
       "type": "String",
       "arity": "Required"
     },
@@ -401,6 +408,13 @@
       "field": "videoUrl",
       "type": "String",
       "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Challenge",
+      "field": "questions",
+      "type": "Question",
+      "arity": "List"
     },
     {
       "tag": "CreateField",
@@ -798,6 +812,59 @@
       "arity": "Required"
     },
     {
+      "tag": "CreateField",
+      "model": "Question",
+      "field": "challenge",
+      "type": "Challenge",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Question",
+          "field": "challenge"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Question",
+          "field": "challenge"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[challenge_Id]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Question",
+          "field": "challenge"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Question",
+      "field": "challenge_Id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
       "tag": "CreateModel",
       "model": "Comment"
     },
@@ -936,59 +1003,6 @@
     {
       "tag": "CreateField",
       "model": "Comment",
-      "field": "question",
-      "type": "Question",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Comment",
-          "field": "question"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Comment",
-          "field": "question"
-        },
-        "directive": "relation"
-      },
-      "argument": "fields",
-      "value": "[question_id]"
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Comment",
-          "field": "question"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Comment",
-      "field": "question_id",
-      "type": "Int",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Comment",
       "field": "author",
       "type": "User",
       "arity": "Required"
@@ -1036,6 +1050,59 @@
       "tag": "CreateField",
       "model": "Comment",
       "field": "user_id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Comment",
+      "field": "question",
+      "type": "Question",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "question"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "question"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[question_id]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "question"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Comment",
+      "field": "question_id",
       "type": "Int",
       "arity": "Required"
     }

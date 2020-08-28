@@ -19,7 +19,7 @@ const SignUpEmail = () => {
 
     const data = await getData({ email, password, username, role, avatarUrl });
 
-    if (!loading && !error && data && data.user) history.push('/challenge');
+    // if (!loading && !error && data && data.user) history.push('/challenge');
   };
 
   return (

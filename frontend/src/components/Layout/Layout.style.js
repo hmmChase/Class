@@ -4,26 +4,29 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background-color: ${props => props.theme.colors.backgrounds.fullApp};
-  margin: 0 auto;
-  max-width: max(1000px);
+  max-width: 1200px;
+
+  @media screen and (min-width: 1200px) {
+    margin: 0 auto;
+  }
 `;
 
 export const Header = styled.header`
   margin-bottom: 1rem;
 
-  @media screen and (min-width: 500px) {
-    margin-bottom: 0;
+  @media screen and (min-width: 600px) {
+    /* margin-bottom: 0; */
   }
 `;
 
 export const Main = styled.main`
-  max-width: calc(500px + 2rem);
+  /* max-width: calc(500px + 2rem); */
 
-  @media screen and (min-width: 500px) {
-    padding: 2rem;
+  @media screen and (min-width: 600px) {
+    /* padding: 2rem; */
   }
 
-  @media screen and (min-width: 1000px) {
-    max-width: 100%;
+  @media screen and (min-width: 1200px) {
+    /* max-width: 100%; */
   }
 `;

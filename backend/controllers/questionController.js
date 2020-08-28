@@ -2,15 +2,6 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const getQuestions = async (req, res, next) => {
-  const questions = await prisma.question.findMany({
-    orderBy: { id: 'desc' },
-    include: { author: true, comments: true }
-  });
-
-  return res.json(questions);
-};
-
 export const getQuestion = async (req, res, next) => {
   const { questionId } = req.params;
 
@@ -32,3 +23,5 @@ export const create = async (req, res, next) => {
 
   return res.json(questionRecord);
 };
+
+

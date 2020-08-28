@@ -1,22 +1,9 @@
 // 'npm run seed' to seed
 
-import { PrismaClient } from '@prisma/client';
-import argon2 from 'argon2';
+const { PrismaClient } = require('@prisma/client');
+const argon2 = require('argon2');
 
 const prisma = new PrismaClient();
-
-const moreQuestions = () => {
-  const amtQuestions = 5;
-  const questions = [];
-
-  for (let i = 1; i <= amtQuestions; i++)
-    questions.push({
-      title: 'seeded question ' + i,
-      body: 'this is a question'
-    });
-
-  return questions;
-};
 
 const main = async () => {
   const teacher = await prisma.user.create({
@@ -35,8 +22,8 @@ const main = async () => {
       username: 'Student 1',
       password: await argon2.hash('student1', 10),
       role: 'STUDENT',
-      avatarUrl: 'http://picsum.photos/40',
-      questions: { create: moreQuestions() }
+      avatarUrl: 'http://picsum.photos/40'
+      // questions: { create: moreQuestions() }
     }
   });
 
@@ -47,17 +34,29 @@ const main = async () => {
       password: await argon2.hash('student2', 10),
       avatarUrl: 'http://picsum.photos/40',
       role: 'STUDENT',
-      hasDiscordLogin: true,
-      questions: { create: moreQuestions() }
+      hasDiscordLogin: true
+      // questions: { create: moreQuestions() }
     }
   });
 
   const challenge1 = await prisma.challenge.create({
     data: {
+      path: 'challenge1',
       title: 'Turn any Design into HTML',
-      body: `First challenge, turning any design into HTML, and CSS. First challenge,
-      turning any design into HTML, and CSS. First challenge, turning any
-      design into HTML, and CSS.`,
+      desc:
+        'First challenge, turning any design into HTML, and CSS. First challenge, turning any design into HTML, and CSS. First challenge, turning any design into HTML, and CSS.',
+      videoUrl:
+        'https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG',
+      author: { connect: { id: 1 } }
+    }
+  });
+
+  const challenge2 = await prisma.challenge.create({
+    data: {
+      path: 'challenge2',
+      title: 'Second challenge',
+      desc:
+        'Quam dolor esse ut. Vel rerum rem eius in deserunt numquam. Ratione repudiandae sint cupiditate. Voluptatem quasi et. Natus libero enim consequatur et aut tempora.',
       videoUrl:
         'https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG',
       author: { connect: { id: 1 } }
@@ -73,13 +72,48 @@ const main = async () => {
     }
   });
 
-  for (let i = 1; i <= 10; i++) {
+  const project2 = await prisma.project.create({
+    data: {
+      githubLink: 'www.github.com',
+      additionalLink: 'www.google.com',
+      body: 'My project is here',
+      author: { connect: { id: 3 } }
+    }
+  });
+
+  for (let i = 1; i <= 5; i++) {
+    const twoOrThree = Math.floor(Math.random() * 2) + 2;
+    const oneOrTwo = Math.floor(Math.random() * 2) + 1;
+
+    await prisma.question.create({
+      data: {
+        title: 'seeded question ' + i,
+        body: 'this is a question',
+        author: { connect: { id: twoOrThree } },
+        challenge: { connect: { id: oneOrTwo } }
+      }
+    });
+  }
+
+  const commentAnswer = await prisma.comment.create({
+    data: {
+      body: `seeded answer`,
+      isAnswer: true,
+      question: { connect: { id: 1 } },
+      author: { connect: { id: 2 } }
+    }
+  });
+
+  for (let i = 1; i <= 5; i++) {
+    const oneThroughFive = Math.floor(Math.random() * 5) + 1;
+    const twoOrThree = Math.floor(Math.random() * 2) + 2;
+
     await prisma.comment.create({
       data: {
         body: `seeded comment ${i}`,
-        isAnswer: Math.random() >= 0.8,
-        question: { connect: { id: 1 } },
-        author: { connect: { id: 2 } }
+        isAnswer: false,
+        question: { connect: { id: oneThroughFive } },
+        author: { connect: { id: twoOrThree } }
       }
     });
   }

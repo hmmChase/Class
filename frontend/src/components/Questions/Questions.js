@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useFetch from '../../api/useFetch';
 import { formatDate } from '../../utils/dateTime';
@@ -6,7 +7,10 @@ import * as sc from './Questions.style';
 
 const Questions = props => {
   const [questions, setQuestions] = useState([]);
-  const [getData, { loading, error }] = useFetch('/questions');
+
+  const { challengePath } = useParams();
+
+  const [getData, { loading, error }] = useFetch(`/questions/${challengePath}`);
 
   useEffect(() => {
     (async () => {

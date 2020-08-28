@@ -24,8 +24,6 @@ export const getCurrentUser = async (req, res) => {
       where: { id: user.user.id }
     });
 
-    console.log('userRecord:', userRecord);
-
     if (!userRecord) return req.status(404).json({ error: 'user.notFound' });
 
     const userJWT = { user: { id: userRecord.id } };

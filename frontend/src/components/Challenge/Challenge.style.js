@@ -16,8 +16,8 @@ export const Video = styled.div`
   margin-bottom: 1rem;
 
   iframe {
-    height: 100%;
     position: absolute;
+    height: 100%;
     width: 100%;
   }
 `;

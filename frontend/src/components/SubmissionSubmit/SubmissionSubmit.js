@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../Button/Button';
+import Button from '../atoms/Button/Button';
 import * as sc from './SubmissionSubmit.style';
 
 const SubmissionSubmit = props => (

@@ -7,7 +7,7 @@ const Main = () => {
 
   return (
     <sc.Container>
-      <div>
+      <sc.LeftSide>
         {currentUser && currentUser.role === 'TEACHER' && (
           <sc.SubmissionVieww />
         )}
@@ -17,7 +17,7 @@ const Main = () => {
         {currentUser && currentUser.role === 'STUDENT' && (
           <sc.SubmissionSubmitt />
         )}
-      </div>
+      </sc.LeftSide>
 
       <sc.Discussionn />
     </sc.Container>

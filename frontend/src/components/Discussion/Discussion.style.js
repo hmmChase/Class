@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../Button/Button';
+import Button from '../atoms/Button/Button';
 // import Comments from '../Comments/Comments';
 // import Questions from '../Questions/Questions';
 import QuestionNew from '../QuestionNew/QuestionNew';
@@ -8,8 +8,8 @@ export const Container = styled.section`
   background-color: ${props => props.theme.colors.backgrounds.widgetsHeader};
   box-shadow: 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.1);
   padding: 1.5rem 0.5rem 0.5rem 0.5rem;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   height: 100%;
   /* max-height: 800px; */
   /* overflow: auto; */
@@ -43,11 +43,3 @@ export const BackBtn = styled(Button)`
 export const QuestionNeww = styled(QuestionNew)`
   margin-top: 1rem;
 `;
-
-// export const Commentss = styled(Comments)`
-//   border-radius: 0.5rem;
-// `;
-
-// export const Questionss = styled(Questions)`
-//   border-radius: 0.5rem;
-// `;

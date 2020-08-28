@@ -4,8 +4,7 @@ export default {
       features: '#18191B',
       fullApp: '#202225',
       widgetsHeader: '#2F3136',
-      cards: '#3A3C42',
-      body: '#000'
+      cards: '#3A3C42'
     },
 
     text: {

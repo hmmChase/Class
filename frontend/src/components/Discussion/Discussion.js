@@ -9,6 +9,10 @@ import * as sc from './Discussion.style';
 
 const Discussion = props => {
   const { questionId } = useParams();
+  console.log('questionId:', questionId);
+
+  const { challengePath } = useParams();
+  console.log('challengePath:', challengePath);
 
   const { currentUser } = useContext(AppContext);
 
@@ -24,7 +28,7 @@ const Discussion = props => {
         </sc.Title>
 
         {questionId && (
-          <Link to={'/challenge'}>
+          <Link to='/challenge'>
             <sc.BackBtn>Back</sc.BackBtn>
           </Link>
         )}

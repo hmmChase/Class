@@ -10,8 +10,10 @@ import 'dotenv/config';
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import discordRouter from './routes/discord';
+import challengeRouter from './routes/challenge';
 import challengesRouter from './routes/challenges';
 import projectsRouter from './routes/projects';
+import questionRouter from './routes/question';
 import questionsRouter from './routes/questions';
 import commentsRouter from './routes/comments';
 
@@ -54,11 +56,18 @@ const v1 = express.Router();
 app.use('/api/v1', v1);
 
 v1.use('/', indexRouter);
+
 v1.use('/users', usersRouter);
 v1.use('/discord', discordRouter);
+
+v1.use('/challenge', challengeRouter);
 v1.use('/challenges', challengesRouter);
+
 v1.use('/projects', projectsRouter);
+
+v1.use('/question', questionRouter);
 v1.use('/questions', questionsRouter);
+
 v1.use('/comments', commentsRouter);
 
 app.use(errorHandlers.notFound);
