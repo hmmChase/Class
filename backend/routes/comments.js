@@ -5,7 +5,7 @@ import { authRole } from '../middleware/authRole';
 
 const router = express.Router();
 
-router.get('/:questionId', isAuth, commentController.getComments);
+router.get('/:questionId', commentController.getComments);
 
 router.post('/create', isAuth, commentController.create);
 

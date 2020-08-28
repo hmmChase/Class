@@ -23,5 +23,3 @@ export const create = async (req, res, next) => {
 
   return res.json(questionRecord);
 };
-
-

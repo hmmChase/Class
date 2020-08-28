@@ -1,5 +1,5 @@
 import React from 'react';
-import ChallengeList from '../components/ChallengeList/ChallengeList';
+import ChallengeList from '../components/molecules/ChallengeList/ChallengeList';
 
 const IndexPage = () => {
   return (

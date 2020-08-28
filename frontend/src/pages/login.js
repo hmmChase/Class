@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginEmail from '../components/LoginEmail/LoginEmail';
+import LoginEmail from '../components/molecules/LoginEmail/LoginEmail';
 
 const LoginPage = props => <LoginEmail setIsLoggedIn={props.setIsLoggedIn} />;
 

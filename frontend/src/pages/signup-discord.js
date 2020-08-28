@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpDiscord from '../components/SignUpDiscord/SignUpDiscord';
+import SignUpDiscord from '../components/molecules/SignUpDiscord/SignUpDiscord';
 
 const SignUpDiscordPage = () => <SignUpDiscord />;
 

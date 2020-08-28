@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginDiscord from '../components/LoginDiscord/LoginDiscord';
+import LoginDiscord from '../components/molecules/LoginDiscord/LoginDiscord';
 
 const LoginDiscordPage = () => <LoginDiscord />;
 

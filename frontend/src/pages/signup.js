@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpEmail from '../components/SignUpEmail/SignUpEmail';
+import SignUpEmail from '../components/molecules/SignUpEmail/SignUpEmail';
 
 const SignUpPage = () => <SignUpEmail />;
 
