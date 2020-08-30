@@ -1,24 +1,20 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
 import AppContext from '../../../context/app';
 import useFetch from '../../../api/useFetch';
 
 import * as sc from './IconUser.style';
 
 const IconUser = props => {
-  const history = useHistory();
   const { setCurrentUser } = useContext(AppContext);
-  const [getData] = useFetch('/users/logout');
+  const [getData, { loading, error }] = useFetch('/users/logout');
 
   const onClick = async e => {
     e.preventDefault();
 
     await getData();
 
-    setCurrentUser({});
-
-    history.push('/');
+    if (!loading && !error) setCurrentUser({});
   };
 
   return (

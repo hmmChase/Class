@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Button from '../../atoms/Button/Button';
 import * as sc from './ChallengeListCard.style';
 
 const challengeListCard = props => {
   return (
     <sc.Container className={props.className}>
       <Link to={`/${props.path}`}>
-        <sc.H2>{props.title}</sc.H2>
+        <Button>
+          <h2>{props.title}</h2>
 
-        <sc.P>{props.desc}</sc.P>
+          <p>{props.desc}</p>
+        </Button>
       </Link>
     </sc.Container>
   );

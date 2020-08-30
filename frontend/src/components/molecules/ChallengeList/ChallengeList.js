@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
-import useFetch from '../../../api/useFetch';
 import ChallengeListCard from '../ChallengeListCard/ChallengeListCard';
+import useFetch from '../../../api/useFetch';
+import Title from '../../atoms/Title/Title';
 import * as sc from './ChallengeList.style';
 
 const ChallengeList = props => {
@@ -30,9 +31,9 @@ const ChallengeList = props => {
 
   return (
     <sc.Container>
-      <h1>Challenges</h1>
+      <Title>Challenges</Title>
 
-      <ul>{challengeListCards}</ul>
+      <sc.Ul>{challengeListCards}</sc.Ul>
     </sc.Container>
   );
 };

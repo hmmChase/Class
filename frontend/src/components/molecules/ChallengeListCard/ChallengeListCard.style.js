@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.li``;
-
-export const H2 = styled.h2``;
-
-export const P = styled.p``;
+export const Container = styled.li`
+  background-color: ${props => props.theme.colors.backgrounds.cards};
+  padding: 1rem;
+  margin: 0;
+  border-radius: 10px;
+`;

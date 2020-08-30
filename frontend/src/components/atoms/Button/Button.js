@@ -9,7 +9,7 @@ const Button = props => (
 );
 
 Button.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   className: PropTypes.string,
   onClick: PropTypes.func
 };
