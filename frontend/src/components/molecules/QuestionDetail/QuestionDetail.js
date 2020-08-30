@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import AppContext from '../../../context/app';
+
 import useFetch from '../../../api/useFetch';
 // import formatDate from '../../utils/formatDate';
 import Comments from '../Comments/Comments';
@@ -10,6 +12,8 @@ import * as sc from './QuestionDetail.style';
 
 const QuestionDetail = props => {
   const [question, setQuestion] = useState({});
+  const { currentUser } = useContext(AppContext);
+
   const [getData, { loading, error }] = useFetch(
     `/question/${props.questionId}`
   );
@@ -37,7 +41,9 @@ const QuestionDetail = props => {
 
           <Comments questionId={props.questionId} />
 
-          <CommentAdd questionId={props.questionId} />
+          {currentUser && currentUser.id && (
+            <CommentAdd questionId={props.questionId} />
+          )}
         </>
       )}
     </sc.Container>
@@ -46,7 +52,8 @@ const QuestionDetail = props => {
 
 QuestionDetail.propTypes = {
   className: PropTypes.string,
-  questionId: PropTypes.number
+  // questionId: PropTypes.number
+  questionId: PropTypes.string
 };
 
 export default React.memo(QuestionDetail);

@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 import useFetch from '../../../api/useFetch';
 import AppContext from '../../../context/app';
 import * as sc from './LoginEmail.style';
@@ -9,18 +8,13 @@ const LoginEmail = () => {
   const [password, setPassword] = useState('student1');
   const { setCurrentUser } = useContext(AppContext);
   const [getData, { loading, error }] = useFetch('/users/login');
-  const history = useHistory();
 
   const handleSubmit = async e => {
     e.preventDefault();
 
     const data = await getData({ email, password });
 
-    if (!loading && !error && data && data.user) {
-      setCurrentUser(data.user);
-
-      history.push('/challenge');
-    }
+    if (!loading && !error && data && data.user) setCurrentUser(data.user);
   };
 
   return (

@@ -7,9 +7,9 @@ const challengeListCard = props => {
   return (
     <sc.Container className={props.className}>
       <Link to={`/${props.path}`}>
-        <sc.Title>{props.title}</sc.Title>
+        <sc.H2>{props.title}</sc.H2>
 
-        <sc.Desc>{props.desc}</sc.Desc>
+        <sc.P>{props.desc}</sc.P>
       </Link>
     </sc.Container>
   );

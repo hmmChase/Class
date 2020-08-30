@@ -4,21 +4,19 @@ import { useParams } from 'react-router-dom';
 import AppContext from '../../../context/app';
 import QuestionDetail from '../../molecules/QuestionDetail/QuestionDetail';
 import Questions from '../../molecules/Questions/Questions';
+import Label from '../../atoms/Label/Label';
 import * as sc from './Discussion.style';
 
 const Discussion = props => {
   const { questionId } = useParams();
-  console.log('questionId:', questionId);
+  const { currentUser } = useContext(AppContext);
 
   const { challengePath } = useParams();
-  console.log('challengePath:', challengePath);
-
-  const { currentUser } = useContext(AppContext);
 
   return (
     <sc.Container className={props.className}>
       <sc.Heading>
-        <sc.Label>DISCUSSION</sc.Label>
+        <Label>DISCUSSION</Label>
 
         <sc.Title>
           {currentUser.role === 'TEACHER'
@@ -26,11 +24,10 @@ const Discussion = props => {
             : 'Ask a Question'}
         </sc.Title>
 
-        {questionId && <sc.BtnBackk />}
-      </sc.Heading>
-      {currentUser.role === 'STUDENT' && !questionId && <sc.QuestionNeww />}
+        {questionId && <sc.BtnBackk challengePath={challengePath} />}
 
-      {console.log('questionId:', questionId)}
+        {currentUser.role === 'STUDENT' && !questionId && <sc.QuestionNeww />}
+      </sc.Heading>
 
       {questionId ? <QuestionDetail questionId={questionId} /> : <Questions />}
     </sc.Container>

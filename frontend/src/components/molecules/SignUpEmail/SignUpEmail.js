@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
 import useFetch from '../../../api/useFetch';
+import AppContext from '../../../context/app';
 import * as sc from './SignUpEmail.style';
 
 const SignUpEmail = () => {
@@ -8,7 +8,8 @@ const SignUpEmail = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [isTeacher, setIsTeacher] = useState(false);
-  const history = useHistory();
+  const { setCurrentUser } = useContext(AppContext);
+  // const history = useHistory();
   const [getData, { loading, error }] = useFetch('/users/signup');
 
   const onSubmit = async e => {
@@ -19,7 +20,7 @@ const SignUpEmail = () => {
 
     const data = await getData({ email, password, username, role, avatarUrl });
 
-    // if (!loading && !error && data && data.user) history.push('/challenge');
+    if (!loading && !error && data && data.user) setCurrentUser(data.user);
   };
 
   return (

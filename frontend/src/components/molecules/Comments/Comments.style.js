@@ -48,6 +48,7 @@ export const Absolute = styled.div`
 export const CommentsList = styled.ul`
   margin: 0;
   padding: 0;
+  list-style: none;
 `;
 
 export const CommentCardd = styled(CommentCard)`

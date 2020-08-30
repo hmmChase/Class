@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import QuestionCard from '../QuestionCard/QuestionCard';
 
 export const Container = styled.div`
-  height: 100%;
-  overflow-y: scroll;
+  /* height: 100%; */
+  /* overflow-y: auto; */
 `;
 
 // export const Relative = styled.div`
@@ -48,6 +48,7 @@ export const Container = styled.div`
 export const QuestionsList = styled.ul`
   margin: 0;
   padding: 0;
+  list-style: none;
 `;
 
 export const QuestionCardd = styled(QuestionCard)`

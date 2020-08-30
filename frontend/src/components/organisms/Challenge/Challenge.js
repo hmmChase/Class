@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useFetch from '../../../api/useFetch';
+import Title from '../../atoms/Title/Title';
 import Label from '../../atoms/Label/Label';
+import Desc from '../../atoms/Desc/Desc';
 import * as sc from './Challenge.style';
 
 const Challenge = props => {
@@ -22,23 +24,21 @@ const Challenge = props => {
 
   return (
     <sc.Container className={props.className}>
-      <>
-        <Label>CHALLENGE</Label>
+      <Label>CHALLENGE</Label>
 
-        <sc.Title>{challenge.title}</sc.Title>
+      <Title>{challenge.title}</Title>
 
-        <sc.Video>
-          <iframe
-            title='challenge'
-            src={challenge.videoUrl}
-            frameBorder='0'
-            allow='autoplay; encrypted-media'
-            allowFullScreen
-          />
-        </sc.Video>
+      <sc.Video>
+        <iframe
+          title='challenge'
+          src={challenge.videoUrl}
+          frameBorder='0'
+          allow='autoplay; encrypted-media'
+          allowFullScreen
+        />
+      </sc.Video>
 
-        <sc.Desc>{challenge.desc}</sc.Desc>
-      </>
+      <Desc>{challenge.desc}</Desc>
     </sc.Container>
   );
 };

@@ -22,11 +22,6 @@ export const Heading = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const Label = styled.p`
-  font-size: clamp(0.8rem, 2vw, 1rem);
-  margin: 0 0 0.2rem 0;
-`;
-
 export const Title = styled.h3`
   color: ${props => props.theme.colors.buttons.actionButton};
   font-family: Georgia, 'Times New Roman', Times, serif;
