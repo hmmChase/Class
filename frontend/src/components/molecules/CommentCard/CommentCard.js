@@ -15,7 +15,7 @@ const CommentCard = props => {
 
         <sc.CreatedAt>{props.createdAt}</sc.CreatedAt>
 
-        {currentUser.role === 'TEACHER' && <sc.DotDotDot>...</sc.DotDotDot>}
+        {currentUser.role === 'TEACHER' && <sc.DropdownCommentt />}
       </sc.Flex>
 
       <sc.Body>{props.body}</sc.Body>

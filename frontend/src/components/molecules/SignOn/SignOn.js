@@ -7,24 +7,19 @@ import SignUpDiscord from '../SignUpDiscord/SignUpDiscord';
 import * as sc from './SignOn.style';
 
 const SignOn = () => {
-  const [tab, setTab] = useState('tab1');
+  const [tab, setTab] = useState('login');
 
   const dispayPanel = tab => {
     switch (tab) {
-      case 'tab1':
-        return <LoginEmail />;
+      case 'login':
+        return (
 
-      case 'tab2':
-        return <LoginDiscord />;
+        );
 
-      case 'tab3':
-        return <ResetPassRequest />;
-
-      case 'tab4':
-        return <SignUpEmail />;
-
-      case 'tab5':
-        return <SignUpDiscord />;
+      case 'signup':
+        return (
+    
+        );
 
       default:
         break;
@@ -37,57 +32,24 @@ const SignOn = () => {
         <input
           type='radio'
           name='tab'
-          id='tab1'
+          id='login'
           value=''
-          checked={tab === 'tab1'}
-          onChange={() => setTab('tab1')}
+          checked={tab === 'login'}
+          onChange={() => setTab('login')}
         />
 
-        <label htmlFor='tab1'>Login Email</label>
+        <label htmlFor='login'>Login</label>
 
         <input
           type='radio'
           name='tab'
-          id='tab2'
+          id='signup'
           value=''
-          checked={tab === 'tab2'}
-          onChange={() => setTab('tab2')}
+          checked={tab === 'signup'}
+          onChange={() => setTab('signup')}
         />
 
-        <label htmlFor='tab2'>Login Discord</label>
-
-        <input
-          type='radio'
-          name='tab'
-          id='tab3'
-          value=''
-          checked={tab === 'tab3'}
-          onChange={() => setTab('tab3')}
-        />
-
-        <label htmlFor='tab3'>Reset Pass Request</label>
-
-        <input
-          type='radio'
-          name='tab'
-          id='tab4'
-          value=''
-          checked={tab === 'tab4'}
-          onChange={() => setTab('tab4')}
-        />
-
-        <label htmlFor='tab4'>SignUp Email</label>
-
-        <input
-          type='radio'
-          name='tab'
-          id='tab5'
-          value=''
-          checked={tab === 'tab5'}
-          onChange={() => setTab('tab5')}
-        />
-
-        <label htmlFor='tab5'>SignUp Discord</label>
+        <label htmlFor='signup'>SignUp</label>
       </sc.Nav>
 
       {dispayPanel(tab)}

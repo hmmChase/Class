@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 1rem;
-  height: 300px;
-  width: 400px;
+  /* height: 300px; */
+  /* width: 400px; */
 
   > nav {
     margin-bottom: 2rem;

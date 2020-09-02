@@ -13,12 +13,22 @@ export const getQuestion = async (req, res, next) => {
   return res.json(questions);
 };
 
-export const create = async (req, res, next) => {
+export const createQuestion = async (req, res, next) => {
   const { body } = req.body;
   const { id } = req.user.user;
 
   const questionRecord = await prisma.question.create({
     data: { body, author: { connect: { id } } }
+  });
+
+  return res.json(questionRecord);
+};
+
+export const deleteQuestion = async (req, res, next) => {
+  const { questionId } = req.body;
+
+  const questionRecord = await prisma.question.delete({
+    where: { id: parseInt(questionId) }
   });
 
   return res.json(questionRecord);

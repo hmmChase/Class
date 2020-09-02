@@ -23,3 +23,4 @@ export const IconUserDefault = styled(UserSvg)`
   fill: ${props => props.theme.colors.backgrounds.widgetsHeader};
   border-radius: 50%;
 `;
+

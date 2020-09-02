@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import DropdownComment from '../DropdownComment/DropdownComment';
 
 export const Container = styled.li`
   padding: 1rem;
@@ -27,13 +28,7 @@ export const CreatedAt = styled.span`
   margin-right: 0.5rem;
 `;
 
-export const DotDotDot = styled.span`
-  /* margin-left: 1rem; */
-  font-weight: 800;
-  letter-spacing: 0.1rem;
-  color: ${props => props.theme.colors.buttons.iconDefault};
-  /* align-self: flex-end; */
-  /* justify-self: flex-end; */
+export const DropdownCommentt = styled(DropdownComment)`
   margin-left: auto;
 `;
 

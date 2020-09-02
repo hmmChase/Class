@@ -9,6 +9,7 @@ export const Container = styled.div`
 
 export const Author = styled.span`
   font-size: 0.9rem;
+  margin-right: 0.5rem;
 `;
 
 export const Created = styled.span`

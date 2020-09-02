@@ -18,7 +18,9 @@ const QuestionCard = props => {
         <sc.RightSide>
           {props.isAnswered && <sc.Answeredd />}
 
-          {currentUser.role === 'TEACHER' && <sc.DotDotDot>...</sc.DotDotDot>}
+          {currentUser.role === 'TEACHER' && (
+            <sc.DropdownEllipsiss questionId={props.questionId} />
+          )}
         </sc.RightSide>
       </sc.Row>
 

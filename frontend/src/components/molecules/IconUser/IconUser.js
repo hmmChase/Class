@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import AppContext from '../../../context/app';
 import useFetch from '../../../api/useFetch';
-
 import * as sc from './IconUser.style';
 
-const IconUser = props => {
-  const { setCurrentUser } = useContext(AppContext);
+const IconUser = () => {
+  const { currentUser, setCurrentUser } = useContext(AppContext);
   const [getData, { loading, error }] = useFetch('/users/logout');
 
   const onClick = async e => {
@@ -19,8 +18,8 @@ const IconUser = props => {
 
   return (
     <sc.Container onClick={onClick}>
-      {props.currentUser && props.currentUser.avatarUrl ? (
-        <sc.IconUserDefined src={props.currentUser.avatarUrl} />
+      {currentUser && currentUser.avatarUrl ? (
+        <sc.IconUserDefined src={currentUser.avatarUrl} />
       ) : (
         <sc.IconUserDefault />
       )}

@@ -9,6 +9,8 @@ router.get('/', (req, res, next) => {
 
 router.get('/:questionId', questionController.getQuestion);
 
-router.post('/create', questionController.create);
+router.post('/create', questionController.createQuestion);
+
+router.post('/delete', questionController.deleteQuestion);
 
 export default router;
