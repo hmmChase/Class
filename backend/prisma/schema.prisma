@@ -40,18 +40,17 @@ enum Role {
 }
 
 model Challenge {
-  id         Int        @id @default(autoincrement())
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  deletedAt  DateTime?
-  path       String     @unique
-  title      String
-  desc       String
-  videoUrl   String
-  softDelete Boolean
-  questions  Question[]
-  author     User       @relation(fields: [user_id], references: [id])
-  user_id    Int
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  deletedAt DateTime?
+  path      String     @unique
+  title     String
+  desc      String
+  videoUrl  String
+  questions Question[]
+  author    User       @relation(fields: [user_id], references: [id])
+  user_id   Int
 }
 
 model Project {

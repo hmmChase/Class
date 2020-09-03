@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import QPage from './pages/q';
 import ChallengePage from './pages/challenge';
 import LoginPage from './pages/login';
 import LoginDiscordPage from './pages/login-discord';

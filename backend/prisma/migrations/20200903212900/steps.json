@@ -131,6 +131,13 @@
     {
       "tag": "CreateField",
       "model": "User",
+      "field": "deletedAt",
+      "type": "DateTime",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
       "field": "email",
       "type": "String",
       "arity": "Required"
@@ -384,9 +391,27 @@
     {
       "tag": "CreateField",
       "model": "Challenge",
+      "field": "deletedAt",
+      "type": "DateTime",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Challenge",
       "field": "path",
       "type": "String",
       "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Challenge",
+          "field": "path"
+        },
+        "directive": "unique"
+      }
     },
     {
       "tag": "CreateField",
@@ -569,6 +594,13 @@
     {
       "tag": "CreateField",
       "model": "Project",
+      "field": "deletedAt",
+      "type": "DateTime",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Project",
       "field": "githubLink",
       "type": "String",
       "arity": "Required"
@@ -736,6 +768,13 @@
         },
         "directive": "updatedAt"
       }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Question",
+      "field": "deletedAt",
+      "type": "DateTime",
+      "arity": "Optional"
     },
     {
       "tag": "CreateField",
@@ -960,6 +999,13 @@
         },
         "directive": "updatedAt"
       }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Comment",
+      "field": "deletedAt",
+      "type": "DateTime",
+      "arity": "Optional"
     },
     {
       "tag": "CreateField",
