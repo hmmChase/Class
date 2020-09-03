@@ -7,14 +7,17 @@ import * as sc from './Questions.style';
 
 const Questions = props => {
   const [questions, setQuestions] = useState([]);
-
   const { challengePath } = useParams();
 
-  const [getData, { loading, error }] = useFetch(`/questions/${challengePath}`);
+  const [getData, { loading, error }] = useFetch(
+    `/question/challenge/${challengePath}`
+  );
 
   useEffect(() => {
     (async () => {
       const data = await getData();
+
+      console.log('data:', data);
 
       if (!loading && !error && data) setQuestions(data);
     })();

@@ -3,17 +3,20 @@ import * as challengeController from '../controllers/challengeController';
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => res.json({ route: 'challenge' }));
+/* GET */
 
-router.get('/:challengePath', challengeController.getChallenge);
+router.get('/', function (req, res, next) {
+  return res.json({ route: 'question' });
+});
 
-router.get('/:challengePath/q', challengeController.getChallengeQuestions);
+router.get('/all', challengeController.getAllChallenges);
+
+router.get('/:challengeId/', challengeController.getChallenge);
+
+router.get('/path/:challengePath', challengeController.getChallengeByPath);
+
+/* POST */
 
 router.post('/create', challengeController.create);
-
-// router.get(
-//   '/:challengePath/q/:questionId',
-//   challengeController.getChallengeQuestion
-// );
 
 export default router;

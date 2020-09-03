@@ -2,7 +2,7 @@ export default (name, url) => {
   // Get Url from browser
   if (!url) url = window.location.href;
 
-  const parsedName = name.replace(/[\[\]]/g, '\\$&');
+  const parsedName = name.replace(/[[\]]/g, '\\$&');
 
   const regex = new RegExp('[?&]' + parsedName + '(=([^&#]*)|&|#|$)');
 

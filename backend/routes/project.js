@@ -1,10 +1,17 @@
 import express from 'express';
 import * as projectController from '../controllers/projectController';
-import { isAuth } from '../middleware/isAuth';
 
 const router = express.Router();
 
-router.get('/', isAuth, projectController.getProjects);
+/* GET */
+
+router.get('/', function (req, res, next) {
+  return res.json({ route: 'project' });
+});
+
+router.get('/all', projectController.getAllProjects);
+
+/* POST */
 
 router.post('/create', projectController.create);
 

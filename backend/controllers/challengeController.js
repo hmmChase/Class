@@ -2,33 +2,45 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const getChallenge = async (req, res, next) => {
-  const { challengePath } = req.params;
+/* GET */
 
-  console.log('getChallenge challengePath: ', challengePath);
+export const getAllChallenges = async (req, res, next) => {
+  const challenges = await prisma.challenge.findMany({});
+
+  return res.json(challenges);
+};
+
+export const getChallenge = async (req, res, next) => {
+  const { challengeId } = req.params;
 
   const challenge = await prisma.challenge.findOne({
-    where: { path: challengePath }
-
-    // include: { author: true, comments: true }
+    where: { id: challengeId }
   });
 
   return res.json(challenge);
 };
 
-export const getChallengeQuestions = async (req, res, next) => {
+export const getChallengeByPath = async (req, res, next) => {
   const { challengePath } = req.params;
 
-  console.log('getChallengeQuestions challengePath: ', challengePath);
-
-  const questions = await prisma.challenge.findMany({
-    where: { challenge: { path: parseInt(challengePath) } }
+  const challenge = await prisma.challenge.findOne({
+    where: { path: challengePath }
   });
 
-  console.log('getChallengeQuestions: ', questions);
-
-  return res.json(questions);
+  return res.json(challenge);
 };
+
+// export const getChallengeQuestions = async (req, res, next) => {
+//   const { challengePath } = req.params;
+
+//   const questions = await prisma.challenge.findMany({
+//     where: { challenge: { path: challengePath } }
+//   });
+
+//   return res.json(questions);
+// };
+
+/* POST */
 
 export const create = async (req, res, next) => {
   const { tite, desc } = req.body;
@@ -40,17 +52,3 @@ export const create = async (req, res, next) => {
 
   return res.json(challengeRecord);
 };
-
-// export const getChallengeQuestion = async (req, res, next) => {
-//   const { challengePath } = req.params;
-
-//   console.log('getChallengeQuestions challengePath: ', challengePath);
-
-//   const questions = await prisma.challenge.findOne({
-//     where: { challenge: { path: parseInt(challengePath) } }
-//   });
-
-//   console.log('getChallengeQuestions: ', questions);
-
-//   return res.json(questions);
-// };

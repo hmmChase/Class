@@ -1,26 +1,60 @@
 import { PrismaClient } from '@prisma/client';
+import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
-export const getComments = async (req, res, next) => {
-  const { questionId } = req.params;
+/* GET */
 
-  const comments = await prisma.comment.findMany({
-    where: { question: { id: parseInt(questionId) } },
-    orderBy: { id: 'desc' },
-    include: { author: true }
-  });
+export const getAllComments = async (req, res, next) => {
+  const comments = await prisma.comment.findMany({});
 
   return res.json(comments);
 };
 
+export const getComment = async (req, res, next) => {
+  const { commentId } = req.params;
+
+  const comment = await prisma.comment.findOne({ where: { id: commentId } });
+
+  return res.json(comment);
+};
+
+// export const getCommentsForQuestion = async (req, res, next) => {
+//   const { questionId } = req.params;
+
+//   const comments = await prisma.comment.findMany({
+//     where: { question: { id: parseInt(questionId) } },
+//     orderBy: { id: 'desc' },
+//     include: { author: true }
+//   });
+
+//   return res.json(comments);
+// };
+
+export const getQuestionComments = async (req, res, next) => {
+  const { questionId } = req.params;
+
+  const questions = await prisma.comment.findMany({
+    where: { question: { id: parseInt(questionId) } },
+    include: { author: true }
+  });
+
+  return res.json(questions);
+};
+
+/* POST */
+
 export const create = async (req, res, next) => {
   const { questionId, body } = req.body;
-  const { id } = req.user.user;
+
+  const user = jwt.verify(
+    req.cookies.jwt,
+    Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64')
+  );
 
   const commentRecord = await prisma.comment.create({
     data: {
-      author: { connect: { id } },
+      author: { connect: { id: user.user.id } },
       question: { connect: { id: parseInt(questionId) } },
       body
     }
@@ -29,31 +63,23 @@ export const create = async (req, res, next) => {
   return res.json(commentRecord);
 };
 
-export const answer = async (req, res, next) => {
-  const { questionId, body } = req.body;
-  const { id } = req.user.user;
+export const deleteSoft = async (req, res, next) => {
+  const { commentId } = req.body;
 
-  const commentRecord = await prisma.comment.create({
-    data: {
-      author: { connect: { id } },
-      question: { connect: { id: questionId } },
-      body
-    }
+  const commentRecord = await prisma.comment.update({
+    where: { id: commentId },
+    data: { deletedAt: Date.now() }
   });
 
   return res.json(commentRecord);
 };
 
-export const answerCount = async (req, res, next) => {
-  const { questionId, body } = req.body;
-  const { id } = req.user.user;
+export const answer = async (req, res, next) => {
+  const { commentId } = req.body;
 
-  const commentRecord = await prisma.comment.count({
-    data: {
-      author: { connect: { id } },
-      question: { connect: { id: questionId } },
-      body
-    }
+  const commentRecord = await prisma.comment.update({
+    where: { id: commentId },
+    data: { isAnswer: true }
   });
 
   return res.json(commentRecord);

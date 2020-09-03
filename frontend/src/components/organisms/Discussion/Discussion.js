@@ -8,9 +8,8 @@ import Label from '../../atoms/Label/Label';
 import * as sc from './Discussion.style';
 
 const Discussion = props => {
-  const { questionId } = useParams();
   const { currentUser } = useContext(AppContext);
-
+  const { questionId } = useParams();
   const { challengePath } = useParams();
 
   return (

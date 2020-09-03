@@ -4,7 +4,7 @@ import useFetch from '../../../api/useFetch';
 import * as sc from './CommentDelete.style';
 
 const CommentDelete = props => {
-  const [getData] = useFetch('/comment/delete');
+  const [getData] = useFetch('/comment/delete-soft');
 
   const onClick = async e => {
     e.preventDefault();

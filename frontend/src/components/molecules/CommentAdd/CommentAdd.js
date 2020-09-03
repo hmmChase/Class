@@ -5,7 +5,7 @@ import * as sc from './CommentAdd.style';
 
 const CommentAdd = props => {
   const [body, setBody] = useState('');
-  const [getData] = useFetch('/comments/create');
+  const [getData] = useFetch('/comment/create');
 
   const handleClick = async e => {
     e.preventDefault();

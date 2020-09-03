@@ -3,8 +3,16 @@ import * as discordController from '../controllers/discordController';
 
 const router = express.Router();
 
-router.get('/', discordController.getDiscordUrl);
+/* GET */
 
-router.post('/signup', discordController.authenticateUserDiscord);
+router.get('/', function (req, res, next) {
+  return res.json({ route: 'discord' });
+});
+
+router.get('/url', discordController.getUrl);
+
+/* POST */
+
+router.post('/signup', discordController.authenticateUser);
 
 export default router;

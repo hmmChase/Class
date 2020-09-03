@@ -6,7 +6,7 @@ import * as sc from './DropdownQuestion.style';
 
 const DropdownQuestion = props => {
   const [isDropdownOpen, setDropdownDisplay] = useDropdown();
-  const [getData] = useFetch('/question/delete');
+  const [getData] = useFetch('/question/delete-soft');
 
   // props.questionId
 

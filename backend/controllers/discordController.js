@@ -2,7 +2,7 @@ import * as authService from '../services/authService';
 import * as discordService from '../services/discordService';
 import { COOKIE_CONFIG } from '../config';
 
-export const getDiscordUrl = (req, res) => {
+export const getUrl = (req, res) => {
   const url = discordService.generateDiscordURL();
 
   const stateParam = authService.getParameterByName('state', url);
@@ -20,7 +20,7 @@ export const getDiscordUrl = (req, res) => {
   return res.json({ discordUrl: url });
 };
 
-export const authenticateUserDiscord = async (req, res) => {
+export const authenticateUser = async (req, res) => {
   const { code, state } = req.body;
 
   // We need to check the state

@@ -8,7 +8,7 @@ import * as sc from './ChallengeList.style';
 const ChallengeList = props => {
   const [challenges, setChallenges] = useState([]);
 
-  const [getData, { loading, error }] = useFetch('/challenges');
+  const [getData, { loading, error }] = useFetch('/challenge/all');
 
   useEffect(() => {
     (async () => {

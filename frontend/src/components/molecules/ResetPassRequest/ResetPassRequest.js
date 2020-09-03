@@ -4,7 +4,7 @@ import * as sc from './ResetPassRequest.style';
 
 const ResetPassRequest = () => {
   const [email, setEmail] = useState('');
-  const [getData] = useFetch('/users/reset-password');
+  const [getData] = useFetch('/user/reset-password');
 
   const onSubmit = async e => {
     e.preventDefault();

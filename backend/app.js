@@ -8,14 +8,12 @@ import helmet from 'helmet';
 import 'dotenv/config';
 
 import indexRouter from './routes/index';
-import usersRouter from './routes/users';
+import userRouter from './routes/user';
 import discordRouter from './routes/discord';
 import challengeRouter from './routes/challenge';
-import challengesRouter from './routes/challenges';
-import projectsRouter from './routes/projects';
+import projectRouter from './routes/project';
 import questionRouter from './routes/question';
-import questionsRouter from './routes/questions';
-import commentsRouter from './routes/comments';
+import commentRouter from './routes/comment';
 
 import * as errorHandlers from './handlers/errorHandlers';
 import { BASE_URL, port } from './config';
@@ -56,19 +54,12 @@ const v1 = express.Router();
 app.use('/api/v1', v1);
 
 v1.use('/', indexRouter);
-
-v1.use('/users', usersRouter);
+v1.use('/user', userRouter);
 v1.use('/discord', discordRouter);
-
 v1.use('/challenge', challengeRouter);
-v1.use('/challenges', challengesRouter);
-
-v1.use('/projects', projectsRouter);
-
+v1.use('/project', projectRouter);
 v1.use('/question', questionRouter);
-v1.use('/questions', questionsRouter);
-
-v1.use('/comments', commentsRouter);
+v1.use('/comment', commentRouter);
 
 app.use(errorHandlers.notFound);
 

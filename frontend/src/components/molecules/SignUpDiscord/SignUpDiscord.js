@@ -5,7 +5,7 @@ import * as sc from './SignUpDiscord.style';
 const SignUpDiscord = () => {
   const [discordUrl, setDiscordUrl] = useState(undefined);
 
-  const [getData] = useFetch('/discord');
+  const [getData] = useFetch('/discord/url');
 
   useEffect(() => {
     (async () => {

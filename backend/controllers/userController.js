@@ -11,6 +11,12 @@ import { COOKIE_CONFIG, BASE_URL } from '../config';
 
 const prisma = new PrismaClient();
 
+export const getAllUsers = async (req, res, next) => {
+  const users = await prisma.user.findMany();
+
+  res.json(users);
+};
+
 export const getCurrentUser = async (req, res) => {
   if (!req || !req.cookies || !req.cookies.jwt) return res.json({});
 
@@ -38,8 +44,6 @@ export const getCurrentUser = async (req, res) => {
   } catch (error) {
     return res.json({});
   }
-
-  // return res.json(user);
 };
 
 export const signup = async (req, res) => {
@@ -54,7 +58,7 @@ export const signup = async (req, res) => {
 
   if (!isvalid) return res.status(400).json({ error: 'signup.invalidEmail' });
 
-  const createdUser = userService.signupUserByEmail(
+  userService.signupUserByEmail(
     emailNormalized,
     password,
     username,
@@ -179,9 +183,3 @@ export const resetPassword = async (req, res) => {
 
   return res.json(user);
 };
-
-// export const getUsers = async (req, res, next) => {
-//   const users = await prisma.user.findMany();
-
-//   res.json(users);
-// };

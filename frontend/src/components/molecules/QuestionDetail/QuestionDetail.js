@@ -24,8 +24,6 @@ const QuestionDetail = props => {
 
       if (data) setQuestion(data);
 
-      console.log('data:', data);
-
       if (!loading && !error && data) setQuestion(data);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

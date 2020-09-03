@@ -11,7 +11,7 @@ const Modal = props => (
 );
 
 Modal.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.array]),
   close: PropTypes.func.isRequired
 };
 

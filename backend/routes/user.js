@@ -1,17 +1,26 @@
 import express from 'express';
 import * as userController from '../controllers/userController';
 import { asyncErrorWrapper } from '../handlers/errorHandlers';
-// import { isAuth } from '../middleware/isAuth';
 
 const router = express.Router();
 
-router.get('/', asyncErrorWrapper(userController.getCurrentUser));
+/* GET */
+
+router.get('/', function (req, res, next) {
+  return res.json({ route: 'user' });
+});
+
+router.get('/all', asyncErrorWrapper(userController.getAllUsers));
+
+router.get('/current', asyncErrorWrapper(userController.getCurrentUser));
+
+router.get('/logout', asyncErrorWrapper(userController.logout));
+
+/* POST */
 
 router.post('/signup', asyncErrorWrapper(userController.signup));
 
 router.post('/login', asyncErrorWrapper(userController.login));
-
-router.get('/logout', asyncErrorWrapper(userController.logout));
 
 router.post(
   '/reset-password',
