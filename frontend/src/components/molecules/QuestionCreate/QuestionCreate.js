@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import useFetch from '../../../api/useFetch';
+// import { useParams } from 'react-router-dom';
+// import useFetch from '../../../api/useFetch';
 import * as sc from './QuestionCreate.style';
 
-const Question = () => {
+const QuestionCreate = props => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const { challengePath } = useParams();
+  // const { challengePath } = useParams();
 
-  const [getData] = useFetch(`/question/create/${challengePath}`);
+  // console.log('createQuestion:', createQuestion());
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    await getData({ title, body });
+    // const data = await createQuestion({ title, body });
+
+    // console.log('data:', data);
+
+    props.handleCreateQuestion(title, body);
   };
 
   return (
@@ -41,4 +45,4 @@ const Question = () => {
   );
 };
 
-export default Question;
+export default QuestionCreate;

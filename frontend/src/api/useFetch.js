@@ -69,7 +69,7 @@ const useFetch = (pathName, options) => {
     }
   };
 
-  return [getData, { loading, error }];
+  return [getData, loading, error];
 };
 
 export default useFetch;

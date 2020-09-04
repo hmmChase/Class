@@ -12,14 +12,21 @@ import AppContext from './context/app';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState({});
-  const [getData, { loading, error }] = useFetch('/user/current');
+  const [getCurrentUser, loading, error] = useFetch('/user/current');
+  console.log('loading:', loading);
 
   useEffect(() => {
     (async () => {
-      const data = await getData();
+      const currentUser = await getCurrentUser();
 
-      if (!loading && !error && data && data.user && data.user.id)
-        setCurrentUser(data.user);
+      if (
+        !loading &&
+        !error &&
+        currentUser &&
+        currentUser.user &&
+        currentUser.user.id
+      )
+        setCurrentUser(currentUser.user);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

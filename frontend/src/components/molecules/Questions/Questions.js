@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
-import useFetch from '../../../api/useFetch';
+// import useFetch from '../../../api/useFetch';
 import { formatDate } from '../../../utils/dateTime';
 import * as sc from './Questions.style';
 
 const Questions = props => {
-  const [questions, setQuestions] = useState([]);
-  const { challengePath } = useParams();
+  console.log('props:', props);
 
-  const [getData, { loading, error }] = useFetch(
-    `/question/challenge/${challengePath}`
-  );
+  // const [questions, setQuestions] = useState([]);
 
-  useEffect(() => {
-    (async () => {
-      const data = await getData();
+  // const [getData, { loading, error }] = useFetch(
+  //   `/question/challenge/${challengePath}`
+  // );
 
-      console.log('data:', data);
+  // useEffect(() => {
+  //   (async () => {
+  //     const data = await getData();
 
-      if (!loading && !error && data) setQuestions(data);
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //     console.log('data:', data);
 
-  const questionCards = questions.map(question => {
+  //     if (!loading && !error && data) setQuestions(data);
+  //   })();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  const questionCards = props.questions.map(question => {
     const answerCount = question.comments.reduce((total, comment) => {
       if (comment.isAnswer) total++;
 
@@ -49,7 +49,9 @@ const Questions = props => {
     <sc.Container className={props.className}>
       {/* <sc.Relative> */}
       {/* <sc.Absolute> */}
-      <sc.QuestionsList>{questionCards}</sc.QuestionsList>
+      <sc.QuestionsList>
+        {props.questions.length && questionCards}
+      </sc.QuestionsList>
       {/* </sc.Absolute> */}
       {/* </sc.Relative> */}
     </sc.Container>

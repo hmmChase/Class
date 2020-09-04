@@ -6,7 +6,7 @@ import * as sc from './Comments.style';
 
 const Comments = props => {
   const [comments, setComments] = useState([]);
-  const [getData, { loading, error }] = useFetch(
+  const [getData, loading, error] = useFetch(
     `/comment/question/${props.questionId}`
   );
 

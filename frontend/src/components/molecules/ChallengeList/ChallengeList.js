@@ -8,13 +8,13 @@ import * as sc from './ChallengeList.style';
 const ChallengeList = props => {
   const [challenges, setChallenges] = useState([]);
 
-  const [getData, { loading, error }] = useFetch('/challenge/all');
+  const [getData] = useFetch('/challenge/all');
 
   useEffect(() => {
     (async () => {
       const data = await getData();
 
-      if (!loading && !error && data) setChallenges(data);
+      if (data) setChallenges(data);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

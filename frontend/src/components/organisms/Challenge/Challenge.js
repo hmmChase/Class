@@ -11,7 +11,7 @@ const Challenge = props => {
   const [challenge, setChallenge] = useState({});
   const { challengePath } = useParams();
 
-  const [getData, { loading, error }] = useFetch(
+  const [getData, loading, error] = useFetch(
     `/challenge/path/${challengePath}`
   );
 

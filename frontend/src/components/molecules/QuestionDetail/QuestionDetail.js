@@ -14,7 +14,7 @@ const QuestionDetail = props => {
   const [question, setQuestion] = useState({});
   const { currentUser } = useContext(AppContext);
 
-  const [getData, { loading, error }] = useFetch(
+  const [getData, loading, error] = useFetch(
     `/question/${props.questionId}`
   );
 
