@@ -13,7 +13,6 @@ import AppContext from './context/app';
 const App = () => {
   const [currentUser, setCurrentUser] = useState({});
   const [getCurrentUser, loading, error] = useFetch('/user/current');
-  console.log('loading:', loading);
 
   useEffect(() => {
     (async () => {

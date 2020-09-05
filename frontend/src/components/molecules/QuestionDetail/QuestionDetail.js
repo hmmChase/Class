@@ -12,22 +12,40 @@ import * as sc from './QuestionDetail.style';
 
 const QuestionDetail = props => {
   const [question, setQuestion] = useState({});
+  const [comments, setComments] = useState([]);
   const { currentUser } = useContext(AppContext);
 
-  const [getData, loading, error] = useFetch(
+  const [getQuestion, loadingQuestion, errorQuestion] = useFetch(
     `/question/${props.questionId}`
   );
 
+  const [getComments, loadingComments, errorComments] = useFetch(
+    `/comment/question/${props.questionId}`
+  );
+
+  const [getData] = useFetch('/comment/create');
+
   useEffect(() => {
     (async () => {
-      const data = await getData();
+      const dataQuestion = await getQuestion();
+      const dataComments = await getComments();
 
-      if (data) setQuestion(data);
+      if (!loadingQuestion && !errorQuestion && dataQuestion)
+        setQuestion(dataQuestion);
 
-      if (!loading && !error && data) setQuestion(data);
+      if (!loadingComments && !errorComments && dataComments)
+        setComments(dataComments);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleCreateComment = async body => {
+    const newComment = await getData({ questionId: props.questionId, body });
+
+    const updatedComments = [...comments, newComment];
+
+    setComments(updatedComments);
+  };
 
   return (
     <sc.Container className={props.className}>
@@ -37,10 +55,13 @@ const QuestionDetail = props => {
 
           {/* <CommentAnswer /> */}
 
-          <Comments questionId={props.questionId} />
+          <Comments comments={comments} questionId={props.questionId} />
 
           {currentUser && currentUser.id && (
-            <CommentAdd questionId={props.questionId} />
+            <CommentAdd
+              questionId={props.questionId}
+              handleCreateComment={handleCreateComment}
+            />
           )}
         </>
       )}

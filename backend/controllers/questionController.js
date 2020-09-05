@@ -27,7 +27,8 @@ export const getChallengeQuestions = async (req, res, next) => {
 
   const questions = await prisma.question.findMany({
     where: { challenge: { path: challengePath } },
-    include: { author: true, comments: true }
+    include: { author: true, comments: true },
+    orderBy: { id: 'desc' }
   });
 
   return res.json(questions);
@@ -50,8 +51,11 @@ export const create = async (req, res, next) => {
       body,
       author: { connect: { id: user.user.id } },
       challenge: { connect: { path: challengePath } }
-    }
+    },
+    include: { author: true, comments: true }
   });
+
+  console.log('questionRecord:', questionRecord);
 
   return res.json(questionRecord);
 };

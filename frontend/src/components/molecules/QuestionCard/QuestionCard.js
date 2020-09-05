@@ -25,7 +25,7 @@ const QuestionCard = props => {
       </sc.Row>
 
       <sc.Row>
-        <sc.Body>{props.body}</sc.Body>
+        <sc.Title>{props.title}</sc.Title>
       </sc.Row>
 
       <sc.Row>
@@ -51,8 +51,7 @@ const QuestionCard = props => {
 
 QuestionCard.propTypes = {
   createdAt: PropTypes.any,
-  authorName: PropTypes.string,
-  body: PropTypes.string.isRequired
+  authorName: PropTypes.string
   // isAnswer: PropTypes.bool.isRequired
 };
 

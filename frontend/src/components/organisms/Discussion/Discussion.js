@@ -23,16 +23,16 @@ const Discussion = props => {
   const handleCreateQuestion = async (title, body) => {
     const newQuestion = await createQuestion({ title, body });
 
-    const updatedQuestions = [...questions, newQuestion];
+    const updatedQuestions = [newQuestion, ...questions];
 
     setQuestions(updatedQuestions);
   };
 
   useEffect(() => {
     (async () => {
-      const data = await getQuestions();
+      const gotQuestions = await getQuestions();
 
-      if (!loading && !error && data) setQuestions(data);
+      if (!loading && !error && gotQuestions) setQuestions(gotQuestions);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

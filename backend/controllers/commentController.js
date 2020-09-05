@@ -57,7 +57,8 @@ export const create = async (req, res, next) => {
       author: { connect: { id: user.user.id } },
       question: { connect: { id: parseInt(questionId) } },
       body
-    }
+    },
+    include: { author: true }
   });
 
   return res.json(commentRecord);

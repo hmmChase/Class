@@ -6,18 +6,13 @@ import * as sc from './QuestionCreate.style';
 const QuestionCreate = props => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  // const { challengePath } = useParams();
-
-  // console.log('createQuestion:', createQuestion());
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // const data = await createQuestion({ title, body });
-
-    // console.log('data:', data);
-
     props.handleCreateQuestion(title, body);
+
+    props.close();
   };
 
   return (

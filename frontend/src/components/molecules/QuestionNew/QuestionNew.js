@@ -15,7 +15,10 @@ const QuestionNew = props => {
 
       {isModalOpen && (
         <Modal close={toggleModal}>
-          <QuestionCreate handleCreateQuestion={props.handleCreateQuestion} />
+          <QuestionCreate
+            handleCreateQuestion={props.handleCreateQuestion}
+            close={toggleModal}
+          />
         </Modal>
       )}
     </sc.Container>

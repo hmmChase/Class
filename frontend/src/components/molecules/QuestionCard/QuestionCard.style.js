@@ -52,7 +52,7 @@ export const DropdownEllipsiss = styled(DropdownEllipsis)`
   margin-left: 1rem;
 `;
 
-export const Body = styled.p`
+export const Title = styled.p`
   margin: 0.5rem 0;
 `;
 
