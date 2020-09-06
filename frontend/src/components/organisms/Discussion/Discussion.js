@@ -20,12 +20,24 @@ const Discussion = props => {
 
   const [createQuestion] = useFetch(`/question/create/${challengePath}`);
 
+  const [deleteQuestion] = useFetch('/question/delete-soft');
+
   const handleCreateQuestion = async (title, body) => {
     const newQuestion = await createQuestion({ title, body });
 
     const updatedQuestions = [newQuestion, ...questions];
 
     setQuestions(updatedQuestions);
+  };
+
+  const handleDeleteQuestion = async questionId => {
+    await deleteQuestion({ questionId });
+
+    const filteredQuestions = questions.filter(
+      question => question.id !== questionId
+    );
+
+    setQuestions(filteredQuestions);
   };
 
   useEffect(() => {
@@ -58,7 +70,10 @@ const Discussion = props => {
       {questionId ? (
         <QuestionDetail questionId={questionId} setQuestions={setQuestions} />
       ) : (
-        <Questions questions={questions} />
+        <Questions
+          questions={questions}
+          handleDeleteQuestion={handleDeleteQuestion}
+        />
       )}
     </sc.Container>
   );

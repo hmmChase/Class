@@ -20,7 +20,10 @@ const DropdownComment = props => {
             </sc.Li>
 
             <sc.Li>
-              <CommentDelete />
+              <CommentDelete
+                commentId={props.commentId}
+                handleDeleteComment={props.handleDeleteComment}
+              />
             </sc.Li>
           </sc.Ul>
         </sc.Body>

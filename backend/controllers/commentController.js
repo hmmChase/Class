@@ -35,7 +35,7 @@ export const getQuestionComments = async (req, res, next) => {
   const { questionId } = req.params;
 
   const questions = await prisma.comment.findMany({
-    where: { question: { id: parseInt(questionId) } },
+    where: { question: { id: parseInt(questionId) }, deletedAt: null },
     include: { author: true }
   });
 
@@ -69,7 +69,7 @@ export const deleteSoft = async (req, res, next) => {
 
   const commentRecord = await prisma.comment.update({
     where: { id: commentId },
-    data: { deletedAt: Date.now() }
+    data: { deletedAt: new Date().toISOString() }
   });
 
   return res.json(commentRecord);

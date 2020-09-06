@@ -26,7 +26,10 @@ export const getChallengeQuestions = async (req, res, next) => {
   const { challengePath } = req.params;
 
   const questions = await prisma.question.findMany({
-    where: { challenge: { path: challengePath } },
+    where: {
+      challenge: { path: challengePath },
+      comments: { deletedAt: null }
+    },
     include: { author: true, comments: true },
     orderBy: { id: 'desc' }
   });
@@ -63,9 +66,9 @@ export const create = async (req, res, next) => {
 export const deleteSoft = async (req, res, next) => {
   const { questionId } = req.body;
 
-  const questionRecord = await prisma.question.delete({
+  const questionRecord = await prisma.question.update({
     where: { id: questionId },
-    data: { deletedAt: Date.now() }
+    data: { deletedAt: new Date().toISOString() }
   });
 
   return res.json(questionRecord);

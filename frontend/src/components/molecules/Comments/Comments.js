@@ -7,10 +7,12 @@ const Comments = props => {
   const commentCards = props.comments.map(comment => (
     <sc.CommentCardd
       key={comment.id}
+      commentId={comment.id}
       authorName={comment.author.username}
       timestamp={timestamp(comment.createdAt)}
       createdAt={formatDate(comment.createdAt)}
       body={comment.body}
+      handleDeleteComment={props.handleDeleteComment}
     />
   ));
 

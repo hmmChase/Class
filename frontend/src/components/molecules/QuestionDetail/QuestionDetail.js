@@ -6,7 +6,7 @@ import useFetch from '../../../api/useFetch';
 // import formatDate from '../../utils/formatDate';
 import Comments from '../Comments/Comments';
 import QuestionCardDetail from '../QuestionCardDetail/QuestionCardDetail';
-import CommentAdd from '../CommentAdd/CommentAdd';
+import CommentAdd from '../CommentCreate/CommentCreate';
 // import CommentAnswer from '../CommentAnswer/CommentAnswer';
 import * as sc from './QuestionDetail.style';
 
@@ -23,7 +23,9 @@ const QuestionDetail = props => {
     `/comment/question/${props.questionId}`
   );
 
-  const [getData] = useFetch('/comment/create');
+  const [commentCreate] = useFetch('/comment/create');
+
+  const [commentDelete] = useFetch('/comment/delete-soft');
 
   useEffect(() => {
     (async () => {
@@ -40,11 +42,26 @@ const QuestionDetail = props => {
   }, []);
 
   const handleCreateComment = async body => {
-    const newComment = await getData({ questionId: props.questionId, body });
+    const newComment = await commentCreate({
+      questionId: props.questionId,
+      body
+    });
 
     const updatedComments = [...comments, newComment];
 
     setComments(updatedComments);
+  };
+
+  const handleDeleteComment = async commentId => {
+    console.log('commentId:', commentId);
+
+    await commentDelete({ commentId });
+
+    const filteredComments = comments.filter(
+      comment => comment.id !== commentId
+    );
+
+    setComments(filteredComments);
   };
 
   return (
@@ -55,7 +72,11 @@ const QuestionDetail = props => {
 
           {/* <CommentAnswer /> */}
 
-          <Comments comments={comments} questionId={props.questionId} />
+          <Comments
+            comments={comments}
+            questionId={props.questionId}
+            handleDeleteComment={handleDeleteComment}
+          />
 
           {currentUser && currentUser.id && (
             <CommentAdd

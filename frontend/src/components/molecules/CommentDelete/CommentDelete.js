@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useFetch from '../../../api/useFetch';
 import * as sc from './CommentDelete.style';
 
 const CommentDelete = props => {
-  const [getData] = useFetch('/comment/delete-soft');
-
   const onClick = async e => {
     e.preventDefault();
 
-    await getData({ commentId: props.commentId });
+    props.handleDeleteComment(props.commentId);
   };
 
   return <sc.Span onClick={onClick}>Remove Post</sc.Span>;

@@ -4,6 +4,7 @@ import AppContext from '../../../context/app';
 import * as sc from './CommentCard.style';
 
 const CommentCard = props => {
+  console.log('props:', props);
   const { currentUser } = useContext(AppContext);
 
   return (
@@ -15,7 +16,12 @@ const CommentCard = props => {
 
         <sc.CreatedAt>{props.createdAt}</sc.CreatedAt>
 
-        {currentUser.role === 'TEACHER' && <sc.DropdownCommentt />}
+        {currentUser.role === 'TEACHER' && (
+          <sc.DropdownCommentt
+            commentId={props.commentId}
+            handleDeleteComment={props.handleDeleteComment}
+          />
+        )}
       </sc.Flex>
 
       <sc.Body>{props.body}</sc.Body>

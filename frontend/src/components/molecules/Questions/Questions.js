@@ -21,6 +21,7 @@ const Questions = props => {
         commentCount={question.comments.length}
         answerCount={answerCount}
         isAnswered={!!answerCount}
+        handleDeleteQuestion={props.handleDeleteQuestion}
       />
     );
   });
