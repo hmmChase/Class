@@ -5,9 +5,9 @@ import AppContext from '../../../context/app';
 import useFetch from '../../../api/useFetch';
 // import formatDate from '../../utils/formatDate';
 import Comments from '../Comments/Comments';
-import QuestionCardDetail from '../QuestionCardDetail/QuestionCardDetail';
+import QuestionDetailCard from '../QuestionDetailCard/QuestionDetailCard';
 import CommentAdd from '../CommentCreate/CommentCreate';
-// import CommentAnswer from '../CommentAnswer/CommentAnswer';
+import Answers from '../Answers/Answers';
 import * as sc from './QuestionDetail.style';
 
 const QuestionDetail = props => {
@@ -68,9 +68,13 @@ const QuestionDetail = props => {
     <sc.Container className={props.className}>
       {question && question.id && (
         <>
-          <QuestionCardDetail question={question} />
+          <QuestionDetailCard question={question} />
 
-          {/* <CommentAnswer /> */}
+          <Answers
+            comments={comments}
+            questionId={props.questionId}
+            handleDeleteComment={handleDeleteComment}
+          />
 
           <Comments
             comments={comments}

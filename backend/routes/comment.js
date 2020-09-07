@@ -23,6 +23,18 @@ router.post('/create', commentController.create);
 
 router.post('/delete-soft', commentController.deleteSoft);
 
-router.post('/answer', isAuth, authRole('TEACHER'), commentController.answer);
+router.post(
+  '/answer-promote',
+  isAuth,
+  authRole('TEACHER'),
+  commentController.answerPromote
+);
+
+router.post(
+  '/answer-demote',
+  isAuth,
+  authRole('TEACHER'),
+  commentController.answerDemote
+);
 
 export default router;

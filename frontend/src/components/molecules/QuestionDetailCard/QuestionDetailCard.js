@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
-import * as sc from './QuestionCardDetail.style';
+import * as sc from './QuestionDetailCard.style';
 
-const QuestionCardDetail = props => {
+const QuestionDetailCard = props => {
   return (
     <sc.Container>
       <sc.Author>{props.question.author.username}</sc.Author>
@@ -17,10 +17,10 @@ const QuestionCardDetail = props => {
   );
 };
 
-QuestionCardDetail.propTypes = {
+QuestionDetailCard.propTypes = {
   createdAt: PropTypes.any,
   authorName: PropTypes.string,
   body: PropTypes.string
 };
 
-export default React.memo(QuestionCardDetail);
+export default React.memo(QuestionDetailCard);

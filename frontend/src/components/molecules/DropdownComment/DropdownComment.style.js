@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Dropdown = styled.div`
+export const Container = styled.div`
   position: relative;
   cursor: pointer;
   color: ${props => props.theme.colors.buttons.iconDefault};

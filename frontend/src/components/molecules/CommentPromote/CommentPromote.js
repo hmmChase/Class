@@ -4,7 +4,7 @@ import useFetch from '../../../api/useFetch';
 import * as sc from './CommentPromote.style';
 
 const CommentPromote = props => {
-  const [getData] = useFetch('/comment/answer');
+  const [getData] = useFetch('/comment/answer-promote');
 
   const onClick = async e => {
     e.preventDefault();
@@ -16,7 +16,7 @@ const CommentPromote = props => {
 };
 
 CommentPromote.propTypes = {
-  commentId: PropTypes.string.isRequired
+  commentId: PropTypes.number.isRequired
 };
 
 export default React.memo(CommentPromote);

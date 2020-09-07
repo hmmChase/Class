@@ -75,12 +75,23 @@ export const deleteSoft = async (req, res, next) => {
   return res.json(commentRecord);
 };
 
-export const answer = async (req, res, next) => {
+export const answerPromote = async (req, res, next) => {
   const { commentId } = req.body;
 
   const commentRecord = await prisma.comment.update({
     where: { id: commentId },
     data: { isAnswer: true }
+  });
+
+  return res.json(commentRecord);
+};
+
+export const answerDemote = async (req, res, next) => {
+  const { commentId } = req.body;
+
+  const commentRecord = await prisma.comment.update({
+    where: { id: commentId },
+    data: { isAnswer: false }
   });
 
   return res.json(commentRecord);

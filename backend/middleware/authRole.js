@@ -1,13 +1,17 @@
 import { PrismaClient } from '@prisma/client';
+import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
 export const authRole = requiredRoles => {
   return async (req, res, next) => {
-    const decodedJWT = req.jwt;
+    const user = jwt.verify(
+      req.cookies.jwt,
+      Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64')
+    );
 
     const userRecord = await prisma.user.findOne({
-      where: { id: decodedJWT.id }
+      where: { id: user.user.id }
     });
 
     const { role } = userRecord;

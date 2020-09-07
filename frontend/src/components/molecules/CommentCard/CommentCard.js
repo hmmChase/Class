@@ -4,7 +4,6 @@ import AppContext from '../../../context/app';
 import * as sc from './CommentCard.style';
 
 const CommentCard = props => {
-  console.log('props:', props);
   const { currentUser } = useContext(AppContext);
 
   return (

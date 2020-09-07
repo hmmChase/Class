@@ -3,20 +3,25 @@ import React from 'react';
 import useDropdown from '../../../utils/useDropdown';
 import CommentDelete from '../CommentDelete/CommentDelete';
 import CommentPromote from '../CommentPromote/CommentPromote';
+import CommentDemote from '../CommentDemote/CommentDemote';
 import * as sc from './DropdownComment.style';
 
 const DropdownComment = props => {
   const [isDropdownOpen, setDropdownDisplay] = useDropdown();
 
   return (
-    <sc.Dropdown className={props.className} onClick={setDropdownDisplay}>
+    <sc.Container className={props.className} onClick={setDropdownDisplay}>
       <sc.Button isDropdownOpen={isDropdownOpen}>...</sc.Button>
 
       {isDropdownOpen && (
         <sc.Body>
           <sc.Ul>
             <sc.Li>
-              <CommentPromote />
+              {props.isAnswer ? (
+                <CommentDemote commentId={props.commentId} />
+              ) : (
+                <CommentPromote commentId={props.commentId} />
+              )}
             </sc.Li>
 
             <sc.Li>
@@ -28,7 +33,7 @@ const DropdownComment = props => {
           </sc.Ul>
         </sc.Body>
       )}
-    </sc.Dropdown>
+    </sc.Container>
   );
 };
 

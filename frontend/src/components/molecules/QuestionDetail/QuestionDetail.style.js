@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: ${props => props.theme.colors.backgrounds.features};
   height: 100%;
   display: flex;
   flex-direction: column;

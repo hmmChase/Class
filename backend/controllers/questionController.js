@@ -26,10 +26,7 @@ export const getChallengeQuestions = async (req, res, next) => {
   const { challengePath } = req.params;
 
   const questions = await prisma.question.findMany({
-    where: {
-      challenge: { path: challengePath },
-      comments: { deletedAt: null }
-    },
+    where: { challenge: { path: challengePath }, deletedAt: null },
     include: { author: true, comments: true },
     orderBy: { id: 'desc' }
   });

@@ -13,7 +13,7 @@ const CommentDelete = props => {
 };
 
 CommentDelete.propTypes = {
-  commentId: PropTypes.string.isRequired
+  commentId: PropTypes.number.isRequired
 };
 
 export default React.memo(CommentDelete);
