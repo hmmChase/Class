@@ -1,38 +1,40 @@
 import styled from 'styled-components';
-import DropdownComment from '../DropdownComment/DropdownComment';
 
 export const Container = styled.li`
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 0 1rem 1rem;
 `;
 
-export const Flex = styled.div`
+export const Row = styled.div`
   display: flex;
-  margin-bottom: 0.5rem;
+  justify-content: space-between;
+`;
+
+export const Group = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
 export const Author = styled.span`
   color: ${props => props.theme.colors.text.primaryText};
   font-size: 0.9rem;
-  margin-right: 0.5rem;
+  padding: 1rem 0;
 `;
 
 export const Timestamp = styled.span`
-  font-size: 0.9rem;
   color: ${props => props.theme.colors.text.terciaryText};
-  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  padding: 1rem 0;
 `;
 
 export const CreatedAt = styled.span`
-  font-size: 0.9rem;
   color: ${props => props.theme.colors.text.terciaryText};
-  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  padding: 1rem 0;
 `;
 
-export const DropdownCommentt = styled(DropdownComment)`
-  margin-left: auto;
-`;
-
-export const Body = styled.p`
+export const Body = styled.span`
   color: ${props => props.theme.colors.text.secondaryText};
-  margin: 0;
 `;

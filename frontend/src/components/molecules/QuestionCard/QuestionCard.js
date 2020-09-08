@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
 import AppContext from '../../../context/app';
+import DropdownEllipsis from '../DropdownQuestion/DropdownQuestion';
 import * as sc from './QuestionCard.style';
 
 const QuestionCard = props => {
@@ -11,20 +12,22 @@ const QuestionCard = props => {
   return (
     <sc.Container className={props.className}>
       <sc.Row>
-        <sc.Author>{props.authorName}</sc.Author>
+        <sc.Group>
+          <sc.Author>{props.authorName}</sc.Author>
 
-        <sc.Created>{props.createdAt}</sc.Created>
+          <sc.Created>{props.createdAt}</sc.Created>
+        </sc.Group>
 
-        <sc.RightSide>
+        <sc.GroupTopRight>
           {props.isAnswered && <sc.Answeredd />}
 
           {currentUser.role === 'TEACHER' && (
-            <sc.DropdownEllipsiss
+            <DropdownEllipsis
               questionId={props.questionId}
               handleDeleteQuestion={props.handleDeleteQuestion}
             />
           )}
-        </sc.RightSide>
+        </sc.GroupTopRight>
       </sc.Row>
 
       <sc.Row>
@@ -32,17 +35,19 @@ const QuestionCard = props => {
       </sc.Row>
 
       <sc.Row>
-        {!!props.answerCount && (
-          <sc.AnswerCount>{`${props.answerCount} Answer${
-            props.answerCount > 1 ? 's' : ''
-          }`}</sc.AnswerCount>
-        )}
+        <sc.Group>
+          {!!props.answerCount && (
+            <sc.AnswerCount>{`${props.answerCount} Answer${
+              props.answerCount > 1 ? 's' : ''
+            }`}</sc.AnswerCount>
+          )}
 
-        {!!props.commentCount && (
-          <sc.CommentCount>{`${props.commentCount} Comment${
-            props.commentCount > 1 ? 's' : ''
-          }`}</sc.CommentCount>
-        )}
+          {!!props.commentCount && (
+            <sc.CommentCount>{`${props.commentCount} Comment${
+              props.commentCount > 1 ? 's' : ''
+            }`}</sc.CommentCount>
+          )}
+        </sc.Group>
 
         <Link to={`/${challengePath}/${props.questionId}`}>
           <sc.ViewQuestion>View Question</sc.ViewQuestion>
