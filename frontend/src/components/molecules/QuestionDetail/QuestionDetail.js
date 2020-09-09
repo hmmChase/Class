@@ -25,7 +25,9 @@ const QuestionDetail = props => {
 
   const [commentDelete] = useFetch('/comment/delete-soft');
 
-  const [promoteAnswer] = useFetch('/comment/answer-promote');
+  const [unsetAnswer] = useFetch('/comment/answer-demote');
+
+  const [setAnswer] = useFetch('/comment/answer-promote');
 
   useEffect(() => {
     (async () => {
@@ -52,12 +54,6 @@ const QuestionDetail = props => {
     setComments(updatedComments);
   };
 
-  const setAsAnswer = async commentId => {
-    const updatedComments = await promoteAnswer({ commentId });
-
-    setComments(updatedComments);
-  };
-
   const handleDeleteComment = async commentId => {
     await commentDelete({ commentId });
 
@@ -66,6 +62,18 @@ const QuestionDetail = props => {
     );
 
     setComments(filteredComments);
+  };
+
+  const demoteAnswer = async commentId => {
+    const updatedComments = await unsetAnswer({ commentId });
+
+    setComments(updatedComments);
+  };
+
+  const promoteAnswer = async commentId => {
+    const updatedComments = await setAnswer({ commentId });
+
+    setComments(updatedComments);
   };
 
   return (
@@ -78,13 +86,14 @@ const QuestionDetail = props => {
             comments={comments}
             questionId={props.questionId}
             handleDeleteComment={handleDeleteComment}
+            demoteAnswer={demoteAnswer}
           />
 
           <Comments
             comments={comments}
             questionId={props.questionId}
             handleDeleteComment={handleDeleteComment}
-            setAsAnswer={setAsAnswer}
+            promoteAnswer={promoteAnswer}
           />
 
           {currentUser && currentUser.id && (

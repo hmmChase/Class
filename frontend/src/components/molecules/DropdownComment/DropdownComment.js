@@ -2,8 +2,6 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import useDropdown from '../../../utils/useDropdown';
 import CommentDelete from '../CommentDelete/CommentDelete';
-import CommentPromote from '../CommentPromote/CommentPromote';
-import CommentDemote from '../CommentDemote/CommentDemote';
 import * as sc from './DropdownComment.style';
 
 const DropdownComment = props => {
@@ -18,11 +16,13 @@ const DropdownComment = props => {
           <sc.Ul>
             <sc.Li>
               {props.isAnswer ? (
-                <CommentDemote commentId={props.commentId} />
+                <sc.Span onClick={() => props.demoteAnswer(props.commentId)}>
+                  Demote from Answer
+                </sc.Span>
               ) : (
-                <span onClick={() => props.setAsAnswer(props.commentId)}>
+                <sc.Span onClick={() => props.promoteAnswer(props.commentId)}>
                   Promote as Answer
-                </span>
+                </sc.Span>
               )}
             </sc.Li>
 

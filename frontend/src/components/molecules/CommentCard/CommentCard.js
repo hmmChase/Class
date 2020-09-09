@@ -22,7 +22,7 @@ const CommentCard = props => {
           <DropdownComment
             commentId={props.commentId}
             handleDeleteComment={props.handleDeleteComment}
-            setAsAnswer={props.setAsAnswer}
+            promoteAnswer={props.promoteAnswer}
           />
         )}
       </sc.Row>

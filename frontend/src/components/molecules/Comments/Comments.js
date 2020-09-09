@@ -15,7 +15,7 @@ const Comments = props => {
           createdAt={formatDate(comment.createdAt)}
           body={comment.body}
           handleDeleteComment={props.handleDeleteComment}
-          setAsAnswer={props.setAsAnswer}
+          promoteAnswer={props.promoteAnswer}
         />
       );
 

@@ -83,8 +83,6 @@ export const answerPromote = async (req, res, next) => {
     data: { isAnswer: true }
   });
 
-  console.log('commentRecord:', commentRecord);
-
   const updatedComments = await prisma.comment.findMany({
     where: {
       question: { id: parseInt(commentRecord.question_id) },

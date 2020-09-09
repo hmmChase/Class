@@ -26,6 +26,7 @@ const AnswerCard = props => {
               commentId={props.commentId}
               isAnswer={props.isAnswer}
               handleDeleteComment={props.handleDeleteComment}
+              demoteAnswer={props.demoteAnswer}
             />
           )}
         </sc.Row>

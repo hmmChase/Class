@@ -16,6 +16,7 @@ const Answers = props => {
           body={comment.body}
           isAnswer={comment.isAnswer}
           handleDeleteComment={props.handleDeleteComment}
+          demoteAnswer={props.demoteAnswer}
         />
       );
 
