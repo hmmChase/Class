@@ -5,17 +5,19 @@ export const Container = styled.div`
   display: flex;
   height: 2.5rem;
   /* justify-content: center; */
+  background-color: ${props => props.theme.colors.backgrounds.features};
   align-items: center;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 `;
 
 export const AddInput = styled.input`
   width: 100%;
-  background-color: ${props => props.theme.colors.backgrounds.features};
   border: none;
   height: 2.5rem;
   padding: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
   color: ${props => props.theme.colors.text.secondaryText};
+  background-color: ${props => props.theme.colors.backgrounds.features};
 
   :focus {
     outline: none;

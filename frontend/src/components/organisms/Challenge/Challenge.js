@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useFetch from '../../../api/useFetch';
-import Title from '../../atoms/Title/Title';
 import Label from '../../atoms/Label/Label';
 import Desc from '../../atoms/Desc/Desc';
 import * as sc from './Challenge.style';
@@ -28,7 +27,7 @@ const Challenge = props => {
     <sc.Container className={props.className}>
       <Label>CHALLENGE</Label>
 
-      <Title>{challenge.title}</Title>
+      <sc.Titlee>{challenge.title}</sc.Titlee>
 
       <sc.Video>
         <iframe

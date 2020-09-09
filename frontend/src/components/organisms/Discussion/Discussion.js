@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../../api/useFetch';
-
 import AppContext from '../../../context/app';
 import QuestionDetail from '../../molecules/QuestionDetail/QuestionDetail';
 import Questions from '../../molecules/Questions/Questions';
@@ -54,11 +53,11 @@ const Discussion = props => {
       <sc.Heading>
         <Label>DISCUSSION</Label>
 
-        <sc.Title>
+        <sc.Titlee>
           {currentUser.role === 'TEACHER'
             ? 'Challenge Questions'
             : 'Ask a Question'}
-        </sc.Title>
+        </sc.Titlee>
 
         {questionId && <sc.BtnBackk challengePath={challengePath} />}
 

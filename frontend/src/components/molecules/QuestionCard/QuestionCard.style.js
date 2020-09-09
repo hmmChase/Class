@@ -19,12 +19,12 @@ export const Row = styled.div`
   justify-content: space-between;
 `;
 
-export const Group = styled.span`
+export const Group = styled.div`
   display: flex;
   gap: 1rem;
 `;
 
-export const GroupTopRight = styled.span`
+export const GroupTopRight = styled.div`
   display: flex;
 `;
 

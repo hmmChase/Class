@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import QuestionNew from '../../molecules/QuestionNew/QuestionNew';
 import BtnBack from '../../molecules/BtnBack/BtnBack';
+import Title from '../../atoms/Title/Title';
 
 export const Container = styled.section`
   background-color: ${props => props.theme.colors.backgrounds.widgetsHeader};
@@ -11,10 +12,6 @@ export const Container = styled.section`
   height: 100%;
   /* max-height: 800px; */
   /* overflow: auto; */
-
-  /* p {
-    color: ${props => props.theme.colors.text.secondaryText};
-  } */
 `;
 
 export const Heading = styled.div`
@@ -22,11 +19,8 @@ export const Heading = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const Title = styled.h3`
+export const Titlee = styled(Title)`
   color: ${props => props.theme.colors.buttons.actionButton};
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: clamp(1.2rem, 4vw, 1.8rem);
-  margin: 0;
 `;
 
 export const BtnBackk = styled(BtnBack)`

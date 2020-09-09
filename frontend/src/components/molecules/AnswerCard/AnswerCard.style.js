@@ -31,7 +31,6 @@ export const Answeredd = styled(Answered)`
 `;
 
 export const Author = styled.span`
-  color: ${props => props.theme.colors.text.primaryText};
   font-size: 0.9rem;
   padding: 1rem 0;
 `;

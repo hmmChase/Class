@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import AppContext from '../../../context/app';
-
 import useFetch from '../../../api/useFetch';
-// import formatDate from '../../utils/formatDate';
 import Comments from '../Comments/Comments';
 import QuestionDetailCard from '../QuestionDetailCard/QuestionDetailCard';
-import CommentAdd from '../CommentCreate/CommentCreate';
+import CommentCreate from '../CommentCreate/CommentCreate';
 import Answers from '../Answers/Answers';
 import * as sc from './QuestionDetail.style';
 
@@ -83,7 +81,7 @@ const QuestionDetail = props => {
           />
 
           {currentUser && currentUser.id && (
-            <CommentAdd
+            <CommentCreate
               questionId={props.questionId}
               handleCreateComment={handleCreateComment}
             />
