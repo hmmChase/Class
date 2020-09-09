@@ -80,7 +80,10 @@ const QuestionDetail = props => {
     <sc.Container className={props.className}>
       {question && question.id && (
         <>
-          <QuestionDetailCard question={question} />
+          <QuestionDetailCard
+            question={question}
+            handleDeleteQuestion={props.handleDeleteQuestion}
+          />
 
           <Answers
             comments={comments}

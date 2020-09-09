@@ -1,71 +1,75 @@
 import styled from 'styled-components';
 
-export const Dropdown = styled.div`
+export const Container = styled.div`
   position: relative;
-  /* display: inline-block; */
-  /* width: 200px; */
+  cursor: pointer;
+  color: ${props => props.theme.colors.buttons.iconDefault};
 `;
 
 export const Button = styled.div`
-  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  background-color: ${props =>
+    props.isDropdownOpen ? props.theme.colors.backgrounds.fullApp : 'inherit'};
+  padding: 10px 20px;
+  color: ${props =>
+    props.isDropdownOpen ? props.theme.colors.text.primaryText : 'inherit'};
 
-  /* padding: 12px; */
-  /* border-radius: 5px; */
-  /* font-weight: bold; */
-  /* color: white; */
+  /* vertical-align: middle; */
+  /* text-align: center; */
+  /* border-top-right-radius: 10px; */
 
-  /* :before {
-    content: '';
-    position: absolute;
-    width: 0px;
-    height: 0px;
-    border: 10px solid;
-    border-color: white transparent transparent transparent;
-    right: 6px;
-    top: 18px;
-  } */
+  :hover {
+    color: ${props => props.theme.colors.text.primaryText};
+  }
 `;
 
-// export const Ul = styled.ul`
-//   list-style-type: none;
-//   margin: 0;
-//   padding: 0;
-//   top: 45px;
-//   right: 0px;
-//   /* width: 200px; */
-//   background-color: white;
-//   font-weight: bold;
-//   position: absolute;
-//   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-//   z-index: 1;
+export const Body = styled.div`
+  /* list-style-type: none; */
+  margin: 0;
+  padding: 0;
+  /* top: 45px; */
+  right: 0px;
+  width: 222px;
+  background-color: ${props => props.theme.colors.backgrounds.fullApp};
+  position: absolute;
+  /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
+  /* z-index: 1; */
+`;
 
-//   li {
-//     padding: 8px 16px;
-//     border-bottom: 1px solid #e5e5e5;
-//     color: blue;
+export const Ul = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
 
-//     :last-child {
-//       border-bottom: none;
-//     }
+export const Li = styled.li`
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0.5rem;
 
-//     :hover {
-//       background-color: #e5e5e5;
-//       color: white;
-//     }
-//   }
-// `;
+  :last-child {
+    border-bottom: none;
+  }
+`;
 
-// export const Li = styled.li`
-//   padding: 8px 16px;
-//   border-bottom: 1px solid #e5e5e5;
-//   color: blue;
+export const P = styled.p`
+  padding: 0 1rem;
 
-//   :last-child {
-//     border-bottom: none;
-//   }
+  :hover {
+    color: ${props => props.theme.colors.text.primaryText};
+  }
+`;
 
-//   :hover {
-//     background-color: #e5e5e5;
-//     color: white;
-//   }
-// `;
+export const Span = styled.span`
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  /* border-bottom: 1px solid #e5e5e5; */
+
+  /* :last-child { */
+  /* border-bottom: none; */
+  /* } */
+
+  :hover {
+    color: ${props => props.theme.colors.text.primaryText};
+  }
+`;

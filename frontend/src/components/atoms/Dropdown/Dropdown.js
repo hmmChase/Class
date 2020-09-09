@@ -3,19 +3,19 @@ import React from 'react';
 import useDropdown from '../../../utils/useDropdown';
 import * as sc from './Dropdown.style';
 
-// not currently used
-
 const DropdownMenu = props => {
   const [isDropdownOpen, setDropdownDisplay] = useDropdown();
 
-  console.log('isDropdownOpen:', isDropdownOpen);
-
   return (
-    <sc.Dropdown className={props.className} onClick={setDropdownDisplay}>
-      <sc.Button isDropdownOpen={isDropdownOpen}>{props.button}</sc.Button>
+    <sc.Container className={props.className} onClick={setDropdownDisplay}>
+      <sc.Button isDropdownOpen={isDropdownOpen}>...</sc.Button>
 
-      {isDropdownOpen && <div>{props.dropdown}</div>}
-    </sc.Dropdown>
+      {isDropdownOpen && (
+        <sc.Body>
+          <sc.Ul>{props.children}</sc.Ul>
+        </sc.Body>
+      )}
+    </sc.Container>
   );
 };
 

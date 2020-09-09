@@ -67,7 +67,11 @@ const Discussion = props => {
       </sc.Heading>
 
       {questionId ? (
-        <QuestionDetail questionId={questionId} setQuestions={setQuestions} />
+        <QuestionDetail
+          questionId={questionId}
+          setQuestions={setQuestions}
+          handleDeleteQuestion={handleDeleteQuestion}
+        />
       ) : (
         <Questions
           questions={questions}

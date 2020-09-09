@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
 import AppContext from '../../../context/app';
-import DropdownEllipsis from '../DropdownQuestion/DropdownQuestion';
+import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
 import * as sc from './QuestionDetailCard.style';
 
 const QuestionDetailCard = props => {
@@ -18,7 +18,7 @@ const QuestionDetailCard = props => {
         </sc.Group>
 
         {currentUser.role === 'TEACHER' && (
-          <DropdownEllipsis
+          <DropdownQuestion
             questionId={props.questionId}
             handleDeleteQuestion={props.handleDeleteQuestion}
           />

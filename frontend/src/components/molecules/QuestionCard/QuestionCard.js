@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
 import AppContext from '../../../context/app';
-import DropdownEllipsis from '../DropdownQuestion/DropdownQuestion';
+import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
 import * as sc from './QuestionCard.style';
 
 const QuestionCard = props => {
@@ -22,7 +22,7 @@ const QuestionCard = props => {
           {props.isAnswered && <sc.Answeredd />}
 
           {currentUser.role === 'TEACHER' && (
-            <DropdownEllipsis
+            <DropdownQuestion
               questionId={props.questionId}
               handleDeleteQuestion={props.handleDeleteQuestion}
             />
