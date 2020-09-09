@@ -20,7 +20,9 @@ const DropdownComment = props => {
               {props.isAnswer ? (
                 <CommentDemote commentId={props.commentId} />
               ) : (
-                <CommentPromote commentId={props.commentId} />
+                <span onClick={() => props.setAsAnswer(props.commentId)}>
+                  Promote as Answer
+                </span>
               )}
             </sc.Li>
 

@@ -25,6 +25,8 @@ const QuestionDetail = props => {
 
   const [commentDelete] = useFetch('/comment/delete-soft');
 
+  const [promoteAnswer] = useFetch('/comment/answer-promote');
+
   useEffect(() => {
     (async () => {
       const dataQuestion = await getQuestion();
@@ -50,9 +52,13 @@ const QuestionDetail = props => {
     setComments(updatedComments);
   };
 
-  const handleDeleteComment = async commentId => {
-    console.log('commentId:', commentId);
+  const setAsAnswer = async commentId => {
+    const updatedComments = await promoteAnswer({ commentId });
 
+    setComments(updatedComments);
+  };
+
+  const handleDeleteComment = async commentId => {
     await commentDelete({ commentId });
 
     const filteredComments = comments.filter(
@@ -78,6 +84,7 @@ const QuestionDetail = props => {
             comments={comments}
             questionId={props.questionId}
             handleDeleteComment={handleDeleteComment}
+            setAsAnswer={setAsAnswer}
           />
 
           {currentUser && currentUser.id && (

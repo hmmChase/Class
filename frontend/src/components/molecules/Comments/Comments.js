@@ -15,15 +15,20 @@ const Comments = props => {
           createdAt={formatDate(comment.createdAt)}
           body={comment.body}
           handleDeleteComment={props.handleDeleteComment}
+          setAsAnswer={props.setAsAnswer}
         />
       );
+
+    return null;
   });
 
   return (
     <sc.Container className={props.className}>
       {/* <sc.Relative> */}
       {/* <sc.Absolute> */}
+
       <sc.CommentsList>{props.comments && commentCards}</sc.CommentsList>
+
       {/* </sc.Absolute> */}
       {/* </sc.Relative> */}
     </sc.Container>

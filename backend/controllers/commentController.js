@@ -34,12 +34,12 @@ export const getComment = async (req, res, next) => {
 export const getQuestionComments = async (req, res, next) => {
   const { questionId } = req.params;
 
-  const questions = await prisma.comment.findMany({
+  const comments = await prisma.comment.findMany({
     where: { question: { id: parseInt(questionId) }, deletedAt: null },
     include: { author: true }
   });
 
-  return res.json(questions);
+  return res.json(comments);
 };
 
 /* POST */
@@ -83,7 +83,17 @@ export const answerPromote = async (req, res, next) => {
     data: { isAnswer: true }
   });
 
-  return res.json(commentRecord);
+  console.log('commentRecord:', commentRecord);
+
+  const updatedComments = await prisma.comment.findMany({
+    where: {
+      question: { id: parseInt(commentRecord.question_id) },
+      deletedAt: null
+    },
+    include: { author: true }
+  });
+
+  return res.json(updatedComments);
 };
 
 export const answerDemote = async (req, res, next) => {
@@ -94,5 +104,13 @@ export const answerDemote = async (req, res, next) => {
     data: { isAnswer: false }
   });
 
-  return res.json(commentRecord);
+  const updatedComments = await prisma.comment.findMany({
+    where: {
+      question: { id: parseInt(commentRecord.question_id) },
+      deletedAt: null
+    },
+    include: { author: true }
+  });
+
+  return res.json(updatedComments);
 };

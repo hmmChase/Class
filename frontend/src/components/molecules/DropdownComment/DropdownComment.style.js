@@ -26,11 +26,11 @@ export const Button = styled.div`
 
 export const Body = styled.div`
   /* list-style-type: none; */
-  /* margin: 0; */
-  /* padding: 0; */
+  margin: 0;
+  padding: 0;
   /* top: 45px; */
   right: 0px;
-  width: 200px;
+  width: 222px;
   background-color: ${props => props.theme.colors.backgrounds.fullApp};
   position: absolute;
   /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
@@ -39,10 +39,14 @@ export const Body = styled.div`
 
 export const Ul = styled.ul`
   list-style: none;
+  margin: 0;
+  padding: 0;
 `;
 
 export const Li = styled.li`
   border-bottom: 1px solid #e5e5e5;
+  font-size: 0.9rem;
+  padding: 0.5rem;
 
   :last-child {
     border-bottom: none;
