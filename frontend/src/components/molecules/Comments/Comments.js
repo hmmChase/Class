@@ -24,13 +24,11 @@ const Comments = props => {
 
   return (
     <sc.Container className={props.className}>
-      {/* <sc.Relative> */}
-      {/* <sc.Absolute> */}
-
-      <sc.CommentsList>{props.comments && commentCards}</sc.CommentsList>
-
-      {/* </sc.Absolute> */}
-      {/* </sc.Relative> */}
+      <sc.Relative>
+        <sc.Absolute>
+          <sc.CommentsList>{props.comments && commentCards}</sc.CommentsList>
+        </sc.Absolute>
+      </sc.Relative>
     </sc.Container>
   );
 };

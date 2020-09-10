@@ -7,11 +7,9 @@ export const Container = styled.section`
   background-color: ${props => props.theme.colors.backgrounds.widgetsHeader};
   box-shadow: 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.1);
   padding: 1.5rem 0.5rem 0.5rem 0.5rem;
-  /* display: flex;
-  flex-direction: column; */
-  height: 100%;
-  /* max-height: 800px; */
-  /* overflow: auto; */
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Heading = styled.div`

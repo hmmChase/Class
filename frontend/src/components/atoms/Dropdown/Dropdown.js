@@ -11,9 +11,9 @@ const DropdownMenu = props => {
       <sc.Button isDropdownOpen={isDropdownOpen}>...</sc.Button>
 
       {isDropdownOpen && (
-        <sc.Body>
+        <sc.Dropdown>
           <sc.Ul>{props.children}</sc.Ul>
-        </sc.Body>
+        </sc.Dropdown>
       )}
     </sc.Container>
   );

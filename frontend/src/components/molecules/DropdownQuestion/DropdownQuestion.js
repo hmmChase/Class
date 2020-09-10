@@ -6,9 +6,11 @@ import * as sc from './DropdownQuestion.style';
 const DropdownQuestion = props => (
   <sc.Container className={props.className}>
     <Dropdown>
-      <sc.Span onClick={() => props.handleDeleteQuestion(props.questionId)}>
-        Remove Post
-      </sc.Span>
+      <sc.Li>
+        <sc.Span onClick={() => props.handleDeleteQuestion(props.questionId)}>
+          Remove Post
+        </sc.Span>
+      </sc.Li>
     </Dropdown>
   </sc.Container>
 );

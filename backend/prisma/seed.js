@@ -81,7 +81,7 @@ const main = async () => {
     }
   });
 
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 10; i++) {
     const twoOrThree = Math.floor(Math.random() * 2) + 2;
     const oneOrTwo = Math.floor(Math.random() * 2) + 1;
 
@@ -104,7 +104,7 @@ const main = async () => {
     }
   });
 
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 10; i++) {
     const oneThroughFive = Math.floor(Math.random() * 5) + 1;
     const twoOrThree = Math.floor(Math.random() * 2) + 2;
 
@@ -128,5 +128,5 @@ main()
   .finally(async () => {
     console.log('Seeding complete.');
 
-    await prisma.disconnect();
+    await prisma.$disconnect();
   });

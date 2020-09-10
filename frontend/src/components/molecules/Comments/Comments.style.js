@@ -7,14 +7,14 @@ export const Container = styled.div`
 `;
 
 export const Relative = styled.div`
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 800px) {
     position: relative;
     height: 100%;
   }
 `;
 
 export const Absolute = styled.div`
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 800px) {
     position: absolute;
     width: 100%;
     height: 100%;
