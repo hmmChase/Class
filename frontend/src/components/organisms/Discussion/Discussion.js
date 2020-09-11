@@ -1,7 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import useFetch from '../../../api/useFetch';
 import AppContext from '../../../context/app';
 import QuestionDetail from '../../molecules/QuestionDetail/QuestionDetail';
 import Questions from '../../molecules/Questions/Questions';
@@ -11,42 +10,7 @@ import * as sc from './Discussion.style';
 const Discussion = props => {
   const [questions, setQuestions] = useState([]);
   const { currentUser } = useContext(AppContext);
-  const { challengePath, questionId } = useParams();
-
-  const [getQuestions, loading, error] = useFetch(
-    `/question/challenge/${challengePath}`
-  );
-
-  const [createQuestion] = useFetch(`/question/create/${challengePath}`);
-
-  const [deleteQuestion] = useFetch('/question/delete-soft');
-
-  const handleCreateQuestion = async (title, body) => {
-    const newQuestion = await createQuestion({ title, body });
-
-    const updatedQuestions = [newQuestion, ...questions];
-
-    setQuestions(updatedQuestions);
-  };
-
-  const handleDeleteQuestion = async questionId => {
-    await deleteQuestion({ questionId });
-
-    const filteredQuestions = questions.filter(
-      question => question.id !== questionId
-    );
-
-    setQuestions(filteredQuestions);
-  };
-
-  useEffect(() => {
-    (async () => {
-      const gotQuestions = await getQuestions();
-
-      if (!loading && !error && gotQuestions) setQuestions(gotQuestions);
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { questionId } = useParams();
 
   return (
     <sc.Container className={props.className}>
@@ -59,24 +23,17 @@ const Discussion = props => {
             : 'Ask a Question'}
         </sc.Titlee>
 
-        {questionId && <sc.BtnBackk challengePath={challengePath} />}
+        {questionId && <sc.BtnBackk />}
 
         {currentUser.role === 'STUDENT' && !questionId && (
-          <sc.QuestionNeww handleCreateQuestion={handleCreateQuestion} />
+          <sc.QuestionNeww questions={questions} setQuestions={setQuestions} />
         )}
       </sc.Heading>
 
       {questionId ? (
-        <QuestionDetail
-          questionId={questionId}
-          setQuestions={setQuestions}
-          handleDeleteQuestion={handleDeleteQuestion}
-        />
+        <QuestionDetail questionId={questionId} />
       ) : (
-        <Questions
-          questions={questions}
-          handleDeleteQuestion={handleDeleteQuestion}
-        />
+        <Questions questions={questions} setQuestions={setQuestions} />
       )}
     </sc.Container>
   );

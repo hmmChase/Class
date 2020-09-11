@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
-// import { useParams } from 'react-router-dom';
-// import useFetch from '../../../api/useFetch';
+import { useParams } from 'react-router-dom';
+import useFetch from '../../../api/useFetch';
 import * as sc from './QuestionCreate.style';
 
 const QuestionCreate = props => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const { challengePath } = useParams();
+
+  const [createQuestion] = useFetch(`/question/create/${challengePath}`);
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    props.handleCreateQuestion(title, body);
+    const newQuestion = await createQuestion({ title, body });
+
+    const updatedQuestions = [newQuestion, ...props.questions];
+
+    props.setQuestions(updatedQuestions);
 
     props.close();
   };

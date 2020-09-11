@@ -30,16 +30,6 @@ export const getChallengeByPath = async (req, res, next) => {
   return res.json(challenge);
 };
 
-// export const getChallengeQuestions = async (req, res, next) => {
-//   const { challengePath } = req.params;
-
-//   const questions = await prisma.challenge.findMany({
-//     where: { challenge: { path: challengePath } }
-//   });
-
-//   return res.json(questions);
-// };
-
 /* POST */
 
 export const create = async (req, res, next) => {

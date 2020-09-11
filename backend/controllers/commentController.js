@@ -19,18 +19,6 @@ export const getComment = async (req, res, next) => {
   return res.json(comment);
 };
 
-// export const getCommentsForQuestion = async (req, res, next) => {
-//   const { questionId } = req.params;
-
-//   const comments = await prisma.comment.findMany({
-//     where: { question: { id: parseInt(questionId) } },
-//     orderBy: { id: 'desc' },
-//     include: { author: true }
-//   });
-
-//   return res.json(comments);
-// };
-
 export const getQuestionComments = async (req, res, next) => {
   const { questionId } = req.params;
 

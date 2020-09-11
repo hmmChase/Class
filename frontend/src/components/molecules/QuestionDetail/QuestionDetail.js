@@ -21,6 +21,8 @@ const QuestionDetail = props => {
     `/comment/question/${props.questionId}`
   );
 
+  const [deleteQuestion] = useFetch('/question/delete-soft');
+
   const [commentCreate] = useFetch('/comment/create');
 
   const [commentDelete] = useFetch('/comment/delete-soft');
@@ -76,13 +78,17 @@ const QuestionDetail = props => {
     setComments(updatedComments);
   };
 
+  const handleDeleteQuestion = async () => {
+    await deleteQuestion({ questionId: props.questionId });
+  };
+
   return (
     <sc.Container className={props.className}>
       {question && question.id && (
         <>
           <QuestionDetailCard
             question={question}
-            handleDeleteQuestion={props.handleDeleteQuestion}
+            handleDeleteQuestion={handleDeleteQuestion}
           />
 
           <Answers

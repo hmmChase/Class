@@ -9,7 +9,6 @@ const SignUpEmail = () => {
   const [username, setUsername] = useState('');
   const [isTeacher, setIsTeacher] = useState(false);
   const { setCurrentUser } = useContext(AppContext);
-  // const history = useHistory();
   const [getData, loading, error] = useFetch('/user/signup');
 
   const onSubmit = async e => {
