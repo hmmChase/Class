@@ -31,51 +31,47 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <AppContext.Provider value={{ currentUser, setCurrentUser }}>
-        <Router>
-          <div>
-            <Switch>
-              <Route path='/:challengePath/:questionId'>
-                <ChallengePage />
-              </Route>
+    <AppContext.Provider value={{ currentUser, setCurrentUser }}>
+      <Router>
+        <Switch>
+          <Route path='/:challengePath/:questionId'>
+            <ChallengePage />
+          </Route>
 
-              <Route path='/:challengePath'>
-                <ChallengePage />
-              </Route>
+          <Route path='/:challengePath'>
+            <ChallengePage />
+          </Route>
 
-              <Route path='/login'>
-                <LoginPage />
-              </Route>
+          <Route path='/login'>
+            <LoginPage />
+          </Route>
 
-              <Route path='/login-discord'>
-                <LoginDiscordPage />
-              </Route>
+          <Route path='/login-discord'>
+            <LoginDiscordPage />
+          </Route>
 
-              <Route path='/reset-password/:resetToken'>
-                <ResetPasswordPage />
-              </Route>
+          <Route path='/reset-password/:resetToken'>
+            <ResetPasswordPage />
+          </Route>
 
-              <Route path='/reset-password'>
-                <ResetPasswordPage />
-              </Route>
+          <Route path='/reset-password'>
+            <ResetPasswordPage />
+          </Route>
 
-              <Route path='/signup'>
-                <SignUpPage />
-              </Route>
+          <Route path='/signup'>
+            <SignUpPage />
+          </Route>
 
-              <Route path='/signup-discord'>
-                <SignUpDiscordPage />
-              </Route>
+          <Route path='/signup-discord'>
+            <SignUpDiscordPage />
+          </Route>
 
-              <Route path='/'>
-                <IndexPage />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
-      </AppContext.Provider>
-    </div>
+          <Route path='/'>
+            <IndexPage />
+          </Route>
+        </Switch>
+      </Router>
+    </AppContext.Provider>
   );
 };
 

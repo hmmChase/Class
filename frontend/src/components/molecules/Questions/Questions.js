@@ -67,13 +67,9 @@ const Questions = props => {
 
   return (
     <sc.Container className={props.className}>
-      <sc.Relative>
-        <sc.Absolute>
-          <sc.QuestionsList>
-            {props.questions.length > 0 && questionCards}
-          </sc.QuestionsList>
-        </sc.Absolute>
-      </sc.Relative>
+      <sc.QuestionsList>
+        {props.questions.length > 0 && questionCards}
+      </sc.QuestionsList>
     </sc.Container>
   );
 };

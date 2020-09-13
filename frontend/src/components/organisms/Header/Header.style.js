@@ -14,7 +14,7 @@ export const Container = styled.div`
   /* flex-grow: 1; */
   /* flex-basis: 1; */
 
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 720px) {
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }

@@ -2,51 +2,9 @@ import styled from 'styled-components';
 import QuestionCard from '../QuestionCard/QuestionCard';
 
 export const Container = styled.div`
-  /* border-radius: 0.5rem; */
-  /* background-color: red; */
+  border-radius: 10px;
 
-  @media screen and (min-width: 800px) {
-    height: 100%;
-
-    overflow-y: auto;
-  }
-`;
-
-export const Relative = styled.div`
-  /* border-radius: 0.5rem; */
-
-  @media screen and (min-width: 800px) {
-    position: relative;
-
-    height: 100%;
-
-    overflow-y: auto;
-  }
-`;
-
-export const Absolute = styled.div`
-  @media screen and (min-width: 800px) {
-    position: absolute;
-    width: 100%;
-
-    height: 100%;
-
-    overflow-y: auto;
-  }
-`;
-
-export const QuestionsList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  /* border-radius: 0.5rem; */
-  /* background-color: red; */
-
-  @media screen and (min-width: 800px) {
-    /* width: 100%; */
-    height: 100%;
-
+  @media screen and (min-width: 720px) {
     overflow-y: auto;
 
     ::-webkit-scrollbar {
@@ -73,8 +31,21 @@ export const QuestionsList = styled.ul`
   }
 `;
 
+export const QuestionsList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
 export const QuestionCardd = styled(QuestionCard)`
-  :not(:last-child) {
-    margin-bottom: 0.5rem;
+  :first-child {
+    border-top-right-radius: 0;
+  }
+
+  :last-child {
+    border-bottom-right-radius: 0;
   }
 `;

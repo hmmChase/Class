@@ -7,16 +7,20 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 720px) {
     padding: 0 1rem;
     margin: 0 auto;
   }
 
-  @media screen and (min-width: 1200px) {
-    max-width: 1200px;
+  @media screen and (min-width: 1440px) {
+    max-width: 1440px;
   }
 `;
 
 export const Header = styled.header``;
 
-export const Main = styled.main``;
+export const Main = styled.main`
+  @media screen and (min-width: 720px) {
+    margin-bottom: 1rem;
+  }
+`;

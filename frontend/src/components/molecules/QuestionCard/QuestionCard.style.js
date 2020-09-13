@@ -3,7 +3,7 @@ import { ReactComponent as Answered } from '../../../images/answered.svg';
 
 export const Container = styled.li`
   background-color: ${props => props.theme.colors.backgrounds.cards};
-  border-radius: 0.5rem;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

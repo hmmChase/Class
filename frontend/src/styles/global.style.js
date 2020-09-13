@@ -6,6 +6,7 @@ export default createGlobalStyle`
 
   html {
     box-sizing: border-box;
+    ${'' /* height: 100%; */}
   }
 
   *, *:before, *:after {
@@ -18,5 +19,6 @@ export default createGlobalStyle`
     padding: 0;
     background: ${props => props.theme.colors.backgrounds.fullApp};
     color: ${props => props.theme.colors.text.primaryText};
+    ${'' /* height: 100%; */}
   }
 `;
