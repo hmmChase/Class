@@ -7,12 +7,12 @@ const LoginEmail = () => {
   const [email, setEmail] = useState('student1@email.com');
   const [password, setPassword] = useState('student1');
   const { setCurrentUser } = useContext(AppContext);
-  const [getData, loading, error] = useFetch('/user/login');
+  const [loginEmail, loading, error] = useFetch('/user/login');
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const data = await getData({ email, password });
+    const data = await loginEmail({ email, password });
 
     if (!loading && !error && data && data.user) setCurrentUser(data.user);
   };

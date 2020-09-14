@@ -6,12 +6,12 @@ import * as sc from './IconUser.style';
 
 const IconUser = () => {
   const { currentUser, setCurrentUser } = useContext(AppContext);
-  const [getData, loading, error] = useFetch('/user/logout');
+  const [logout, loading, error] = useFetch('/user/logout');
 
   const onClick = async e => {
     e.preventDefault();
 
-    await getData();
+    await logout();
 
     if (!loading && !error) setCurrentUser({});
   };

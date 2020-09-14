@@ -10,15 +10,15 @@ const Challenge = props => {
   const [challenge, setChallenge] = useState({});
   const { challengePath } = useParams();
 
-  const [getData, loading, error] = useFetch(
+  const [getChallenge, loading, error] = useFetch(
     `/challenge/path/${challengePath}`
   );
 
   useEffect(() => {
     (async () => {
-      const data = await getData();
+      const challengeData = await getChallenge();
 
-      if (!loading && !error && data) setChallenge(data);
+      if (!loading && !error && challengeData) setChallenge(challengeData);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

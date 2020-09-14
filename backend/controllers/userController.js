@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client';
 import crypto from 'crypto';
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
-import isEmail from 'isemail';
 import * as authService from '../services/authService';
 import * as userService from '../services/userService';
 import * as emailHandler from '../handlers/emailHandler';
@@ -47,30 +46,29 @@ export const getCurrentUser = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
-  const { email, password, username, role, avatarUrl } = req.body;
+  const { email, username, password } = req.body;
 
-  const notString = typeof email !== 'string';
-  if (notString) return res.status(400).json({ error: 'signup.notString' });
-
-  const emailNormalized = email.trim().toLowerCase();
-
-  const isvalid = isEmail.validate(email);
-
-  if (!isvalid) return res.status(400).json({ error: 'signup.invalidEmail' });
-
-  userService.signupUserByEmail(
-    emailNormalized,
-    password,
+  const createdUser = userService.signupUserByEmail(
+    res,
+    email,
     username,
-    role,
-    avatarUrl
+    password
   );
 
-  const { jwt, user } = userService.loginWithEmail(email, password);
+  const userJWT = { user: { id: createdUser.id } };
 
-  res.cookie('jwt', jwt, COOKIE_CONFIG);
+  const newJWT = authService.generateJWT(userJWT);
 
-  return res.json(user);
+  res.cookie('jwt', newJWT, COOKIE_CONFIG);
+
+  const userClientData = {
+    id: createdUser.id,
+    email: createdUser.email,
+    username: createdUser.username,
+    role: createdUser.role
+  };
+
+  return res.json(userClientData);
 };
 
 export const login = async (req, res) => {

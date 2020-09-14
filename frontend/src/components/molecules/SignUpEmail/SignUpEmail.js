@@ -7,17 +7,13 @@ const SignUpEmail = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const [isTeacher, setIsTeacher] = useState(false);
   const { setCurrentUser } = useContext(AppContext);
-  const [getData, loading, error] = useFetch('/user/signup');
+  const [signup, loading, error] = useFetch('/user/signup');
 
   const onSubmit = async e => {
     e.preventDefault();
 
-    const role = isTeacher ? 'TEACHER' : 'STUDENT';
-    const avatarUrl = 'http://picsum.photos/40';
-
-    const data = await getData({ email, password, username, role, avatarUrl });
+    const data = await signup({ email, password, username });
 
     if (!loading && !error && data && data.user) setCurrentUser(data.user);
   };
@@ -55,15 +51,6 @@ const SignUpEmail = () => {
           value={password}
           placeholder='Password'
           onChange={e => setPassword(e.target.value)}
-        />
-      </sc.Label>
-
-      <sc.Label>
-        Teacher?
-        <input
-          type='checkbox'
-          checked={isTeacher}
-          onChange={() => setIsTeacher(!isTeacher)}
         />
       </sc.Label>
 

@@ -8,11 +8,11 @@ import * as sc from './ChallengeList.style';
 const ChallengeList = props => {
   const [challenges, setChallenges] = useState([]);
 
-  const [getData] = useFetch('/challenge/all');
+  const [allChallenges] = useFetch('/challenge/all');
 
   useEffect(() => {
     (async () => {
-      const data = await getData();
+      const data = await allChallenges();
 
       if (data) setChallenges(data);
     })();

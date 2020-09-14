@@ -1,4 +1,15 @@
 import jwt from 'jsonwebtoken';
+import isEmail from 'isemail';
+
+export const validateEmail = (res, email) => {
+  const notString = typeof email !== 'string';
+
+  if (notString) return res.status(401).json({ error: 'email.invalid' });
+
+  const isvalid = isEmail.validate(email);
+
+  if (!isvalid) return res.status(401).json({ error: 'email.invalid' });
+};
 
 export const generateJWT = payload => {
   const secret = Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64');

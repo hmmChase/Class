@@ -4,12 +4,12 @@ import * as sc from './ResetPass.style';
 
 const ResetPass = props => {
   const [newPassword, setNewPassword] = useState('');
-  const [getData] = useFetch(`/user/reset-password/${props.resetToken}`);
+  const [resetPass] = useFetch(`/user/reset-password/${props.resetToken}`);
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    await getData({ newPassword });
+    await resetPass({ newPassword });
   };
 
   return (

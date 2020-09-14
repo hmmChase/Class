@@ -7,7 +7,7 @@ const LoginDiscord = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginError, setLoginError] = useState(null);
 
-  const [getData] = useFetch('/discord/signup');
+  const [signupDiscord] = useFetch('/discord/signup');
 
   // useEffect(() => {
   //   const code = getParameterByName('code');
@@ -24,7 +24,7 @@ const LoginDiscord = () => {
     const code = getParameterByName('code');
     const state = getParameterByName('state');
 
-    const user = await getData({ code, state });
+    const user = await signupDiscord({ code, state });
 
     if (user && user.id) setIsLoggedIn(true);
     if (user && user.message) setLoginError(user.message);

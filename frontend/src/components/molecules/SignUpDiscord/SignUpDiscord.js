@@ -5,11 +5,11 @@ import * as sc from './SignUpDiscord.style';
 const SignUpDiscord = () => {
   const [discordUrl, setDiscordUrl] = useState(undefined);
 
-  const [getData] = useFetch('/discord/url');
+  const [signupDiscord] = useFetch('/discord/url');
 
   useEffect(() => {
     (async () => {
-      const gotDiscordUrl = await getData();
+      const gotDiscordUrl = await signupDiscord();
 
       setDiscordUrl(gotDiscordUrl.discordUrl);
     })();
