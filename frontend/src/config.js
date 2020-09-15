@@ -2,7 +2,7 @@ export const API_VERSION = 'v1';
 
 export const BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? 'https://challenge-board.vercel.app'
+    ? 'https://challenge-board-backend.vercel.app'
     : 'http://localhost:4000';
 
 export const errorCodeToMessage = {
