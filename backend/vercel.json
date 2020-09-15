@@ -6,14 +6,14 @@
   },
   "builds": [
     {
-      "src": "backend/app.js",
+      "src": "app.js",
       "use": "@now/node-server"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/app.js"
+      "dest": "app.js"
     }
   ],
   "build": {
