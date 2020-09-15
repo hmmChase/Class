@@ -7,25 +7,30 @@ import ResetPassRequest from '../ResetPassRequest/ResetPassRequest';
 import LoginDiscord from '../LoginDiscord/LoginDiscord';
 import * as sc from './BtnLogIn.style';
 
-const BtnLogIn = props => {
+const BtnLogIn = () => {
   const [isModalOpen, toggleModal] = useModal();
 
   return (
     <>
       <sc.Buttonn onClick={toggleModal}>Log In</sc.Buttonn>
+
       {isModalOpen && (
         <Modal close={toggleModal}>
-          <p>Login Email</p>
+          <sc.Tabss
+            option1={{
+              title: 'SignUp Email',
+              body: (
+                <>
+                  <LoginEmail />
 
-          <LoginEmail />
+                  <p>Forgot Password?</p>
 
-          <p>Reset Pass Request</p>
-
-          <ResetPassRequest />
-
-          <p>Login Discord</p>
-
-          <LoginDiscord />
+                  <ResetPassRequest />
+                </>
+              )
+            }}
+            option2={{ title: 'Login Discord', body: <LoginDiscord /> }}
+          />
         </Modal>
       )}
     </>

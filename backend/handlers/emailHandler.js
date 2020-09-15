@@ -32,11 +32,13 @@ export const sendEmail = async options => {
 };
 
 export const sendEmailSignup = (email, username) => {
-  sendEmail({
+  const options = {
     subject: 'Welcome to the Challange Board!',
     filename: 'signupEmail',
-    user: { email, username }
-  });
+    user: { username, email }
+  };
+
+  sendEmail(options);
 };
 
 export const sendEmailPasswordReset = (email, resetPasswordUrl) => {

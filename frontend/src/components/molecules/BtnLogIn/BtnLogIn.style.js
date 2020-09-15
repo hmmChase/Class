@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '../../atoms/Button/Button';
+import Tabs from '../../atoms/Tabs/Tabs';
 
 export const Buttonn = styled(Button)`
   background-color: ${props => props.theme.colors.buttons.hover};
@@ -12,4 +13,9 @@ export const Buttonn = styled(Button)`
     background-color: ${props => props.theme.colors.text.secondaryText};
     color: ${props => props.theme.colors.buttons.actionButton};
   }
+`;
+
+export const Tabss = styled(Tabs)`
+  height: 300px;
+  width: 400px;
 `;

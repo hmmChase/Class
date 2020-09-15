@@ -12,9 +12,10 @@ const LoginEmail = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const data = await loginEmail({ email, password });
+    const currentUser = await loginEmail({ email, password });
 
-    if (!loading && !error && data && data.user) setCurrentUser(data.user);
+    if (!loading && !error && currentUser && currentUser.user)
+      setCurrentUser(currentUser.user);
   };
 
   return (

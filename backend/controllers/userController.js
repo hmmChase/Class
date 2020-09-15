@@ -46,27 +46,22 @@ export const getCurrentUser = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
-  const { email, username, password } = req.body;
+  const { username, email, password } = req.body;
 
-  const createdUser = userService.signupUserByEmail(
+  const createdUser = await userService.signupUserByEmail(
     res,
-    email,
     username,
+    email,
     password
   );
 
-  const userJWT = { user: { id: createdUser.id } };
+  const jwtData = { user: { id: createdUser.id } };
 
-  const newJWT = authService.generateJWT(userJWT);
+  const newJWT = authService.generateJWT(jwtData);
+
+  const userClientData = authService.userClientCleaner(createdUser);
 
   res.cookie('jwt', newJWT, COOKIE_CONFIG);
-
-  const userClientData = {
-    id: createdUser.id,
-    email: createdUser.email,
-    username: createdUser.username,
-    role: createdUser.role
-  };
 
   return res.json(userClientData);
 };
@@ -84,17 +79,15 @@ export const login = async (req, res) => {
   if (!isCorrectPass)
     return res.status(401).json({ error: 'login.invalidCredentials' });
 
-  const userJWT = { user: { id: userRecord.id } };
+  const jwtData = { user: { id: userRecord.id } };
 
-  const newJWT = authService.generateJWT(userJWT);
+  const newJWT = authService.generateJWT(jwtData);
 
-  const userClient = authService.userClientCleaner(userRecord);
-
-  // const { newJWT, userClient } = await userService.loginWithEmail(res, email, password);
+  const userClientData = authService.userClientCleaner(userRecord);
 
   res.cookie('jwt', newJWT, COOKIE_CONFIG);
 
-  return res.json(userClient);
+  return res.json(userClientData);
 };
 
 export const logout = async (req, res) => {

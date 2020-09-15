@@ -33,8 +33,6 @@ export const getParameterByName = (name, url) => {
 };
 
 export const getStateFromHeader = req => {
-  console.log('getStateFromHeader req: ', req);
-
   // if (req && req.headers) return cookie.parse(req.headers.cookie).state;
 
   if (req && req.headers) return req.cookies.state;
@@ -43,11 +41,8 @@ export const getStateFromHeader = req => {
 export const userClientCleaner = user => ({
   user: {
     id: user.id,
-    hasDiscordLogin: user.hasDiscordLogin,
-    role: user.role,
-    email: user.email,
     username: user.username,
-    name: user.name,
-    avatarUrl: user.avatarUrl
+    email: user.email,
+    role: user.role
   }
 });

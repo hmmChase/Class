@@ -5,12 +5,12 @@ import * as authService from '../services/authService';
 
 const prisma = new PrismaClient();
 
-export const signupUserByEmail = async (res, email, username, password) => {
+export const signupUserByEmail = async (res, username, email, password) => {
   const emailNormalized = email.trim().toLowerCase();
   const usernameNormalized = username.trim();
   const passwordHashed = await argon2.hash(password);
 
-  authService.validateEmail(res, emailNormalized);
+  // authService.validateEmail(res, emailNormalized);
 
   const user = {
     email: emailNormalized,
@@ -42,8 +42,8 @@ export const loginWithEmail = async (res, email, password) => {
 
   const userClientData = {
     id: createdUser.id,
-    email: createdUser.email,
     username: createdUser.username,
+    email: createdUser.email,
     role: createdUser.role
   };
 

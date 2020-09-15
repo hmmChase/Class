@@ -10,16 +10,17 @@ const SignUpEmail = () => {
   const { setCurrentUser } = useContext(AppContext);
   const [signup, loading, error] = useFetch('/user/signup');
 
-  const onSubmit = async e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    const data = await signup({ email, password, username });
+    const newUser = await signup({ username, email, password });
 
-    if (!loading && !error && data && data.user) setCurrentUser(data.user);
+    if (!loading && !error && newUser && newUser.user)
+      setCurrentUser(newUser.user);
   };
 
   return (
-    <sc.Form onSubmit={onSubmit}>
+    <sc.Form onSubmit={handleSubmit}>
       <sc.Label>
         Username:
         <input

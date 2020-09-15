@@ -34,8 +34,6 @@ const Questions = props => {
   }, []);
 
   const questionCards = props.questions.map(question => {
-    console.log('question.comments:', question.comments);
-
     const answerCount = question.comments.reduce((total, comment) => {
       if (comment.isAnswer) total++;
 
@@ -47,8 +45,6 @@ const Questions = props => {
 
       return total;
     }, 0);
-
-    // question.comments.length
 
     return (
       <sc.QuestionCardd

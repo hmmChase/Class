@@ -6,21 +6,19 @@ import SignUpEmail from '../SignUpEmail/SignUpEmail';
 import SignUpDiscord from '../SignUpDiscord/SignUpDiscord';
 import * as sc from './BtnSignUp.style';
 
-const BtnSignUp = props => {
+const BtnSignUp = () => {
   const [isModalOpen, toggleModal] = useModal();
 
   return (
     <>
       <sc.Buttonn onClick={toggleModal}>Sign Up</sc.Buttonn>
+
       {isModalOpen && (
         <Modal close={toggleModal}>
-          <p>SignUp Email</p>
-
-          <SignUpEmail />
-
-          <p>SignUp Discord</p>
-
-          <SignUpDiscord />
+          <sc.Tabss
+            option1={{ title: 'SignUp Email', body: <SignUpEmail /> }}
+            option2={{ title: 'SignUp Discord', body: <SignUpDiscord /> }}
+          />
         </Modal>
       )}
     </>

@@ -6,6 +6,7 @@ export const Container = styled.div`
   border-radius: 50%;
   height: 2rem;
   width: 2rem;
+  padding: 2px;
 
   :hover {
     background-color: ${props => props.theme.colors.text.primaryText};
@@ -16,11 +17,9 @@ export const IconUserDefined = styled.img`
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
-  padding: 2px;
 `;
 
 export const IconUserDefault = styled(UserSvg)`
   fill: ${props => props.theme.colors.backgrounds.widgetsHeader};
   border-radius: 50%;
 `;
-
