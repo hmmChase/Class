@@ -32,9 +32,6 @@ export const sendEmail = async options => {
 };
 
 export const sendEmailSignup = (username, email) => {
-  console.log('username:', username);
-  console.log('email:', email);
-
   const options = {
     subject: 'Welcome to the Challange Board!',
     filename: 'signupEmail',

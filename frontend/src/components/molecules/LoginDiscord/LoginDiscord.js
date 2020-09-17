@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import useFetch from '../../../api/useFetch';
 import getParameterByName from '../../../utils/getParameterByName';
-import Button from '../../atoms/Button/Button';
 import * as sc from './LoginDiscord.style';
 
 const LoginDiscord = () => {

@@ -35,17 +35,11 @@ export const createUserByDiscord = async code => {
     redirectUri: 'http://localhost:3000/login-discord'
   });
 
-  console.log('tokenResponse:', tokenResponse);
-
   // Now that we have the access_token, let's get some user information
   const discordUser = await oauth.getUser(tokenResponse.access_token);
 
-  console.log('discordUser:', discordUser);
-
   // authService will handle creating the user in the database for us
   const createdUser = await createUser(discordUser.username, discordUser.email);
-
-  console.log('createdUser:', createdUser);
 
   emailHandler.sendEmailSignup(
     createdUser.user.username,
@@ -54,12 +48,8 @@ export const createUserByDiscord = async code => {
 
   const jwtData = { user: { id: createdUser.user.id } };
 
-  console.log('jwtData:', jwtData);
-
   // // Create the JWT here, but let the controller set the cookie
   const jwt = authService.generateJWT(jwtData);
-
-  console.log('jwt:', jwt);
 
   return { jwt, user: createdUser };
 };

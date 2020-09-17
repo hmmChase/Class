@@ -43,9 +43,6 @@ export const authenticateUser = async (req, res) => {
   // // By taking this out of the controller function, we keep our responsibilities low
   const { user, jwt } = await discordService.createUserByDiscord(code);
 
-  console.log('jwt:', jwt);
-  console.log('user:', user);
-
   // We're good. Let's log them in with a JWT
   res.cookie('jwt', jwt, COOKIE_CONFIG);
 
