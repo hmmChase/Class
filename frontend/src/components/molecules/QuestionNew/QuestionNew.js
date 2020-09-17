@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useModal from '../../../utils/useModal';
-import Button from '../../atoms/Button/Button';
 import Modal from '../../atoms/Modal/Modal';
-import QuestionCreate from '../QuestionCreate/QuestionCreate';
+import Button from '../../atoms/Button/Button';
 import * as sc from './QuestionNew.style';
 
 const QuestionNew = props => {
@@ -15,7 +14,7 @@ const QuestionNew = props => {
 
       {isModalOpen && (
         <Modal close={toggleModal}>
-          <QuestionCreate
+          <sc.QuestionCreatee
             questions={props.questions}
             setQuestions={props.setQuestions}
             close={toggleModal}

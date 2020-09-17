@@ -5,7 +5,7 @@ import useFetch from '../../../api/useFetch';
 import Title from '../../atoms/Title/Title';
 import * as sc from './ChallengeList.style';
 
-const ChallengeList = props => {
+const ChallengeList = () => {
   const [challenges, setChallenges] = useState([]);
 
   const [allChallenges] = useFetch('/challenge/all');
@@ -22,7 +22,6 @@ const ChallengeList = props => {
   const challengeListCards = challenges.map(challenge => (
     <ChallengeListCard
       key={challenge.id}
-      // id={challenge.id}
       path={challenge.path}
       title={challenge.title}
       desc={challenge.desc}
@@ -37,9 +36,5 @@ const ChallengeList = props => {
     </sc.Container>
   );
 };
-
-// ChallengeList.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
 
 export default React.memo(ChallengeList);

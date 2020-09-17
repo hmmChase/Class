@@ -61,6 +61,8 @@ const useFetch = (pathName, options) => {
 
       setLoading(false);
 
+      console.log('pathName: ', pathName, 'response: ', response);
+
       return response;
     } catch (error) {
       setError(error);

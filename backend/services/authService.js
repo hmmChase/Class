@@ -18,19 +18,19 @@ export const generateJWT = payload => {
   return jwt.sign(payload, secret, options);
 };
 
-export const getParameterByName = (name, url) => {
-  const parsedName = name.replace(/[\[\]]/g, '\\$&');
+// export const getParameterByName = (name, url) => {
+//   const parsedName = name.replace(/[\[\]]/g, '\\$&');
 
-  const regex = new RegExp('[?&]' + parsedName + '(=([^&#]*)|&|#|$)');
+//   const regex = new RegExp('[?&]' + parsedName + '(=([^&#]*)|&|#|$)');
 
-  const results = regex.exec(url);
+//   const results = regex.exec(url);
 
-  if (!results) return null;
+//   if (!results) return null;
 
-  if (!results[2]) return '';
+//   if (!results[2]) return '';
 
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
-};
+//   return decodeURIComponent(results[2].replace(/\+/g, ' '));
+// };
 
 export const getStateFromHeader = req => {
   // if (req && req.headers) return cookie.parse(req.headers.cookie).state;
@@ -43,6 +43,7 @@ export const userClientCleaner = user => ({
     id: user.id,
     username: user.username,
     email: user.email,
-    role: user.role
+    role: user.role,
+    hasDiscordLogin: user.hasDiscordLogin
   }
 });

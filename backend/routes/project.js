@@ -5,9 +5,7 @@ const router = express.Router();
 
 /* GET */
 
-router.get('/', function (req, res, next) {
-  return res.json({ route: 'project' });
-});
+router.get('/', (req, res, next) => res.json({ route: 'project' }));
 
 router.get('/all', projectController.getAllProjects);
 

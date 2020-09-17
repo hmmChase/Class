@@ -31,7 +31,10 @@ export const sendEmail = async options => {
   return transport.sendMail(mailOptions);
 };
 
-export const sendEmailSignup = (email, username) => {
+export const sendEmailSignup = (username, email) => {
+  console.log('username:', username);
+  console.log('email:', email);
+
   const options = {
     subject: 'Welcome to the Challange Board!',
     filename: 'signupEmail',

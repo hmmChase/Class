@@ -7,9 +7,7 @@ const router = express.Router();
 
 /* GET */
 
-router.get('/', function (req, res, next) {
-  return res.json({ route: 'question' });
-});
+router.get('/', (req, res, next) => res.json({ route: 'question' }));
 
 router.get('/all', commentController.getAllComments);
 

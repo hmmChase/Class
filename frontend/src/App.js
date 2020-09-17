@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ChallengePage from './pages/challenge';
-import LoginPage from './pages/login';
+// import LoginPage from './pages/login';
 import LoginDiscordPage from './pages/login-discord';
 import ResetPasswordPage from './pages/reset-password';
-import SignUpPage from './pages/signup';
-import SignUpDiscordPage from './pages/signup-discord';
+// import SignUpPage from './pages/signup';
+// import SignUpDiscordPage from './pages/signup-discord';
 import IndexPage from './pages/index';
 import useFetch from './api/useFetch';
 import AppContext from './context/app';
@@ -34,17 +34,9 @@ const App = () => {
     <AppContext.Provider value={{ currentUser, setCurrentUser }}>
       <Router>
         <Switch>
-          <Route path='/:challengePath/:questionId'>
-            <ChallengePage />
-          </Route>
-
-          <Route path='/:challengePath'>
-            <ChallengePage />
-          </Route>
-
-          <Route path='/login'>
+          {/* <Route path='/login'>
             <LoginPage />
-          </Route>
+          </Route> */}
 
           <Route path='/login-discord'>
             <LoginDiscordPage />
@@ -58,12 +50,20 @@ const App = () => {
             <ResetPasswordPage />
           </Route>
 
-          <Route path='/signup'>
+          {/* <Route path='/signup'>
             <SignUpPage />
+          </Route> */}
+
+          {/* <Route path='/signup-discord'>
+            <SignUpDiscordPage />
+          </Route> */}
+
+          <Route path='/:challengePath/:questionId'>
+            <ChallengePage />
           </Route>
 
-          <Route path='/signup-discord'>
-            <SignUpDiscordPage />
+          <Route path='/:challengePath'>
+            <ChallengePage />
           </Route>
 
           <Route path='/'>

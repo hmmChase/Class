@@ -13,14 +13,14 @@ export const signupUserByEmail = async (res, username, email, password) => {
   // authService.validateEmail(res, emailNormalized);
 
   const user = {
-    email: emailNormalized,
     username: usernameNormalized,
+    email: emailNormalized,
     password: passwordHashed
   };
 
   const createdUser = await prisma.user.create({ data: user });
 
-  emailHandler.sendEmailSignup(emailNormalized, usernameNormalized);
+  emailHandler.sendEmailSignup(usernameNormalized, emailNormalized);
 
   return createdUser;
 };

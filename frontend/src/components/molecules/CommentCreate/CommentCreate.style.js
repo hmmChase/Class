@@ -18,10 +18,7 @@ export const AddInput = styled.input`
   padding: 0.5rem;
   color: ${props => props.theme.colors.text.secondaryText};
   background-color: ${props => props.theme.colors.backgrounds.features};
-
-  :focus {
-    outline: none;
-  }
+  outline: none;
 `;
 
 export const ArrowBtn = styled(ArrowSvg)`

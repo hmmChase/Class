@@ -1,11 +1,18 @@
+import crypto from 'crypto';
 import * as authService from '../services/authService';
 import * as discordService from '../services/discordService';
 import { COOKIE_CONFIG } from '../config';
 
 export const getUrl = (req, res) => {
-  const url = discordService.generateDiscordURL();
+  const scope = ['identify', 'email'];
 
-  const stateParam = authService.getParameterByName('state', url);
+  const state = crypto.randomBytes(16).toString('hex');
+
+  const url = discordService.oauth.generateAuthUrl({
+    scope,
+    state,
+    redirectUri: 'http://localhost:3000/login-discord'
+  });
 
   const options = {
     httpOnly: true,
@@ -15,9 +22,9 @@ export const getUrl = (req, res) => {
     maxAge: 1000 * 60 * 20 // 20m for CSRF protection
   };
 
-  res.cookie('state', stateParam, options);
+  res.cookie('state', state, options);
 
-  return res.json({ discordUrl: url });
+  return res.json(url);
 };
 
 export const authenticateUser = async (req, res) => {
@@ -29,11 +36,15 @@ export const authenticateUser = async (req, res) => {
 
   // If the state from the body didn't match the state from the cookie, it was not the same user
   const invalidMessage = 'invalid Discord authorization';
+
   if (state !== previousState)
     return res.status(401).json({ message: invalidMessage });
 
-  // By taking this out of the controller function, we keep our responsibilities low
+  // // By taking this out of the controller function, we keep our responsibilities low
   const { user, jwt } = await discordService.createUserByDiscord(code);
+
+  console.log('jwt:', jwt);
+  console.log('user:', user);
 
   // We're good. Let's log them in with a JWT
   res.cookie('jwt', jwt, COOKIE_CONFIG);

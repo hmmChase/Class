@@ -18,7 +18,7 @@ const BtnLogIn = () => {
         <Modal close={toggleModal}>
           <sc.Tabss
             option1={{
-              title: 'SignUp Email',
+              title: 'Login Email',
               body: (
                 <>
                   <LoginEmail />

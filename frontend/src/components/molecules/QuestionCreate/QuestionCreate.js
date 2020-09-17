@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../../api/useFetch';
-import Title from '../../atoms/Title/Title';
 import Desc from '../../atoms/Desc/Desc';
 import * as sc from './QuestionCreate.style';
 
@@ -25,8 +24,8 @@ const QuestionCreate = props => {
   };
 
   return (
-    <sc.Form onSubmit={handleSubmit}>
-      <Title>Post a Question</Title>
+    <sc.Form className={props.className} onSubmit={handleSubmit}>
+      <sc.Titlee>Post a Question</sc.Titlee>
 
       <Desc>
         Make sure to add enough detail to provide context for others.{' '}

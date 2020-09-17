@@ -1,28 +1,29 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
+  align-items: center;
   bottom: 0;
-  left: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 `;
 
 export const Outer = styled.div`
-  position: absolute;
-  z-index: 666;
-  top: 0;
-  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 666;
 `;
 
 export const Inner = styled.div`
-  z-index: 999;
-  padding: 1rem;
   background-color: ${props => props.theme.colors.backgrounds.cards};
+  border-radius: 10px;
+  padding: 1rem;
+  z-index: 999;
 `;

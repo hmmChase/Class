@@ -1,48 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import useFetch from '../../../api/useFetch';
 import getParameterByName from '../../../utils/getParameterByName';
+import Button from '../../atoms/Button/Button';
+import * as sc from './LoginDiscord.style';
 
 const LoginDiscord = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loginError, setLoginError] = useState(null);
+  // const [isLoggedIn] = useState(false);
+  // const [loginError] = useState(null);
 
   const [signupDiscord] = useFetch('/discord/signup');
 
-  // useEffect(() => {
-  //   const code = getParameterByName('code');
-  //   const state = getParameterByName('state');
+  useEffect(() => {
+    (async () => {
+      const code = getParameterByName('code');
+      const state = getParameterByName('state');
 
-  //   (async () => {
-  //     const user = await discordSignUp(code, state);
+      const user = await signupDiscord({ code, state });
 
-  //     if (user.id) setIsLoggedIn(true);
-  //   })();
-  // }, []);
+      console.log('user:', user);
 
-  const onClick = async () => {
-    const code = getParameterByName('code');
-    const state = getParameterByName('state');
+      //   if (user && user.id) setIsLoggedIn(true);
+      //   if (user && user.message) setLoginError(user.message);
+    })();
 
-    const user = await signupDiscord({ code, state });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    if (user && user.id) setIsLoggedIn(true);
-    if (user && user.message) setLoginError(user.message);
-  };
-
-  return (
-    <div>
-      <button onClick={onClick}>Login Discord</button>
-
-      {isLoggedIn && <Redirect to='/challenge' />}
-
-      {loginError && (
-        <div>
-          Login Error: <pre>{JSON.stringify(loginError)}</pre>
-        </div>
-      )}
-    </div>
-  );
+  return <sc.Container></sc.Container>;
 };
 
 export default LoginDiscord;

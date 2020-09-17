@@ -15,4 +15,6 @@ const ChallengePage = () => {
   return <Layout header={<Header />} main={<Main />}></Layout>;
 };
 
+// const ChallengePage = () => <div>ChallengePage</div>;
+
 export default ChallengePage;

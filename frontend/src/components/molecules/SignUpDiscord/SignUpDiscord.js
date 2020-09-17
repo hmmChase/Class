@@ -1,28 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import useFetch from '../../../api/useFetch';
+import Button from '../../atoms/Button/Button';
 import * as sc from './SignUpDiscord.style';
 
 const SignUpDiscord = () => {
-  const [discordUrl, setDiscordUrl] = useState(undefined);
-
   const [signupDiscord] = useFetch('/discord/url');
 
-  useEffect(() => {
-    (async () => {
-      const gotDiscordUrl = await signupDiscord();
+  const handleClick = async () => {
+    const discordUrl = await signupDiscord();
 
-      setDiscordUrl(gotDiscordUrl.discordUrl);
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    window.location.assign(discordUrl);
+  };
 
   return (
     <sc.Container>
-      {discordUrl ? (
-        <a href={discordUrl}>Sign up with Discord</a>
-      ) : (
-        <div>Loading...</div>
-      )}
+      <Button onClick={handleClick}>Sign up with Discord</Button>
     </sc.Container>
   );
 };
