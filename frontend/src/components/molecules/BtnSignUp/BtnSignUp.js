@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useModal from '../../../utils/useModal';
 import Modal from '../../atoms/Modal/Modal';
-import SignUpEmail from '../SignUpEmail/SignUpEmail';
-import SignUpDiscord from '../SignUpDiscord/SignUpDiscord';
-import * as sc from './BtnSignUp.style';
+import SignupEmail from '../SignupEmail/SignupEmail';
+import SignupDiscord from '../SignupDiscord/SignupDiscord';
+import * as sc from './BtnSignup.style';
 
-const BtnSignUp = () => {
+const BtnSignup = () => {
   const [isModalOpen, toggleModal] = useModal();
 
   return (
@@ -16,8 +16,8 @@ const BtnSignUp = () => {
       {isModalOpen && (
         <Modal close={toggleModal}>
           <sc.Tabss
-            option1={{ title: 'SignUp Email', body: <SignUpEmail /> }}
-            option2={{ title: 'SignUp Discord', body: <SignUpDiscord /> }}
+            option1={{ title: 'Signup Email', body: <SignupEmail /> }}
+            option2={{ title: 'Signup Discord', body: <SignupDiscord /> }}
           />
         </Modal>
       )}
@@ -25,8 +25,8 @@ const BtnSignUp = () => {
   );
 };
 
-BtnSignUp.propTypes = {
+BtnSignup.propTypes = {
   className: PropTypes.string
 };
 
-export default React.memo(BtnSignUp);
+export default React.memo(BtnSignup);

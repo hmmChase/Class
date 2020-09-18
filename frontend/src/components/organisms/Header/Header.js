@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../../../context/app';
 import BtnLogIn from '../../molecules/BtnLogIn/BtnLogIn';
-import BtnSignUp from '../../molecules/BtnSignUp/BtnSignUp';
+import BtnSignup from '../../molecules/BtnSignUp/BtnSignup';
 import IconKnight from '../../molecules/IconKnight/IconKnight';
 import IconUser from '../../molecules/IconUser/IconUser';
 import * as sc from './Header.style';
@@ -21,7 +21,7 @@ const Header = () => {
         <div>
           <BtnLogIn />
 
-          <BtnSignUp />
+          <BtnSignup />
         </div>
       )}
     </sc.Container>

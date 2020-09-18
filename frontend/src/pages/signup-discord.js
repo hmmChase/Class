@@ -1,8 +1,6 @@
 import React from 'react';
-// import SignUpDiscord from '../components/molecules/SignUpDiscord/SignUpDiscord';
+import SignupDiscordRedirect from '../components/molecules/SignupDiscordRedirect/SignupDiscordRedirect';
 
-// const SignUpDiscordPage = () => <SignUpDiscord />;
+const SignupDiscordRedirectPage = () => <SignupDiscordRedirect />;
 
-const SignUpDiscordPage = () => <div>SignUpDiscordPage</div>;
-
-export default SignUpDiscordPage;
+export default SignupDiscordRedirectPage;

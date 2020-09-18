@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import useFetch from '../../../api/useFetch';
 import AppContext from '../../../context/app';
-import * as sc from './SignUpEmail.style';
+import * as sc from './SignupEmail.style';
 
-const SignUpEmail = () => {
+const SignupEmail = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
@@ -60,4 +60,4 @@ const SignUpEmail = () => {
   );
 };
 
-export default SignUpEmail;
+export default SignupEmail;

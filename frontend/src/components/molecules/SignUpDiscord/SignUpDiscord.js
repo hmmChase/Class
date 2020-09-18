@@ -1,10 +1,10 @@
 import React from 'react';
 import useFetch from '../../../api/useFetch';
 import Button from '../../atoms/Button/Button';
-import * as sc from './SignUpDiscord.style';
+import * as sc from './SignupDiscord.style';
 
-const SignUpDiscord = () => {
-  const [signupDiscord] = useFetch('/discord/url');
+const SignupDiscord = () => {
+  const [signupDiscord] = useFetch('/discord/url-signup');
 
   const handleClick = async () => {
     const discordUrl = await signupDiscord();
@@ -19,4 +19,4 @@ const SignUpDiscord = () => {
   );
 };
 
-export default SignUpDiscord;
+export default SignupDiscord;

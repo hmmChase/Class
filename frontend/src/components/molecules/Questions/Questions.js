@@ -30,7 +30,7 @@ const Questions = props => {
 
       if (!loading && !error && gotQuestions) props.setQuestions(gotQuestions);
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   const questionCards = props.questions.map(question => {

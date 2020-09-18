@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ChallengePage from './pages/challenge';
 // import LoginPage from './pages/login';
-import LoginDiscordPage from './pages/login-discord';
+import LoginDiscordRedirectPage from './pages/login-discord';
+import SignupDiscordRedirectPage from './pages/signup-discord';
 import ResetPasswordPage from './pages/reset-password';
-// import SignUpPage from './pages/signup';
-// import SignUpDiscordPage from './pages/signup-discord';
+// import SignupPage from './pages/signup';
+// import SignupDiscordPage from './pages/signup-discord';
 import IndexPage from './pages/index';
 import useFetch from './api/useFetch';
 import AppContext from './context/app';
@@ -27,19 +28,19 @@ const App = () => {
       )
         setCurrentUser(currentUser.user);
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   return (
     <AppContext.Provider value={{ currentUser, setCurrentUser }}>
       <Router>
         <Switch>
-          {/* <Route path='/login'>
-            <LoginPage />
-          </Route> */}
-
           <Route path='/login-discord'>
-            <LoginDiscordPage />
+            <LoginDiscordRedirectPage />
+          </Route>
+
+          <Route path='/signup-discord'>
+            <SignupDiscordRedirectPage />
           </Route>
 
           <Route path='/reset-password/:resetToken'>
@@ -51,11 +52,11 @@ const App = () => {
           </Route>
 
           {/* <Route path='/signup'>
-            <SignUpPage />
+            <SignupPage />
           </Route> */}
 
           {/* <Route path='/signup-discord'>
-            <SignUpDiscordPage />
+            <SignupDiscordPage />
           </Route> */}
 
           <Route path='/:challengePath/:questionId'>

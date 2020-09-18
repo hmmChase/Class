@@ -1,8 +1,8 @@
 import React from 'react';
-// import SignUpEmail from '../components/molecules/SignUpEmail/SignUpEmail';
+// import SignupEmail from '../components/molecules/SignupEmail/SignupEmail';
 
-// const SignUpPage = () => <SignUpEmail />;
+// const SignupPage = () => <SignupEmail />;
 
-const SignUpPage = () => <div>SignUpPage</div>;
+const SignupPage = () => <div>SignupPage</div>;
 
-export default SignUpPage;
+export default SignupPage;

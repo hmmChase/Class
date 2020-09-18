@@ -42,7 +42,7 @@ const QuestionDetail = props => {
       if (!loadingComments && !errorComments && dataComments)
         setComments(dataComments);
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   const handleCreateComment = async body => {

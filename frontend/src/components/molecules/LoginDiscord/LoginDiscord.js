@@ -1,31 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useFetch from '../../../api/useFetch';
-import getParameterByName from '../../../utils/getParameterByName';
+import Button from '../../atoms/Button/Button';
 import * as sc from './LoginDiscord.style';
 
 const LoginDiscord = () => {
-  // const [isLoggedIn] = useState(false);
-  // const [loginError] = useState(null);
+  const [loginDiscord] = useFetch('/discord/url-login');
 
-  const [signupDiscord] = useFetch('/discord/signup');
+  const handleClick = async () => {
+    const discordUrl = await loginDiscord();
 
-  useEffect(() => {
-    (async () => {
-      const code = getParameterByName('code');
-      const state = getParameterByName('state');
+    window.location.assign(discordUrl);
+  };
 
-      const user = await signupDiscord({ code, state });
-
-      console.log('user:', user);
-
-      //   if (user && user.id) setIsLoggedIn(true);
-      //   if (user && user.message) setLoginError(user.message);
-    })();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return <sc.Container></sc.Container>;
+  return (
+    <sc.Container>
+      <Button onClick={handleClick}>Login with Discord</Button>
+    </sc.Container>
+  );
 };
 
 export default LoginDiscord;

@@ -1,6 +1,6 @@
 import React from 'react';
-import LoginDiscord from '../components/molecules/LoginDiscord/LoginDiscord';
+import LoginDiscordRedirect from '../components/molecules/LoginDiscordRedirect/LoginDiscordRedirect';
 
-const LoginDiscordPage = () => <LoginDiscord />;
+const LoginDiscordRedirectPage = () => <LoginDiscordRedirect />;
 
-export default LoginDiscordPage;
+export default LoginDiscordRedirectPage;
