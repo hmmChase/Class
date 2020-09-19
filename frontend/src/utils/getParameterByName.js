@@ -29,3 +29,13 @@ export default (name, url) => {
 //     ? ''
 //     : decodeURIComponent(results[1].replace(/\+/g, ' '));
 // };
+
+// const qs = key => {
+//   key = key.replace(/[*+?^$.[\]{}()|\\/]/g, '\\$&'); // escape RegEx meta chars
+
+//   const match = window.location.search.match(
+//     new RegExp(`[?&]${key}=([^&]+)(&|$)`)
+//   );
+
+//   return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+// };

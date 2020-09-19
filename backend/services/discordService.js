@@ -2,37 +2,29 @@ import { PrismaClient } from '@prisma/client';
 import DiscordOauth2 from 'discord-oauth2';
 import * as authService from './authService';
 import * as emailHandler from '../handlers/emailHandler';
+import { BASE_URL } from '../config';
 
 const prisma = new PrismaClient();
 
-// Set up the service with some base information
 export const oauthSignup = new DiscordOauth2({
-  // Provided when you sign up on Discord for an app
   clientId: process.env.DISCORD_CLIENT_ID,
-
-  // Provided when you sign up on Discord for an app
   clientSecret: process.env.DISCORD_SECRET,
-
-  // Add this as redirect URI in Discord app config
-  redirectUri: 'http://localhost:3000/signup-discord'
+  redirectUri: `${BASE_URL}/signup-discord`
 });
 
 export const oauthLogin = new DiscordOauth2({
   clientId: process.env.DISCORD_CLIENT_ID,
   clientSecret: process.env.DISCORD_SECRET,
-  redirectUri: 'http://localhost:3000/login-discord'
+  redirectUri: `${BASE_URL}/login-discord`
 });
 
-export const signup = async code => {
-  // Grab an access_token from Discord based on the code and any prior scope
+export const signup = async (res, code) => {
   const tokenResponse = await oauthSignup.tokenRequest({
     code,
     scope: 'identify email',
-    grantType: 'authorization_code',
-    redirectUri: 'http://localhost:3000/signup-discord'
+    grantType: 'authorization_code'
   });
 
-  // Now that we have the access_token, let's get some user information
   const discordUser = await oauthSignup.getUser(tokenResponse.access_token);
 
   if (!discordUser)
@@ -55,21 +47,19 @@ export const signup = async code => {
 
   const jwtData = { user: { id: userClientData.user.id } };
 
-  // Create the JWT here, but let the controller set the cookie
   const jwt = authService.generateJWT(jwtData);
 
   return { jwt, user: userClientData };
 };
 
-export const login = async (req, code) => {
-  const tokenResponse = await oauthSignup.tokenRequest({
+export const login = async (res, code) => {
+  const tokenResponse = await oauthLogin.tokenRequest({
     code,
     scope: 'identify email',
-    grantType: 'authorization_code',
-    redirectUri: 'http://localhost:3000/login-discord'
+    grantType: 'authorization_code'
   });
 
-  const discordUser = await oauthSignup.getUser(tokenResponse.access_token);
+  const discordUser = await oauthLogin.getUser(tokenResponse.access_token);
 
   if (!discordUser)
     return res.status(401).json({ error: 'user.notFoundDiscord' });
@@ -79,7 +69,7 @@ export const login = async (req, code) => {
   });
 
   if (!userRecord)
-    return req.status(401).json({ error: 'user.notFoundDiscord' });
+    return res.status(401).json({ error: 'user.notFoundDiscord' });
 
   const userClientData = authService.userClientCleaner(userRecord);
 

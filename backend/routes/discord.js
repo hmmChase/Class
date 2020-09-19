@@ -1,6 +1,6 @@
 import express from 'express';
 import * as discordController from '../controllers/discordController';
-import { asyncErrorWrapper } from '../handlers/errorHandlers';
+// import { asyncErrorWrapper } from '../handlers/errorHandlers';
 
 const router = express.Router();
 
@@ -14,8 +14,8 @@ router.get('/url-login', discordController.getLoginUrl);
 
 /* POST */
 
-router.post('/signup', asyncErrorWrapper(discordController.signupDiscord));
+router.post('/signup', discordController.signupDiscord);
 
-router.post('/login', asyncErrorWrapper(discordController.loginDiscord));
+router.post('/login', discordController.loginDiscord);
 
 export default router;

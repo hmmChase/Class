@@ -6,23 +6,10 @@ import { COOKIE_CONFIG } from '../config';
 export const getSignupUrl = (req, res) => {
   const scope = ['identify', 'email'];
   const state = crypto.randomBytes(16).toString('hex');
-  const redirectUri = 'http://localhost:3000/signup-discord';
 
-  const url = discordService.oauthSignup.generateAuthUrl({
-    scope,
-    state,
-    redirectUri
-  });
+  const url = discordService.oauthSignup.generateAuthUrl({ scope, state });
 
-  const options = {
-    httpOnly: true,
-    // path: '/',
-    // secure: process.env.NODE_ENV === 'production',
-    // sameSite: 'strict',
-    maxAge: 1000 * 60 * 20 // 20m for CSRF protection
-  };
-
-  res.cookie('state', state, options);
+  res.cookie('state', state, COOKIE_CONFIG);
 
   return res.json(url);
 };
@@ -30,23 +17,10 @@ export const getSignupUrl = (req, res) => {
 export const getLoginUrl = (req, res) => {
   const scope = ['identify', 'email'];
   const state = crypto.randomBytes(16).toString('hex');
-  const redirectUri = 'http://localhost:3000/login-discord';
 
-  const url = discordService.oauthSignup.generateAuthUrl({
-    scope,
-    state,
-    redirectUri
-  });
+  const url = discordService.oauthLogin.generateAuthUrl({ scope, state });
 
-  const options = {
-    httpOnly: true,
-    // path: '/',
-    // secure: process.env.NODE_ENV === 'production',
-    // sameSite: 'strict',
-    maxAge: 1000 * 60 * 20 // 20m for CSRF protection
-  };
-
-  res.cookie('state', state, options);
+  res.cookie('state', state, COOKIE_CONFIG);
 
   return res.json(url);
 };
@@ -59,7 +33,7 @@ export const signupDiscord = async (req, res) => {
   if (state !== previousState)
     return res.status(401).json({ error: 'login.discordError' });
 
-  const { user, jwt } = await discordService.signup(code);
+  const { user, jwt } = await discordService.signup(res, code);
 
   res.cookie('jwt', jwt, COOKIE_CONFIG);
 
@@ -69,17 +43,12 @@ export const signupDiscord = async (req, res) => {
 export const loginDiscord = async (req, res) => {
   const { code, state } = req.body;
 
-  console.log('code:', code);
-  console.log('state:', state);
-
   const previousState = authService.getStateFromHeader(req);
-
-  console.log('previousState:', previousState);
 
   if (state !== previousState)
     return res.status(401).json({ error: 'login.discordError' });
 
-  const { user, jwt } = await discordService.login(code);
+  const { user, jwt } = await discordService.login(res, code);
 
   res.cookie('jwt', jwt, COOKIE_CONFIG);
 

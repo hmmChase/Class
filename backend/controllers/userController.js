@@ -92,8 +92,9 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   res.clearCookie('jwt');
+  res.clearCookie('state');
 
-  return res.json('');
+  return res.json(true);
 };
 
 export const generatePassReset = async (req, res) => {
