@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as Answered } from '../../../images/answered.svg';
+import BodyExpandable from '../../atoms/BodyExpandable/BodyExpandable';
 
 export const Container = styled.li`
   display: flex;
@@ -47,7 +48,6 @@ export const CreatedAt = styled.span`
   padding: 1rem 0;
 `;
 
-export const Body = styled.span`
-  color: ${props => props.theme.colors.text.secondaryText};
+export const BodyExpandablee = styled(BodyExpandable)`
   margin-bottom: 1rem;
 `;

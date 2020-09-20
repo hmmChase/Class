@@ -31,7 +31,7 @@ const AnswerCard = props => {
           )}
         </sc.Row>
 
-        <sc.Body>{props.body}</sc.Body>
+        <sc.BodyExpandablee>{props.body}</sc.BodyExpandablee>
       </sc.GroupCol>
     </sc.Container>
   );

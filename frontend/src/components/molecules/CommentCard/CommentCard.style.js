@@ -34,7 +34,3 @@ export const CreatedAt = styled.span`
   font-size: 0.9rem;
   padding: 1rem 0;
 `;
-
-export const Body = styled.span`
-  color: ${props => props.theme.colors.text.secondaryText};
-`;

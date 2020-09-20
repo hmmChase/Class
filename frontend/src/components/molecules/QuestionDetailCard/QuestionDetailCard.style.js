@@ -33,7 +33,3 @@ export const Created = styled.span`
 export const Title = styled.span`
   margin-bottom: 1rem;
 `;
-
-export const Body = styled.span`
-  color: ${props => props.theme.colors.text.secondaryText};
-`;
