@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../../api/useFetch';
 import Desc from '../../atoms/Desc/Desc';
+import DOMPurify from 'dompurify';
 import * as sc from './QuestionCreate.style';
 
 const QuestionCreate = props => {
@@ -10,6 +11,16 @@ const QuestionCreate = props => {
   const { challengePath } = useParams();
 
   const [createQuestion] = useFetch(`/question/create/${challengePath}`);
+
+  const handleChange = e => {
+    const bodyClean = DOMPurify.sanitize(e.target.value);
+
+    setBody(bodyClean);
+
+    setTitle(e.target.value);
+
+    setBody(e.target.value);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -32,15 +43,17 @@ const QuestionCreate = props => {
       </Desc>
 
       <sc.InputTitle
+        id='title'
         placeholder='Question'
         value={title}
-        onChange={e => setTitle(e.target.value)}
+        onChange={handleChange}
       />
 
       <sc.TextAreaBody
+        id='body'
         placeholder='More Details'
         value={body}
-        onChange={e => setBody(e.target.value)}
+        onChange={handleChange}
       />
 
       <sc.Buttonn type='submit'>Post Question</sc.Buttonn>

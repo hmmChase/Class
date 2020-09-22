@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
 import AppContext from '../../../context/app';
 import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
-import BodyExpandable from '../../atoms/BodyExpandable/BodyExpandable';
+import TextExpand from '../../atoms/TextExpand/TextExpand';
 import * as sc from './QuestionDetailCard.style';
 
 const QuestionDetailCard = props => {
@@ -28,7 +28,7 @@ const QuestionDetailCard = props => {
 
       <sc.Title>{props.question.title}</sc.Title>
 
-      <BodyExpandable>{props.question.body}</BodyExpandable>
+      <TextExpand>{props.question.body}</TextExpand>
     </sc.Container>
   );
 };

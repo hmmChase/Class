@@ -12,11 +12,7 @@ export const Body = styled.span`
           display: '-webkit-box',
           '-webkit-line-clamp': '3',
           '-webkit-box-orient': 'vertical',
-          overflow: 'hidden',
-
-          'text-overflow': 'ellipsis',
-          'line-height': '1.2em',
-          height: '3.6em'
+          overflow: 'hidden'
         };
   }};
 `;

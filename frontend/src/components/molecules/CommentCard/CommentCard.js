@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import AppContext from '../../../context/app';
 import DropdownComment from '../DropdownComment/DropdownComment';
-import BodyExpandable from '../../atoms/BodyExpandable/BodyExpandable';
+import TextExpand from '../../atoms/TextExpand/TextExpand';
 import * as sc from './CommentCard.style';
 
 const CommentCard = props => {
@@ -28,7 +28,7 @@ const CommentCard = props => {
         )}
       </sc.Row>
 
-      <BodyExpandable>{props.body}</BodyExpandable>
+      <TextExpand>{props.body}</TextExpand>
     </sc.Container>
   );
 };
