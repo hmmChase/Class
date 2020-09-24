@@ -18,6 +18,8 @@
   ],
   "build": {
     "env": {
+      "DISCORD_CLIENT_ID": "@discord_client_id",
+      "DISCORD_SECRET": "@discord_secret",
       "ACCESS_TOKEN_SECRET": "@cb_access_token_secret",
       "DATABASE_URL": "@cb_database_url",
       "MAIL_USER": "@cb_mail_user",
@@ -25,6 +27,8 @@
     }
   },
   "env": {
+    "DISCORD_CLIENT_ID": "@discord_client_id",
+    "DISCORD_SECRET": "@discord_secret",
     "ACCESS_TOKEN_SECRET": "@cb_access_token_secret",
     "DATABASE_URL": "@cb_database_url",
     "MAIL_USER": "@cb_mail_user",
