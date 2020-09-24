@@ -40,12 +40,9 @@ export const signup = async (res, code) => {
 
   const userClientData = authService.userClientCleaner(userRecord);
 
-  emailHandler.sendEmailSignup(
-    userClientData.user.username,
-    userClientData.user.email
-  );
+  emailHandler.sendEmailSignup(userClientData.username, userClientData.email);
 
-  const jwtData = { user: { id: userClientData.user.id } };
+  const jwtData = { user: { id: userClientData.id } };
 
   const jwt = authService.generateJWT(jwtData);
 
@@ -73,7 +70,7 @@ export const login = async (res, code) => {
 
   const userClientData = authService.userClientCleaner(userRecord);
 
-  const jwtData = { user: { id: userClientData.user.id } };
+  const jwtData = { user: { id: userClientData.id } };
 
   const jwt = authService.generateJWT(jwtData);
 

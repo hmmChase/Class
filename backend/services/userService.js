@@ -25,7 +25,7 @@ export const signupUserByEmail = async (res, username, email, password) => {
   return createdUser;
 };
 
-export const loginWithEmail = async (res, email, password) => {
+export const resetPasswordLoginWithEmail = async (res, email, password) => {
   const userRecord = await prisma.user.findOne({ where: { email } });
 
   if (!userRecord)
@@ -40,12 +40,7 @@ export const loginWithEmail = async (res, email, password) => {
 
   const newJWT = authService.generateJWT(userJWT);
 
-  const userClientData = {
-    id: createdUser.id,
-    username: createdUser.username,
-    email: createdUser.email,
-    role: createdUser.role
-  };
+  const userClientData = authService.userClientCleaner(userRecord);
 
   return { newJWT, userClientData };
 };

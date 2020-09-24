@@ -17,7 +17,6 @@ export const getAllUsers = async (req, res, next) => {
 };
 
 export const getCurrentUser = async (req, res) => {
-  console.log('getCurrentUser:');
   if (!req || !req.cookies || !req.cookies.jwt) return res.json({});
 
   const user = jwt.verify(
@@ -120,9 +119,6 @@ export const generatePassReset = async (req, res) => {
   });
 
   // send email with reset password in a link
-  // TODO: https if prod
-  // const resetPasswordUrl = `http://${req.headers.host}/users/password-reset/${resetPassToken}`;
-
   const resetPasswordUrl = `${BASE_URL}/reset-password?resetToken=${resetPassToken}`;
 
   emailHandler.sendEmailPasswordReset(email, resetPasswordUrl);
@@ -167,7 +163,7 @@ export const resetPassword = async (req, res) => {
   });
 
   // log them back in
-  const { jwt, user } = await userService.loginWithEmail(
+  const { jwt, user } = await userService.resetPasswordLoginWithEmail(
     updatedUser.email,
     newPassword
   );

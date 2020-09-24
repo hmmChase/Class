@@ -19,8 +19,6 @@ const LoginDiscordRedirect = () => {
 
       const user = await loginDiscord({ code, state });
 
-      console.log('user:', user);
-
       if (!loading && !error && user && user.id) setCurrentUser(user);
 
       history.push('/');
