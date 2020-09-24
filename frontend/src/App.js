@@ -1,86 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ChallengePage from './pages/challenge';
 import LoginDiscordRedirectPage from './pages/login-discord';
 import SignupDiscordRedirectPage from './pages/signup-discord';
 import ResetPasswordPage from './pages/reset-password';
 import IndexPage from './pages/index';
-import useFetch from './api/useFetch';
-import AppContext from './context/app';
+import UserProvider from './context/UserProvider';
 
-import { useQuery, QueryCache, ReactQueryCacheProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query-devtools';
+const App = () => (
+  <UserProvider>
+    <Router>
+      <Switch>
+        <Route path='/login-discord'>
+          <LoginDiscordRedirectPage />
+        </Route>
 
-const queryCache = new QueryCache();
+        <Route path='/signup-discord'>
+          <SignupDiscordRedirectPage />
+        </Route>
 
-const App = () => {
-  const [currentUser, setCurrentUser] = useState({});
+        <Route path='/reset-password/:resetToken'>
+          <ResetPasswordPage />
+        </Route>
 
-  // const [getCurrentUser, loading, error] = useFetch('/user/current');
+        <Route path='/reset-password'>
+          <ResetPasswordPage />
+        </Route>
 
-  const { isLoading, error, data } = useQuery('userData', async () => {
-    const optionsObj = { method: 'GET', credentials: 'include' };
+        <Route path='/:challengePath/:questionId'>
+          <ChallengePage />
+        </Route>
 
-    const response = await fetch(
-      'http://localhost:4000/api/v1/user/current',
-      optionsObj
-    );
+        <Route path='/:challengePath'>
+          <ChallengePage />
+        </Route>
 
-    const userData = await response.json();
-
-    setCurrentUser(userData.user);
-  });
-
-  // if (!isLoading && data && data.user && data.user.id) {
-  //   setCurrentUser(data.user);
-  // }
-
-  useEffect(() => {
-    (async () => {})();
-    // eslint-disable-next-line
-  }, []);
-
-  return (
-    <>
-      <ReactQueryCacheProvider queryCache={queryCache}>
-        <AppContext.Provider value={{ currentUser, setCurrentUser }}>
-          <Router>
-            <Switch>
-              <Route path='/login-discord'>
-                <LoginDiscordRedirectPage />
-              </Route>
-
-              <Route path='/signup-discord'>
-                <SignupDiscordRedirectPage />
-              </Route>
-
-              <Route path='/reset-password/:resetToken'>
-                <ResetPasswordPage />
-              </Route>
-
-              <Route path='/reset-password'>
-                <ResetPasswordPage />
-              </Route>
-
-              <Route path='/:challengePath/:questionId'>
-                <ChallengePage />
-              </Route>
-
-              <Route path='/:challengePath'>
-                <ChallengePage />
-              </Route>
-
-              <Route path='/'>
-                <IndexPage />
-              </Route>
-            </Switch>
-          </Router>
-        </AppContext.Provider>
-      </ReactQueryCacheProvider>
-
-      <ReactQueryDevtools initialIsOpen />
-    </>
-  );
-};
+        <Route path='/'>
+          <IndexPage />
+        </Route>
+      </Switch>
+    </Router>
+  </UserProvider>
+);
 
 export default App;

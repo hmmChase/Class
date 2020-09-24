@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
 import useFetch from '../../../api/useFetch';
-import AppContext from '../../../context/app';
+import { CurrentUser } from '../../../context/contexts';
 import * as sc from './LoginEmail.style';
 
 const LoginEmail = () => {
   const [email, setEmail] = useState('student1@email.com');
   const [password, setPassword] = useState('student1');
-  const { setCurrentUser } = useContext(AppContext);
+  const { setCurrentUser } = useContext(CurrentUser);
   const [loginEmail, loading, error] = useFetch('/user/login');
 
   const handleSubmit = async e => {
@@ -14,8 +14,8 @@ const LoginEmail = () => {
 
     const currentUser = await loginEmail({ email, password });
 
-    if (!loading && !error && currentUser && currentUser.user)
-      setCurrentUser(currentUser.user);
+    if (!loading && !error && currentUser && currentUser.id)
+      setCurrentUser(currentUser);
   };
 
   return (

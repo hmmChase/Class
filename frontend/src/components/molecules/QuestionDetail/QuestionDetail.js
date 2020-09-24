@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import AppContext from '../../../context/app';
+import { CurrentUser } from '../../../context/contexts';
 import useFetch from '../../../api/useFetch';
 import Comments from '../Comments/Comments';
 import QuestionDetailCard from '../QuestionDetailCard/QuestionDetailCard';
@@ -11,7 +11,7 @@ import * as sc from './QuestionDetail.style';
 const QuestionDetail = props => {
   const [question, setQuestion] = useState({});
   const [comments, setComments] = useState([]);
-  const { currentUser } = useContext(AppContext);
+  const { currentUser } = useContext(CurrentUser);
 
   const [getQuestion, loadingQuestion, errorQuestion] = useFetch(
     `/question/${props.questionId}`

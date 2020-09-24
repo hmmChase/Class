@@ -2,11 +2,11 @@ import React, { useEffect, useContext } from 'react';
 import useFetch from '../../../api/useFetch';
 import { useHistory } from 'react-router-dom';
 import getParameterByName from '../../../utils/getParameterByName';
-import AppContext from '../../../context/app';
+import { CurrentUser } from '../../../context/contexts';
 import * as sc from './LoginDiscordRedirect.style';
 
 const LoginDiscordRedirect = () => {
-  const { setCurrentUser } = useContext(AppContext);
+  const { setCurrentUser } = useContext(CurrentUser);
 
   const history = useHistory();
 
@@ -21,7 +21,7 @@ const LoginDiscordRedirect = () => {
 
       console.log('user:', user);
 
-      if (!loading && !error && user && user.user) setCurrentUser(user.user);
+      if (!loading && !error && user && user.id) setCurrentUser(user);
 
       history.push('/');
     })();

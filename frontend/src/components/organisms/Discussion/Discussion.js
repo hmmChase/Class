@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import AppContext from '../../../context/app';
+import { CurrentUser } from '../../../context/contexts';
 import QuestionDetail from '../../molecules/QuestionDetail/QuestionDetail';
 import Questions from '../../molecules/Questions/Questions';
 import Label from '../../atoms/Label/Label';
@@ -9,7 +9,7 @@ import * as sc from './Discussion.style';
 
 const Discussion = props => {
   const [questions, setQuestions] = useState([]);
-  const { currentUser } = useContext(AppContext);
+  const { currentUser } = useContext(CurrentUser);
   const { questionId } = useParams();
 
   return (

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import AppContext from '../../../context/app';
+import { CurrentUser } from '../../../context/contexts';
 import BtnLogIn from '../../molecules/BtnLogIn/BtnLogIn';
 import BtnSignup from '../../molecules/BtnSignUp/BtnSignup';
 import IconKnight from '../../molecules/IconKnight/IconKnight';
@@ -7,7 +7,7 @@ import IconUser from '../../molecules/IconUser/IconUser';
 import * as sc from './Header.style';
 
 const Header = () => {
-  const { currentUser } = useContext(AppContext);
+  const { currentUser } = useContext(CurrentUser);
 
   return (
     <sc.Container>

@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import AppContext from '../../../context/app';
+import { CurrentUser } from '../../../context/contexts';
 import DropdownComment from '../DropdownComment/DropdownComment';
 import TextExpand from '../../atoms/TextExpand/TextExpand';
 import * as sc from './CommentCard.style';
 
 const CommentCard = props => {
-  const { currentUser } = useContext(AppContext);
+  const { currentUser } = useContext(CurrentUser);
 
   return (
     <sc.Container className={props.className}>

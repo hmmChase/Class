@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
-import AppContext from '../../../context/app';
+import { CurrentUser } from '../../../context/contexts';
 import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
 import * as sc from './QuestionCard.style';
 
 const QuestionCard = props => {
-  const { currentUser } = useContext(AppContext);
+  const { currentUser } = useContext(CurrentUser);
   const { challengePath } = useParams();
 
   return (

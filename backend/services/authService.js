@@ -39,11 +39,9 @@ export const getStateFromHeader = req => {
 };
 
 export const userClientCleaner = user => ({
-  user: {
-    id: user.id,
-    username: user.username,
-    email: user.email,
-    role: user.role,
-    hasDiscordLogin: user.hasDiscordLogin
-  }
+  id: user.id,
+  username: user.username,
+  email: user.email,
+  role: user.role,
+  hasDiscordLogin: user.hasDiscordLogin
 });

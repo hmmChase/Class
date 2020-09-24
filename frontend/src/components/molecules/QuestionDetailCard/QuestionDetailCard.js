@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
-import AppContext from '../../../context/app';
+import { CurrentUser } from '../../../context/contexts';
 import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
 import TextExpand from '../../atoms/TextExpand/TextExpand';
 import * as sc from './QuestionDetailCard.style';
 
 const QuestionDetailCard = props => {
-  const { currentUser } = useContext(AppContext);
+  const { currentUser } = useContext(CurrentUser);
 
   return (
     <sc.Container>

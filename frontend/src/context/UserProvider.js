@@ -1,39 +1,26 @@
-import React, { useState, useEffect, createContext } from 'react';
-import useFetch from '../api/useFetch';
-
-const userContext = createContext({
-  currentUser: {},
-  setCurrentUser: () => {}
-});
+import React, { useState, useEffect } from 'react';
+import { CurrentUser } from './contexts';
+import { useCurrentUser } from '../api/userApi';
 
 const UserProvider = props => {
   const [currentUser, setCurrentUser] = useState({});
 
-  const [getCurrentUser, loading, error] = useFetch('/user/current');
+  const response = useCurrentUser();
 
   useEffect(() => {
-    (async () => {
-      const currentUser = await getCurrentUser();
-
-      if (error) console.log('UserProvider error: ', error);
-
-      if (
-        !loading &&
-        !error &&
-        currentUser &&
-        currentUser.user &&
-        currentUser.user.id
-      )
-        setCurrentUser(currentUser.user);
-    })();
-
-    // eslint-disable-next-line
-  }, []);
+    if (
+      response &&
+      response.data &&
+      response.data.data &&
+      response.data.data.id
+    )
+      setCurrentUser(response.data.data);
+  }, [response]);
 
   return (
-    <userContext.Provider value={{ currentUser, setCurrentUser }}>
+    <CurrentUser.Provider value={{ currentUser, setCurrentUser }}>
       {props.children}
-    </userContext.Provider>
+    </CurrentUser.Provider>
   );
 };
 

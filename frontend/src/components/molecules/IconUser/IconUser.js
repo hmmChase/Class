@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import AppContext from '../../../context/app';
+import { CurrentUser } from '../../../context/contexts';
 import useFetch from '../../../api/useFetch';
 import * as sc from './IconUser.style';
 
 const IconUser = () => {
-  const { currentUser, setCurrentUser } = useContext(AppContext);
+  const { currentUser, setCurrentUser } = useContext(CurrentUser);
   const [logout, loading, error] = useFetch('/user/logout');
 
   const onClick = async e => {

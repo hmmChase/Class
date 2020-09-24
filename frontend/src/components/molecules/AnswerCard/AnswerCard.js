@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import DropdownComment from '../DropdownComment/DropdownComment';
-import AppContext from '../../../context/app';
+import { CurrentUser } from '../../../context/contexts';
 import * as sc from './AnswerCard.style';
 
 const AnswerCard = props => {
-  const { currentUser } = useContext(AppContext);
+  const { currentUser } = useContext(CurrentUser);
 
   return (
     <sc.Container className={props.className}>
