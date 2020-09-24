@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CurrentUser } from '../../../context/contexts';
 import BtnLogIn from '../../molecules/BtnLogIn/BtnLogIn';
-import BtnSignup from '../../molecules/BtnSignUp/BtnSignup';
+import BtnSignup from '../../molecules/BtnSignup/BtnSignup';
 import IconKnight from '../../molecules/IconKnight/IconKnight';
 import IconUser from '../../molecules/IconUser/IconUser';
 import * as sc from './Header.style';
