@@ -25,7 +25,7 @@ export const signupUserByEmail = async (res, username, email, password) => {
   return createdUser;
 };
 
-export const resetPasswordLoginWithEmail = async (res, email, password) => {
+export const resetPasswordLogin = async (res, email, password) => {
   const userRecord = await prisma.user.findOne({ where: { email } });
 
   if (!userRecord)

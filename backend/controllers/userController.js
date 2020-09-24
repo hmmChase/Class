@@ -163,7 +163,7 @@ export const resetPassword = async (req, res) => {
   });
 
   // log them back in
-  const { jwt, user } = await userService.resetPasswordLoginWithEmail(
+  const { jwt, user } = await userService.resetPasswordLogin(
     updatedUser.email,
     newPassword
   );
