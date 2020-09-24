@@ -1,0 +1,33 @@
+{
+  "alias": "challenge-board-backend",
+  "version": 2,
+  "github": {
+    "silent": true
+  },
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "app.js"
+    }
+  ],
+  "build": {
+    "env": {
+      "ACCESS_TOKEN_SECRET": "@cb_access_token_secret",
+      "DATABASE_URL": "@cb_database_url",
+      "MAIL_USER": "@cb_mail_user",
+      "MAIL_PASS": "@cb_mail_pass"
+    }
+  },
+  "env": {
+    "ACCESS_TOKEN_SECRET": "@cb_access_token_secret",
+    "DATABASE_URL": "@cb_database_url",
+    "MAIL_USER": "@cb_mail_user",
+    "MAIL_PASS": "@cb_mail_pass"
+  }
+}

@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Do this whenever this files changes:
+// npx prisma migrate save --experimental
+// npx prisma migrate up --experimental
+// npx prisma generate
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                   Int         @id @default(autoincrement())
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+  deletedAt            DateTime?
+  email                String      @unique
+  username             String
+  password             String?
+  avatarUrl            String?
+  role                 Role        @default(STUDENT)
+  hasDiscordLogin      Boolean     @default(false)
+  resetPassToken       String?     @unique
+  resetPassTokenExpiry DateTime?
+  challenges           Challenge[]
+  projects             Project[]
+  questions            Question[]
+  comments             Comment[]
+}
+
+enum Role {
+  TEACHER
+  STUDENT
+}
+
+model Challenge {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  deletedAt DateTime?
+  path      String     @unique
+  title     String
+  desc      String
+  videoUrl  String
+  questions Question[]
+  author    User       @relation(fields: [user_id], references: [id])
+  user_id   Int
+}
+
+model Project {
+  id             Int       @id @default(autoincrement())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  deletedAt      DateTime?
+  githubLink     String
+  additionalLink String?
+  body           String
+  author         User      @relation(fields: [user_id], references: [id])
+  user_id        Int
+}
+
+model Question {
+  id           Int       @id @default(autoincrement())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+  title        String
+  body         String
+  comments     Comment[]
+  author       User      @relation(fields: [user_id], references: [id])
+  user_id      Int
+  challenge    Challenge @relation(fields: [challenge_Id], references: [id])
+  challenge_Id Int
+}
+
+model Comment {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  body        String
+  isAnswer    Boolean   @default(false)
+  author      User      @relation(fields: [user_id], references: [id])
+  user_id     Int
+  question    Question  @relation(fields: [question_id], references: [id])
+  question_id Int
+}
