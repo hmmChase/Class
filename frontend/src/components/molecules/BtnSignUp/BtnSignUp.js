@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import useModal from '../../../utils/useModal';
 import Modal from '../../atoms/Modal/Modal';
 import SignupEmail from '../SignupEmail/SignupEmail';
@@ -23,10 +22,6 @@ const BtnSignup = () => {
       )}
     </>
   );
-};
-
-BtnSignup.propTypes = {
-  className: PropTypes.string
 };
 
 export default React.memo(BtnSignup);
