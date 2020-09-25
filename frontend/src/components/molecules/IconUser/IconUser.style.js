@@ -7,6 +7,7 @@ export const Container = styled.div`
   height: 2rem;
   width: 2rem;
   padding: 2px;
+  cursor: pointer;
 
   :hover {
     background-color: ${props => props.theme.colors.text.primaryText};
