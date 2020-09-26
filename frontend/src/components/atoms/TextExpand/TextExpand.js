@@ -1,43 +1,36 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
+import Truncate from 'react-truncate';
 import * as sc from './TextExpand.style';
 
 const TextExpand = props => {
-  const [isExpanded, setExpanded] = useState(false);
+  const [isTruncated, setTruncated] = useState(true);
 
-  const [height, setHeight] = useState(null);
-
-  const refBody = useRef(null);
-
-  useEffect(() => {
-    if (refBody.current) {
-      let height = refBody.current.offsetHeight;
-
-      setHeight(height);
-    }
-  }, []);
-
-  const onClick = () => setExpanded(!isExpanded);
+  const handleTruncate = () => setTruncated(!isTruncated);
 
   return (
     <sc.Container>
-      <sc.Body ref={refBody} isExpanded={isExpanded}>
-        {props.children}
-      </sc.Body>
+      {isTruncated ? (
+        <Truncate
+          lines={3}
+          trimWhitespace
+          ellipsis={
+            <span>
+              ... <sc.ToggleText onClick={handleTruncate}>more</sc.ToggleText>
+            </span>
+          }
+        >
+          {props.children}
+        </Truncate>
+      ) : (
+        <>
+          {props.children}
 
-      {height >= 54 ? (
-        isExpanded ? (
-          <sc.ToggleText onClick={onClick}>less</sc.ToggleText>
-        ) : (
-          <sc.ToggleText onClick={onClick}>more</sc.ToggleText>
-        )
-      ) : null}
+          <sc.ToggleText onClick={handleTruncate}> less</sc.ToggleText>
+        </>
+      )}
     </sc.Container>
   );
 };
-
-// TextExpand.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
 
 export default React.memo(TextExpand);
