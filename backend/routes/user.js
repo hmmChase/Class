@@ -12,13 +12,13 @@ router.get('/all', asyncErrorWrapper(userController.getAllUsers));
 
 router.get('/current', asyncErrorWrapper(userController.getCurrentUser));
 
-router.get('/logout', asyncErrorWrapper(userController.logout));
-
 /* POST */
 
 router.post('/signup', asyncErrorWrapper(userController.signup));
 
 router.post('/login', asyncErrorWrapper(userController.login));
+
+router.post('/logout', asyncErrorWrapper(userController.logout));
 
 router.post(
   '/reset-password',
