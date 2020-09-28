@@ -69,6 +69,9 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
+  if (!email || !password)
+    return res.status(401).json({ error: 'login.invalidCredentials' });
+
   const userRecord = await prisma.user.findOne({ where: { email } });
 
   if (!userRecord)
