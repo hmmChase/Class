@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
@@ -16,16 +17,23 @@ export const getAllProjects = async (req, res, next) => {
 /* POST */
 
 export const create = async (req, res, next) => {
-  const { githubLink, additionalLink, body } = req.body;
+  const { githubLink, additionalLink, comments } = req.body;
 
-  const projectRecord = await prisma.question.create({
+  const user = jwt.verify(
+    req.cookies.jwt,
+    Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64')
+  );
+
+  const projectRecord = await prisma.project.create({
     data: {
       githubLink,
       additionalLink,
-      body,
-      author: { connect: { id: authorId } }
+      comments,
+      author: { connect: { id: user.user.id } }
     }
   });
+
+  console.log('projectRecord:', projectRecord);
 
   return res.json(projectRecord);
 };

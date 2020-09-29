@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import useFetch from '../../../api/useFetch';
 import { CurrentUser } from '../../../context/contexts';
+import { useSignup } from '../../../api/userApi';
 import * as sc from './SignupEmail.style';
 
 const SignupEmail = () => {
@@ -8,14 +8,13 @@ const SignupEmail = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const { setCurrentUser } = useContext(CurrentUser);
-  const [signup, loading, error] = useFetch('/user/signup');
+
+  const [signup] = useSignup({ onSuccess: data => setCurrentUser(data.data) });
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const newUser = await signup({ username, email, password });
-
-    if (!loading && !error && newUser && newUser.id) setCurrentUser(newUser);
+    await signup({ username, email, password });
   };
 
   return (

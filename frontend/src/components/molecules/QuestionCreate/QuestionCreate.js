@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import useFetch from '../../../api/useFetch';
 import Desc from '../../atoms/Desc/Desc';
 import DOMPurify from 'dompurify';
+// import { useCreateQuestion } from '../../../api/questionApi';
 import * as sc from './QuestionCreate.style';
 
 const QuestionCreate = props => {
@@ -12,14 +13,24 @@ const QuestionCreate = props => {
 
   const [createQuestion] = useFetch(`/question/create/${challengePath}`);
 
+  // const [createQuestion, { data }] = useCreateQuestion({
+  //   onSuccess: data => {
+  //     console.log('data:', data);
+
+  //     const updatedQuestions = [data.data, ...props.questions];
+
+  //     props.setQuestions(updatedQuestions);
+
+  //     props.close();
+  //   }
+  // });
+
   const handleChange = e => {
-    const bodyClean = DOMPurify.sanitize(e.target.value);
+    const cleanValue = DOMPurify.sanitize(e.target.value);
 
-    setBody(bodyClean);
+    if (e.target.id === 'title') setTitle(cleanValue);
 
-    setTitle(e.target.value);
-
-    setBody(e.target.value);
+    if (e.target.id === 'body') setBody(cleanValue);
   };
 
   const handleSubmit = async e => {
@@ -32,6 +43,12 @@ const QuestionCreate = props => {
     props.setQuestions(updatedQuestions);
 
     props.close();
+
+    // try {
+    //   await createQuestion({ title, body, challengePath });
+    // } catch (error) {
+    //   console.log('LoginEmail error: ', error);
+    // }
   };
 
   return (

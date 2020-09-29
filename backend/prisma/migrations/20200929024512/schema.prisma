@@ -60,7 +60,7 @@ model Project {
   deletedAt      DateTime?
   githubLink     String
   additionalLink String?
-  body           String
+  comments       String?
   author         User      @relation(fields: [user_id], references: [id])
   user_id        Int
 }

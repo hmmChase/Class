@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Label from '../../atoms/Label/Label';
 import Title from '../../atoms/Title/Title';
 import Desc from '../../atoms/Desc/Desc';
-import Button from '../../atoms/Button/Button';
+import ProjectNew from '../../molecules/ProjectNew/ProjectNew';
 import * as sc from './SubmissionSubmit.style';
 
 const SubmissionSubmit = props => (
@@ -14,7 +14,7 @@ const SubmissionSubmit = props => (
 
     <Desc>When you're ready, submit your Github link here for review.</Desc>
 
-    <Button>Submit Project</Button>
+    <ProjectNew />
   </sc.Container>
 );
 

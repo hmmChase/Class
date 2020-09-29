@@ -67,7 +67,7 @@ const main = async () => {
     data: {
       githubLink: 'www.github.com',
       additionalLink: 'www.google.com',
-      body: 'Here is my project',
+      comments: 'Here is my project',
       author: { connect: { id: 2 } }
     }
   });
@@ -76,7 +76,7 @@ const main = async () => {
     data: {
       githubLink: 'www.github.com',
       additionalLink: 'www.google.com',
-      body: 'My project is here',
+      comments: 'My project is here',
       author: { connect: { id: 3 } }
     }
   });

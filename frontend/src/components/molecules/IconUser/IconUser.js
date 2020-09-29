@@ -1,19 +1,20 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { CurrentUser } from '../../../context/contexts';
-import useFetch from '../../../api/useFetch';
+import { useLogout } from '../../../api/userApi';
 import * as sc from './IconUser.style';
 
 const IconUser = () => {
   const { currentUser, setCurrentUser } = useContext(CurrentUser);
-  const [logout, loading, error] = useFetch('/user/logout');
 
-  const onClick = async e => {
-    e.preventDefault();
+  const [logout] = useLogout({ onSuccess: () => setCurrentUser({}) });
 
-    await logout();
-
-    if (!loading && !error) setCurrentUser({});
+  const onClick = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.log('logout error: ', error);
+    }
   };
 
   return (

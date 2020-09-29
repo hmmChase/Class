@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import useFetch from '../../../api/useFetch';
+import { useLoginEmail } from '../../../api/userApi';
 import * as sc from './ResetPassRequest.style';
 
 const ResetPassRequest = () => {
   const [email, setEmail] = useState('');
-  const [resetPassReq] = useFetch('/user/reset-password');
+
+  const [resetPassReq] = useLoginEmail();
 
   const onSubmit = async e => {
     e.preventDefault();
 
-    await resetPassReq({ email });
+    try {
+      await resetPassReq({ email });
+    } catch (error) {
+      // console.log('LoginEmail error: ', error);
+    }
   };
 
   return (
