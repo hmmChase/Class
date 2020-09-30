@@ -8,6 +8,7 @@ export const Form = styled.form`
 
 export const Label = styled.label`
   margin-bottom: 1rem;
+  display: block;
 
   > input {
     margin-left: 0.5rem;

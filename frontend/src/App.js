@@ -19,7 +19,7 @@ const App = () => (
           <SignupDiscordRedirectPage />
         </Route>
 
-        <Route path='/reset-password/:resetToken'>
+        <Route path='/reset-password?resetToken'>
           <ResetPasswordPage />
         </Route>
 

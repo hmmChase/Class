@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useModal from '../../../utils/useModal';
 import Modal from '../../atoms/Modal/Modal';
@@ -6,6 +6,7 @@ import Button from '../../atoms/Button/Button';
 import * as sc from './ProjectNew.style';
 
 const ProjectNew = props => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isModalOpen, toggleModal] = useModal();
 
   return (
@@ -14,7 +15,14 @@ const ProjectNew = props => {
 
       {isModalOpen && (
         <Modal close={toggleModal}>
-          <sc.ProjectCreatee close={toggleModal} />
+          {isSubmitted ? (
+            <p>submitted</p>
+          ) : (
+            <sc.ProjectCreatee
+              close={toggleModal}
+              setIsSubmitted={setIsSubmitted}
+            />
+          )}
         </Modal>
       )}
     </sc.Container>

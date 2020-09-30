@@ -10,7 +10,9 @@ const ProjectCreate = props => {
   const [additionalLink, setAdditionalLink] = useState('');
   const [comments, setComment] = useState('');
 
-  const [createProject] = useFetch('/project/create');
+  const [createProject, { data }] = useFetch('/project/create');
+
+  console.log('data:', data);
 
   // const [createProject, { data }] = useCreateProject({
   //   onSuccess: data => {
@@ -39,9 +41,13 @@ const ProjectCreate = props => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    await createProject({ githubLink, additionalLink, comments });
+    const project = await createProject({
+      githubLink,
+      additionalLink,
+      comments
+    });
 
-    props.close();
+    if (project && project.id) props.setIsSubmitted(true);
 
     // try {
     //   await createProject({ title, body, challengePath });

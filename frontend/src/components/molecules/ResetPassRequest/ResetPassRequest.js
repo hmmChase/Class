@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useLoginEmail } from '../../../api/userApi';
+import { useResetPassRequest } from '../../../api/userApi';
 import * as sc from './ResetPassRequest.style';
 
 const ResetPassRequest = () => {
   const [email, setEmail] = useState('');
 
-  const [resetPassReq] = useLoginEmail();
+  const [resetPassReq] = useResetPassRequest();
 
   const onSubmit = async e => {
     e.preventDefault();
