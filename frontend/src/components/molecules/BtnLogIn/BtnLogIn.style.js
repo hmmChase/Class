@@ -16,6 +16,6 @@ export const Buttonn = styled(Button)`
 `;
 
 export const Tabss = styled(Tabs)`
-  height: 345px;
+  height: 380px;
   width: 321px;
 `;

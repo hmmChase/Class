@@ -33,7 +33,5 @@ export const create = async (req, res, next) => {
     }
   });
 
-  console.log('projectRecord:', projectRecord);
-
   return res.json(projectRecord);
 };

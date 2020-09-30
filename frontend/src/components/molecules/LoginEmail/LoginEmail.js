@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { CurrentUser } from '../../../context/contexts';
 import { useLoginEmail } from '../../../api/userApi';
+// import Input from '../../atoms/Input/Input';
 import * as sc from './LoginEmail.style';
 
 const LoginEmail = () => {
@@ -8,7 +9,7 @@ const LoginEmail = () => {
   const [password, setPassword] = useState('student1');
   const { setCurrentUser } = useContext(CurrentUser);
 
-  const [loginEmail, { error }] = useLoginEmail({
+  const [loginEmail] = useLoginEmail({
     onSuccess: data => setCurrentUser(data.data)
   });
 
@@ -26,23 +27,27 @@ const LoginEmail = () => {
     <sc.Form onSubmit={handleSubmit}>
       <sc.Label>
         Email:
-        <input
+        <sc.Input
           required
           type='email'
           value={email}
           placeholder='Email'
           onChange={e => setEmail(e.target.value)}
+          // id='email'
+          // initialValue='student1@email.com'
         />
       </sc.Label>
 
       <sc.Label>
         Password:
-        <input
+        <sc.Input
           required
           type='password'
           value={password}
           placeholder='Password'
           onChange={e => setPassword(e.target.value)}
+          // id='password'
+          // initialValue='student1'
         />
       </sc.Label>
 

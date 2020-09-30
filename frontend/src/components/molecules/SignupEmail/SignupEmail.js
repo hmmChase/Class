@@ -21,7 +21,7 @@ const SignupEmail = () => {
     <sc.Form onSubmit={handleSubmit}>
       <sc.Label>
         Username:
-        <input
+        <sc.Input
           required
           type='text'
           value={username}
@@ -32,7 +32,7 @@ const SignupEmail = () => {
 
       <sc.Label>
         Email:
-        <input
+        <sc.Input
           required
           type='email'
           value={email}
@@ -43,7 +43,7 @@ const SignupEmail = () => {
 
       <sc.Label>
         Password:
-        <input
+        <sc.Input
           required
           minLength='8'
           type='password'

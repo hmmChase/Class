@@ -21,7 +21,7 @@ const ResetPassRequest = () => {
     <sc.Form onSubmit={onSubmit}>
       <sc.Label>
         Email:
-        <input
+        <sc.Input
           required
           type='email'
           value={email}
