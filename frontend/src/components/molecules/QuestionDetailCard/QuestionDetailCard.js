@@ -18,12 +18,12 @@ const QuestionDetailCard = props => {
           <sc.Created>{formatDate(props.question.createdAt)}</sc.Created>
         </sc.Group>
 
-        {currentUser.role === 'TEACHER' && (
+        {/* {currentUser.role === 'TEACHER' && (
           <DropdownQuestion
             questionId={props.questionId}
             handleDeleteQuestion={props.handleDeleteQuestion}
           />
-        )}
+        )} */}
       </sc.Row>
 
       <sc.Title>{props.question.title}</sc.Title>

@@ -16,7 +16,7 @@ const DropdownQuestion = props => {
 
   return (
     <sc.Container className={props.className}>
-      <Dropdown>
+      <Dropdown close={props.close}>
         <sc.Li>
           <sc.Span onClick={onClick}>Remove Post</sc.Span>
         </sc.Li>

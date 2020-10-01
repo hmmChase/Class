@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
 import { CurrentUser } from '../../../context/contexts';
@@ -6,8 +6,12 @@ import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
 import * as sc from './QuestionCard.style';
 
 const QuestionCard = props => {
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const { currentUser } = useContext(CurrentUser);
   const { challengePath } = useParams();
+
+  const shouldShowMenu =
+    currentUser.role === 'TEACHER' || currentUser.id === props.authorId;
 
   return (
     <sc.Container className={props.className}>
@@ -21,12 +25,18 @@ const QuestionCard = props => {
         <sc.GroupTopRight>
           {props.isAnswered && <sc.Answeredd />}
 
-          {currentUser.role === 'TEACHER' && (
+          {shouldShowMenu && isDropdownOpen && (
             <DropdownQuestion
+              role={currentUser.role}
               questionId={props.questionId}
+              close={() => setDropdownOpen(false)}
               handleDeleteQuestion={props.handleDeleteQuestion}
             />
           )}
+
+          <sc.DropdownButton onClick={() => setDropdownOpen(true)}>
+            ...
+          </sc.DropdownButton>
         </sc.GroupTopRight>
       </sc.Row>
 

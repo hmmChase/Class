@@ -67,3 +67,18 @@ export const ViewQuestion = styled.span`
   font-weight: 800;
   margin-right: 1rem;
 `;
+
+export const DropdownButton = styled.div`
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  background-color: ${props =>
+    props.isDropdownOpen ? props.theme.colors.backgrounds.fullApp : 'inherit'};
+  padding: 10px 20px;
+  color: ${props =>
+    props.isDropdownOpen ? props.theme.colors.text.primaryText : 'inherit'};
+  border-top-right-radius: 0.5rem;
+
+  :hover {
+    color: ${props => props.theme.colors.text.primaryText};
+  }
+`;

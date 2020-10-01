@@ -51,6 +51,7 @@ const Questions = props => {
         key={question.id}
         questionId={question.id}
         createdAt={formatDate(question.createdAt)}
+        authorId={question.author.id}
         authorName={question.author.username}
         title={question.title}
         commentCount={commentCount}

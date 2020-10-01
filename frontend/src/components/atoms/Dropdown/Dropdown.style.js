@@ -25,6 +25,7 @@ export const Dropdown = styled.div`
   margin: 0;
   padding: 0.5rem;
   right: 0px;
+  top: 33px;
   width: 180px;
   background-color: ${props => props.theme.colors.backgrounds.fullApp};
   position: absolute;
