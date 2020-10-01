@@ -1,29 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { CurrentUser } from '../../../context/contexts';
-import { useLogout } from '../../../api/userApi';
+import DropDownUserIcon from '../DropdownUserIcon/DropDownUserIcon';
 import * as sc from './IconUser.style';
 
 const IconUser = () => {
-  const { currentUser, setCurrentUser } = useContext(CurrentUser);
-
-  const [logout] = useLogout({ onSuccess: () => setCurrentUser({}) });
-
-  const onClick = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.log('logout error: ', error);
-    }
-  };
+  const [isModalOpen, setModalOpen] = useState(false);
 
   return (
-    <sc.Container onClick={onClick}>
-      {currentUser && currentUser.avatarUrl ? (
-        <sc.IconUserDefined src={currentUser.avatarUrl} />
-      ) : (
-        <sc.IconUserDefault />
-      )}
+    <sc.Container>
+      {isModalOpen && <DropDownUserIcon close={() => setModalOpen(false)} />}
+
+      <sc.IconUserDefault onClick={() => setModalOpen(true)} />
     </sc.Container>
   );
 };

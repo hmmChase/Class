@@ -1,38 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import useModal from '../../../utils/useModal';
-import Modal from '../../atoms/Modal/Modal';
-import LoginEmail from '../LoginEmail/LoginEmail';
-import ResetPassRequest from '../ResetPassRequest/ResetPassRequest';
-import LoginDiscord from '../LoginDiscord/LoginDiscord';
+import ModalLogin from '../ModalLogin/ModalLogin';
 import * as sc from './BtnLogIn.style';
 
 const BtnLogIn = () => {
-  const [isModalOpen, toggleModal] = useModal();
+  const [isModalOpen, setModalOpen] = useState(false);
 
   return (
     <>
-      <sc.Buttonn onClick={toggleModal}>Log In</sc.Buttonn>
+      {isModalOpen && <ModalLogin close={() => setModalOpen(false)} />}
 
-      {isModalOpen && (
-        <Modal close={toggleModal}>
-          <sc.Tabss
-            option1={{
-              title: 'Login Email',
-              body: (
-                <>
-                  <LoginEmail />
-
-                  <p>Forgot Password?</p>
-
-                  <ResetPassRequest />
-                </>
-              )
-            }}
-            option2={{ title: 'Login Discord', body: <LoginDiscord /> }}
-          />
-        </Modal>
-      )}
+      <sc.Buttonn onClick={() => setModalOpen(true)}>Log In</sc.Buttonn>
     </>
   );
 };

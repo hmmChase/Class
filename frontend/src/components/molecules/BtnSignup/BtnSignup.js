@@ -1,25 +1,15 @@
-import React from 'react';
-import useModal from '../../../utils/useModal';
-import Modal from '../../atoms/Modal/Modal';
-import SignupEmail from '../SignupEmail/SignupEmail';
-import SignupDiscord from '../SignupDiscord/SignupDiscord';
+import React, { useState } from 'react';
+import ModalSignup from '../ModalSignup/ModalSignup';
 import * as sc from './BtnSignup.style';
 
 const BtnSignup = () => {
-  const [isModalOpen, toggleModal] = useModal();
+  const [isModalOpen, setModalOpen] = useState(false);
 
   return (
     <>
-      <sc.Buttonn onClick={toggleModal}>Sign Up</sc.Buttonn>
+      {isModalOpen && <ModalSignup close={() => setModalOpen(false)} />}
 
-      {isModalOpen && (
-        <Modal close={toggleModal}>
-          <sc.Tabss
-            option1={{ title: 'Signup Email', body: <SignupEmail /> }}
-            option2={{ title: 'Signup Discord', body: <SignupDiscord /> }}
-          />
-        </Modal>
-      )}
+      <sc.Buttonn onClick={() => setModalOpen(true)}>Sign Up</sc.Buttonn>
     </>
   );
 };
