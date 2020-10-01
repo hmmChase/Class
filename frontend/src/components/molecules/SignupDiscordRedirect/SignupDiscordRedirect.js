@@ -15,7 +15,9 @@ const SignupDiscordRedirect = () => {
   useEffect(() => {
     (async () => {
       const code = getParameterByName('code');
+      console.log('code:', code);
       const state = getParameterByName('state');
+      console.log('state:', state);
 
       const user = await signupDiscord({ code, state });
 

@@ -6,6 +6,7 @@ import * as sc from './SignupDiscord.style';
 const SignupDiscord = () => {
   const [signupDiscord] = useFetch('/discord/url-signup');
 
+
   const handleClick = async () => {
     const discordUrl = await signupDiscord();
 

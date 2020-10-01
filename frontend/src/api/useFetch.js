@@ -27,7 +27,7 @@ const request = async (pathName, options, body) => {
         ...options
       };
 
-      response = await instance.post(url, optionsObj);
+      response = await instance.post(url, body);
     } else {
       const optionsObj = {
         method: 'GET',
@@ -35,7 +35,7 @@ const request = async (pathName, options, body) => {
         ...options
       };
 
-      response = await instance.get(url, optionsObj);
+      response = await instance.get(url, body);
     }
 
     return response.data;
