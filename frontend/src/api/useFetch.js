@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BASE_URL, API_VERSION, errorCodeToMessage } from '../config';
+import instance from './baseApi';
 
 // const handleErrorArray = errCodeArray => errCodeArray.map(handleErrors);
 
@@ -26,7 +27,7 @@ const request = async (pathName, options, body) => {
         ...options
       };
 
-      response = await fetch(url, optionsObj);
+      response = await instance.post(url, optionsObj);
     } else {
       const optionsObj = {
         method: 'GET',
@@ -34,10 +35,10 @@ const request = async (pathName, options, body) => {
         ...options
       };
 
-      response = await fetch(url, optionsObj);
+      response = await instance.get(url, optionsObj);
     }
 
-    return await response.json();
+    return response.data;
   } catch (err) {
     // console.error(err);
   }
