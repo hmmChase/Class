@@ -68,7 +68,11 @@ export const ViewQuestion = styled.span`
   margin-right: 1rem;
 `;
 
-export const DropdownButton = styled.div`
+export const Relative = styled.div`
+  position: relative;
+`;
+
+export const DropdownButton = styled.span`
   font-weight: 800;
   letter-spacing: 0.1rem;
   background-color: ${props =>

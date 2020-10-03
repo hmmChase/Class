@@ -12,9 +12,7 @@ const Dropdown = props => {
 
   return (
     <sc.Container className={props.className} ref={ref}>
-      <sc.Dropdown>
-        <sc.Ul>{props.children}</sc.Ul>
-      </sc.Dropdown>
+      <sc.Ul>{props.children}</sc.Ul>
     </sc.Container>
   );
 };

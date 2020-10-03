@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { CurrentUser } from '../../../context/contexts';
 import DropdownComment from '../DropdownComment/DropdownComment';
@@ -6,7 +6,11 @@ import TextExpand from '../../atoms/TextExpand/TextExpand';
 import * as sc from './CommentCard.style';
 
 const CommentCard = props => {
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const { currentUser } = useContext(CurrentUser);
+
+  const shouldShowMenu =
+    currentUser.role === 'TEACHER' || currentUser.id === props.authorId;
 
   return (
     <sc.Container className={props.className}>
@@ -19,13 +23,27 @@ const CommentCard = props => {
           <sc.CreatedAt>{props.createdAt}</sc.CreatedAt>
         </sc.Group>
 
-        {currentUser.role === 'TEACHER' && (
-          <DropdownComment
-            commentId={props.commentId}
-            handleDeleteComment={props.handleDeleteComment}
-            promoteAnswer={props.promoteAnswer}
-          />
-        )}
+        <sc.Relative>
+          {isDropdownOpen && (
+            <DropdownComment
+              role={currentUser.role}
+              isDropdownOpen={isDropdownOpen}
+              commentId={props.commentId}
+              close={() => setDropdownOpen(false)}
+              handleDeleteComment={props.handleDeleteComment}
+              promoteAnswer={props.promoteAnswer}
+            />
+          )}
+
+          {shouldShowMenu && (
+            <sc.DropdownButton
+              isDropdownOpen={isDropdownOpen}
+              onClick={() => setDropdownOpen(true)}
+            >
+              ...
+            </sc.DropdownButton>
+          )}
+        </sc.Relative>
       </sc.Row>
 
       <TextExpand>{props.body}</TextExpand>

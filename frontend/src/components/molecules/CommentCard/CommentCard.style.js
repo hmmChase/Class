@@ -34,3 +34,22 @@ export const CreatedAt = styled.span`
   font-size: 0.9rem;
   padding: 1rem 0;
 `;
+
+export const Relative = styled.div`
+  position: relative;
+`;
+
+export const DropdownButton = styled.span`
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  background-color: ${props =>
+    props.isDropdownOpen ? props.theme.colors.backgrounds.cards : 'inherit'};
+  padding: 10px 20px;
+  color: ${props =>
+    props.isDropdownOpen ? props.theme.colors.text.primaryText : 'inherit'};
+  border-top-right-radius: 0.5rem;
+
+  :hover {
+    color: ${props => props.theme.colors.text.primaryText};
+  }
+`;

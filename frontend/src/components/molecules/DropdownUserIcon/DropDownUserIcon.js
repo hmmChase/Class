@@ -19,8 +19,10 @@ const DropdownUserIcon = props => {
   };
 
   return (
-    <Dropdown close={props.close}>
-      <p onClick={onClick}>Log Out</p>
+    <Dropdown className={props.className} close={props.close}>
+      <li>
+        <span onClick={onClick}>Log Out</span>
+      </li>
     </Dropdown>
   );
 };

@@ -35,6 +35,8 @@ app.set('view engine', 'ejs');
 //   credentials: true
 // };
 
+// 'https://challenge-board-backend.vercel.app'
+
 const corsOptions = { origin: BASE_URL, credentials: true };
 
 app.use(logger('dev'));

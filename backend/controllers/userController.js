@@ -68,8 +68,6 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  console.log('email:', email);
-  console.log('password:', password);
 
   if (!email || !password)
     return res.status(401).json({ error: 'login.invalidCredentials' });

@@ -1,16 +1,16 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import * as sc from './DropdownComment.style';
+import * as sc from './DropdownAnswer.style';
 
-const DropdownComment = props => (
+const DropdownAnswer = props => (
   <sc.Dropdownn
     className={props.className}
     isDropdownOpen={props.isDropdownOpen}
     close={props.close}
   >
     <li>
-      <span onClick={() => props.promoteAnswer(props.commentId)}>
-        Promote as Answer
+      <span onClick={() => props.demoteAnswer(props.commentId)}>
+        Demote from Answer
       </span>
     </li>
 
@@ -22,8 +22,8 @@ const DropdownComment = props => (
   </sc.Dropdownn>
 );
 
-// DropdownComment.propTypes = {
+// DropdownAnswer.propTypes = {
 //   // myProp: PropTypes.string.isRequired
 // };
 
-export default React.memo(DropdownComment);
+export default React.memo(DropdownAnswer);

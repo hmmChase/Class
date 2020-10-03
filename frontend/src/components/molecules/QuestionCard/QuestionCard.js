@@ -25,18 +25,26 @@ const QuestionCard = props => {
         <sc.GroupTopRight>
           {props.isAnswered && <sc.Answeredd />}
 
-          {shouldShowMenu && isDropdownOpen && (
-            <DropdownQuestion
-              role={currentUser.role}
-              questionId={props.questionId}
-              close={() => setDropdownOpen(false)}
-              handleDeleteQuestion={props.handleDeleteQuestion}
-            />
-          )}
+          <sc.Relative>
+            {isDropdownOpen && (
+              <DropdownQuestion
+                role={currentUser.role}
+                isDropdownOpen={isDropdownOpen}
+                questionId={props.questionId}
+                close={() => setDropdownOpen(false)}
+                handleDeleteQuestion={props.handleDeleteQuestion}
+              />
+            )}
 
-          <sc.DropdownButton onClick={() => setDropdownOpen(true)}>
-            ...
-          </sc.DropdownButton>
+            {shouldShowMenu && (
+              <sc.DropdownButton
+                isDropdownOpen={isDropdownOpen}
+                onClick={() => setDropdownOpen(true)}
+              >
+                ...
+              </sc.DropdownButton>
+            )}
+          </sc.Relative>
         </sc.GroupTopRight>
       </sc.Row>
 

@@ -10,6 +10,7 @@ const Comments = props => {
         <sc.CommentCardd
           key={comment.id}
           commentId={comment.id}
+          authorId={comment.author.id}
           authorName={comment.author.username}
           timestamp={timestamp(comment.createdAt)}
           createdAt={formatDate(comment.createdAt)}

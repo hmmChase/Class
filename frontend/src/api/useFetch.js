@@ -18,25 +18,8 @@ const request = async (pathName, options, body) => {
   try {
     let response;
 
-    if (body) {
-      const optionsObj = {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-        credentials: 'include',
-        ...options
-      };
-
-      response = await instance.post(url, body);
-    } else {
-      const optionsObj = {
-        method: 'GET',
-        credentials: 'include',
-        ...options
-      };
-
-      response = await instance.get(url, body);
-    }
+    if (body) response = await instance.post(url, body);
+    else response = await instance.get(url);
 
     return response.data;
   } catch (err) {

@@ -1,7 +1,7 @@
 import express from 'express';
 import * as commentController from '../controllers/commentController';
 import { isAuth } from '../middleware/isAuth';
-import { authRole } from '../middleware/authRole';
+import authRole from '../middleware/authRole';
 
 const router = express.Router();
 
