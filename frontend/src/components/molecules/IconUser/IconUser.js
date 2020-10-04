@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import DropDownUserIcon from '../DropdownUserIcon/DropDownUserIcon';
 import * as sc from './IconUser.style';
 
 const IconUser = () => {
@@ -8,7 +7,9 @@ const IconUser = () => {
 
   return (
     <sc.Container>
-      {isModalOpen && <DropDownUserIcon close={() => setModalOpen(false)} />}
+      {isModalOpen && (
+        <sc.DropDownUserIconn close={() => setModalOpen(false)} />
+      )}
 
       <sc.IconUserDefault onClick={() => setModalOpen(true)} />
     </sc.Container>

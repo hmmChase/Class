@@ -14,7 +14,11 @@ const DropdownQuestion = props => {
   };
 
   return (
-    <sc.Dropdownn className={props.className} close={props.close}>
+    <sc.Dropdownn
+      className={props.className}
+      isDropdownOpen={props.isDropdownOpen}
+      close={props.close}
+    >
       <li>
         <span onClick={onClick}>Remove Post</span>
       </li>

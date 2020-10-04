@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import DropDownUserIcon from '../DropdownUserIcon/DropDownUserIcon';
 import { ReactComponent as UserSvg } from '../../../images/user.svg';
 
 export const Container = styled.div`
@@ -14,11 +15,15 @@ export const Container = styled.div`
   }
 `;
 
-export const IconUserDefined = styled.img`
-  height: 2rem;
-  width: 2rem;
-  border-radius: 50%;
+export const DropDownUserIconn = styled(DropDownUserIcon)`
+  top: 30px;
 `;
+
+// export const IconUserDefined = styled.img`
+//   height: 2rem;
+//   width: 2rem;
+//   border-radius: 50%;
+// `;
 
 export const IconUserDefault = styled(UserSvg)`
   fill: ${props => props.theme.colors.backgrounds.widgetsHeader};
