@@ -8,10 +8,16 @@ const DropdownComment = props => (
     isDropdownOpen={props.isDropdownOpen}
     close={props.close}
   >
+    {props.role === 'TEACHER' && (
+      <li>
+        <span onClick={() => props.promoteAnswer(props.commentId)}>
+          Promote as Answer
+        </span>
+      </li>
+    )}
+
     <li>
-      <span onClick={() => props.promoteAnswer(props.commentId)}>
-        Promote as Answer
-      </span>
+      <span>Edit Post</span>
     </li>
 
     <li>

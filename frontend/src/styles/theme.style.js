@@ -9,7 +9,7 @@ export default {
 
     text: {
       titleText: '#809BFF', // #8199f9
-      primaryText: '#fff',
+      primaryText: '#FFF',
       secondaryText: '#DCDDDE',
       terciaryText: '#7D8088'
     },
@@ -18,7 +18,7 @@ export default {
       actionButton: '#6271C0',
       actionButtonHover: '#809BFF', // #8199f9
       iconDefault: '#B3B3B3',
-      hover: '#fff'
+      hover: '#FFF'
     }
   }
 };

@@ -10,7 +10,9 @@ const CommentCard = props => {
   const { currentUser } = useContext(CurrentUser);
 
   const shouldShowMenu =
-    currentUser.role === 'TEACHER' || currentUser.id === props.authorId;
+    currentUser &&
+    currentUser.id &&
+    (currentUser.role === 'TEACHER' || currentUser.id === props.authorId);
 
   return (
     <sc.Container className={props.className}>

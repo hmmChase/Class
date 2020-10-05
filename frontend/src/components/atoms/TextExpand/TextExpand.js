@@ -9,7 +9,7 @@ const TextExpand = props => {
   const handleTruncate = () => setTruncated(!isTruncated);
 
   return (
-    <sc.Container>
+    <sc.Container className={props.className}>
       {isTruncated ? (
         <Truncate
           lines={3}

@@ -11,7 +11,9 @@ const QuestionCard = props => {
   const { challengePath } = useParams();
 
   const shouldShowMenu =
-    currentUser.role === 'TEACHER' || currentUser.id === props.authorId;
+    currentUser &&
+    currentUser.id &&
+    (currentUser.role === 'TEACHER' || currentUser.id === props.authorId);
 
   return (
     <sc.Container className={props.className}>

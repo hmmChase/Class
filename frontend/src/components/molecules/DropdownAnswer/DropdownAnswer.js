@@ -8,11 +8,13 @@ const DropdownAnswer = props => (
     isDropdownOpen={props.isDropdownOpen}
     close={props.close}
   >
-    <li>
-      <span onClick={() => props.demoteAnswer(props.commentId)}>
-        Demote from Answer
-      </span>
-    </li>
+    {props.role === 'TEACHER' && (
+      <li>
+        <span onClick={() => props.demoteAnswer(props.commentId)}>
+          Demote from Answer
+        </span>
+      </li>
+    )}
 
     <li>
       <span onClick={() => props.handleDeleteComment(props.commentId)}>

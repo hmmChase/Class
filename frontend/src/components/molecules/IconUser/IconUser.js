@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
+import DropDownUserIcon from '../DropdownUserIcon/DropDownUserIcon';
 import PropTypes from 'prop-types';
 import * as sc from './IconUser.style';
 
 const IconUser = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <sc.Container>
-      {isModalOpen && (
-        <sc.DropDownUserIconn close={() => setModalOpen(false)} />
+    <sc.Container isDropdownOpen={isDropdownOpen}>
+      {isDropdownOpen && (
+        <DropDownUserIcon
+          isDropdownOpen={isDropdownOpen}
+          close={() => setDropdownOpen(false)}
+        />
       )}
 
-      <sc.IconUserDefault onClick={() => setModalOpen(true)} />
+      <sc.IconUserDefault onClick={() => setDropdownOpen(true)} />
     </sc.Container>
   );
 };

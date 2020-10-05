@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   color: ${props => props.theme.colors.buttons.iconDefault};
   position: absolute;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   /* display: flex; */
   /* overflow: auto; */
   /* margin: 0; */
@@ -14,15 +14,18 @@ export const Container = styled.div`
   /* border-bottom-left-radius: 0.5rem; */
   /* border-top-left-radius: 0.5rem; */
   /* background-color: black; */
+
+  z-index: 999;
 `;
 
 export const Ul = styled.ul`
   list-style: none;
-  /* margin: 0; */
-  padding: 0;
+  margin: 0;
+  padding: 10px;
 
   > li {
     cursor: pointer;
+    padding: 5px 0;
 
     :not(:last-child) {
       border-bottom: 1px solid #e5e5e5;

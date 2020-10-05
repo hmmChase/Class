@@ -33,3 +33,26 @@ export const Created = styled.span`
 export const Title = styled.span`
   margin-bottom: 1rem;
 `;
+
+export const Relative = styled.div`
+  position: relative;
+  display: flex;
+`;
+
+export const DropdownButton = styled.span`
+  cursor: pointer;
+  font-weight: 800;
+  line-height: 41px;
+  letter-spacing: 0.1rem;
+  background-color: ${props =>
+    props.isDropdownOpen ? props.theme.colors.backgrounds.features : 'inherit'};
+  padding: 0 15px;
+  color: ${props =>
+    props.isDropdownOpen
+      ? props.theme.colors.text.primaryText
+      : props.theme.colors.text.secondaryText};
+
+  :hover {
+    color: ${props => props.theme.colors.text.primaryText};
+  }
+`;

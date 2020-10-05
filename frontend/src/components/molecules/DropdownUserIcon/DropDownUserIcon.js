@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { CurrentUser } from '../../../context/contexts';
 import { useLogout } from '../../../api/userApi';
 import Dropdown from '../../atoms/Dropdown/Dropdown';
-// import * as sc from './DropdownUserIcon.style';
+import * as sc from './DropdownUserIcon.style';
 
 const DropdownUserIcon = props => {
   const { setCurrentUser } = useContext(CurrentUser);
@@ -19,11 +19,15 @@ const DropdownUserIcon = props => {
   };
 
   return (
-    <Dropdown className={props.className} close={props.close}>
+    <sc.Dropdownn
+      className={props.className}
+      isDropdownOpen={props.isDropdownOpen}
+      close={props.close}
+    >
       <li>
         <span onClick={onClick}>Log Out</span>
       </li>
-    </Dropdown>
+    </sc.Dropdownn>
   );
 };
 

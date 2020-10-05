@@ -6,11 +6,12 @@ export const Container = styled.div``;
 export const AnswersList = styled.ul`
   margin: 0;
   padding: 0;
+  /* padding: 0 0 1rem 1rem; */
   list-style: none;
 `;
 
 export const AnswerCardd = styled(AnswerCard)`
-  :not(:last-child) {
+  /* :not(:last-child) {
     margin-bottom: 0.5rem;
-  }
+  } */
 `;

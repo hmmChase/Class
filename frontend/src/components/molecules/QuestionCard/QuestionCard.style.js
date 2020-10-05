@@ -8,7 +8,6 @@ export const Container = styled.li`
   flex-direction: column;
   justify-content: space-between;
   padding: 0 0 1rem 1rem;
-
   height: 100%;
   display: flex;
 
@@ -45,7 +44,7 @@ export const Created = styled.span`
 export const Answeredd = styled(Answered)`
   fill: ${props => props.theme.colors.text.secondaryText};
   height: 1rem;
-  margin: auto 0.5rem auto 0;
+  margin: auto 1rem auto 0;
   width: auto;
 `;
 
@@ -73,25 +72,22 @@ export const ViewQuestion = styled.span`
 
 export const Relative = styled.div`
   position: relative;
-
-  height: 100%;
   display: flex;
 `;
 
 export const DropdownButton = styled.span`
   height: 100%;
-
   cursor: pointer;
   font-weight: 800;
-  /* text-align: end; */
   line-height: 41px;
-  /* vertical-align: bottom; */
   letter-spacing: 0.1rem;
   background-color: ${props =>
     props.isDropdownOpen ? props.theme.colors.backgrounds.features : 'inherit'};
-  /* margin-top: 10px; */
   padding: 0 15px;
-  color: ${props => props.theme.colors.text.secondaryText};
+  color: ${props =>
+    props.isDropdownOpen
+      ? props.theme.colors.text.primaryText
+      : props.theme.colors.text.secondaryText};
   border-top-right-radius: 0.5rem;
 
   :hover {

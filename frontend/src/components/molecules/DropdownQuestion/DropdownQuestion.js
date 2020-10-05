@@ -10,7 +10,7 @@ const DropdownQuestion = props => {
   const onClick = async () => {
     await props.handleDeleteQuestion(props.questionId);
 
-    history.push(`/${challengePath}`);
+    if (history.pathname !== '/challenge1') history.push(`/${challengePath}`);
   };
 
   return (

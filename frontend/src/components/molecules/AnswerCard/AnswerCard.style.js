@@ -49,22 +49,27 @@ export const CreatedAt = styled.span`
 `;
 
 export const TextExpandd = styled(TextExpand)`
+  padding-right: 1rem;
   margin-bottom: 1rem;
 `;
 
 export const Relative = styled.div`
   position: relative;
+  display: flex;
 `;
 
 export const DropdownButton = styled.span`
+  cursor: pointer;
   font-weight: 800;
+  line-height: 41px;
   letter-spacing: 0.1rem;
   background-color: ${props =>
-    props.isDropdownOpen ? props.theme.colors.backgrounds.cards : 'inherit'};
-  padding: 10px 20px;
+    props.isDropdownOpen ? props.theme.colors.backgrounds.features : 'inherit'};
+  padding: 0 15px;
   color: ${props =>
-    props.isDropdownOpen ? props.theme.colors.text.primaryText : 'inherit'};
-  border-top-right-radius: 0.5rem;
+    props.isDropdownOpen
+      ? props.theme.colors.text.primaryText
+      : props.theme.colors.text.secondaryText};
 
   :hover {
     color: ${props => props.theme.colors.text.primaryText};
