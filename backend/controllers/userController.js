@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import * as authService from '../services/authService';
 import * as userService from '../services/userService';
 import * as emailHandler from '../handlers/emailHandler';
-
 import { COOKIE_CONFIG, BASE_URL } from '../config';
 
 const prisma = new PrismaClient();

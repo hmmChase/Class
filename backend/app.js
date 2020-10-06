@@ -16,7 +16,7 @@ import questionRouter from './routes/question';
 import commentRouter from './routes/comment';
 
 import * as errorHandlers from './handlers/errorHandlers';
-import { BASE_URL, port } from './config';
+import { port } from './config';
 
 const app = express();
 
@@ -48,7 +48,14 @@ app.set('view engine', 'ejs');
 //   }
 // };
 
-const corsOptions = { origin: BASE_URL, credentials: true };
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'https://challenge-board.vercel.app',
+    'https://challenge-board-backend.vercel.app'
+  ],
+  credentials: true
+};
 
 app.use(logger('dev'));
 app.use(express.json());
