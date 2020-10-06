@@ -6,24 +6,27 @@ import { CurrentUser } from '../../../context/contexts';
 import * as sc from './SignupDiscordRedirect.style';
 
 const SignupDiscordRedirect = () => {
-  const { setCurrentUser } = useContext(CurrentUser);
+  // const { setCurrentUser } = useContext(CurrentUser);
 
-  const history = useHistory();
+  // const history = useHistory();
+
+  console.log('asdflkjsadlf');
 
   const [signupDiscord, loading, error] = useFetch('/discord/signup');
 
   useEffect(() => {
     (async () => {
       const code = getParameterByName('code');
-      console.log('code:', code);
+
       const state = getParameterByName('state');
-      console.log('state:', state);
 
       const user = await signupDiscord({ code, state });
 
-      if (!loading && !error && user && user.id) setCurrentUser(user);
+      console.log('user:', user);
 
-      history.push('/');
+      // if (!loading && !error && user && user.id) setCurrentUser(user);
+
+      // history.push('/');
     })();
 
     // eslint-disable-next-line

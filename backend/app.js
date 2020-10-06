@@ -1,6 +1,6 @@
 import express from 'express';
 import logger from 'morgan';
-// import cors from 'cors';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
@@ -22,38 +22,22 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-// const whitelist = [];
-// if (app.get('env') === 'development') whitelist.push('http://localhost:4000');
-// else whitelist.push('https://challenge-board.vercel.app/');
+const whitelist = [
+  'http://localhost:3000',
+  'https://challenge-board.vercel.app',
+  'https://challenge-board-backend.vercel.app'
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) callback(null, true);
+    else callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true
+};
 
 // const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (whitelist.indexOf(origin) !== -1) callback(null, true);
-//     else callback(Error('Not allowed by CORS'));
-//   },
-
-//   credentials: true
-// };
-
-// 'https://challenge-board-backend.vercel.app'
-
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     // db.loadOrigins is an example call to load
-//     // a list of origins from a backing database
-
-//     db.loadOrigins(function (error, origins) {
-//       callback(error, origins);
-//     });
-//   }
-// };
-
-// const corsOptions = {
-//   origin: [
-//     'http://localhost:3000',
-//     'https://challenge-board.vercel.app',
-//     'https://challenge-board-backend.vercel.app'
-//   ],
+//   origin: whitelist,
 //   credentials: true
 // };
 
@@ -61,7 +45,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(compression());

@@ -3,7 +3,7 @@ import useFetch from '../../../api/useFetch';
 import { useHistory } from 'react-router-dom';
 import getParameterByName from '../../../utils/getQueryParamByName';
 import { CurrentUser } from '../../../context/contexts';
-import * as sc from './LoginDiscordRedirect.style';
+// import * as sc from './LoginDiscordRedirect.style';
 
 const LoginDiscordRedirect = () => {
   const { setCurrentUser } = useContext(CurrentUser);
@@ -27,7 +27,7 @@ const LoginDiscordRedirect = () => {
     // eslint-disable-next-line
   }, []);
 
-  return <sc.Container></sc.Container>;
+  return <div />;
 };
 
 export default LoginDiscordRedirect;
