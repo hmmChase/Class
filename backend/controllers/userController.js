@@ -173,9 +173,6 @@ export const resetPassword = async (req, res) => {
     newPassword
   );
 
-  console.log('user:', user);
-  console.log('jwt:', jwt);
-
   res.cookie('jwt', jwt, COOKIE_CONFIG);
 
   return res.json(user);
