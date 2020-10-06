@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DOMPurify from 'dompurify';
 import useFetch from '../../../api/useFetch';
 // import { useResetPass } from '../../../api/userApi';
 import * as sc from './ResetPass.style';
@@ -9,6 +10,12 @@ const ResetPass = props => {
   const [resetPass] = useFetch(`/user/reset-password/${props.resetToken}`);
 
   // const [resetPass] = useResetPass();
+
+  const handleChange = e => {
+    const cleanValue = DOMPurify.sanitize(e.target.value);
+
+    setNewPassword(cleanValue);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -27,7 +34,7 @@ const ResetPass = props => {
           type='password'
           value={newPassword}
           placeholder='Password'
-          onChange={e => setNewPassword(e.target.value)}
+          onChange={handleChange}
         />
       </sc.Label>
 

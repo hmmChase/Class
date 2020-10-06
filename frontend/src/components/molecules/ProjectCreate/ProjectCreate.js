@@ -41,19 +41,21 @@ const ProjectCreate = props => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const project = await createProject({
-      githubLink,
-      additionalLink,
-      comments
-    });
+    try {
+      const project = await createProject({
+        githubLink,
+        additionalLink,
+        comments
+      });
 
-    if (project && project.id) props.setIsSubmitted(true);
+      if (project && project.createdAt) {
+        props.setSubmittedDate(project.createdAt);
 
-    // try {
-    //   await createProject({ title, body, challengePath });
-    // } catch (error) {
-    //   console.log('LoginEmail error: ', error);
-    // }
+        props.setIsSubmitted(true);
+      }
+    } catch (error) {
+      // console.log('LoginEmail error: ', error);
+    }
   };
 
   return (

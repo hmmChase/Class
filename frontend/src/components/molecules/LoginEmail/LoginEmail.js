@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
+import DOMPurify from 'dompurify';
 import { CurrentUser } from '../../../context/contexts';
 import { useLoginEmail } from '../../../api/userApi';
-// import Input from '../../atoms/Input/Input';
 import * as sc from './LoginEmail.style';
 
 const LoginEmail = () => {
@@ -12,6 +12,14 @@ const LoginEmail = () => {
   const [loginEmail] = useLoginEmail({
     onSuccess: data => setCurrentUser(data.data)
   });
+
+  const handleChange = e => {
+    const cleanValue = DOMPurify.sanitize(e.target.value);
+
+    if (e.target.id === 'email') setEmail(cleanValue);
+
+    if (e.target.id === 'password') setPassword(cleanValue);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -29,12 +37,11 @@ const LoginEmail = () => {
         Email:
         <sc.Input
           required
+          id='email'
           type='email'
           value={email}
           placeholder='Email'
-          onChange={e => setEmail(e.target.value)}
-          // id='email'
-          // initialValue='student1@email.com'
+          onChange={handleChange}
         />
       </sc.Label>
 
@@ -42,12 +49,11 @@ const LoginEmail = () => {
         Password:
         <sc.Input
           required
+          id='password'
           type='password'
           value={password}
           placeholder='Password'
-          onChange={e => setPassword(e.target.value)}
-          // id='password'
-          // initialValue='student1'
+          onChange={handleChange}
         />
       </sc.Label>
 

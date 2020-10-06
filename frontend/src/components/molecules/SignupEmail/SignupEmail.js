@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import DOMPurify from 'dompurify';
 import { CurrentUser } from '../../../context/contexts';
 import { useSignup } from '../../../api/userApi';
 import * as sc from './SignupEmail.style';
@@ -10,6 +11,16 @@ const SignupEmail = () => {
   const { setCurrentUser } = useContext(CurrentUser);
 
   const [signup] = useSignup({ onSuccess: data => setCurrentUser(data.data) });
+
+  const handleChange = e => {
+    const cleanValue = DOMPurify.sanitize(e.target.value);
+
+    if (e.target.id === 'username') setUsername(cleanValue);
+
+    if (e.target.id === 'email') setEmail(cleanValue);
+
+    if (e.target.id === 'password') setPassword(cleanValue);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -23,10 +34,11 @@ const SignupEmail = () => {
         Username:
         <sc.Input
           required
+          id='username'
           type='text'
           value={username}
           placeholder='Username'
-          onChange={e => setUsername(e.target.value)}
+          onChange={handleChange}
         />
       </sc.Label>
 
@@ -34,10 +46,11 @@ const SignupEmail = () => {
         Email:
         <sc.Input
           required
+          id='email'
           type='email'
           value={email}
           placeholder='Email'
-          onChange={e => setEmail(e.target.value)}
+          onChange={handleChange}
         />
       </sc.Label>
 
@@ -45,11 +58,12 @@ const SignupEmail = () => {
         Password:
         <sc.Input
           required
+          id='password'
           minLength='8'
           type='password'
           value={password}
           placeholder='Password'
-          onChange={e => setPassword(e.target.value)}
+          onChange={handleChange}
         />
       </sc.Label>
 

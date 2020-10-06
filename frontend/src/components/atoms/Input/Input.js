@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import DOMPurify from 'dompurify';
 import * as sc from './Input.style';
 
 const Input = props => {
   const [value, setValue] = useState(props.initialValue);
 
   const handleChange = e => {
-    console.log('e.target.value:', e.target.value);
+    const cleanValue = DOMPurify.sanitize(e.target.value);
 
-    props.onChange(() => setValue(e.target.value));
+    props.onChange(() => setValue(cleanValue));
   };
 
   return (

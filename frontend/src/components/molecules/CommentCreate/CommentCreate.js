@@ -6,10 +6,10 @@ import * as sc from './CommentCreate.style';
 const CommentCreate = props => {
   const [body, setBody] = useState('');
 
-  const onChange = e => {
-    const bodyClean = DOMPurify.sanitize(e.target.value);
+  const handleChange = e => {
+    const cleanValue = DOMPurify.sanitize(e.target.value);
 
-    setBody(bodyClean);
+    setBody(cleanValue);
   };
 
   const onClick = e => {
@@ -26,7 +26,7 @@ const CommentCreate = props => {
         type='text'
         placeholder='Comment'
         value={body}
-        onChange={onChange}
+        onChange={handleChange}
       />
 
       <sc.ArrowBtn onClick={onClick} />

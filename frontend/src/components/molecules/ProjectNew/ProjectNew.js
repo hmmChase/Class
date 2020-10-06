@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import useModal from '../../../utils/useModal';
 import Modal from '../../atoms/Modal/Modal';
 import Button from '../../atoms/Button/Button';
+import ProjectSubmitted from '../ProjectSubmitted/ProjectSubmitted';
 import * as sc from './ProjectNew.style';
 
 const ProjectNew = props => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setSubmitted] = useState(false);
   const [isModalOpen, toggleModal] = useModal();
 
   return (
@@ -16,11 +17,12 @@ const ProjectNew = props => {
       {isModalOpen && (
         <Modal close={toggleModal}>
           {isSubmitted ? (
-            <p>submitted</p>
+            <ProjectSubmitted />
           ) : (
             <sc.ProjectCreatee
               close={toggleModal}
-              setIsSubmitted={setIsSubmitted}
+              setIsSubmitted={setSubmitted}
+              setSubmittedDate={props.setSubmittedDate}
             />
           )}
         </Modal>

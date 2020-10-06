@@ -1,22 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Label from '../../atoms/Label/Label';
 import Title from '../../atoms/Title/Title';
 import Desc from '../../atoms/Desc/Desc';
 import ProjectNew from '../../molecules/ProjectNew/ProjectNew';
+import { formatDate, timestamp } from '../../../utils/dateTime';
 import * as sc from './SubmissionSubmit.style';
+import { act } from '@testing-library/react';
 
-const SubmissionSubmit = props => (
-  <sc.Container className={props.className}>
-    <Label>SUBMISSION</Label>
+const SubmissionSubmit = props => {
+  const [submittedDate, setSubmittedDate] = useState('');
 
-    <Title>Submit Your Project</Title>
+  return (
+    <sc.Container className={props.className}>
+      <Label>SUBMISSION</Label>
 
-    <Desc>When you're ready, submit your Github link here for review.</Desc>
+      <Title>Submit Your Project</Title>
 
-    <ProjectNew />
-  </sc.Container>
-);
+      <Desc>When you're ready, submit your Github link here for review.</Desc>
+
+      <sc.Row>
+        <ProjectNew setSubmittedDate={setSubmittedDate} />
+
+        {submittedDate && (
+          <sc.SubmittedText>{`Project submitted at ${timestamp(
+            submittedDate
+          )} on ${formatDate(submittedDate)}`}</sc.SubmittedText>
+        )}
+      </sc.Row>
+    </sc.Container>
+  );
+};
 
 SubmissionSubmit.propTypes = {
   className: PropTypes.string
