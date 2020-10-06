@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import useFetch from '../../../api/useFetch';
 import { useHistory } from 'react-router-dom';
-import getParameterByName from '../../../utils/getParameterByName';
+import getParameterByName from '../../../utils/getQueryParamByName';
 import { CurrentUser } from '../../../context/contexts';
 import * as sc from './LoginDiscordRedirect.style';
 

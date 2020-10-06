@@ -8,6 +8,7 @@ const UserProvider = props => {
   const response = useCurrentUser();
 
   useEffect(() => {
+    // (() => {
     if (
       response &&
       response.data &&
@@ -15,6 +16,7 @@ const UserProvider = props => {
       response.data.data.id
     )
       setCurrentUser(response.data.data);
+    // })();
   }, [response]);
 
   return (

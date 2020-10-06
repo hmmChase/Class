@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import DOMPurify from 'dompurify';
-import { useResetPassRequest } from '../../../api/userApi';
+import BtnReqPass from '../BtnReqPass/BtnReqPass';
 import * as sc from './ResetPassRequest.style';
 
 const ResetPassRequest = () => {
   const [email, setEmail] = useState('');
-
-  const [resetPassReq] = useResetPassRequest();
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -14,18 +12,8 @@ const ResetPassRequest = () => {
     setEmail(cleanValue);
   };
 
-  const onSubmit = async e => {
-    e.preventDefault();
-
-    try {
-      await resetPassReq({ email });
-    } catch (error) {
-      // console.log('LoginEmail error: ', error);
-    }
-  };
-
   return (
-    <sc.Form onSubmit={onSubmit}>
+    <sc.Form>
       <sc.Label>
         Email:
         <sc.Input
@@ -37,7 +25,7 @@ const ResetPassRequest = () => {
         />
       </sc.Label>
 
-      <sc.Buttonn type='submit'>Request Password Reset</sc.Buttonn>
+      <BtnReqPass email={email} />
     </sc.Form>
   );
 };

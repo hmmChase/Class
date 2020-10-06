@@ -6,7 +6,6 @@ import Desc from '../../atoms/Desc/Desc';
 import ProjectNew from '../../molecules/ProjectNew/ProjectNew';
 import { formatDate, timestamp } from '../../../utils/dateTime';
 import * as sc from './SubmissionSubmit.style';
-import { act } from '@testing-library/react';
 
 const SubmissionSubmit = props => {
   const [submittedDate, setSubmittedDate] = useState('');

@@ -5,22 +5,23 @@ import LoginDiscordRedirectPage from './pages/login-discord';
 import SignupDiscordRedirectPage from './pages/signup-discord';
 import ResetPasswordPage from './pages/reset-password';
 import IndexPage from './pages/index';
+import AccountPage from './pages/account';
 import UserProvider from './context/UserProvider';
 
 const App = () => (
   <UserProvider>
     <Router>
       <Switch>
-        <Route path='/login-discord'>
-          <LoginDiscordRedirectPage />
-        </Route>
-
         <Route path='/signup-discord'>
           <SignupDiscordRedirectPage />
         </Route>
 
-        <Route path='/reset-password?resetToken'>
-          <ResetPasswordPage />
+        <Route path='/login-discord'>
+          <LoginDiscordRedirectPage />
+        </Route>
+
+        <Route path='/account'>
+          <AccountPage />
         </Route>
 
         <Route path='/reset-password'>

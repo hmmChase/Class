@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { CurrentUser } from '../../../context/contexts';
 import { useLogout } from '../../../api/userApi';
-import Dropdown from '../../atoms/Dropdown/Dropdown';
 import * as sc from './DropdownUserIcon.style';
 
 const DropdownUserIcon = props => {
@@ -10,7 +10,7 @@ const DropdownUserIcon = props => {
 
   const [logout] = useLogout({ onSuccess: () => setCurrentUser({}) });
 
-  const onClick = async () => {
+  const handleClick = async () => {
     try {
       await logout();
     } catch (error) {
@@ -25,7 +25,13 @@ const DropdownUserIcon = props => {
       close={props.close}
     >
       <li>
-        <span onClick={onClick}>Log Out</span>
+        <Link to={'/account'}>
+          <span>Settings</span>
+        </Link>
+      </li>
+
+      <li>
+        <span onClick={handleClick}>Log Out</span>
       </li>
     </sc.Dropdownn>
   );

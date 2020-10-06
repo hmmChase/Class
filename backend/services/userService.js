@@ -26,21 +26,35 @@ export const signupUserByEmail = async (res, username, email, password) => {
 };
 
 export const resetPasswordLogin = async (res, email, password) => {
+  console.log('res:', res);
+  console.log('email:', email);
+  console.log('password:', password);
+
   const userRecord = await prisma.user.findOne({ where: { email } });
+
+  console.log('userRecord:', userRecord);
 
   if (!userRecord)
     return res.status(401).json({ error: 'login.invalidCredentials' });
 
   const isCorrectPass = await argon2.verify(userRecord.password, password);
 
+  console.log('isCorrectPass:', isCorrectPass);
+
   if (!isCorrectPass)
     return res.status(401).json({ error: 'login.invalidCredentials' });
 
   const userJWT = { user: { id: userRecord.id } };
 
+  console.log('userJWT:', userJWT);
+
   const newJWT = authService.generateJWT(userJWT);
+
+  console.log('newJWT:', newJWT);
 
   const userClientData = authService.userClientCleaner(userRecord);
 
-  return { newJWT, userClientData };
+  console.log('userClientData:', userClientData);
+
+  return [newJWT, userClientData];
 };

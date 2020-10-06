@@ -21,13 +21,10 @@ router.post('/login', asyncErrorWrapper(userController.login));
 router.post('/logout', asyncErrorWrapper(userController.logout));
 
 router.post(
-  '/reset-password',
+  '/reset-password-request',
   asyncErrorWrapper(userController.generatePassReset)
 );
 
-router.post(
-  '/reset-password/:resetToken',
-  asyncErrorWrapper(userController.resetPassword)
-);
+router.post('/reset-password', asyncErrorWrapper(userController.resetPassword));
 
 export default router;

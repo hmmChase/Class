@@ -1,32 +1,26 @@
 import React from 'react';
-// import { useParams } from 'react-router-dom';
+import Layout from '../components/organisms/Layout/Layout';
+import Header from '../components/organisms/Header/Header';
 import ResetPass from '../components/molecules/ResetPass/ResetPass';
-import ResetPassRequest from '../components/molecules/ResetPassRequest/ResetPassRequest';
-import getParameterByName from '../utils/getParameterByName';
+import getQueryString from '../utils/getQueryString';
+
 const ResetPasswordPage = () => {
-  const resetToken = getParameterByName('resetToken');
+  const resetToken = getQueryString('resetToken');
 
   return (
-    <>
-      {resetToken ? (
-        <ResetPass resetToken={resetToken} />
-      ) : (
-        <ResetPassRequest />
-      )}
-    </>
+    <Layout
+      header={<Header />}
+      main={
+        <>
+          {resetToken ? (
+            <ResetPass resetToken={resetToken} />
+          ) : (
+            <p>Missing reset token</p>
+          )}
+        </>
+      }
+    ></Layout>
   );
 };
-
-// const ResetPasswordPage = () => {
-//   const { resetToken } = useParams();
-
-//   return (
-//     <div>
-//       <p>ResetPasswordPage</p>
-
-//       <p>{resetToken}</p>
-//     </div>
-//   );
-// };
 
 export default ResetPasswordPage;

@@ -12,7 +12,7 @@ const handleErrors = errorCode => {
   return errorCodeToMessage.default;
 };
 
-const request = async (pathName, options, body) => {
+const request = async (pathName, body) => {
   const url = `${BASE_URL}/api/${API_VERSION}${pathName}`;
 
   try {
@@ -35,7 +35,7 @@ const useFetch = (pathName, options) => {
     setLoading(true);
 
     try {
-      const response = await request(pathName, options, body);
+      const response = await request(pathName, body);
 
       if (response && response.error) {
         const errorMessage = handleErrors(response.error);
