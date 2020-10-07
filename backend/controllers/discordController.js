@@ -29,20 +29,15 @@ export const getLoginUrl = (req, res) => {
 
 export const signupDiscord = async (req, res) => {
   const { code, state } = req.body;
-  console.log('state:', state);
-  console.log('code:', code);
 
   const previousState = authService.getStateFromHeader(req);
-  console.log('previousState:', previousState);
-
-  console.log('state !== previousState:', state !== previousState);
 
   if (state !== previousState)
     return res.status(401).json({ error: 'login.discordError' });
 
   const { jwt, user } = await discordService.signup(res, code);
 
-  // res.cookie('jwt', jwt, COOKIE_CONFIG);
+  res.cookie('jwt', jwt, COOKIE_CONFIG);
 
   return res.json(user);
 };
