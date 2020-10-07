@@ -5,19 +5,13 @@ import { useCurrentUser } from '../api/userApi';
 const UserProvider = props => {
   const [currentUser, setCurrentUser] = useState({});
 
-  const response = useCurrentUser();
+  const { data } = useCurrentUser();
 
   useEffect(() => {
     // (() => {
-    if (
-      response &&
-      response.data &&
-      response.data.data &&
-      response.data.data.id
-    )
-      setCurrentUser(response.data.data);
+    if (data && data.data && data.data.id) setCurrentUser(data.data);
     // })();
-  }, [response]);
+  }, [data]);
 
   return (
     <CurrentUser.Provider value={{ currentUser, setCurrentUser }}>

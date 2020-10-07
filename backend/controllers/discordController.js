@@ -37,13 +37,11 @@ export const signupDiscord = async (req, res) => {
 
   console.log('stuff:', stuff);
 
-  // const { user, jwt } = await discordService.signup(res, code);
+  const { user, jwt } = await discordService.signup(res, code);
 
-  // res.cookie('jwt', jwt, COOKIE_CONFIG);
+  res.cookie('jwt', jwt, COOKIE_CONFIG);
 
-  // return res.json(user);
-
-  return res.json(stuff);
+  return res.json(user);
 };
 
 export const loginDiscord = async (req, res) => {
