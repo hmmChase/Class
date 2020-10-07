@@ -28,18 +28,18 @@ const whitelist = [
   'https://challenge-board-backend.vercel.app'
 ];
 
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (whitelist.indexOf(origin) !== -1) callback(null, true);
-//     else callback(new Error('Not allowed by CORS'));
-//   },
-//   credentials: true
-// };
-
 const corsOptions = {
-  origin: whitelist,
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) callback(null, true);
+    else callback(new Error('Not allowed by CORS'));
+  },
   credentials: true
 };
+
+// const corsOptions = {
+//   origin: whitelist,
+//   credentials: true
+// };
 
 app.use(cors(corsOptions));
 
