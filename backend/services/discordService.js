@@ -53,7 +53,7 @@ export const signup = async (res, code) => {
   // const userClientData = authService.userClientCleaner(userRecord);
 
   // emailHandler.sendEmailSignup(userClientData.username, userClientData.email);
-  emailHandler.sendEmailSignup('me', 'me@me.com');
+  // emailHandler.sendEmailSignup('me', 'me@me.com');
 
   // const jwtData = { user: { id: userClientData.id } };
 
