@@ -3,22 +3,22 @@ import useFetch from '../../../api/useFetch';
 import { useHistory } from 'react-router-dom';
 import getParameterByName from '../../../utils/getQueryParamByName';
 import { CurrentUser } from '../../../context/contexts';
-import * as sc from './SignupDiscordRedirect.style';
+// import * as sc from './SignupDiscordRedirect.style';
 
 const SignupDiscordRedirect = () => {
   // const { setCurrentUser } = useContext(CurrentUser);
 
   // const history = useHistory();
 
-  console.log('asdflkjsadlf');
-
   const [signupDiscord, loading, error] = useFetch('/discord/signup');
 
   useEffect(() => {
     (async () => {
       const code = getParameterByName('code');
+      console.log('code:', code);
 
       const state = getParameterByName('state');
+      console.log('state:', state);
 
       const user = await signupDiscord({ code, state });
 
@@ -32,7 +32,7 @@ const SignupDiscordRedirect = () => {
     // eslint-disable-next-line
   }, []);
 
-  return <sc.Container></sc.Container>;
+  return <div />;
 };
 
 export default SignupDiscordRedirect;

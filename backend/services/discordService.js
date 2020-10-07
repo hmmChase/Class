@@ -35,33 +35,38 @@ export const signup = async (res, code) => {
     console.log('error:', error);
   }
 
-  // const discordUser = await oauthSignup.getUser(tokenResponse.access_token);
+  const discordUser = await oauthSignup.getUser(tokenResponse.access_token);
 
-  // console.log('discordUser:', discordUser);
+  console.log('discordUser:', discordUser);
 
-  // if (!discordUser)
-  //   return res.status(401).json({ error: 'user.notFoundDiscord' });
+  if (!discordUser)
+    return res.status(401).json({ error: 'user.notFoundDiscord' });
 
-  // const user = {
-  //   username: discordUser.username,
-  //   email: discordUser.email,
-  //   hasDiscordLogin: true
-  // };
+  const user = {
+    username: discordUser.username,
+    email: discordUser.email,
+    hasDiscordLogin: true
+  };
+
+  console.log('user:', user);
 
   // const userRecord = await prisma.user.create({ data: user });
 
   // const userClientData = authService.userClientCleaner(userRecord);
 
   // emailHandler.sendEmailSignup(userClientData.username, userClientData.email);
-  // emailHandler.sendEmailSignup('me', 'me@me.com');
+
+  emailHandler.sendEmailSignup('me', 'me@me.com');
 
   // const jwtData = { user: { id: userClientData.id } };
 
-  // const jwt = authService.generateJWT(jwtData);
+  const jwtData = { user: { id: '123' } };
+
+  const jwt = authService.generateJWT(jwtData);
 
   // return { jwt, user: userClientData };
 
-  return 'stuff';
+  return { jwt, user: jwtData.user };
 };
 
 export const login = async (res, code) => {
