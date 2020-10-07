@@ -22,24 +22,24 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-const whitelist = [
-  'http://localhost:3000',
-  'https://challenge-board.vercel.app',
-  'https://challenge-board-backend.vercel.app'
-];
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) callback(null, true);
-    else callback(new Error('Not allowed by CORS'));
-  },
-  credentials: true
-};
+// const whitelist = [
+//   'http://localhost:3000',
+//   'https://challenge-board.vercel.app',
+//   'https://challenge-board-backend.vercel.app'
+// ];
 
 // const corsOptions = {
-//   origin: whitelist,
+//   origin: (origin, callback) => {
+//     if (whitelist.indexOf(origin) !== -1) callback(null, true);
+//     else callback(new Error('Not allowed by CORS'));
+//   },
 //   credentials: true
 // };
+
+const corsOptions = {
+  origin: '*',
+  credentials: true
+};
 
 app.use(logger('dev'));
 app.use(express.json());
