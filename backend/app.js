@@ -22,11 +22,11 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-// const whitelist = [
-//   'http://localhost:3000',
-//   'https://challenge-board.vercel.app',
-//   'https://challenge-board-backend.vercel.app'
-// ];
+const whitelist = [
+  'http://localhost:3000',
+  'https://challenge-board.vercel.app',
+  'https://challenge-board-backend.vercel.app'
+];
 
 // const corsOptions = {
 //   origin: (origin, callback) => {
@@ -37,7 +37,7 @@ app.set('view engine', 'ejs');
 // };
 
 const corsOptions = {
-  origin: '*',
+  origin: whitelist,
   credentials: true
 };
 

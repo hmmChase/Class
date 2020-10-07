@@ -2,9 +2,8 @@ export const COOKIE_CONFIG = {
   httpOnly: true,
   path: '/',
   secure: process.env.NODE_ENV === 'production',
-  // maxAge: 3600000,
   maxAge: 1000 * 60 * 20, // 20m
-  sameSite: 'strict'
+  sameSite: 'none'
 };
 
 export const BASE_URL =
