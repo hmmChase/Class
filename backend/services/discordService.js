@@ -31,6 +31,8 @@ export const signup = async (res, code) => {
     console.log('error:', error);
   }
 
+  console.log('tokenResponse:', tokenResponse);
+
   const discordUser = await oauthSignup.getUser(tokenResponse.access_token);
 
   if (!discordUser)
