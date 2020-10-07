@@ -3,7 +3,7 @@ export const COOKIE_CONFIG = {
   // path: '/',
   secure: process.env.NODE_ENV === 'production',
   maxAge: 1000 * 60 * 20, // 20m
-  sameSite: 'none'
+  sameSite: 'strict'
 };
 
 export const BASE_URL =
