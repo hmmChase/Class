@@ -10,12 +10,6 @@
       "use": "@now/node-server"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "app.js"
-    }
-  ],
   "headers": [
     {
       "source": "/api/(.*)",
