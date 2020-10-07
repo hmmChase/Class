@@ -37,7 +37,7 @@ export const signupDiscord = async (req, res) => {
 
   const stuff = await discordService.signup(res, code);
 
-  // res.cookie('jwt', jwt, COOKIE_CONFIG);
+  res.cookie('jwt', 'mockjwt', COOKIE_CONFIG);
 
   // return res.json(user);
   return res.json(stuff);
