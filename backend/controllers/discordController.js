@@ -34,9 +34,10 @@ export const signupDiscord = async (req, res) => {
     return res.status(401).json({ error: 'login.discordError' });
 
   // const { user, jwt } = await discordService.signup(res, code);
+
   const stuff = await discordService.signup(res, code);
 
-  res.cookie('jwt', jwt, COOKIE_CONFIG);
+  // res.cookie('jwt', jwt, COOKIE_CONFIG);
 
   // return res.json(user);
   return res.json(stuff);
