@@ -5,7 +5,7 @@ import InputLabel from '../../atoms/InputLabel/InputLabel';
 import { useLoginEmail } from '../../../api/userApi';
 import * as sc from './LoginEmail.style';
 
-const LoginEmail = () => {
+const LoginEmail = props => {
   const [email, setEmail] = useState('student1@email.com');
   const [password, setPassword] = useState('student1');
   const { setCurrentUser } = useContext(CurrentUser);
@@ -57,6 +57,10 @@ const LoginEmail = () => {
       />
 
       {/* {error && error.error && <p>{error.error}</p>} */}
+
+      <sc.ForgetPass onClick={props.toggleShowPassReset}>
+        Forgot your password?
+      </sc.ForgetPass>
 
       <sc.Buttonn type='submit'>Log in</sc.Buttonn>
     </sc.Form>

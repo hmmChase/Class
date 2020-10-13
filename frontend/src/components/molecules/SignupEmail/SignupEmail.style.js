@@ -6,24 +6,13 @@ export const Form = styled.form`
   flex-direction: column;
 `;
 
-export const Label = styled.label`
-  margin-bottom: 1rem;
+export const Input = styled.input``;
 
-  > input {
-    margin-left: 0.5rem;
-  }
-`;
-
-export const Input = styled.input`
-  background-color: ${props => props.theme.colors.backgrounds.features};
-  border-radius: 5px;
-  border: none;
-  color: ${props => props.theme.colors.text.secondaryText};
-  margin-bottom: 0.5rem;
-  outline: none;
-  padding: 0.5rem;
+export const PassRequirements = styled.span`
+  font-size: 0.8em;
 `;
 
 export const Buttonn = styled(Button)`
+  margin-top: 1em;
   align-self: flex-end;
 `;

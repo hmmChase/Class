@@ -1,30 +1,38 @@
 import styled from 'styled-components';
-import Button from '../../atoms/Button/Button';
 import Input from '../../atoms/Input/Input';
+import BtnReqPass from '../BtnReqPass/BtnReqPass';
 
 export const Form = styled.form`
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
 `;
 
-export const Label = styled.label`
-  /* margin-bottom: 1rem; */
+export const Heading = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+`;
 
-  > input {
-    /* margin-left: 0.5rem; */
-  }
+export const HeadingTitle3 = styled.h3`
+  margin: 0 0.5em;
+  white-space: nowrap;
+`;
+
+export const HRule = styled.hr`
+  width: 100%;
+  margin: 0;
 `;
 
 export const Inputt = styled(Input)`
-  /* background-color: ${props => props.theme.colors.backgrounds.features}; */
-  /* border-radius: 5px; */
-  /* border: none; */
-  /* color: ${props => props.theme.colors.text.secondaryText}; */
-  /* margin-bottom: 0.5rem; */
-  /* outline: none; */
-  /* padding: 0.5rem; */
+  margin-bottom: 1em;
 `;
 
-export const Buttonn = styled(Button)`
-  /* align-self: flex-end; */
+export const Back = styled.span`
+  font-size: 0.9em;
+  width: 50px;
+  margin: 0 0 1em 0;
+  cursor: pointer;
+  color: ${props => props.theme.colors.text.titleText};
 `;
+
+export const BtnReqPasss = styled(BtnReqPass)``;

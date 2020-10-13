@@ -1,30 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import Modal from '../../atoms/Modal/Modal';
 import LoginEmail from '../LoginEmail/LoginEmail';
-import ResetPassRequest from '../ResetPassRequest/ResetPassRequest';
 import LoginDiscord from '../LoginDiscord/LoginDiscord';
+import ResetPassRequest from '../ResetPassRequest/ResetPassRequest';
 import * as sc from './ModalLogin.style';
 
-const ModalLogin = props => (
-  <Modal close={props.close}>
-    <sc.Heading>Log in</sc.Heading>
+const ModalLogin = props => {
+  const [showPassReset, setShowPassReset] = useState(false);
 
-    <LoginEmail />
+  const toggleShowPassReset = () => setShowPassReset(!showPassReset);
 
-    <sc.HRule />
+  return (
+    <Modal close={props.close}>
+      {showPassReset ? (
+        <ResetPassRequest toggleShowPassReset={toggleShowPassReset} />
+      ) : (
+        <>
+          <sc.Heading>
+            <sc.HRule />
 
-    <sc.Heading>Log in with Discord</sc.Heading>
+            <sc.HeadingTitle3>Log in</sc.HeadingTitle3>
 
-    <LoginDiscord />
+            <sc.HRule />
+          </sc.Heading>
 
-    <sc.HRule />
+          <LoginEmail toggleShowPassReset={toggleShowPassReset} />
 
-    <sc.Heading>Forgot your password?</sc.Heading>
+          <sc.Heading>
+            <sc.HRule />
 
-    <ResetPassRequest />
-  </Modal>
-);
+            <sc.HeadingTitle3>or</sc.HeadingTitle3>
+
+            <sc.HRule />
+          </sc.Heading>
+
+          <LoginDiscord />
+        </>
+      )}
+    </Modal>
+  );
+};
 
 // ModalLogin.propTypes = {
 //   // myProp: PropTypes.string.isRequired

@@ -1,6 +1,6 @@
 import React from 'react';
 import useFetch from '../../../api/useFetch';
-import Button from '../../atoms/Button/Button';
+import IconDiscord from '../IconDiscord/IconDiscord';
 import * as sc from './LoginDiscord.style';
 
 const LoginDiscord = () => {
@@ -13,9 +13,10 @@ const LoginDiscord = () => {
   };
 
   return (
-    <sc.Container>
-      <Button onClick={handleClick}>Log in with Discord</Button>
-    </sc.Container>
+    <sc.Buttonn onClick={handleClick}>
+      <IconDiscord />
+      Log in with Discord
+    </sc.Buttonn>
   );
 };
 

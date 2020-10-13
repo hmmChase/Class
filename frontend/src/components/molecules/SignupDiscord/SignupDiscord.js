@@ -1,11 +1,10 @@
 import React from 'react';
 import useFetch from '../../../api/useFetch';
-import Button from '../../atoms/Button/Button';
+import IconDiscord from '../IconDiscord/IconDiscord';
 import * as sc from './SignupDiscord.style';
 
 const SignupDiscord = () => {
   const [signupDiscord] = useFetch('/discord/url-signup');
-
 
   const handleClick = async () => {
     const discordUrl = await signupDiscord();
@@ -14,9 +13,10 @@ const SignupDiscord = () => {
   };
 
   return (
-    <sc.Container>
-      <Button onClick={handleClick}>Sign up with Discord</Button>
-    </sc.Container>
+    <sc.Buttonn onClick={handleClick}>
+      <IconDiscord />
+      Sign up with Discord
+    </sc.Buttonn>
   );
 };
 

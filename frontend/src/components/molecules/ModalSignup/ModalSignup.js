@@ -3,15 +3,27 @@ import React from 'react';
 import Modal from '../../atoms/Modal/Modal';
 import SignupEmail from '../SignupEmail/SignupEmail';
 import SignupDiscord from '../SignupDiscord/SignupDiscord';
-// import * as sc from './ModalSignup.style';
+import * as sc from './ModalSignup.style';
 
 const ModalSignup = props => (
   <Modal close={props.close}>
-    <p>Signup Email</p>
+    <sc.Heading>
+      <sc.HRule />
+
+      <sc.HeadingTitle3>Sign up</sc.HeadingTitle3>
+
+      <sc.HRule />
+    </sc.Heading>
 
     <SignupEmail />
 
-    <p>Signup Discord</p>
+    <sc.Heading>
+      <sc.HRule />
+
+      <sc.HeadingTitle3>or</sc.HeadingTitle3>
+
+      <sc.HRule />
+    </sc.Heading>
 
     <SignupDiscord />
   </Modal>

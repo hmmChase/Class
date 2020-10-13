@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 import { CurrentUser } from '../../../context/contexts';
 import { useSignup } from '../../../api/userApi';
+import InputLabel from '../../atoms/InputLabel/InputLabel';
+import Input from '../../atoms/Input/Input';
 import * as sc from './SignupEmail.style';
 
 const SignupEmail = () => {
@@ -30,42 +32,40 @@ const SignupEmail = () => {
 
   return (
     <sc.Form onSubmit={handleSubmit}>
-      <sc.Label>
-        Username:
-        <sc.Input
-          required
-          id='username'
-          type='text'
-          value={username}
-          placeholder='Username'
-          onChange={handleChange}
-        />
-      </sc.Label>
+      <InputLabel>Username</InputLabel>
 
-      <sc.Label>
-        Email:
-        <sc.Input
-          required
-          id='email'
-          type='email'
-          value={email}
-          placeholder='Email'
-          onChange={handleChange}
-        />
-      </sc.Label>
+      <Input
+        required
+        id='username'
+        type='text'
+        value={username}
+        onChange={handleChange}
+      />
 
-      <sc.Label>
-        Password:
-        <sc.Input
-          required
-          id='password'
-          minLength='8'
-          type='password'
-          value={password}
-          placeholder='Password'
-          onChange={handleChange}
-        />
-      </sc.Label>
+      <InputLabel>Email</InputLabel>
+
+      <Input
+        required
+        id='email'
+        type='email'
+        value={email}
+        onChange={handleChange}
+      />
+
+      <InputLabel>Password</InputLabel>
+
+      <Input
+        required
+        id='password'
+        minLength='8'
+        type='password'
+        value={password}
+        onChange={handleChange}
+      />
+
+      <sc.PassRequirements>
+        * Must be at least 8 characters.
+      </sc.PassRequirements>
 
       <sc.Buttonn type='submit'>Sign Up</sc.Buttonn>
     </sc.Form>

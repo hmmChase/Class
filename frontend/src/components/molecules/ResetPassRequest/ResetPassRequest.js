@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import DOMPurify from 'dompurify';
-import BtnReqPass from '../BtnReqPass/BtnReqPass';
+import InputLabel from '../../atoms/InputLabel/InputLabel';
 import * as sc from './ResetPassRequest.style';
 
-const ResetPassRequest = () => {
+const ResetPassRequest = props => {
   const [email, setEmail] = useState('');
 
   const handleChange = e => {
@@ -14,18 +14,21 @@ const ResetPassRequest = () => {
 
   return (
     <sc.Form>
-      <sc.Label>
-        Email:
-        <sc.Inputt
-          required
-          type='email'
-          value={email}
-          placeholder='Email'
-          onChange={handleChange}
-        />
-      </sc.Label>
+      <sc.Back onClick={props.toggleShowPassReset}>{'< Back'}</sc.Back>
 
-      <BtnReqPass email={email} />
+      <sc.Heading>
+        <sc.HRule />
+
+        <sc.HeadingTitle3>Reset Password</sc.HeadingTitle3>
+
+        <sc.HRule />
+      </sc.Heading>
+
+      <InputLabel htmlFor='email'>Email</InputLabel>
+
+      <sc.Inputt required type='email' value={email} onChange={handleChange} />
+
+      <sc.BtnReqPasss email={email} />
     </sc.Form>
   );
 };

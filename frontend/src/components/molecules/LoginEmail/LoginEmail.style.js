@@ -7,25 +7,15 @@ export const Form = styled.form`
   flex-direction: column;
 `;
 
-// export const Label = styled(InputLabel)`
-//   /* margin-bottom: 1rem; */
-//   /* display: block; */
-
-//   > input {
-//     /* margin-left: 0.5rem; */
-//   }
-// `;
-
-export const Inputt = styled(Input)`
-  /* background-color: ${props => props.theme.colors.backgrounds.features}; */
-  /* border-radius: 5px; */
-  /* border: none; */
-  /* color: ${props => props.theme.colors.text.secondaryText}; */
-  /* margin-bottom: 0.5rem; */
-  /* outline: none; */
-  /* padding: 0.5rem; */
-`;
+export const Inputt = styled(Input)``;
 
 export const Buttonn = styled(Button)`
   align-self: flex-end;
+`;
+
+export const ForgetPass = styled.span`
+  font-size: 0.9em;
+  margin-bottom: 2em;
+  cursor: pointer;
+  color: ${props => props.theme.colors.text.titleText};
 `;

@@ -24,6 +24,9 @@ export const Outer = styled.div`
 export const Inner = styled.div`
   background-color: ${props => props.theme.colors.backgrounds.cards};
   border-radius: 10px;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em;
   z-index: 999;
 `;
