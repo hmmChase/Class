@@ -1,3 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Heading = styled.h3``;
+
+export const HRule = styled.hr``;

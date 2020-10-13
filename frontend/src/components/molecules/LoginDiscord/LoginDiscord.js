@@ -14,7 +14,7 @@ const LoginDiscord = () => {
 
   return (
     <sc.Container>
-      <Button onClick={handleClick}>Login with Discord</Button>
+      <Button onClick={handleClick}>Log in with Discord</Button>
     </sc.Container>
   );
 };

@@ -4,19 +4,23 @@ import Modal from '../../atoms/Modal/Modal';
 import LoginEmail from '../LoginEmail/LoginEmail';
 import ResetPassRequest from '../ResetPassRequest/ResetPassRequest';
 import LoginDiscord from '../LoginDiscord/LoginDiscord';
-// import * as sc from './ModalLogin.style';
+import * as sc from './ModalLogin.style';
 
 const ModalLogin = props => (
   <Modal close={props.close}>
-    <p>Login Email</p>
+    <sc.Heading>Log in</sc.Heading>
 
     <LoginEmail />
 
-    <p>Login Discord</p>
+    <sc.HRule />
+
+    <sc.Heading>Log in with Discord</sc.Heading>
 
     <LoginDiscord />
 
-    <p>Reset Password?</p>
+    <sc.HRule />
+
+    <sc.Heading>Forgot your password?</sc.Heading>
 
     <ResetPassRequest />
   </Modal>

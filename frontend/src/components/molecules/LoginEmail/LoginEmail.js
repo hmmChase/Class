@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 import { CurrentUser } from '../../../context/contexts';
+import InputLabel from '../../atoms/InputLabel/InputLabel';
 import { useLoginEmail } from '../../../api/userApi';
 import * as sc from './LoginEmail.style';
 
@@ -33,29 +34,27 @@ const LoginEmail = () => {
 
   return (
     <sc.Form onSubmit={handleSubmit}>
-      <sc.Label>
-        Email:
-        <sc.Input
-          required
-          id='email'
-          type='email'
-          value={email}
-          placeholder='Email'
-          onChange={handleChange}
-        />
-      </sc.Label>
+      <InputLabel htmlFor='email'>Email</InputLabel>
 
-      <sc.Label>
-        Password:
-        <sc.Input
-          required
-          id='password'
-          type='password'
-          value={password}
-          placeholder='Password'
-          onChange={handleChange}
-        />
-      </sc.Label>
+      <sc.Inputt
+        required
+        id='email'
+        type='email'
+        value={email}
+        // placeholder='Email'
+        onChange={handleChange}
+      />
+
+      <InputLabel htmlFor='password'>Password</InputLabel>
+
+      <sc.Inputt
+        required
+        id='password'
+        type='password'
+        value={password}
+        // placeholder='Password'
+        onChange={handleChange}
+      />
 
       {/* {error && error.error && <p>{error.error}</p>} */}
 

@@ -4,7 +4,7 @@ import DOMPurify from 'dompurify';
 import * as sc from './Input.style';
 
 const Input = props => {
-  const [value, setValue] = useState(props.initialValue);
+  const [value, setValue] = useState(props.value);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -21,9 +21,9 @@ const Input = props => {
       type={props.type}
       value={value}
       onChange={handleChange}
-      // placeholder={props.placeholder}
+      placeholder={props.placeholder}
       // onBlur={props.onBlur}
-      // required={props.required}
+      required={props.required}
     />
   );
 };
@@ -31,7 +31,7 @@ const Input = props => {
 Input.propTypes = {
   'aria-label': PropTypes.string,
   className: PropTypes.string,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string
   // name: PropTypes.string.isRequired,
   // onBlur: PropTypes.func.isRequired,
   // onChange: PropTypes.func.isRequired,
