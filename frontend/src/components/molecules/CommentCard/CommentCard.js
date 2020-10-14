@@ -7,6 +7,7 @@ import * as sc from './CommentCard.style';
 
 const CommentCard = props => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const { currentUser } = useContext(CurrentUser);
 
   const shouldShowMenu =
@@ -34,8 +35,11 @@ const CommentCard = props => {
               close={() => setDropdownOpen(false)}
               handleDeleteComment={props.handleDeleteComment}
               promoteAnswer={props.promoteAnswer}
+              setIsEditing={setIsEditing}
             />
           )}
+
+          {/* use http patch */}
 
           {shouldShowMenu && (
             <sc.DropdownButton
@@ -48,7 +52,7 @@ const CommentCard = props => {
         </sc.Relative>
       </sc.Row>
 
-      <TextExpand>{props.body}</TextExpand>
+      {isEditing ? <p>im editing</p> : <TextExpand>{props.body}</TextExpand>}
     </sc.Container>
   );
 };

@@ -17,7 +17,7 @@ const DropdownComment = props => (
     )}
 
     <li>
-      <span>Edit Post</span>
+      <span onClick={() => props.setIsEditing(true)}>Edit Post</span>
     </li>
 
     <li>
