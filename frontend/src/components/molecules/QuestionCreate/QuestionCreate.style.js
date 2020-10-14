@@ -31,8 +31,14 @@ export const TextAreaBody = styled.textarea`
   resize: none;
 `;
 
-export const Buttonn = styled(Button)`
+export const Buttonns = styled.div`
   align-self: flex-end;
+`;
+
+export const Buttonn = styled(Button)``;
+
+export const ButtonCancel = styled(Button)`
+  background-color: transparent;
 `;
 
 export const Titlee = styled(Title)`

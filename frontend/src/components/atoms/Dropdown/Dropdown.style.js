@@ -24,7 +24,7 @@ export const Ul = styled.ul`
 
   > li {
     cursor: pointer;
-    padding: 5px 0;
+    padding: 10px 0;
 
     :not(:last-child) {
       border-bottom: 1px solid #e5e5e5;

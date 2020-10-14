@@ -17,7 +17,10 @@ export const Container = styled.section`
 
 export const Heading = styled.div`
   padding: 0 1rem;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const Titlee = styled(Title)`
@@ -25,7 +28,7 @@ export const Titlee = styled(Title)`
 `;
 
 export const BtnBackk = styled(BtnBack)`
-  margin-top: 1rem;
+  margin: 0 0 1em 1em;
 `;
 
 export const QuestionNeww = styled(QuestionNew)`

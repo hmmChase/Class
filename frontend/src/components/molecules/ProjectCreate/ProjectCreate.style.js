@@ -5,7 +5,6 @@ import Title from '../../atoms/Title/Title';
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  height: 444px;
   width: 500px;
 `;
 

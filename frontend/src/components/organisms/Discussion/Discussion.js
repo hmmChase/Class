@@ -15,20 +15,22 @@ const Discussion = props => {
   return (
     <sc.Container className={props.className}>
       <sc.Heading>
-        <Label>DISCUSSION</Label>
+        <div>
+          <Label>DISCUSSION</Label>
 
-        <sc.Titlee>
-          {currentUser.role === 'TEACHER'
-            ? 'Challenge Questions'
-            : 'Ask a Question'}
-        </sc.Titlee>
-
-        {questionId && <sc.BtnBackk />}
+          <sc.Titlee>
+            {currentUser.role === 'TEACHER'
+              ? 'Challenge Questions'
+              : 'Ask a Question'}
+          </sc.Titlee>
+        </div>
 
         {currentUser.role === 'STUDENT' && !questionId && (
           <sc.QuestionNeww questions={questions} setQuestions={setQuestions} />
         )}
       </sc.Heading>
+
+      {questionId && <sc.BtnBackk />}
 
       {questionId ? (
         <QuestionDetail questionId={questionId} />

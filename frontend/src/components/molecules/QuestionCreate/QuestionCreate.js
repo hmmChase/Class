@@ -33,6 +33,8 @@ const QuestionCreate = props => {
     if (e.target.id === 'body') setBody(cleanValue);
   };
 
+  const handleCancel = () => props.close();
+
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -55,9 +57,7 @@ const QuestionCreate = props => {
     <sc.Form className={props.className} onSubmit={handleSubmit}>
       <sc.Titlee>Post a Question</sc.Titlee>
 
-      <Desc>
-        Make sure to add enough detail to provide context for others.{' '}
-      </Desc>
+      <Desc>Make sure to add enough detail to provide context for others.</Desc>
 
       <sc.InputTitle
         id='title'
@@ -73,7 +73,11 @@ const QuestionCreate = props => {
         onChange={handleChange}
       />
 
-      <sc.Buttonn type='submit'>Post Question</sc.Buttonn>
+      <sc.Buttonns>
+        <sc.ButtonCancel onClick={handleCancel}>Cancel</sc.ButtonCancel>
+
+        <sc.Buttonn type='submit'>Post</sc.Buttonn>
+      </sc.Buttonns>
     </sc.Form>
   );
 };
