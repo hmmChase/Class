@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { CurrentUser } from '../../../context/contexts';
 import DropdownComment from '../DropdownComment/DropdownComment';
 import TextExpand from '../../atoms/TextExpand/TextExpand';
+import CommentEdit from '../CommentEdit/CommentEdit';
 import * as sc from './CommentCard.style';
 
 const CommentCard = props => {
@@ -52,7 +53,11 @@ const CommentCard = props => {
         </sc.Relative>
       </sc.Row>
 
-      {isEditing ? <p>im editing</p> : <TextExpand>{props.body}</TextExpand>}
+      {isEditing ? (
+        <CommentEdit>{props.body}</CommentEdit>
+      ) : (
+        <TextExpand>{props.body}</TextExpand>
+      )}
     </sc.Container>
   );
 };
