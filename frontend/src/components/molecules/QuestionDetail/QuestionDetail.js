@@ -25,6 +25,8 @@ const QuestionDetail = props => {
 
   const [commentCreate] = useFetch('/comment/create');
 
+  const [commentUpdate] = useFetch('/comment/update');
+
   const [commentDelete] = useFetch('/comment/delete-soft');
 
   const [unsetAnswer] = useFetch('/comment/answer-demote');
@@ -52,6 +54,12 @@ const QuestionDetail = props => {
     });
 
     const updatedComments = [...comments, newComment];
+
+    setComments(updatedComments);
+  };
+
+  const handleUpdateComment = async (id, body) => {
+    const updatedComments = await commentUpdate({ id, body });
 
     setComments(updatedComments);
   };
@@ -101,6 +109,7 @@ const QuestionDetail = props => {
           <Comments
             comments={comments}
             questionId={props.questionId}
+            handleUpdateComment={handleUpdateComment}
             handleDeleteComment={handleDeleteComment}
             promoteAnswer={promoteAnswer}
           />

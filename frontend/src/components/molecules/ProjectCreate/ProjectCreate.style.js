@@ -32,7 +32,7 @@ export const TextAreaBody = styled.textarea`
   resize: none;
 `;
 
-export const Buttonns = styled.div`
+export const Buttons = styled.div`
   align-self: flex-end;
 `;
 

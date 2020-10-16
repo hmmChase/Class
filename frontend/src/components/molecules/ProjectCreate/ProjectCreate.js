@@ -85,11 +85,11 @@ const ProjectCreate = props => {
         onChange={handleChange}
       />
 
-      <sc.Buttonns>
+      <sc.Buttons>
         <sc.ButtonCancel onClick={handleCancel}>Cancel</sc.ButtonCancel>
 
         <sc.Buttonn type='submit'>Submit</sc.Buttonn>
-      </sc.Buttonns>
+      </sc.Buttons>
     </sc.Form>
   );
 };

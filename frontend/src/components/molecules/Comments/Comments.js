@@ -15,6 +15,7 @@ const Comments = props => {
           timestamp={timestamp(comment.createdAt)}
           createdAt={formatDate(comment.createdAt)}
           body={comment.body}
+          handleUpdateComment={props.handleUpdateComment}
           handleDeleteComment={props.handleDeleteComment}
           promoteAnswer={props.promoteAnswer}
         />

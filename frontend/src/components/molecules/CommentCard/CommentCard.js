@@ -40,8 +40,6 @@ const CommentCard = props => {
             />
           )}
 
-          {/* use http patch */}
-
           {shouldShowMenu && (
             <sc.DropdownButton
               isDropdownOpen={isDropdownOpen}
@@ -54,7 +52,13 @@ const CommentCard = props => {
       </sc.Row>
 
       {isEditing ? (
-        <CommentEdit>{props.body}</CommentEdit>
+        <CommentEdit
+          id={props.commentId}
+          setIsEditing={setIsEditing}
+          handleUpdateComment={props.handleUpdateComment}
+        >
+          {props.body}
+        </CommentEdit>
       ) : (
         <TextExpand>{props.body}</TextExpand>
       )}

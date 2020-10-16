@@ -24,7 +24,8 @@ export const getQuestionComments = async (req, res, next) => {
 
   const comments = await prisma.comment.findMany({
     where: { question: { id: parseInt(questionId) }, deletedAt: null },
-    include: { author: true }
+    include: { author: true },
+    orderBy: { createdAt: 'asc' }
   });
 
   return res.json(comments);
@@ -96,6 +97,28 @@ export const answerDemote = async (req, res, next) => {
       deletedAt: null
     },
     include: { author: true }
+  });
+
+  return res.json(updatedComments);
+};
+
+/* PATCH */
+
+export const update = async (req, res, next) => {
+  const { id, body } = req.body;
+
+  const commentRecord = await prisma.comment.update({
+    where: { id },
+    data: { body }
+  });
+
+  const updatedComments = await prisma.comment.findMany({
+    where: {
+      question: { id: parseInt(commentRecord.question_id) },
+      deletedAt: null
+    },
+    include: { author: true },
+    orderBy: { createdAt: 'asc' }
   });
 
   return res.json(updatedComments);

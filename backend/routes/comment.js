@@ -36,3 +36,9 @@ router.post(
 );
 
 export default router;
+
+/* PATCH */
+
+// change to patch
+
+router.post('/update', commentController.update);
