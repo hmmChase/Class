@@ -37,8 +37,11 @@ export const getChallengeQuestions = async (req, res, next) => {
 /* POST */
 
 export const create = async (req, res, next) => {
-  const { title, body } = req.body;
-  const { challengePath } = req.params;
+  const { challengePath, title, body } = req.body;
+
+  console.log('req.body:', req.body);
+
+  // const { challengePath } = req.params;
 
   const user = jwt.verify(
     req.cookies.jwt,

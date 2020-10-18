@@ -8,9 +8,9 @@ const UserProvider = props => {
   const { data } = useCurrentUser();
 
   useEffect(() => {
-    // (() => {
-    if (data && data.data && data.data.id) setCurrentUser(data.data);
-    // })();
+    (async () => {
+      if (data && data.data && data.data.id) await setCurrentUser(data.data);
+    })();
   }, [data]);
 
   return (

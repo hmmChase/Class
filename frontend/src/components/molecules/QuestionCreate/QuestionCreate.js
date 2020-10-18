@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useFetch from '../../../api/useFetch';
+// import useFetch from '../../../api/useFetch';
 import Desc from '../../atoms/Desc/Desc';
 import DOMPurify from 'dompurify';
-// import { useCreateQuestion } from '../../../api/questionApi';
+import { useCreateQuestion } from '../../../api/questionApi';
 import * as sc from './QuestionCreate.style';
 
 const QuestionCreate = props => {
@@ -11,19 +11,19 @@ const QuestionCreate = props => {
   const [body, setBody] = useState('');
   const { challengePath } = useParams();
 
-  const [createQuestion] = useFetch(`/question/create/${challengePath}`);
+  // const [createQuestion] = useFetch(`/question/create/${challengePath}`);
 
-  // const [createQuestion, { data }] = useCreateQuestion({
-  //   onSuccess: data => {
-  //     console.log('data:', data);
+  const [createQuestion] = useCreateQuestion({
+    onSuccess: data => {
+      console.log('data:', data);
 
-  //     const updatedQuestions = [data.data, ...props.questions];
+      // const updatedQuestions = [data.data, ...props.questions];
 
-  //     props.setQuestions(updatedQuestions);
+      // props.setQuestions(updatedQuestions);
 
-  //     props.close();
-  //   }
-  // });
+      // props.close();
+    }
+  });
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -38,19 +38,19 @@ const QuestionCreate = props => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const newQuestion = await createQuestion({ title, body });
+    // const newQuestion = await createQuestion({ challengePath, title, body });
 
-    const updatedQuestions = [newQuestion, ...props.questions];
+    try {
+      await createQuestion({ challengePath, title, body });
+    } catch (error) {
+      console.log('QuestionCreate error: ', error);
+    }
 
-    props.setQuestions(updatedQuestions);
+    // const updatedQuestions = [newQuestion, ...props.questions];
+
+    // props.setQuestions(updatedQuestions);
 
     props.close();
-
-    // try {
-    //   await createQuestion({ title, body, challengePath });
-    // } catch (error) {
-    //   console.log('LoginEmail error: ', error);
-    // }
   };
 
   return (

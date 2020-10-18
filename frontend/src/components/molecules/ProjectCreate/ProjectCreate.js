@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import useFetch from '../../../api/useFetch';
 import Desc from '../../atoms/Desc/Desc';
 import DOMPurify from 'dompurify';
-// import { useCreateProject } from '../../../api/questionApi';
+import { useCreateProject } from '../../../api/projectApi';
 import * as sc from './ProjectCreate.style';
 
 const ProjectCreate = props => {
@@ -10,21 +9,15 @@ const ProjectCreate = props => {
   const [additionalLink, setAdditionalLink] = useState('');
   const [comments, setComment] = useState('');
 
-  const [createProject, { data }] = useFetch('/project/create');
+  const [createProject] = useCreateProject({
+    onSuccess: data => {
+      const updatedQuestions = [data.data, ...props.questions];
 
-  console.log('data:', data);
+      props.setQuestions(updatedQuestions);
 
-  // const [createProject, { data }] = useCreateProject({
-  //   onSuccess: data => {
-  //     console.log('data:', data);
-
-  //     const updatedQuestions = [data.data, ...props.questions];
-
-  //     props.setQuestions(updatedQuestions);
-
-  //     props.close();
-  //   }
-  // });
+      props.close();
+    }
+  });
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);

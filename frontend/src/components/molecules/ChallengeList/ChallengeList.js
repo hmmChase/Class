@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import ChallengeListCard from '../ChallengeListCard/ChallengeListCard';
-import useFetch from '../../../api/useFetch';
 import Title from '../../atoms/Title/Title';
+import { useChallenges } from '../../../api/challengeApi';
+
 import * as sc from './ChallengeList.style';
 
 const ChallengeList = () => {
   const [challenges, setChallenges] = useState([]);
 
-  const [allChallenges] = useFetch('/challenge/all');
+  const { data } = useChallenges();
 
   useEffect(() => {
-    (async () => {
-      const data = await allChallenges();
-
-      if (data) setChallenges(data);
-    })();
-    // eslint-disable-next-line
-  }, []);
+    if (data && data.data && data.data.length) setChallenges(data.data);
+  }, [data]);
 
   const challengeListCards = challenges.map(challenge => (
     <ChallengeListCard

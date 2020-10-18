@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
-import useFetch from '../../../api/useFetch';
 import { useHistory } from 'react-router-dom';
 import getParameterByName from '../../../utils/getQueryParamByName';
+import { useLoginDiscord } from '../../../api/discordApi';
 import { CurrentUser } from '../../../context/contexts';
 // import * as sc from './LoginDiscordRedirect.style';
 
@@ -10,18 +10,24 @@ const LoginDiscordRedirect = () => {
 
   const history = useHistory();
 
-  const [loginDiscord, loading, error] = useFetch('/discord/login');
+  const [loginDiscord] = useLoginDiscord({
+    onSuccess: data => {
+      if (data && data.data && data.data.id) setCurrentUser(data.data.id);
+
+      history.push('/');
+    }
+  });
 
   useEffect(() => {
     (async () => {
       const code = getParameterByName('code');
       const state = getParameterByName('state');
 
-      const user = await loginDiscord({ code, state });
-
-      if (!loading && !error && user && user.id) setCurrentUser(user);
-
-      history.push('/');
+      try {
+        await loginDiscord({ code, state });
+      } catch (error) {
+        // console.log('LoginDiscordRedirect error: ', error);
+      }
     })();
 
     // eslint-disable-next-line
