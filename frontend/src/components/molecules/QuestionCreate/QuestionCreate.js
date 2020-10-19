@@ -13,7 +13,7 @@ const QuestionCreate = props => {
 
   // const [createQuestion] = useFetch(`/question/create/${challengePath}`);
 
-  const [createQuestion] = useCreateQuestion({
+  const [createQuestion, response] = useCreateQuestion({
     onSuccess: data => {
       console.log('data:', data);
 
@@ -24,6 +24,8 @@ const QuestionCreate = props => {
       // props.close();
     }
   });
+
+  console.log('response:', response);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
