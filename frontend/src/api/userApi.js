@@ -4,29 +4,25 @@ import { useQuery, useMutation } from 'react-query';
 /* GET */
 
 const getCurrentUser = async () => await instance.get('/user/current');
-export const useCurrentUser = () => useQuery('getCurrentUser', getCurrentUser);
+export const useCurrentUser = config =>
+  useQuery('getCurrentUser', getCurrentUser, config);
 
 /* POST */
 
 const signup = async options => await instance.post('/user/signup', options);
-export const useSignup = variables => useMutation(signup, variables);
+export const useSignup = config => useMutation(signup, config);
 
 const loginEmail = async options => await instance.post('/user/login', options);
-export const useLoginEmail = variables => useMutation(loginEmail, variables);
+export const useLoginEmail = config => useMutation(loginEmail, config);
 
-const loginDiscord = async options =>
-  await instance.post('/discord/url-login', options);
-export const useLoginDiscord = variables =>
-  useMutation(loginDiscord, variables);
-
-const logout = async () => await instance.post('/user/logout');
-export const useLogout = variables => useMutation(logout, variables);
+const logout = async options => await instance.post('/user/logout', options);
+export const useLogout = config => useMutation(logout, config);
 
 const resetPassRequest = async options =>
   await instance.post('/user/reset-password-request', options);
-export const useResetPassRequest = variables =>
-  useMutation(resetPassRequest, variables);
+export const useResetPassRequest = config =>
+  useMutation(resetPassRequest, config);
 
-const resetPass = async (options, resetToken) =>
-  await instance.post(`/user/reset-password/${resetToken}`, options);
-export const useResetPass = variables => useMutation(resetPass, variables);
+const resetPass = async options =>
+  await instance.post(`/user/reset-password`, options);
+export const useResetPass = config => useMutation(resetPass, config);
