@@ -7,9 +7,11 @@ import ResetPasswordPage from './pages/reset-password';
 import IndexPage from './pages/index';
 import AccountPage from './pages/account';
 import UserProvider from './context/UserProvider';
+// import DiscordProvider from './context/DiscordProvider';
 
 const App = () => (
   <UserProvider>
+    {/* <DiscordProvider> */}
     <Router>
       <Switch>
         <Route path='/signup-discord'>
@@ -41,6 +43,7 @@ const App = () => (
         </Route>
       </Switch>
     </Router>
+    {/* </DiscordProvider> */}
   </UserProvider>
 );
 

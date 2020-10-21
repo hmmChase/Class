@@ -40,19 +40,17 @@ const QuestionCreate = props => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // const newQuestion = await createQuestion({ challengePath, title, body });
-
     try {
-      await createQuestion({ challengePath, title, body });
+      const newQuestion = await createQuestion({ challengePath, title, body });
+
+      const updatedQuestions = [newQuestion, ...props.questions];
+
+      props.setQuestions(updatedQuestions);
+
+      props.close();
     } catch (error) {
       console.log('QuestionCreate error: ', error);
     }
-
-    // const updatedQuestions = [newQuestion, ...props.questions];
-
-    // props.setQuestions(updatedQuestions);
-
-    props.close();
   };
 
   return (

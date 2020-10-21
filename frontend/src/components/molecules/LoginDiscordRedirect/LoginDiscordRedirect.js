@@ -1,8 +1,10 @@
 import React, { useEffect, useContext } from 'react';
+import useFetch from '../../../api/useFetch';
 import { useHistory } from 'react-router-dom';
 import getParameterByName from '../../../utils/getQueryParamByName';
-import { useLoginDiscord } from '../../../api/discordApi';
 import { CurrentUser } from '../../../context/contexts';
+import { useLoginDiscord } from '../../../api/discordApi';
+
 // import * as sc from './LoginDiscordRedirect.style';
 
 const LoginDiscordRedirect = () => {
@@ -10,30 +12,56 @@ const LoginDiscordRedirect = () => {
 
   const history = useHistory();
 
-  const [loginDiscord] = useLoginDiscord({
-    onSuccess: data => {
-      if (data && data.data && data.data.id) setCurrentUser(data.data.id);
+  const code = getParameterByName('code');
+  const state = getParameterByName('state');
 
-      history.push('/');
-    }
-  });
+  useLoginDiscord(
+    {
+      onSuccess: data => {
+        setCurrentUser(data.data);
 
-  useEffect(() => {
-    (async () => {
-      const code = getParameterByName('code');
-      const state = getParameterByName('state');
-
-      try {
-        await loginDiscord({ code, state });
-      } catch (error) {
-        // console.log('LoginDiscordRedirect error: ', error);
+        history.push('/');
       }
-    })();
-
-    // eslint-disable-next-line
-  }, []);
+    },
+    { code, state }
+  );
 
   return <div />;
 };
 
 export default LoginDiscordRedirect;
+
+// import React, { useEffect } from 'react';
+// import { useHistory } from 'react-router-dom';
+// import getParameterByName from '../../../utils/getQueryParamByName';
+// import { useLoginDiscord } from '../../../api/discordApi';
+// // import * as sc from './LoginDiscordRedirect.style';
+
+// const LoginDiscordRedirect = () => {
+//   const [loginDiscord] = useLoginDiscord();
+//   console.log('loginDiscord:', loginDiscord);
+
+//   // const history = useHistory();
+
+//   useEffect(() => {
+//     (async () => {
+//       const code = getParameterByName('code');
+//       console.log('code:', code);
+//       const state = getParameterByName('state');
+//       console.log('state:', state);
+
+//       try {
+//         // await loginDiscord({ code, state });
+//         // history.push('/');
+//       } catch (error) {
+//         // console.log('loginDiscord error: ', error);
+//       }
+//     })();
+
+//     // eslint-disable-next-line
+//   }, []);
+
+//   return <div />;
+// };
+
+// export default LoginDiscordRedirect;

@@ -23,3 +23,9 @@ router.post('/create/:challengePath', questionController.create);
 router.post('/delete-soft', questionController.deleteSoft);
 
 export default router;
+
+/* PATCH */
+
+// change to patch
+
+router.post('/update', questionController.update);

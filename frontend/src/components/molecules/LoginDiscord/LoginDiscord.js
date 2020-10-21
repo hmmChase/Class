@@ -4,17 +4,15 @@ import { useUrlLogin } from '../../../api/discordApi';
 import * as sc from './LoginDiscord.style';
 
 const LoginDiscord = () => {
-  const [urlLogin] = useUrlLogin({
-    onSuccess: data => {
-      if (data && data.data) window.location.assign(data.data);
-    }
-  });
+  const [urlLogin] = useUrlLogin();
 
   const handleClick = async () => {
     try {
-      await urlLogin();
+      const { data } = await urlLogin();
+
+      window.location.assign(data);
     } catch (error) {
-      // console.log('LoginDiscord error: ', error);
+      // console.log('urlLogin error: ', error);
     }
   };
 

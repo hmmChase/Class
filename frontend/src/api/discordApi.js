@@ -3,12 +3,12 @@ import { useQuery, useMutation } from 'react-query';
 
 /* GET */
 
-const urlLogin = async options =>
-  await instance.get('/discord/url-login', options);
-export const useUrlLogin = variables => useMutation(urlLogin, variables);
+const urlLogin = async () => await instance.get('/discord/url-login');
+export const useUrlLogin = config => useMutation(urlLogin, config);
 
 /* POST */
 
-const loginDiscord = async options =>
-  await instance.post('/discord/login', options);
-export const useLoginDiscord = () => useQuery('loginDiscord', loginDiscord);
+const loginDiscord = async (key, args) =>
+  await instance.post('/discord/login', args);
+export const useLoginDiscord = (config, args) =>
+  useQuery(['loginDiscord', args], loginDiscord, config);

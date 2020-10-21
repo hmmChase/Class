@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
 import { CurrentUser } from '../../../context/contexts';
 import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
+import QuestionEdit from '../QuestionEdit/QuestionEdit';
 import * as sc from './QuestionCard.style';
 
 const QuestionCard = props => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const { currentUser } = useContext(CurrentUser);
   const { challengePath } = useParams();
 
@@ -35,6 +37,7 @@ const QuestionCard = props => {
                 questionId={props.questionId}
                 close={() => setDropdownOpen(false)}
                 handleDeleteQuestion={props.handleDeleteQuestion}
+                setIsEditing={setIsEditing}
               />
             )}
 
@@ -51,7 +54,18 @@ const QuestionCard = props => {
       </sc.Row>
 
       <sc.Row>
-        <sc.Title>{props.title}</sc.Title>
+        {isEditing ? (
+          <QuestionEdit
+            id={props.questionId}
+            body={props.body}
+            setIsEditing={setIsEditing}
+            handleUpdateQuestion={props.handleUpdateQuestion}
+          >
+            {props.title}
+          </QuestionEdit>
+        ) : (
+          <sc.Title>{props.title}</sc.Title>
+        )}
       </sc.Row>
 
       <sc.Row>

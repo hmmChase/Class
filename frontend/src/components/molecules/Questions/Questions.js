@@ -12,7 +12,20 @@ const Questions = props => {
     `/question/challenge/${challengePath}`
   );
 
+  const [updateQuestion] = useFetch('/question/update');
+
   const [deleteQuestion] = useFetch('/question/delete-soft');
+
+  const handleUpdateQuestion = async (id, title, body) => {
+    const updatedComments = await updateQuestion({
+      id,
+      title,
+      body,
+      challengePath
+    });
+
+    props.setQuestions(updatedComments);
+  };
 
   const handleDeleteQuestion = async questionId => {
     await deleteQuestion({ questionId });
@@ -54,9 +67,11 @@ const Questions = props => {
         authorId={question.author.id}
         authorName={question.author.username}
         title={question.title}
+        body={question.body}
         commentCount={commentCount}
         answerCount={answerCount}
         isAnswered={!!answerCount}
+        handleUpdateQuestion={handleUpdateQuestion}
         handleDeleteQuestion={handleDeleteQuestion}
       />
     );

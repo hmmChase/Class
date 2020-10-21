@@ -13,12 +13,22 @@ const DropdownQuestion = props => {
     if (history.pathname !== '/challenge1') history.push(`/${challengePath}`);
   };
 
+  const handleClickEdit = () => {
+    props.setIsEditing(true);
+
+    props.close();
+  };
+
   return (
     <sc.Dropdownn
       className={props.className}
       isDropdownOpen={props.isDropdownOpen}
       close={props.close}
     >
+      <li>
+        <span onClick={handleClickEdit}>Edit Post</span>
+      </li>
+
       <li>
         <span onClick={onClick}>Remove Post</span>
       </li>

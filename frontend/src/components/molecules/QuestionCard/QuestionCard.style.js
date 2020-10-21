@@ -19,6 +19,7 @@ export const Container = styled.li`
 export const Row = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
 `;
 
 export const Group = styled.div`

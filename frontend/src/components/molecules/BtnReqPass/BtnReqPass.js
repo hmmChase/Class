@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
-import { useResetPassRequest } from '../../../api/userApi';
+import { CurrentUser } from '../../../context/contexts';
 import Button from '../../atoms/Button/Button';
 import * as sc from './BtnReqPass.style';
 
 const BtnReqPass = props => {
-  const [resetPassReq] = useResetPassRequest();
+  const { resetPassReq } = useContext(CurrentUser);
 
   const handleClick = async e => {
     e.preventDefault();
@@ -13,7 +13,7 @@ const BtnReqPass = props => {
     try {
       await resetPassReq({ email: props.email });
     } catch (error) {
-      // console.log('LoginEmail error: ', error);
+      // console.log('resetPassReq error: ', error);
     }
   };
 

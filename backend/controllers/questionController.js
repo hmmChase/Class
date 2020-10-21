@@ -55,8 +55,6 @@ export const create = async (req, res, next) => {
     include: { author: true, comments: { where: { deletedAt: null } } }
   });
 
-  console.log('questionRecord:', questionRecord);
-
   return res.json(questionRecord);
 };
 
@@ -69,4 +67,23 @@ export const deleteSoft = async (req, res, next) => {
   });
 
   return res.json(questionRecord);
+};
+
+/* PATCH */
+
+export const update = async (req, res, next) => {
+  const { id, title, body, challengePath } = req.body;
+
+  await prisma.question.update({
+    where: { id },
+    data: { title, body }
+  });
+
+  const updatedQuestions = await prisma.question.findMany({
+    where: { challenge: { path: challengePath }, deletedAt: null },
+    include: { author: true, comments: { where: { deletedAt: null } } },
+    orderBy: { id: 'desc' }
+  });
+
+  return res.json(updatedQuestions);
 };

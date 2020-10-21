@@ -4,9 +4,8 @@ import Button from '../../atoms/Button/Button';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 1em;
+  margin: 0 1em 1em 0;
   gap: 1em;
-  flex: 1;
   width: 100%;
 `;
 
@@ -16,7 +15,6 @@ export const TextArea = styled.textarea`
   resize: vertical;
   outline: none;
   border: none;
-  flex: 1;
   width: 100%;
 `;
 

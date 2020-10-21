@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 import { CurrentUser } from '../../../context/contexts';
-import { useSignup } from '../../../api/userApi';
 import InputLabel from '../../atoms/InputLabel/InputLabel';
 import Input from '../../atoms/Input/Input';
 import * as sc from './SignupEmail.style';
@@ -10,9 +9,7 @@ const SignupEmail = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const { setCurrentUser } = useContext(CurrentUser);
-
-  const [signup] = useSignup({ onSuccess: data => setCurrentUser(data.data) });
+  const { signup } = useContext(CurrentUser);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -27,7 +24,11 @@ const SignupEmail = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    await signup({ username, email, password });
+    try {
+      await signup({ username, email, password });
+    } catch (error) {
+      // console.log('signup error: ', error)
+    }
   };
 
   return (

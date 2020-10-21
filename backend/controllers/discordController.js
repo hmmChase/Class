@@ -44,8 +44,12 @@ export const signupDiscord = async (req, res) => {
 
 export const loginDiscord = async (req, res) => {
   const { code, state } = req.body;
+  console.log('req.body:', req.body);
+  console.log('code:', code);
+  console.log('state:', state);
 
   const previousState = authService.getStateFromHeader(req);
+  console.log('previousState:', previousState);
 
   if (state !== previousState)
     return res.status(401).json({ error: 'login.discordError' });

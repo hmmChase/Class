@@ -4,6 +4,7 @@ import Truncate from 'react-truncate';
 import * as sc from './TextExpand.style';
 
 const TextExpand = props => {
+  console.log('props:', props);
   const [isTruncated, setTruncated] = useState(true);
 
   const handleTruncate = () => setTruncated(!isTruncated);
@@ -20,11 +21,27 @@ const TextExpand = props => {
             </span>
           }
         >
-          {props.children}
+          {props.children.split('\n').map((line, i, arr) => {
+            const linee = <span key={i}>{line}</span>;
+
+            if (i === arr.length - 1) {
+              return linee;
+            } else {
+              return [linee, <sc.Br key={i + 'br'} />];
+            }
+          })}
         </Truncate>
       ) : (
         <>
-          {props.children}
+          {props.children.split('\n').map((line, i, arr) => {
+            const linee = <span key={i}>{line}</span>;
+
+            if (i === arr.length - 1) {
+              return linee;
+            } else {
+              return [linee, <sc.Br key={i + 'br'} />];
+            }
+          })}
 
           <sc.ToggleText onClick={handleTruncate}> less</sc.ToggleText>
         </>

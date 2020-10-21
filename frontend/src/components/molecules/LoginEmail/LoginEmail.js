@@ -2,17 +2,12 @@ import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 import { CurrentUser } from '../../../context/contexts';
 import InputLabel from '../../atoms/InputLabel/InputLabel';
-import { useLoginEmail } from '../../../api/userApi';
 import * as sc from './LoginEmail.style';
 
 const LoginEmail = props => {
   const [email, setEmail] = useState('student1@email.com');
   const [password, setPassword] = useState('student1');
-  const { setCurrentUser } = useContext(CurrentUser);
-
-  const [loginEmail] = useLoginEmail({
-    onSuccess: data => setCurrentUser(data.data)
-  });
+  const { loginEmail } = useContext(CurrentUser);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -28,7 +23,7 @@ const LoginEmail = props => {
     try {
       await loginEmail({ email, password });
     } catch (error) {
-      // console.log('LoginEmail error: ', error);
+      // console.log('loginEmail error: ', error);
     }
   };
 

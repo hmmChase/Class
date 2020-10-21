@@ -26,11 +26,7 @@ const ResetPass = props => {
     e.preventDefault();
 
     try {
-      // await resetPass({ newPassword }, props.resetToken);
-
-      const user = await resetPass({ newPassword, resetToken });
-
-      setCurrentUser(user);
+      await resetPass({ newPassword, resetToken });
 
       history.push('/');
     } catch (error) {
