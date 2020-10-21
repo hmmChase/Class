@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import useFetch from '../../../api/useFetch';
+import useFetch from '../../../api/useFetch';
 import Desc from '../../atoms/Desc/Desc';
 import DOMPurify from 'dompurify';
-import { useCreateQuestion } from '../../../api/questionApi';
+// import { useCreateQuestion } from '../../../api/questionApi';
 import * as sc from './QuestionCreate.style';
 
 const QuestionCreate = props => {
@@ -11,21 +11,19 @@ const QuestionCreate = props => {
   const [body, setBody] = useState('');
   const { challengePath } = useParams();
 
-  // const [createQuestion] = useFetch(`/question/create/${challengePath}`);
+  const [createQuestion] = useFetch(`/question/create/${challengePath}`);
 
-  const [createQuestion, response] = useCreateQuestion({
-    onSuccess: data => {
-      console.log('data:', data);
+  // const [createQuestion, response] = useCreateQuestion({
+  //   onSuccess: data => {
+  //     console.log('data:', data);
 
-      // const updatedQuestions = [data.data, ...props.questions];
+  //     // const updatedQuestions = [data.data, ...props.questions];
 
-      // props.setQuestions(updatedQuestions);
+  //     // props.setQuestions(updatedQuestions);
 
-      // props.close();
-    }
-  });
-
-  console.log('response:', response);
+  //     // props.close();
+  //   }
+  // });
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
