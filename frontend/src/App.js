@@ -7,43 +7,43 @@ import ResetPasswordPage from './pages/reset-password';
 import IndexPage from './pages/index';
 import AccountPage from './pages/account';
 import UserProvider from './context/UserProvider';
-// import DiscordProvider from './context/DiscordProvider';
+import DiscordProvider from './context/DiscordProvider';
 
 const App = () => (
   <UserProvider>
-    {/* <DiscordProvider> */}
-    <Router>
-      <Switch>
-        <Route path='/signup-discord'>
-          <SignupDiscordRedirectPage />
-        </Route>
+    <DiscordProvider>
+      <Router>
+        <Switch>
+          <Route path='/signup-discord'>
+            <SignupDiscordRedirectPage />
+          </Route>
 
-        <Route path='/login-discord'>
-          <LoginDiscordRedirectPage />
-        </Route>
+          <Route path='/login-discord'>
+            <LoginDiscordRedirectPage />
+          </Route>
 
-        <Route path='/account'>
-          <AccountPage />
-        </Route>
+          <Route path='/account'>
+            <AccountPage />
+          </Route>
 
-        <Route path='/reset-password'>
-          <ResetPasswordPage />
-        </Route>
+          <Route path='/reset-password'>
+            <ResetPasswordPage />
+          </Route>
 
-        <Route path='/:challengePath/:questionId'>
-          <ChallengePage />
-        </Route>
+          <Route path='/:challengePath/:questionId'>
+            <ChallengePage />
+          </Route>
 
-        <Route path='/:challengePath'>
-          <ChallengePage />
-        </Route>
+          <Route path='/:challengePath'>
+            <ChallengePage />
+          </Route>
 
-        <Route path='/'>
-          <IndexPage />
-        </Route>
-      </Switch>
-    </Router>
-    {/* </DiscordProvider> */}
+          <Route path='/'>
+            <IndexPage />
+          </Route>
+        </Switch>
+      </Router>
+    </DiscordProvider>
   </UserProvider>
 );
 

@@ -28,10 +28,8 @@ export const signup = async (res, code) => {
       grantType: 'authorization_code'
     });
   } catch (error) {
-    console.log('error:', error);
+    console.log('signup error: ', error);
   }
-
-  console.log('tokenResponse:', tokenResponse);
 
   const discordUser = await oauthSignup.getUser(tokenResponse.access_token);
 

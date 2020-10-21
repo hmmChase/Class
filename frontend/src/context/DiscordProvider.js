@@ -7,9 +7,10 @@ const DiscordProvider = props => {
 
   const [urlLogin] = api.useUrlLogin();
 
-  const [loginDiscord] = api.useLoginDiscord({
-    onSuccess: data => setCurrentUser(data.data)
-  });
+  const loginDiscord = () =>
+    api.useLoginDiscord({
+      onSuccess: data => setCurrentUser(data.data)
+    });
 
   return (
     <Discord.Provider value={{ urlLogin, loginDiscord }}>

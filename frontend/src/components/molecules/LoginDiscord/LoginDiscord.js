@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import IconDiscord from '../IconDiscord/IconDiscord';
-import { useUrlLogin } from '../../../api/discordApi';
+import { Discord } from '../../../context/contexts';
 import * as sc from './LoginDiscord.style';
 
 const LoginDiscord = () => {
-  const [urlLogin] = useUrlLogin();
+  const { urlLogin } = useContext(Discord);
 
   const handleClick = async () => {
     try {

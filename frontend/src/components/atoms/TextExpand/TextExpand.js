@@ -4,7 +4,6 @@ import Truncate from 'react-truncate';
 import * as sc from './TextExpand.style';
 
 const TextExpand = props => {
-  console.log('props:', props);
   const [isTruncated, setTruncated] = useState(true);
 
   const handleTruncate = () => setTruncated(!isTruncated);

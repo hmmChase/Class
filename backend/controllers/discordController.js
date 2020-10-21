@@ -6,10 +6,8 @@ import { COOKIE_CONFIG } from '../config';
 export const getSignupUrl = (req, res) => {
   const scope = ['identify', 'email'];
   const state = crypto.randomBytes(16).toString('hex');
-  console.log('state:', state);
 
   const url = discordService.oauthSignup.generateAuthUrl({ scope, state });
-  console.log('url:', url);
 
   res.cookie('state', state, COOKIE_CONFIG);
 
@@ -44,12 +42,8 @@ export const signupDiscord = async (req, res) => {
 
 export const loginDiscord = async (req, res) => {
   const { code, state } = req.body;
-  console.log('req.body:', req.body);
-  console.log('code:', code);
-  console.log('state:', state);
 
   const previousState = authService.getStateFromHeader(req);
-  console.log('previousState:', previousState);
 
   if (state !== previousState)
     return res.status(401).json({ error: 'login.discordError' });
