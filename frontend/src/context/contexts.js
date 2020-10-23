@@ -6,3 +6,5 @@ export const CurrentUser = createContext({
 });
 
 export const Discord = createContext({});
+
+export const QuestionsContext = createContext({});
