@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../../../api/useFetch';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../../utils/dateTime';
+import { QuestionsContext } from '../../../context/contexts';
 import * as sc from './Questions.style';
 
 const Questions = props => {
+  const { questions, setQuestions, getQuestions } = useContext(
+    QuestionsContext
+  );
+
   const { challengePath } = useParams();
 
-  const [getQuestions, loading, error] = useFetch(
-    `/question/challenge/${challengePath}`
-  );
+  getQuestions(challengePath);
 
   const [updateQuestion] = useFetch('/question/update');
 
@@ -24,29 +27,20 @@ const Questions = props => {
       challengePath
     });
 
-    props.setQuestions(updatedComments);
+    setQuestions(updatedComments);
   };
 
   const handleDeleteQuestion = async questionId => {
     await deleteQuestion({ questionId });
 
-    const filteredQuestions = props.questions.filter(
+    const filteredQuestions = questions.filter(
       question => question.id !== questionId
     );
 
-    props.setQuestions(filteredQuestions);
+    setQuestions(filteredQuestions);
   };
 
-  useEffect(() => {
-    (async () => {
-      const gotQuestions = await getQuestions();
-
-      if (!loading && !error && gotQuestions) props.setQuestions(gotQuestions);
-    })();
-    // eslint-disable-next-line
-  }, []);
-
-  const questionCards = props.questions.map(question => {
+  const questionCards = questions.map(question => {
     const answerCount = question.comments.reduce((total, comment) => {
       if (comment.isAnswer) total++;
 
@@ -80,7 +74,7 @@ const Questions = props => {
   return (
     <sc.Container className={props.className}>
       <sc.QuestionsList>
-        {props.questions.length > 0 && questionCards}
+        {questions.length > 0 && questionCards}
       </sc.QuestionsList>
     </sc.Container>
   );
