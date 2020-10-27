@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
+import { CommentContext } from '../../../context/contexts';
 import * as sc from './DropdownComment.style';
 
 const DropdownComment = props => {
+  const { handleDeleteComment, promoteAnswer } = useContext(CommentContext);
+
   const handleClickEdit = () => {
     props.setIsEditing(true);
 
@@ -17,7 +20,7 @@ const DropdownComment = props => {
     >
       {props.role === 'TEACHER' && (
         <li>
-          <span onClick={() => props.promoteAnswer(props.commentId)}>
+          <span onClick={() => promoteAnswer(props.commentId)}>
             Promote as Answer
           </span>
         </li>
@@ -28,7 +31,7 @@ const DropdownComment = props => {
       </li>
 
       <li>
-        <span onClick={() => props.handleDeleteComment(props.commentId)}>
+        <span onClick={() => handleDeleteComment(props.commentId)}>
           Remove Post
         </span>
       </li>

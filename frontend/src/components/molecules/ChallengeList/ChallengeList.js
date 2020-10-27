@@ -1,34 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
+import { ChallengeContext } from '../../../context/contexts';
 import ChallengeListCard from '../ChallengeListCard/ChallengeListCard';
 import Title from '../../atoms/Title/Title';
-import { useChallenges } from '../../../api/challengeApi';
 
 import * as sc from './ChallengeList.style';
 
 const ChallengeList = () => {
-  const [challenges, setChallenges] = useState([]);
+  const { challenges, getChallenges } = useContext(ChallengeContext);
 
-  const { data } = useChallenges();
-
-  useEffect(() => {
-    if (data && data.data && data.data.length) setChallenges(data.data);
-  }, [data]);
+  getChallenges();
 
   const challengeListCards = challenges.map(challenge => (
-    <ChallengeListCard
-      key={challenge.id}
-      path={challenge.path}
-      title={challenge.title}
-      desc={challenge.desc}
-    />
+    <ChallengeListCard key={challenge.id} challenge={challenge} />
   ));
 
   return (
     <sc.Container>
       <Title>Challenges</Title>
 
-      <sc.Ul>{challengeListCards}</sc.Ul>
+      <sc.Ul>{challengeListCards.length > 0 && challengeListCards}</sc.Ul>
     </sc.Container>
   );
 };

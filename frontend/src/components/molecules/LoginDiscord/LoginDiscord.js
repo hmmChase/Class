@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import IconDiscord from '../IconDiscord/IconDiscord';
-import { Discord } from '../../../context/contexts';
+import { DiscordContext } from '../../../context/contexts';
 import * as sc from './LoginDiscord.style';
 
 const LoginDiscord = () => {
-  const { urlLogin } = useContext(Discord);
+  const { urlLogin } = useContext(DiscordContext);
 
   const handleClick = async () => {
     try {

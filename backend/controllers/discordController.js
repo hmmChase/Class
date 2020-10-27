@@ -4,7 +4,7 @@ import * as discordService from '../services/discordService';
 import { COOKIE_CONFIG } from '../config';
 
 export const getSignupUrl = (req, res) => {
-  const scope = ['identify', 'email'];
+  const scope = ['identify', 'email'];w
   const state = crypto.randomBytes(16).toString('hex');
 
   const url = discordService.oauthSignup.generateAuthUrl({ scope, state });
@@ -42,8 +42,11 @@ export const signupDiscord = async (req, res) => {
 
 export const loginDiscord = async (req, res) => {
   const { code, state } = req.body;
+  console.log('state:', state);
+  console.log('code:', code);
 
   const previousState = authService.getStateFromHeader(req);
+  console.log('previousState:', previousState);
 
   if (state !== previousState)
     return res.status(401).json({ error: 'login.discordError' });

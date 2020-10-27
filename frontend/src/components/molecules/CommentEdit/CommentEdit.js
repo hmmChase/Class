@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
+import { CommentContext } from '../../../context/contexts';
 // import PropTypes from 'prop-types';
 import * as sc from './CommentEdit.style';
 
 const CommentEdit = props => {
   const [body, setBody] = useState(props.children);
+
+  const { updateComment } = useContext(CommentContext);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -12,9 +15,8 @@ const CommentEdit = props => {
     setBody(cleanValue);
   };
 
-  const handleClick = async e => {
-    // const updatedComments = await commentUpdate({ id: props.id, body });
-    props.handleUpdateComment(props.id, body);
+  const handleClick = async () => {
+    updateComment(props.id, body);
 
     props.setIsEditing(false);
   };

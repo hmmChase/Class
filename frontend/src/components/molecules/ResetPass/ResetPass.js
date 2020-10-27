@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 import { useHistory } from 'react-router-dom';
-import { CurrentUser } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context/contexts';
 import useFetch from '../../../api/useFetch';
 // import { useResetPass } from '../../../api/userApi';
 import * as sc from './ResetPass.style';
@@ -9,7 +9,7 @@ import * as sc from './ResetPass.style';
 const ResetPass = props => {
   const { resetToken } = props;
   const [newPassword, setNewPassword] = useState('');
-  const { setCurrentUser } = useContext(CurrentUser);
+  const { setCurrentUser } = useContext(CurrentUserContext);
   const history = useHistory();
 
   const [resetPass] = useFetch('/user/reset-password');

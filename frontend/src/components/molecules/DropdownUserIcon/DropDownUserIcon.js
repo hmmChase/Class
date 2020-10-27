@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { CurrentUser } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context/contexts';
 import * as sc from './DropdownUserIcon.style';
 
 const DropdownUserIcon = props => {
-  const { logout } = useContext(CurrentUser);
+  const { logout } = useContext(CurrentUserContext);
 
   const handleClick = async () => {
     try {

@@ -5,13 +5,15 @@ import Button from '../../atoms/Button/Button';
 import * as sc from './ChallengeListCard.style';
 
 const challengeListCard = props => {
+  const { challenge } = props;
+
   return (
     <sc.Container className={props.className}>
-      <Link to={`/${props.path}`}>
+      <Link to={`/${challenge.path}`}>
         <Button>
-          <h2>{props.title}</h2>
+          <h2>{challenge.title}</h2>
 
-          <p>{props.desc}</p>
+          <p>{challenge.desc}</p>
         </Button>
       </Link>
     </sc.Container>

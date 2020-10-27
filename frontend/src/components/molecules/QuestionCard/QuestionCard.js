@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
-import { CurrentUser } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context/contexts';
 import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
 import QuestionEdit from '../QuestionEdit/QuestionEdit';
 import * as sc from './QuestionCard.style';
@@ -9,7 +9,7 @@ import * as sc from './QuestionCard.style';
 const QuestionCard = props => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const { currentUser } = useContext(CurrentUser);
+  const { currentUser } = useContext(CurrentUserContext);
   const { challengePath } = useParams();
 
   const shouldShowMenu =

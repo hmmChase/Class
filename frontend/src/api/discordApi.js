@@ -8,7 +8,18 @@ export const useUrlLogin = config => useMutation(urlLogin, config);
 
 /* POST */
 
-const loginDiscord = async (key, args) =>
-  await instance.post('/discord/login', args);
-export const useLoginDiscord = (config, args) =>
-  useQuery(['loginDiscord', args], loginDiscord, config);
+const loginDiscord = async (_key, variables) => {
+  console.log('variables:', variables);
+
+  return await instance.post('/discord/login', variables);
+};
+
+export const useLoginDiscord = config => {
+  console.log('config:', config);
+
+  return useQuery(
+    ['loginDiscord', config.variables.code, config.variables.state],
+    loginDiscord,
+    config
+  );
+};

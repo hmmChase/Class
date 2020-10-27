@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
+import { CommentContext } from '../../../context/contexts';
 import * as sc from './DropdownAnswer.style';
 
-const DropdownAnswer = props => (
-  <sc.Dropdownn
-    className={props.className}
-    isDropdownOpen={props.isDropdownOpen}
-    close={props.close}
-  >
-    {props.role === 'TEACHER' && (
-      <li>
-        <span onClick={() => props.demoteAnswer(props.commentId)}>
-          Demote from Answer
-        </span>
-      </li>
-    )}
+const DropdownAnswer = props => {
+  const { demoteAnswer, deleteComment } = useContext(CommentContext);
 
-    <li>
-      <span onClick={() => props.handleDeleteComment(props.commentId)}>
-        Remove Post
-      </span>
-    </li>
-  </sc.Dropdownn>
-);
+  return (
+    <sc.Dropdownn
+      className={props.className}
+      isDropdownOpen={props.isDropdownOpen}
+      close={props.close}
+    >
+      {props.role === 'TEACHER' && (
+        <li>
+          <span onClick={() => demoteAnswer(props.commentId)}>
+            Demote from Answer
+          </span>
+        </li>
+      )}
+
+      <li>
+        <span onClick={() => deleteComment(props.commentId)}>Remove Post</span>
+      </li>
+    </sc.Dropdownn>
+  );
+};
 
 // DropdownAnswer.propTypes = {
 //   // myProp: PropTypes.string.isRequired

@@ -2,11 +2,11 @@ import React, { useEffect, useContext } from 'react';
 import useFetch from '../../../api/useFetch';
 import { useHistory } from 'react-router-dom';
 import getParameterByName from '../../../utils/getQueryParamByName';
-import { CurrentUser } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context/contexts';
 // import * as sc from './SignupDiscordRedirect.style';
 
 const SignupDiscordRedirect = () => {
-  const { setCurrentUser } = useContext(CurrentUser);
+  const { setCurrentUser } = useContext(CurrentUserContext);
 
   const history = useHistory();
 

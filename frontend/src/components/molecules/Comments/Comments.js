@@ -1,32 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { formatDate, timestamp } from '../../../utils/dateTime';
+import { CommentContext } from '../../../context/contexts';
 import * as sc from './Comments.style';
 
 const Comments = props => {
-  const commentCards = props.comments.map(comment => {
+  const { comments } = useContext(CommentContext);
+
+  const commentCards = comments.map(comment => {
     if (!comment.isAnswer)
-      return (
-        <sc.CommentCardd
-          key={comment.id}
-          commentId={comment.id}
-          authorId={comment.author.id}
-          authorName={comment.author.username}
-          timestamp={timestamp(comment.createdAt)}
-          createdAt={formatDate(comment.createdAt)}
-          body={comment.body}
-          handleUpdateComment={props.handleUpdateComment}
-          handleDeleteComment={props.handleDeleteComment}
-          promoteAnswer={props.promoteAnswer}
-        />
-      );
+      return <sc.CommentCardd key={comment.id} comment={comment} />;
 
     return null;
   });
 
   return (
     <sc.Container className={props.className}>
-      <sc.CommentsList>{props.comments && commentCards}</sc.CommentsList>
+      <sc.CommentsList>
+        {commentCards.length > 0 && commentCards}
+      </sc.CommentsList>
     </sc.Container>
   );
 };

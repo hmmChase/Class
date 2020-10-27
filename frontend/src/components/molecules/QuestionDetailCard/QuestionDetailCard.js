@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
-import { CurrentUser } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context/contexts';
 import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
 import TextExpand from '../../atoms/TextExpand/TextExpand';
 import * as sc from './QuestionDetailCard.style';
@@ -9,7 +9,7 @@ import * as sc from './QuestionDetailCard.style';
 const QuestionDetailCard = props => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  const { currentUser } = useContext(CurrentUser);
+  const { currentUser } = useContext(CurrentUserContext);
 
   const shouldShowMenu =
     currentUser &&

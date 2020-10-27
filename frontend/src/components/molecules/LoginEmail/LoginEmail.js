@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
-import { CurrentUser } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context/contexts';
 import InputLabel from '../../atoms/InputLabel/InputLabel';
 import * as sc from './LoginEmail.style';
 
 const LoginEmail = props => {
   const [email, setEmail] = useState('student1@email.com');
   const [password, setPassword] = useState('student1');
-  const { loginEmail } = useContext(CurrentUser);
+  const { loginEmail } = useContext(CurrentUserContext);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);

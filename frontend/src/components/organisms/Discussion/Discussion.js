@@ -1,15 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { CurrentUser } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context/contexts';
 import QuestionDetail from '../../molecules/QuestionDetail/QuestionDetail';
 import Questions from '../../molecules/Questions/Questions';
 import Label from '../../atoms/Label/Label';
 import * as sc from './Discussion.style';
 
 const Discussion = props => {
-  const [questions, setQuestions] = useState([]);
-  const { currentUser } = useContext(CurrentUser);
+  const { currentUser } = useContext(CurrentUserContext);
   const { questionId } = useParams();
 
   return (
@@ -25,18 +24,12 @@ const Discussion = props => {
           </sc.Titlee>
         </div>
 
-        {currentUser.role === 'STUDENT' && !questionId && (
-          <sc.QuestionNeww questions={questions} setQuestions={setQuestions} />
-        )}
+        {currentUser.role === 'STUDENT' && !questionId && <sc.QuestionNeww />}
       </sc.Heading>
 
       {questionId && <sc.BtnBackk />}
 
-      {questionId ? (
-        <QuestionDetail questionId={questionId} />
-      ) : (
-        <Questions questions={questions} setQuestions={setQuestions} />
-      )}
+      {questionId ? <QuestionDetail questionId={questionId} /> : <Questions />}
     </sc.Container>
   );
 };

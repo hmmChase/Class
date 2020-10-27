@@ -4,6 +4,7 @@ import { useQuery, useMutation } from 'react-query';
 /* GET */
 
 const getChallenges = async () => await instance.get('/challenge/all');
-export const useChallenges = () => useQuery('Challenges', getChallenges);
+export const useGetChallenges = config =>
+  useQuery('challenges', getChallenges, config);
 
 /* POST */

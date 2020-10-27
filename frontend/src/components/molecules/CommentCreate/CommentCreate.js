@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 // import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
+import { CommentContext } from '../../../context/contexts';
 import * as sc from './CommentCreate.style';
 
 const CommentCreate = props => {
   const [body, setBody] = useState('');
+
+  const { createComment } = useContext(CommentContext);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -15,7 +18,7 @@ const CommentCreate = props => {
   const onClick = e => {
     e.preventDefault();
 
-    props.handleCreateComment(body);
+    createComment(props.questionId, body);
 
     setBody('');
   };

@@ -20,15 +20,16 @@ const TextExpand = props => {
             </span>
           }
         >
-          {props.children.split('\n').map((line, i, arr) => {
-            const linee = <span key={i}>{line}</span>;
+          {props.children &&
+            props.children.split('\n').map((line, i, arr) => {
+              const linee = <span key={i}>{line}</span>;
 
-            if (i === arr.length - 1) {
-              return linee;
-            } else {
-              return [linee, <sc.Br key={i + 'br'} />];
-            }
-          })}
+              if (i === arr.length - 1) {
+                return linee;
+              } else {
+                return [linee, <sc.Br key={i + 'br'} />];
+              }
+            })}
         </Truncate>
       ) : (
         <>

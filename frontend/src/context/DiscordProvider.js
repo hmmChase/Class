@@ -1,21 +1,27 @@
 import React, { useContext } from 'react';
-import { CurrentUser, Discord } from './contexts';
+import { CurrentUserContext, DiscordContext } from './contexts';
 import * as api from '../api/discordApi';
 
 const DiscordProvider = props => {
-  const { setCurrentUser } = useContext(CurrentUser);
+  const { setCurrentUser } = useContext(CurrentUserContext);
 
   const [urlLogin] = api.useUrlLogin();
 
-  const loginDiscord = () =>
+  const loginDiscord = (code, state) =>
     api.useLoginDiscord({
-      onSuccess: data => setCurrentUser(data.data)
+      variables: { code, state },
+
+      onSuccess: data => {
+        console.log('data:', data);
+
+        setCurrentUser(data.data);
+      }
     });
 
   return (
-    <Discord.Provider value={{ urlLogin, loginDiscord }}>
+    <DiscordContext.Provider value={{ urlLogin, loginDiscord }}>
       {props.children}
-    </Discord.Provider>
+    </DiscordContext.Provider>
   );
 };
 

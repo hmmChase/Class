@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import useFetch from '../../../api/useFetch';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../../utils/dateTime';
-import { QuestionsContext } from '../../../context/contexts';
+import { QuestionContext } from '../../../context/contexts';
 import * as sc from './Questions.style';
 
 const Questions = props => {
-  const { questions, setQuestions, getQuestions } = useContext(
-    QuestionsContext
-  );
+  const { questions, setQuestions, getQuestions } = useContext(QuestionContext);
 
   const { challengePath } = useParams();
 

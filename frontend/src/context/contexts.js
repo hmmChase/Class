@@ -1,10 +1,16 @@
 import { createContext } from 'react';
 
-export const CurrentUser = createContext({
+export const CurrentUserContext = createContext({
   currentUser: {},
   setCurrentUser: () => {}
 });
 
-export const Discord = createContext({});
+export const DiscordContext = createContext({});
 
-export const QuestionsContext = createContext({});
+export const ChallengeContext = createContext({});
+
+export const ProjectContext = createContext({});
+
+export const QuestionContext = createContext({});
+
+export const CommentContext = createContext({});

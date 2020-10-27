@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
-import { CurrentUser } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context/contexts';
 import BtnReqPass from '../../molecules/BtnReqPass/BtnReqPass';
 import * as sc from './Account.style';
 
 const Account = () => {
-  const { currentUser } = useContext(CurrentUser);
+  const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <sc.Container>

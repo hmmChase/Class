@@ -1,20 +1,16 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
-import { CurrentUser } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context/contexts';
 import Button from '../../atoms/Button/Button';
 import * as sc from './BtnReqPass.style';
 
 const BtnReqPass = props => {
-  const { resetPassReq } = useContext(CurrentUser);
+  const { resetPassReq } = useContext(CurrentUserContext);
 
   const handleClick = async e => {
     e.preventDefault();
 
-    try {
-      await resetPassReq({ email: props.email });
-    } catch (error) {
-      // console.log('resetPassReq error: ', error);
-    }
+    await resetPassReq({ email: props.email });
   };
 
   return (

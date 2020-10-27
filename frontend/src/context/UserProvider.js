@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CurrentUser } from './contexts';
+import { CurrentUserContext } from './contexts';
 import * as api from '../api/userApi';
 
 const UserProvider = props => {
@@ -34,7 +34,7 @@ const UserProvider = props => {
   });
 
   return (
-    <CurrentUser.Provider
+    <CurrentUserContext.Provider
       value={{
         currentUser,
         setCurrentUser,
@@ -46,7 +46,7 @@ const UserProvider = props => {
       }}
     >
       {props.children}
-    </CurrentUser.Provider>
+    </CurrentUserContext.Provider>
   );
 };
 
