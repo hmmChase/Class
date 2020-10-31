@@ -7,14 +7,6 @@ import * as sc from './DropdownUserIcon.style';
 const DropdownUserIcon = props => {
   const { logout } = useContext(CurrentUserContext);
 
-  const handleClick = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      // console.log('logout error: ', error);
-    }
-  };
-
   return (
     <sc.Dropdownn
       className={props.className}
@@ -28,7 +20,7 @@ const DropdownUserIcon = props => {
       </li>
 
       <li>
-        <span onClick={handleClick}>Log Out</span>
+        <span onClick={() => logout()}>Log Out</span>
       </li>
     </sc.Dropdownn>
   );

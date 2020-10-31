@@ -7,19 +7,30 @@ const DiscordProvider = props => {
 
   const [urlLogin] = api.useUrlLogin();
 
+  const [urlSignup] = api.useUrlSignup();
+
   const loginDiscord = (code, state) =>
     api.useLoginDiscord({
       variables: { code, state },
 
       onSuccess: data => {
-        console.log('data:', data);
+        setCurrentUser(data.data);
+      }
+    });
 
+  const signupDiscord = (code, state) =>
+    api.useLoginDiscord({
+      variables: { code, state },
+
+      onSuccess: data => {
         setCurrentUser(data.data);
       }
     });
 
   return (
-    <DiscordContext.Provider value={{ urlLogin, loginDiscord }}>
+    <DiscordContext.Provider
+      value={{ urlLogin, urlSignup, loginDiscord, signupDiscord }}
+    >
       {props.children}
     </DiscordContext.Provider>
   );

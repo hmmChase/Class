@@ -8,6 +8,7 @@ import * as sc from './ProjectNew.style';
 
 const ProjectNew = props => {
   const [isSubmitted, setSubmitted] = useState(false);
+
   const [isModalOpen, toggleModal] = useModal();
 
   return (

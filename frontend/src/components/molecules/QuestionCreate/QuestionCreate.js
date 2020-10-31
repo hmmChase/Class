@@ -1,29 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import useFetch from '../../../api/useFetch';
+import { QuestionContext } from '../../../context/contexts';
 import Desc from '../../atoms/Desc/Desc';
 import DOMPurify from 'dompurify';
-// import { useCreateQuestion } from '../../../api/questionApi';
 import * as sc from './QuestionCreate.style';
 
 const QuestionCreate = props => {
   const [title, setTitle] = useState('');
+
   const [body, setBody] = useState('');
+
+  const { createQuestion } = useContext(QuestionContext);
+
   const { challengePath } = useParams();
-
-  const [createQuestion] = useFetch(`/question/create/${challengePath}`);
-
-  // const [createQuestion, response] = useCreateQuestion({
-  //   onSuccess: data => {
-  //     console.log('data:', data);
-
-  //     // const updatedQuestions = [data.data, ...props.questions];
-
-  //     // props.setQuestions(updatedQuestions);
-
-  //     // props.close();
-  //   }
-  // });
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -38,17 +27,9 @@ const QuestionCreate = props => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    try {
-      const newQuestion = await createQuestion({ challengePath, title, body });
+    createQuestion(challengePath, title, body);
 
-      const updatedQuestions = [newQuestion, ...props.questions];
-
-      props.setQuestions(updatedQuestions);
-
-      props.close();
-    } catch (error) {
-      console.log('QuestionCreate error: ', error);
-    }
+    props.close();
   };
 
   return (

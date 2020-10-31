@@ -1,10 +1,16 @@
 import instance from './baseApi';
-import { useQuery, useMutation } from 'react-query';
+import { useQuery } from 'react-query';
 
 /* GET */
 
-const getChallenges = async () => await instance.get('/challenge/all');
+const getChallenges = async (_key, variables) =>
+  await instance.get('/challenge/all');
 export const useGetChallenges = config =>
-  useQuery('challenges', getChallenges, config);
+  useQuery(['challenges', config.variables], getChallenges, config);
+
+const getChallenge = async (_key, variables) =>
+  await instance.get(`/challenge/path/${variables.challengePath}`);
+export const useGetChallenge = config =>
+  useQuery(['challenge', config.variables], getChallenge, config);
 
 /* POST */

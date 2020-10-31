@@ -28,11 +28,10 @@ const QuestionDetailCard = props => {
         <sc.Relative>
           {isDropdownOpen && (
             <DropdownQuestion
+              questionId={props.questionId}
               role={currentUser.role}
               isDropdownOpen={isDropdownOpen}
-              questionId={props.questionId}
               close={() => setDropdownOpen(false)}
-              handleDeleteQuestion={props.handleDeleteQuestion}
             />
           )}
 

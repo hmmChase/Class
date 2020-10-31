@@ -4,9 +4,10 @@ import Title from '../../atoms/Title/Title';
 import Desc from '../../atoms/Desc/Desc';
 import * as sc from './ProjectSubmitted.style';
 
-const ProjectSubmitted = props => (
+const ProjectSubmitted = () => (
   <sc.Container>
     <Title>Your project has been submitted!</Title>
+
     <Desc>Look for an email confirmation shortly.</Desc>
   </sc.Container>
 );

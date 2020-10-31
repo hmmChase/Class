@@ -1,23 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Desc from '../../atoms/Desc/Desc';
 import DOMPurify from 'dompurify';
-import { useCreateProject } from '../../../api/projectApi';
+import { ProjectContext } from '../../../context/contexts';
 import * as sc from './ProjectCreate.style';
 
 const ProjectCreate = props => {
   const [githubLink, setGithubLink] = useState('');
+
   const [additionalLink, setAdditionalLink] = useState('');
+
   const [comments, setComment] = useState('');
 
-  const [createProject] = useCreateProject({
-    onSuccess: data => {
-      const updatedQuestions = [data.data, ...props.questions];
-
-      props.setQuestions(updatedQuestions);
-
-      props.close();
-    }
-  });
+  const { createProject } = useContext(ProjectContext);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -31,23 +25,17 @@ const ProjectCreate = props => {
 
   const handleCancel = () => props.close();
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    try {
-      const project = await createProject({
-        githubLink,
-        additionalLink,
-        comments
-      });
+    const response = createProject({ githubLink, additionalLink, comments });
 
-      if (project && project.createdAt) {
-        props.setSubmittedDate(project.createdAt);
+    if (response && response.data && response.data.createdAt) {
+      props.setSubmittedDate(response.data.createdAt);
 
-        props.setIsSubmitted(true);
-      }
-    } catch (error) {
-      // console.log('LoginEmail error: ', error);
+      props.setIsSubmitted(true);
+
+      props.close();
     }
   };
 

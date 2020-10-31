@@ -6,18 +6,14 @@ import * as sc from './LoginDiscord.style';
 const LoginDiscord = () => {
   const { urlLogin } = useContext(DiscordContext);
 
-  const handleClick = async () => {
-    try {
-      const { data } = await urlLogin();
+  const handleClickLogin = () => {
+    const response = urlLogin();
 
-      window.location.assign(data);
-    } catch (error) {
-      // console.log('urlLogin error: ', error);
-    }
+    window.location.assign(response.data);
   };
 
   return (
-    <sc.Buttonn onClick={handleClick}>
+    <sc.Buttonn onClick={handleClickLogin}>
       <IconDiscord />
       Log in with Discord
     </sc.Buttonn>

@@ -2,19 +2,16 @@ import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 import { useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../../context/contexts';
-import useFetch from '../../../api/useFetch';
-// import { useResetPass } from '../../../api/userApi';
 import * as sc from './ResetPass.style';
 
 const ResetPass = props => {
   const { resetToken } = props;
+
   const [newPassword, setNewPassword] = useState('');
-  const { setCurrentUser } = useContext(CurrentUserContext);
+
+  const { resetPass } = useContext(CurrentUserContext);
+
   const history = useHistory();
-
-  const [resetPass] = useFetch('/user/reset-password');
-
-  // const [resetPass] = useResetPass();
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -25,13 +22,9 @@ const ResetPass = props => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    try {
-      await resetPass({ newPassword, resetToken });
+    resetPass({ newPassword, resetToken });
 
-      history.push('/');
-    } catch (error) {
-      console.log('ResetPass error: ', error);
-    }
+    history.push('/');
   };
 
   return (

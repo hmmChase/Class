@@ -1,15 +1,15 @@
-import React from 'react';
-import useFetch from '../../../api/useFetch';
+import React, { useContext } from 'react';
+import { DiscordContext } from '../../../context/contexts';
 import IconDiscord from '../IconDiscord/IconDiscord';
 import * as sc from './SignupDiscord.style';
 
 const SignupDiscord = () => {
-  const [signupDiscord] = useFetch('/discord/url-signup');
+  const { urlSignup } = useContext(DiscordContext);
 
   const handleClick = async () => {
-    const discordUrl = await signupDiscord();
+    const response = urlSignup();
 
-    window.location.assign(discordUrl);
+    window.location.assign(response.data);
   };
 
   return (

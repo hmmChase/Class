@@ -16,7 +16,7 @@ const Comments = props => {
   return (
     <sc.Container className={props.className}>
       <sc.CommentsList>
-        {commentCards.length > 0 && commentCards}
+        {commentCards && commentCards.length > 0 && commentCards}
       </sc.CommentsList>
     </sc.Container>
   );

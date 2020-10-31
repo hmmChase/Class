@@ -6,7 +6,9 @@ import * as sc from './LoginEmail.style';
 
 const LoginEmail = props => {
   const [email, setEmail] = useState('student1@email.com');
+
   const [password, setPassword] = useState('student1');
+
   const { loginEmail } = useContext(CurrentUserContext);
 
   const handleChange = e => {
@@ -17,14 +19,10 @@ const LoginEmail = props => {
     if (e.target.id === 'password') setPassword(cleanValue);
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    try {
-      await loginEmail({ email, password });
-    } catch (error) {
-      // console.log('loginEmail error: ', error);
-    }
+    loginEmail({ email, password });
   };
 
   return (

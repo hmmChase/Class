@@ -1,27 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import useFetch from '../../../api/useFetch';
+import { ChallengeContext } from '../../../context/contexts';
 import Label from '../../atoms/Label/Label';
 import Desc from '../../atoms/Desc/Desc';
 import * as sc from './Challenge.style';
 
 const Challenge = props => {
-  const [challenge, setChallenge] = useState({});
   const { challengePath } = useParams();
 
-  const [getChallenge, loading, error] = useFetch(
-    `/challenge/path/${challengePath}`
-  );
+  const { challenge, getChallenge } = useContext(ChallengeContext);
 
-  useEffect(() => {
-    (async () => {
-      const challengeData = await getChallenge();
-
-      if (!loading && !error && challengeData) setChallenge(challengeData);
-    })();
-    // eslint-disable-next-line
-  }, []);
+  getChallenge(challengePath);
 
   return (
     <sc.Container className={props.className}>

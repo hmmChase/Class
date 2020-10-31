@@ -15,7 +15,7 @@ const CommentEdit = props => {
     setBody(cleanValue);
   };
 
-  const handleClick = async () => {
+  const handleClick = () => {
     updateComment(props.id, body);
 
     props.setIsEditing(false);

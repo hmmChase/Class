@@ -10,22 +10,12 @@ const LoginDiscordRedirect = () => {
   const history = useHistory();
 
   useEffect(() => {
-    // (async () => {
     const code = getParameterByName('code');
-    console.log('code:', code);
     const state = getParameterByName('state');
-    console.log('state:', state);
 
-    try {
-      loginDiscord(code, state);
+    loginDiscord(code, state);
 
-      // if (response.isSuccess) history.push('/');
-
-      history.push('/');
-    } catch (error) {
-      // console.log('loginDiscord error: ', error);
-    }
-    // })();
+    history.push('/');
 
     // eslint-disable-next-line
   }, []);

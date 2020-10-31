@@ -9,6 +9,7 @@ import * as sc from './Discussion.style';
 
 const Discussion = props => {
   const { currentUser } = useContext(CurrentUserContext);
+
   const { questionId } = useParams();
 
   return (

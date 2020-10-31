@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { formatDate } from '../../../utils/dateTime';
 import { useParams, Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../../context/contexts';
 import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
@@ -7,23 +8,28 @@ import QuestionEdit from '../QuestionEdit/QuestionEdit';
 import * as sc from './QuestionCard.style';
 
 const QuestionCard = props => {
+  const { question } = props;
+
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+
   const [isEditing, setIsEditing] = useState(false);
+
   const { currentUser } = useContext(CurrentUserContext);
+
   const { challengePath } = useParams();
 
   const shouldShowMenu =
     currentUser &&
     currentUser.id &&
-    (currentUser.role === 'TEACHER' || currentUser.id === props.authorId);
+    (currentUser.role === 'TEACHER' || currentUser.id === question.author.id);
 
   return (
     <sc.Container className={props.className}>
       <sc.Row>
         <sc.Group>
-          <sc.Author>{props.authorName}</sc.Author>
+          <sc.Author>{question.author.username}</sc.Author>
 
-          <sc.Created>{props.createdAt}</sc.Created>
+          <sc.Created>{formatDate(question.createdAt)}</sc.Created>
         </sc.Group>
 
         <sc.GroupTopRight>
@@ -32,11 +38,10 @@ const QuestionCard = props => {
           <sc.Relative>
             {isDropdownOpen && (
               <DropdownQuestion
+                questionId={question.question.id}
                 role={currentUser.role}
                 isDropdownOpen={isDropdownOpen}
-                questionId={props.questionId}
                 close={() => setDropdownOpen(false)}
-                handleDeleteQuestion={props.handleDeleteQuestion}
                 setIsEditing={setIsEditing}
               />
             )}
@@ -56,15 +61,14 @@ const QuestionCard = props => {
       <sc.Row>
         {isEditing ? (
           <QuestionEdit
-            id={props.questionId}
-            body={props.body}
+            id={question.id}
+            body={question.body}
             setIsEditing={setIsEditing}
-            handleUpdateQuestion={props.handleUpdateQuestion}
           >
-            {props.title}
+            {question.title}
           </QuestionEdit>
         ) : (
-          <sc.Title>{props.title}</sc.Title>
+          <sc.Title>{question.title}</sc.Title>
         )}
       </sc.Row>
 
@@ -83,7 +87,7 @@ const QuestionCard = props => {
           )}
         </sc.Group>
 
-        <Link to={`/${challengePath}/${props.questionId}`}>
+        <Link to={`/${challengePath}/${question.id}`}>
           <sc.ViewQuestion>View Question</sc.ViewQuestion>
         </Link>
       </sc.Row>

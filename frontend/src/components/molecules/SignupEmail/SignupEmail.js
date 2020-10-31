@@ -7,8 +7,11 @@ import * as sc from './SignupEmail.style';
 
 const SignupEmail = () => {
   const [email, setEmail] = useState('');
+
   const [password, setPassword] = useState('');
+
   const [username, setUsername] = useState('');
+
   const { signup } = useContext(CurrentUserContext);
 
   const handleChange = e => {
@@ -21,14 +24,10 @@ const SignupEmail = () => {
     if (e.target.id === 'password') setPassword(cleanValue);
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    try {
-      await signup({ username, email, password });
-    } catch (error) {
-      // console.log('signup error: ', error)
-    }
+    signup({ username, email, password });
   };
 
   return (

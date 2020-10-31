@@ -15,7 +15,7 @@ const AnswerCard = props => {
   const shouldShowMenu =
     currentUser &&
     currentUser.id &&
-    (currentUser.role === 'TEACHER' || currentUser.id === comment.authorId);
+    (currentUser.role === 'TEACHER' || currentUser.id === comment.author.id);
 
   return (
     <sc.Container className={props.className}>

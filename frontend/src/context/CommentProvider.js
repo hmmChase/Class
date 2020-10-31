@@ -7,7 +7,6 @@ const CommentProvider = props => {
 
   const getComments = async questionId => {
     const response = await api.getComments(questionId);
-    console.log('response:', response);
 
     setComments(response.data);
   };

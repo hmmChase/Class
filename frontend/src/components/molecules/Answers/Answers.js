@@ -15,7 +15,9 @@ const Answers = props => {
 
   return (
     <sc.Container className={props.className}>
-      <sc.AnswersList>{answerCards.length > 0 && answerCards}</sc.AnswersList>
+      <sc.AnswersList>
+        {answerCards && answerCards.length > 0 && answerCards}
+      </sc.AnswersList>
     </sc.Container>
   );
 };

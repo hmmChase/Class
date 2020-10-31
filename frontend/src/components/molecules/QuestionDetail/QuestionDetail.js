@@ -19,11 +19,11 @@ const QuestionDetail = props => {
   const { getComments } = useContext(CommentContext);
 
   useEffect(() => {
-    (async () => {
-      await getQuestion(props.questionId);
+    // (async () => {
+    getQuestion(props.questionId);
 
-      await getComments(props.questionId);
-    })();
+    getComments(props.questionId);
+    // })();
 
     // eslint-disable-next-line
   }, []);

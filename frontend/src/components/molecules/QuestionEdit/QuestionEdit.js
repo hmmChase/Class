@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
+import { QuestionContext } from '../../../context/contexts';
 // import PropTypes from 'prop-types';
 import * as sc from './QuestionEdit.style';
 
 const QuestionEdit = props => {
-  console.log('props:', props);
   const [title, setTitle] = useState(props.children);
+
+  const { updateQuestion } = useContext(QuestionContext);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -13,8 +15,8 @@ const QuestionEdit = props => {
     setTitle(cleanValue);
   };
 
-  const handleClick = async e => {
-    props.handleUpdateQuestion(props.id, title, props.body);
+  const handleClick = async () => {
+    updateQuestion(props.id, title, props.body, props.challengePath);
 
     props.setIsEditing(false);
   };

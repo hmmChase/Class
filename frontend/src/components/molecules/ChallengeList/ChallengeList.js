@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { ChallengeContext } from '../../../context/contexts';
 import ChallengeListCard from '../ChallengeListCard/ChallengeListCard';
 import Title from '../../atoms/Title/Title';
-
 import * as sc from './ChallengeList.style';
 
 const ChallengeList = () => {
@@ -19,7 +18,11 @@ const ChallengeList = () => {
     <sc.Container>
       <Title>Challenges</Title>
 
-      <sc.Ul>{challengeListCards.length > 0 && challengeListCards}</sc.Ul>
+      <sc.Ul>
+        {challengeListCards &&
+          challengeListCards.length > 0 &&
+          challengeListCards}
+      </sc.Ul>
     </sc.Container>
   );
 };

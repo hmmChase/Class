@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { useParams, useHistory } from 'react-router-dom';
+import { QuestionContext } from '../../../context/contexts';
 import * as sc from './DropdownQuestion.style';
 
 const DropdownQuestion = props => {
   const { challengePath } = useParams();
+
+  const { deleteQuestion } = useContext(QuestionContext);
+
   const history = useHistory();
-
-  const onClick = async () => {
-    await props.handleDeleteQuestion(props.questionId);
-
-    if (history.pathname !== '/challenge1') history.push(`/${challengePath}`);
-  };
 
   const handleClickEdit = () => {
     props.setIsEditing(true);
 
     props.close();
+  };
+
+  const handleClickDelete = () => {
+    deleteQuestion(props.questionId);
+
+    if (history.pathname !== '/challenge1') history.push(`/${challengePath}`);
   };
 
   return (
@@ -30,7 +34,7 @@ const DropdownQuestion = props => {
       </li>
 
       <li>
-        <span onClick={onClick}>Remove Post</span>
+        <span onClick={handleClickDelete}>Remove Post</span>
       </li>
     </sc.Dropdownn>
   );

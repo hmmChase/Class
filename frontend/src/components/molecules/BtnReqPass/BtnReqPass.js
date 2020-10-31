@@ -7,10 +7,10 @@ import * as sc from './BtnReqPass.style';
 const BtnReqPass = props => {
   const { resetPassReq } = useContext(CurrentUserContext);
 
-  const handleClick = async e => {
+  const handleClick = e => {
     e.preventDefault();
 
-    await resetPassReq({ email: props.email });
+    resetPassReq({ email: props.email });
   };
 
   return (
