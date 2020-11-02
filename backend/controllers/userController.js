@@ -65,7 +65,6 @@ export const signup = async (req, res) => {
   return res.json(userClientData);
 };
 
-
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
