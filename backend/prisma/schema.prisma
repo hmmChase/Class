@@ -48,9 +48,10 @@ model Challenge {
   title     String
   desc      String
   videoUrl  String
+  projects  Project[]
   questions Question[]
-  author    User       @relation(fields: [user_id], references: [id])
-  user_id   Int
+  author    User       @relation(fields: [author_id], references: [id])
+  author_id Int
 }
 
 model Project {
@@ -61,8 +62,10 @@ model Project {
   githubLink     String
   additionalLink String?
   comments       String?
-  author         User      @relation(fields: [user_id], references: [id])
-  user_id        Int
+  author         User      @relation(fields: [author_id], references: [id])
+  author_id      Int
+  challenge      Challenge @relation(fields: [challenge_Id], references: [id])
+  challenge_Id   Int
 }
 
 model Question {
@@ -73,8 +76,8 @@ model Question {
   title        String
   body         String
   comments     Comment[]
-  author       User      @relation(fields: [user_id], references: [id])
-  user_id      Int
+  author       User      @relation(fields: [author_id], references: [id])
+  author_id    Int
   challenge    Challenge @relation(fields: [challenge_Id], references: [id])
   challenge_Id Int
 }
@@ -86,8 +89,8 @@ model Comment {
   deletedAt   DateTime?
   body        String
   isAnswer    Boolean   @default(false)
-  author      User      @relation(fields: [user_id], references: [id])
-  user_id     Int
+  author      User      @relation(fields: [author_id], references: [id])
+  author_id   Int
   question    Question  @relation(fields: [question_id], references: [id])
   question_id Int
 }

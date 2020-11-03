@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from '../components/organisms/Layout/Layout';
-import Header from '../components/organisms/Header/Header';
-import ChallengeList from '../components/molecules/ChallengeList/ChallengeList';
+import Layout from '../components/sections/Layout/Layout';
+import Header from '../components/sections/Header/Header';
+import Challenges from '../components/domains/challenge/Challenges/Challenges';
 
 const IndexPage = () => (
-  <Layout header={<Header />} main={<ChallengeList />}></Layout>
+  <Layout header={<Header />} main={<Challenges />}></Layout>
 );
 
 export default IndexPage;

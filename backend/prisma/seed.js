@@ -68,6 +68,7 @@ const main = async () => {
       githubLink: 'www.github.com',
       additionalLink: 'www.google.com',
       comments: 'Here is my project',
+      challenge: { connect: { id: 1 } },
       author: { connect: { id: 2 } }
     }
   });
@@ -77,6 +78,7 @@ const main = async () => {
       githubLink: 'www.github.com',
       additionalLink: 'www.google.com',
       comments: 'My project is here',
+      challenge: { connect: { id: 2 } },
       author: { connect: { id: 3 } }
     }
   });
@@ -88,7 +90,8 @@ const main = async () => {
     await prisma.question.create({
       data: {
         title: 'seeded question ' + i,
-        body: 'this is a question',
+        body:
+          'Voluptatem sunt voluptate. Reiciendis vel rerum. Voluptas voluptas numquam. Odit pariatur qui. Quod consequatur inventore. At non consequatur dolore nulla consectetur eveniet illo commodi. Sint commodi possimus mollitia magnam molestiae omnis odio eaque autem. Et nihil fugit aut ab et praesentium minus. Omnis nihil odit commodi et quod voluptates sint a. Nostrum minima odio ut harum. Sunt quia et nisi praesentium et aut est quia.',
         author: { connect: { id: twoOrThree } },
         challenge: { connect: { id: oneOrTwo } }
       }

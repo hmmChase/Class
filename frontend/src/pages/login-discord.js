@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginDiscordRedirect from '../components/molecules/LoginDiscordRedirect/LoginDiscordRedirect';
+import LoginDiscordRedirect from '../components/domains/user/LoginDiscordRedirect/LoginDiscordRedirect';
 
 const LoginDiscordRedirectPage = () => <LoginDiscordRedirect />;
 

@@ -5,6 +5,9 @@ import * as api from '../api/projectApi';
 const ProjectProvider = props => {
   const [projects, setProjects] = useState([]);
 
+  const getProjects = () =>
+    api.useGetProjects({ onSuccess: data => setProjects(data.data) });
+
   const createProject = variables =>
     api.useCreateProject({
       variables,
@@ -17,7 +20,7 @@ const ProjectProvider = props => {
     });
 
   return (
-    <ProjectContext.Provider value={{ projects, createProject }}>
+    <ProjectContext.Provider value={{ projects, getProjects, createProject }}>
       {props.children}
     </ProjectContext.Provider>
   );

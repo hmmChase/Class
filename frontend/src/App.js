@@ -6,6 +6,7 @@ import SignupDiscordRedirectPage from './pages/signup-discord';
 import ResetPasswordPage from './pages/reset-password';
 import IndexPage from './pages/index';
 import AccountPage from './pages/account';
+import SubmissionsPage from './pages/submissions';
 import UserProvider from './context/UserProvider';
 import DiscordProvider from './context/DiscordProvider';
 import ChallengeProvider from './context/ChallengeProvider';
@@ -32,6 +33,10 @@ const App = () => (
 
                   <Route path='/account'>
                     <AccountPage />
+                  </Route>
+
+                  <Route path='/submissions'>
+                    <SubmissionsPage />
                   </Route>
 
                   <Route path='/reset-password'>
