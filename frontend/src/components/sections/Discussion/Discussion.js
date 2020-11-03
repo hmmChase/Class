@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { CurrentUserContext } from '../../../context/contexts';
-import QuestionDetail from '../../domains/question/QuestionDetail/QuestionDetail';
-import Questions from '../../domains/question/Questions/Questions';
+import QuestionDetail from '../../question/QuestionDetail/QuestionDetail';
+import Questions from '../../question/Questions/Questions';
 import Label from '../../reuseable/Label/Label';
 import * as sc from './Discussion.style';
 

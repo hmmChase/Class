@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { CurrentUserContext } from '../context/contexts';
 import Layout from '../components/sections/Layout/Layout';
 import Header from '../components/sections/Header/Header';
-import Submissions from '../components/domains/project/Submissions/Submissions';
+import Submissions from '../components/project/Submissions/Submissions';
 
 const SubmissionsPage = () => {
   const { currentUser } = useContext(CurrentUserContext);

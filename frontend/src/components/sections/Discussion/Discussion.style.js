@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import QuestionNew from '../../domains/question/QuestionNew/QuestionNew';
+import QuestionNew from '../../question/QuestionNew/QuestionNew';
 import BtnBack from '../../other/BtnBack/BtnBack';
 import Title from '../../reuseable/Title/Title';
 

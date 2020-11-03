@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CurrentUserContext } from '../../../context/contexts';
-import BtnLogIn from '../../domains/user/BtnLogIn/BtnLogIn';
-import BtnSignup from '../../domains/user/BtnSignup/BtnSignup';
+import BtnLogIn from '../../user/BtnLogIn/BtnLogIn';
+import BtnSignup from '../../user/BtnSignup/BtnSignup';
 import IconKnight from '../../other/IconKnight/IconKnight';
 import IconUser from '../../other/IconUser/IconUser';
 import * as sc from './Header.style';

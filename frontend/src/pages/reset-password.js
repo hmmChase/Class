@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/sections/Layout/Layout';
 import Header from '../components/sections/Header/Header';
-import ResetPass from '../components/domains/user/ResetPass/ResetPass';
+import ResetPass from '../components/user/ResetPass/ResetPass';
 import getQueryString from '../utils/getQueryString';
 
 const ResetPasswordPage = () => {

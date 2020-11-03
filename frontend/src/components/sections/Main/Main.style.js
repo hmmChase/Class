@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Challenge from '../Challenge/Challenge';
-import SubmissionSubmit from '../../domains/project/SubmissionSubmit/SubmissionSubmit';
-import SubmissionView from '../../domains/project/SubmissionView/SubmissionView';
+import SubmissionSubmit from '../../project/SubmissionSubmit/SubmissionSubmit';
+import SubmissionView from '../../project/SubmissionView/SubmissionView';
 import Discussion from '../Discussion/Discussion';
 
 export const Container = styled.div`
