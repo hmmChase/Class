@@ -6,8 +6,8 @@ import * as sc from './LoginDiscord.style';
 const LoginDiscord = () => {
   const { urlLogin } = useContext(DiscordContext);
 
-  const handleClickLogin = () => {
-    const response = urlLogin();
+  const handleClickLogin = async () => {
+    const response = await urlLogin();
 
     window.location.assign(response.data);
   };

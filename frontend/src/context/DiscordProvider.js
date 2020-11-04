@@ -3,29 +3,26 @@ import { CurrentUserContext, DiscordContext } from './contexts';
 import * as api from '../api/discordApi';
 
 const DiscordProvider = props => {
-  const { setCurrentUser } = useContext(CurrentUserContext);
+  // const { setCurrentUser } = useContext(CurrentUserContext);
 
   const [urlLogin] = api.useUrlLogin();
 
   const [urlSignup] = api.useUrlSignup();
 
-  const loginDiscord = (code, state) =>
-    api.useLoginDiscord({
-      variables: { code, state },
+  const loginDiscord = async options => await api.loginDiscord(options);
 
-      onSuccess: data => {
-        setCurrentUser(data.data);
-      }
-    });
+  // const loginDiscord = () =>
+  //   api.useLoginDiscord({ onSuccess: data => setCurrentUser(data.data) });
 
-  const signupDiscord = (code, state) =>
-    api.useLoginDiscord({
-      variables: { code, state },
+  const signupDiscord = async options => await api.signupDiscord(options);
 
-      onSuccess: data => {
-        setCurrentUser(data.data);
-      }
-    });
+  // const signupDiscord = () => {
+  //   console.log('sajdfhjjklsadfhj');
+
+  //   return api.useSignupDiscord({
+  //     onSuccess: data => setCurrentUser(data.data)
+  //   });
+  // };
 
   return (
     <DiscordContext.Provider

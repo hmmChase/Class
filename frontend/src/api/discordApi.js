@@ -11,17 +11,26 @@ export const useUrlSignup = config => useMutation(urlSignup, config);
 
 /* POST */
 
-const loginDiscord = async (_key, variables) => {
-  return await instance.post('/discord/login', variables);
-};
+export const loginDiscord = async options =>
+  await instance.post('/discord/login', options);
 
-export const useLoginDiscord = config => {
-  return useQuery(
-    ['loginDiscord', config.variables.code, config.variables.state],
-    loginDiscord,
-    config
-  );
-};
+// const loginDiscord = async (_key, variables) => {
+//   return await instance.post('/discord/login', variables);
+// };
+
+// export const useLoginDiscord = config => {
+//   return useQuery(
+//     ['loginDiscord', config.variables.code, config.variables.state],
+//     loginDiscord,
+//     config
+//   );
+// };
 
 export const signupDiscord = async options =>
   await instance.post('/discord/signup', options);
+
+// export const useSignupDiscord = config => {
+//   console.log('config:', config);
+
+//   return useMutation(signupDiscord, config);
+// };

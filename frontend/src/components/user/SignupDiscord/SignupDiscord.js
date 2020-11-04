@@ -7,7 +7,7 @@ const SignupDiscord = () => {
   const { urlSignup } = useContext(DiscordContext);
 
   const handleClick = async () => {
-    const response = urlSignup();
+    const response = await urlSignup();
 
     window.location.assign(response.data);
   };
