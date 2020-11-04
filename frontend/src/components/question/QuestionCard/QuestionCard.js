@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
 import { useParams, Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../../context/contexts';
-import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
+import QuestionDropdown from '../QuestionDropdown/QuestionDropdown';
 import QuestionEdit from '../QuestionEdit/QuestionEdit';
 import * as sc from './QuestionCard.style';
 
@@ -37,7 +37,7 @@ const QuestionCard = props => {
 
           <sc.Relative>
             {isDropdownOpen && (
-              <DropdownQuestion
+              <QuestionDropdown
                 questionId={question.question.id}
                 role={currentUser.role}
                 isDropdownOpen={isDropdownOpen}

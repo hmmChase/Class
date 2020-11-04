@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { CommentContext } from '../../../context/contexts';
-import * as sc from './DropdownAnswer.style';
+import * as sc from './AnswerDropdown.style';
 
-const DropdownAnswer = props => {
+const AnswerDropdown = props => {
   const { demoteAnswer, deleteComment } = useContext(CommentContext);
 
   return (
@@ -27,8 +27,8 @@ const DropdownAnswer = props => {
   );
 };
 
-// DropdownAnswer.propTypes = {
+// AnswerDropdown.propTypes = {
 //   // myProp: PropTypes.string.isRequired
 // };
 
-export default React.memo(DropdownAnswer);
+export default React.memo(AnswerDropdown);

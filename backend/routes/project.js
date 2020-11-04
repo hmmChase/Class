@@ -9,6 +9,8 @@ router.get('/', (req, res, next) => res.json({ route: 'project' }));
 
 router.get('/all', projectController.getAllProjects);
 
+router.get('/challenge/:challengePath', projectController.getChallengeProjects);
+
 /* POST */
 
 router.post('/create', projectController.create);

@@ -35,12 +35,12 @@ const App = () => (
                     <AccountPage />
                   </Route>
 
-                  <Route path='/submissions'>
-                    <SubmissionsPage />
-                  </Route>
-
                   <Route path='/reset-password'>
                     <ResetPasswordPage />
+                  </Route>
+
+                  <Route path='/:challengePath/submissions'>
+                    <SubmissionsPage />
                   </Route>
 
                   <Route path='/:challengePath/:questionId'>

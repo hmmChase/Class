@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => res.json({ route: 'question' }));
 
 router.get('/all', challengeController.getAllChallenges);
 
-router.get('/path/:challengePath', challengeController.getChallengeByPath);
+router.get('/path/:challengePath', challengeController.getChallenge);
 
 /* POST */
 

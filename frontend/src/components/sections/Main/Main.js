@@ -8,15 +8,11 @@ const Main = () => {
   return (
     <sc.Container>
       <sc.LeftSide>
-        {currentUser && currentUser.role === 'TEACHER' && (
-          <sc.SubmissionVieww />
-        )}
+        {currentUser && currentUser.role === 'TEACHER' && <sc.ProjectVieww />}
 
         <sc.Challengee />
 
-        {currentUser && currentUser.role === 'STUDENT' && (
-          <sc.SubmissionSubmitt />
-        )}
+        {currentUser && currentUser.role === 'STUDENT' && <sc.ProjectSubmitt />}
       </sc.LeftSide>
 
       <sc.Discussionn />

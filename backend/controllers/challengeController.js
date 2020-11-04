@@ -10,7 +10,7 @@ export const getAllChallenges = async (req, res, next) => {
   return res.json(challenges);
 };
 
-export const getChallengeByPath = async (req, res, next) => {
+export const getChallenge = async (req, res, next) => {
   const { challengePath } = req.params;
 
   const challenge = await prisma.challenge.findOne({

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { CurrentUserContext } from '../../../context/contexts';
-import DropdownComment from '../DropdownComment/DropdownComment';
+import CommentDropdown from '../CommentDropdown/CommentDropdown';
 import TextExpand from '../../reuseable/TextExpand/TextExpand';
 import CommentEdit from '../CommentEdit/CommentEdit';
 import { formatDate, timestamp } from '../../../utils/dateTime';
@@ -34,7 +34,7 @@ const CommentCard = props => {
 
         <sc.Relative>
           {isDropdownOpen && (
-            <DropdownComment
+            <CommentDropdown
               commentId={comment.id}
               role={currentUser.role}
               isDropdownOpen={isDropdownOpen}

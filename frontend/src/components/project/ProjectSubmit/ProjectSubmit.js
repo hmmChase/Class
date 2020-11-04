@@ -5,9 +5,9 @@ import Title from '../../reuseable/Title/Title';
 import Desc from '../../reuseable/Desc/Desc';
 import ProjectNew from '../ProjectNew/ProjectNew';
 import { formatDate, timestamp } from '../../../utils/dateTime';
-import * as sc from './SubmissionSubmit.style';
+import * as sc from './ProjectSubmit.style';
 
-const SubmissionSubmit = props => {
+const ProjectSubmit = props => {
   const [submittedDate, setSubmittedDate] = useState('');
 
   return (
@@ -31,8 +31,8 @@ const SubmissionSubmit = props => {
   );
 };
 
-SubmissionSubmit.propTypes = {
+ProjectSubmit.propTypes = {
   className: PropTypes.string
 };
 
-export default SubmissionSubmit;
+export default ProjectSubmit;

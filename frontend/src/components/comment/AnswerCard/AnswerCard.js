@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import DropdownAnswer from '../DropdownAnswer/DropdownAnswer';
+import AnswerDropdown from '../AnswerDropdown/AnswerDropdown';
 import { CurrentUserContext } from '../../../context/contexts';
 import { formatDate, timestamp } from '../../../utils/dateTime';
 import * as sc from './AnswerCard.style';
@@ -33,7 +33,7 @@ const AnswerCard = props => {
 
           <sc.Relative>
             {isDropdownOpen && (
-              <DropdownAnswer
+              <AnswerDropdown
                 commentId={comment.id}
                 role={currentUser.role}
                 isDropdownOpen={isDropdownOpen}

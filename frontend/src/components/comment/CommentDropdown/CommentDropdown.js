@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { CommentContext } from '../../../context/contexts';
-import * as sc from './DropdownComment.style';
+import * as sc from './CommentDropdown.style';
 
-const DropdownComment = props => {
+const CommentDropdown = props => {
   const { handleDeleteComment, promoteAnswer } = useContext(CommentContext);
 
   const handleClickEdit = () => {
@@ -39,8 +39,8 @@ const DropdownComment = props => {
   );
 };
 
-// DropdownComment.propTypes = {
+// CommentDropdown.propTypes = {
 //   // myProp: PropTypes.string.isRequired
 // };
 
-export default React.memo(DropdownComment);
+export default React.memo(CommentDropdown);

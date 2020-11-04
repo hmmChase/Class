@@ -14,6 +14,19 @@ export const getAllProjects = async (req, res, next) => {
   return res.json(projectRecords);
 };
 
+export const getChallengeProjects = async (req, res, next) => {
+  const { challengePath } = req.params;
+  console.log('challengePath:', challengePath)
+
+  const projects = await prisma.project.findMany({
+    where: { challenge: { path: challengePath }, deletedAt: null },
+    include: { author: true },
+    orderBy: { id: 'desc' }
+  });
+
+  return res.json(projects);
+};
+
 /* POST */
 
 export const create = async (req, res, next) => {

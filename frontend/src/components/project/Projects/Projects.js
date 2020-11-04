@@ -1,24 +1,30 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import { ProjectContext } from '../../../context/contexts';
-import * as sc from './Submissions.style';
+import * as sc from './Projects.style';
 
-const Submissions = () => {
+const Projects = () => {
   const { projects, getProjects } = useContext(ProjectContext);
-  console.log('projects:', projects);
 
-  getProjects();
+  const { challengePath } = useParams();
+
+  getProjects(challengePath);
 
   const projectCards = projects.map(project => {
     return <ProjectCard key={project.id} project={project} />;
   });
 
-  return <sc.Container>{projects.length > 0 && projectCards}</sc.Container>;
+  return (
+    <sc.Container>
+      <sc.Ul>{projects && projects.length > 0 && projectCards} </sc.Ul>
+    </sc.Container>
+  );
 };
 
-// Submissions.propTypes = {
+// Projects.propTypes = {
 //   // myProp: PropTypes.string.isRequired
 // };
 
-export default React.memo(Submissions);
+export default React.memo(Projects);

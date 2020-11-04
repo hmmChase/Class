@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
 import { CurrentUserContext } from '../../../context/contexts';
-import DropdownQuestion from '../DropdownQuestion/DropdownQuestion';
+import QuestionDropdown from '../QuestionDropdown/QuestionDropdown';
 import TextExpand from '../../reuseable/TextExpand/TextExpand';
 import * as sc from './QuestionDetailCard.style';
 
@@ -27,7 +27,7 @@ const QuestionDetailCard = props => {
 
         <sc.Relative>
           {isDropdownOpen && (
-            <DropdownQuestion
+            <QuestionDropdown
               questionId={props.questionId}
               role={currentUser.role}
               isDropdownOpen={isDropdownOpen}

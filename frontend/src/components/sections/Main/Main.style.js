@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Challenge from '../Challenge/Challenge';
-import SubmissionSubmit from '../../project/SubmissionSubmit/SubmissionSubmit';
-import SubmissionView from '../../project/SubmissionView/SubmissionView';
+import ProjectSubmit from '../../project/ProjectSubmit/ProjectSubmit';
+import ProjectView from '../../project/ProjectView/ProjectView';
 import Discussion from '../Discussion/Discussion';
 
 export const Container = styled.div`
@@ -31,13 +31,13 @@ export const Challengee = styled(Challenge)`
   }
 `;
 
-export const SubmissionSubmitt = styled(SubmissionSubmit)`
+export const ProjectSubmitt = styled(ProjectSubmit)`
   @media screen and (min-width: 720px) {
     border-radius: 10px;
   }
 `;
 
-export const SubmissionVieww = styled(SubmissionView)`
+export const ProjectVieww = styled(ProjectView)`
   @media screen and (min-width: 720px) {
     border-radius: 10px;
   }

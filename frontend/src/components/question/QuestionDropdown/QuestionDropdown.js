@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { useParams, useHistory } from 'react-router-dom';
 import { QuestionContext } from '../../../context/contexts';
-import * as sc from './DropdownQuestion.style';
+import * as sc from './QuestionDropdown.style';
 
-const DropdownQuestion = props => {
+const QuestionDropdown = props => {
   const { challengePath } = useParams();
 
   const { deleteQuestion } = useContext(QuestionContext);
@@ -40,8 +40,8 @@ const DropdownQuestion = props => {
   );
 };
 
-// DropdownQuestion.propTypes = {
+// QuestionDropdown.propTypes = {
 //   // myProp: PropTypes.string.isRequired
 // };
 
-export default React.memo(DropdownQuestion);
+export default React.memo(QuestionDropdown);
