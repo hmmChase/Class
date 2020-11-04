@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
 import { CurrentUserContext } from '../../../context/contexts';
 import QuestionDropdown from '../QuestionDropdown/QuestionDropdown';
-import TextExpand from '../../reuseable/TextExpand/TextExpand';
+import TextExpand from '../../REUSEABLE/TextExpand/TextExpand';
 import * as sc from './QuestionDetailCard.style';
 
 const QuestionDetailCard = props => {

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import Desc from '../../reuseable/Desc/Desc';
+import Desc from '../../REUSEABLE/Desc/Desc';
 import DOMPurify from 'dompurify';
 import { ProjectContext } from '../../../context/contexts';
 import * as sc from './ProjectCreate.style';

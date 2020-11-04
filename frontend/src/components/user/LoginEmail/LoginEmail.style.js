@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Button from '../../reuseable/Button/Button';
-import Input from '../../reuseable/Input/Input';
+import Button from '../../REUSEABLE/Button/Button';
+import Input from '../../REUSEABLE/Input/Input';
 
 export const Form = styled.form`
   display: flex;

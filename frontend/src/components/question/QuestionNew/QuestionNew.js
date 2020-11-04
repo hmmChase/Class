@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useModal from '../../../utils/useModal';
-import Modal from '../../reuseable/Modal/Modal';
-import Button from '../../reuseable/Button/Button';
+import Modal from '../../REUSEABLE/Modal/Modal';
+import Button from '../../REUSEABLE/Button/Button';
 import * as sc from './QuestionNew.style';
 
 const QuestionNew = props => {

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { CurrentUserContext } from '../context/contexts';
-import Layout from '../components/sections/Layout/Layout';
-import Header from '../components/sections/Header/Header';
-import Account from '../components/sections/Account/Account';
+import Layout from '../components/SECTIONS/Layout/Layout';
+import Header from '../components/SECTIONS/Header/Header';
+import Account from '../components/SECTIONS/Account/Account';
 
 const AccountPage = () => {
   const { currentUser } = useContext(CurrentUserContext);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Button from '../../reuseable/Button/Button';
+import Button from '../../REUSEABLE/Button/Button';
 import * as sc from './ChallengeCard.style';
 
 const ChallengeCard = props => {

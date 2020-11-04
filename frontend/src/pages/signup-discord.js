@@ -1,5 +1,5 @@
 import React from 'react';
-import SignupDiscordRedirect from '../components/user/SignupDiscordRedirect/SignupDiscordRedirect';
+import SignupDiscordRedirect from '../components/USER/SignupDiscordRedirect/SignupDiscordRedirect';
 
 const SignupDiscordRedirectPage = () => <SignupDiscordRedirect />;
 

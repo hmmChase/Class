@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Modal from '../../reuseable/Modal/Modal';
+import Modal from '../../REUSEABLE/Modal/Modal';
 import SignupEmail from '../SignupEmail/SignupEmail';
 import SignupDiscord from '../SignupDiscord/SignupDiscord';
 import * as sc from './ModalSignup.style';

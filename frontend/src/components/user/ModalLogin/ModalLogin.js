@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
-import Modal from '../../reuseable/Modal/Modal';
+import Modal from '../../REUSEABLE/Modal/Modal';
 import LoginEmail from '../LoginEmail/LoginEmail';
 import LoginDiscord from '../LoginDiscord/LoginDiscord';
 import ResetPassRequest from '../ResetPassRequest/ResetPassRequest';

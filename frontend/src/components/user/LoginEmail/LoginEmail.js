@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 import { CurrentUserContext } from '../../../context/contexts';
-import InputLabel from '../../reuseable/InputLabel/InputLabel';
+import InputLabel from '../../REUSEABLE/InputLabel/InputLabel';
 import * as sc from './LoginEmail.style';
 
 const LoginEmail = props => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DropDownUserIcon from '../../user/DropdownUserIcon/DropDownUserIcon';
+import DropDownUserIcon from '../../USER/DropdownUserIcon/DropDownUserIcon';
 import PropTypes from 'prop-types';
 import * as sc from './IconUser.style';
 

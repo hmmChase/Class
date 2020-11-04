@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { CurrentUserContext } from '../../../context/contexts';
 import CommentDropdown from '../CommentDropdown/CommentDropdown';
-import TextExpand from '../../reuseable/TextExpand/TextExpand';
+import TextExpand from '../../REUSEABLE/TextExpand/TextExpand';
 import CommentEdit from '../CommentEdit/CommentEdit';
 import { formatDate, timestamp } from '../../../utils/dateTime';
 import * as sc from './CommentCard.style';

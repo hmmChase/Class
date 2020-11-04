@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Label from '../../reuseable/Label/Label';
-import Title from '../../reuseable/Title/Title';
-import Desc from '../../reuseable/Desc/Desc';
+import Label from '../../REUSEABLE/Label/Label';
+import Title from '../../REUSEABLE/Title/Title';
+import Desc from '../../REUSEABLE/Desc/Desc';
 import ProjectNew from '../ProjectNew/ProjectNew';
 import { formatDate, timestamp } from '../../../utils/dateTime';
 import * as sc from './ProjectSubmit.style';

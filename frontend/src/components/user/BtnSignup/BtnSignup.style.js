@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../reuseable/Button/Button';
+import Button from '../../REUSEABLE/Button/Button';
 
 export const Buttonn = styled(Button)`
   background-color: ${props => props.theme.colors.buttons.actionButtonHover};

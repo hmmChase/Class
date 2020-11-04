@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DOMPurify from 'dompurify';
-import InputLabel from '../../reuseable/InputLabel/InputLabel';
+import InputLabel from '../../REUSEABLE/InputLabel/InputLabel';
 import * as sc from './ResetPassRequest.style';
 
 const ResetPassRequest = props => {

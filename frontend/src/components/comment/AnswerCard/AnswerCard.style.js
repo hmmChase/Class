@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as Answered } from '../../../images/answered.svg';
-import TextExpand from '../../reuseable/TextExpand/TextExpand';
+import TextExpand from '../../REUSEABLE/TextExpand/TextExpand';
 
 export const Container = styled.li`
   display: flex;

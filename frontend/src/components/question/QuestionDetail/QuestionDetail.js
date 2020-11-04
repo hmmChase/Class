@@ -5,10 +5,10 @@ import {
   CommentContext,
   QuestionContext
 } from '../../../context/contexts';
-import Comments from '../../comment/Comments/Comments';
+import Comments from '../../COMMENT/Comments/Comments';
 import QuestionDetailCard from '../QuestionDetailCard/QuestionDetailCard';
-import CommentCreate from '../../comment/CommentCreate/CommentCreate';
-import Answers from '../../comment/Answers/Answers';
+import CommentCreate from '../../COMMENT/CommentCreate/CommentCreate';
+import Answers from '../../COMMENT/Answers/Answers';
 import * as sc from './QuestionDetail.style';
 
 const QuestionDetail = props => {

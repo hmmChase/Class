@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 // import PropTypes from 'prop-types';
 import { CurrentUserContext } from '../../../context/contexts';
-import BtnReqPass from '../../user/BtnReqPass/BtnReqPass';
+import BtnReqPass from '../../USER/BtnReqPass/BtnReqPass';
 import * as sc from './Account.style';
 
 const Account = () => {

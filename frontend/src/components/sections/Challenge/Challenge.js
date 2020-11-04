@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ChallengeContext } from '../../../context/contexts';
-import Label from '../../reuseable/Label/Label';
-import Desc from '../../reuseable/Desc/Desc';
+import Label from '../../REUSEABLE/Label/Label';
+import Desc from '../../REUSEABLE/Desc/Desc';
 import * as sc from './Challenge.style';
 
 const Challenge = props => {

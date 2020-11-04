@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { DiscordContext } from '../../../context/contexts';
-import IconDiscord from '../../other/IconDiscord/IconDiscord';
+import IconDiscord from '../../OTHER/IconDiscord/IconDiscord';
 import * as sc from './SignupDiscord.style';
 
 const SignupDiscord = () => {

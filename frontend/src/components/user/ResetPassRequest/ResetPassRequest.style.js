@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Input from '../../reuseable/Input/Input';
+import Input from '../../REUSEABLE/Input/Input';
 import BtnReqPass from '../BtnReqPass/BtnReqPass';
 
 export const Form = styled.form`

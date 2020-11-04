@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { CurrentUserContext } from '../../../context/contexts';
-import BtnLogIn from '../../user/BtnLogIn/BtnLogIn';
-import BtnSignup from '../../user/BtnSignup/BtnSignup';
-import IconKnight from '../../other/IconKnight/IconKnight';
-import IconUser from '../../other/IconUser/IconUser';
+import BtnLogIn from '../../USER/BtnLogIn/BtnLogIn';
+import BtnSignup from '../../USER/BtnSignup/BtnSignup';
+import IconKnight from '../../OTHER/IconKnight/IconKnight';
+import IconUser from '../../OTHER/IconUser/IconUser';
 import * as sc from './Header.style';
 
 const Header = () => {

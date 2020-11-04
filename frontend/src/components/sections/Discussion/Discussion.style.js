@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import QuestionNew from '../../question/QuestionNew/QuestionNew';
-import BtnBack from '../../other/BtnBack/BtnBack';
-import Title from '../../reuseable/Title/Title';
+import QuestionNew from '../../QUESTION/QuestionNew/QuestionNew';
+import BtnBack from '../../OTHER/BtnBack/BtnBack';
+import Title from '../../REUSEABLE/Title/Title';
 
 export const Container = styled.section`
   background-color: ${props => props.theme.colors.backgrounds.widgetsHeader};

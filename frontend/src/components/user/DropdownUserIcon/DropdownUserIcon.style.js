@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Dropdown from '../../reuseable/Dropdown/Dropdown';
+import Dropdown from '../../REUSEABLE/Dropdown/Dropdown';
 
 export const Dropdownn = styled(Dropdown)`
   background-color: ${props =>

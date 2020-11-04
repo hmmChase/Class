@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Title from '../../reuseable/Title/Title';
-import Desc from '../../reuseable/Desc/Desc';
+import Title from '../../REUSEABLE/Title/Title';
+import Desc from '../../REUSEABLE/Desc/Desc';
 import * as sc from './ProjectSubmitted.style';
 
 const ProjectSubmitted = () => (

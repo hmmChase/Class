@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 import { CurrentUserContext } from '../../../context/contexts';
-import InputLabel from '../../reuseable/InputLabel/InputLabel';
-import Input from '../../reuseable/Input/Input';
+import InputLabel from '../../REUSEABLE/InputLabel/InputLabel';
+import Input from '../../REUSEABLE/Input/Input';
 import * as sc from './SignupEmail.style';
 
 const SignupEmail = () => {

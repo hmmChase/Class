@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../reuseable/Button/Button';
+import Button from '../../REUSEABLE/Button/Button';
 
 export const Container = styled.div``;
 

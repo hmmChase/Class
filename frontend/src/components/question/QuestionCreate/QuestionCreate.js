@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { QuestionContext } from '../../../context/contexts';
-import Desc from '../../reuseable/Desc/Desc';
+import Desc from '../../REUSEABLE/Desc/Desc';
 import DOMPurify from 'dompurify';
 import * as sc from './QuestionCreate.style';
 

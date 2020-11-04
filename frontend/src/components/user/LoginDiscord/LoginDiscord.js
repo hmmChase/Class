@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import IconDiscord from '../../other/IconDiscord/IconDiscord';
+import IconDiscord from '../../OTHER/IconDiscord/IconDiscord';
 import { DiscordContext } from '../../../context/contexts';
 import * as sc from './LoginDiscord.style';
 
