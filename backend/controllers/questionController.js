@@ -38,6 +38,7 @@ export const getChallengeQuestions = async (req, res, next) => {
 
 export const create = async (req, res, next) => {
   const { title, body } = req.body;
+
   const { challengePath } = req.params;
 
   const user = jwt.verify(
@@ -59,25 +60,30 @@ export const create = async (req, res, next) => {
 };
 
 export const deleteSoft = async (req, res, next) => {
-  const { questionId } = req.body;
+  const { challengePath, questionId } = req.body;
 
-  const questionRecord = await prisma.question.update({
+  console.log('questionId:', questionId);
+
+  await prisma.question.update({
     where: { id: parseInt(questionId) },
     data: { deletedAt: new Date().toISOString() }
   });
 
-  return res.json(questionRecord);
+  const updatedQuestions = await prisma.question.findMany({
+    where: { challenge: { path: challengePath }, deletedAt: null },
+    include: { author: true, comments: { where: { deletedAt: null } } },
+    orderBy: { id: 'desc' }
+  });
+
+  return res.json(updatedQuestions);
 };
 
 /* PATCH */
 
 export const update = async (req, res, next) => {
-  const { id, title, body, challengePath } = req.body;
+  const { challengePath, title, body, id } = req.body;
 
-  await prisma.question.update({
-    where: { id },
-    data: { title, body }
-  });
+  await prisma.question.update({ where: { id }, data: { title, body } });
 
   const updatedQuestions = await prisma.question.findMany({
     where: { challenge: { path: challengePath }, deletedAt: null },

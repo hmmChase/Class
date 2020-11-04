@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../../context/contexts';
 import * as sc from './ResetPass.style';
 
@@ -9,9 +9,11 @@ const ResetPass = props => {
 
   const [newPassword, setNewPassword] = useState('');
 
+  const [isSuccessful, setIsSuccessful] = useState(false);
+
   const { resetPass } = useContext(CurrentUserContext);
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -22,9 +24,11 @@ const ResetPass = props => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    resetPass({ newPassword, resetToken });
+    const response = await resetPass({ newPassword, resetToken });
 
-    history.push('/');
+    if (response && response.data && response.data.id) setIsSuccessful(true);
+
+    // history.push('/');
   };
 
   return (
@@ -42,6 +46,8 @@ const ResetPass = props => {
       </sc.Label>
 
       <sc.Buttonn type='submit'>Reset Password</sc.Buttonn>
+
+      {isSuccessful && <p>Your password has been successfully changed.</p>}
     </sc.Form>
   );
 };

@@ -6,6 +6,8 @@ import * as sc from './ResetPassRequest.style';
 const ResetPassRequest = props => {
   const [email, setEmail] = useState('');
 
+  const [issubmitted, setIsSubmitted] = useState(false);
+
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
 
@@ -28,7 +30,9 @@ const ResetPassRequest = props => {
 
       <sc.Inputt required type='email' value={email} onChange={handleChange} />
 
-      <sc.BtnReqPasss email={email} />
+      <sc.BtnReqPasss email={email} setIsSubmitted={setIsSubmitted} />
+
+      {issubmitted && <p>Check your email for a password reset link.</p>}
     </sc.Form>
   );
 };

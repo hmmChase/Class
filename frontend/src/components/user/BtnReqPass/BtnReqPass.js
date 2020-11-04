@@ -11,6 +11,8 @@ const BtnReqPass = props => {
     e.preventDefault();
 
     resetPassReq({ email: props.email });
+
+    props.setIsSubmitted(true);
   };
 
   return (

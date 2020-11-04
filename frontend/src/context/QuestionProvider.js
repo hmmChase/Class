@@ -15,12 +15,15 @@ const QuestionProvider = props => {
     setQuestion(response.data);
   };
 
-  const getQuestions = challengePath =>
-    api.useGetQuestions({
+  const getQuestions = challengePath => {
+    const response = api.useGetQuestions({
       variables: { challengePath },
 
       onSuccess: data => setQuestions(data.data)
     });
+
+    return response.data;
+  };
 
   // Mutations
 
@@ -44,25 +47,16 @@ const QuestionProvider = props => {
   //   }
   // });
 
-  const updateQuestion = async (id, title, body, challengePath) => {
-    const updatedComments = await api.updateQuestion(
-      id,
-      title,
-      body,
-      challengePath
-    );
+  const updateQuestion = async (challengePath, title, body, id) => {
+    const response = await api.updateQuestion(challengePath, title, body, id);
 
-    setQuestions(updatedComments);
+    setQuestions(response.data);
   };
 
-  const deleteQuestion = async questionId => {
-    await api.deleteQuestion(questionId);
+  const deleteQuestion = async (challengePath, questionId) => {
+    const response = await api.deleteQuestion(challengePath, questionId);
 
-    const filteredQuestions = questions.filter(
-      question => question.id !== questionId
-    );
-
-    setQuestions(filteredQuestions);
+    setQuestions(response.data);
   };
 
   return (

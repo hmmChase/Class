@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 // import PropTypes from 'prop-types';
 import { CurrentUserContext } from '../../../context/contexts';
 import BtnReqPass from '../../user/BtnReqPass/BtnReqPass';
 import * as sc from './Account.style';
 
 const Account = () => {
+  const [issubmitted, setIsSubmitted] = useState(false);
+
   const { currentUser } = useContext(CurrentUserContext);
 
   return (
@@ -13,7 +15,9 @@ const Account = () => {
 
       <h3>Request a password reset</h3>
 
-      <BtnReqPass email={currentUser.email} />
+      <BtnReqPass email={currentUser.email} setIsSubmitted={setIsSubmitted} />
+
+      {issubmitted && <p>Check your email for a password reset link.</p>}
     </sc.Container>
   );
 };

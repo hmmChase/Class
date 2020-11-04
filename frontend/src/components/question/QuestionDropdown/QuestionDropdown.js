@@ -18,7 +18,7 @@ const QuestionDropdown = props => {
   };
 
   const handleClickDelete = () => {
-    deleteQuestion(props.questionId);
+    deleteQuestion(challengePath, props.questionId);
 
     if (history.pathname !== '/challenge1') history.push(`/${challengePath}`);
   };

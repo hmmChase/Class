@@ -13,12 +13,8 @@ export const useGetQuestions = config =>
 
 /* POST */
 
-export const createQuestion = async (id, title, body, challengePath) =>
-  await instance.post(`/question/create/${challengePath}`, {
-    id,
-    title,
-    body
-  });
+export const createQuestion = async (challengePath, title, body) =>
+  await instance.post(`/question/create/${challengePath}`, { title, body });
 
 // const createQuestion = async options => {
 //   const newQuestion = { title: options.title, body: options.body };
@@ -29,8 +25,13 @@ export const createQuestion = async (id, title, body, challengePath) =>
 // export const useCreateQuestion = variables =>
 //   useMutation(createQuestion, variables);
 
-export const updateQuestion = async (id, title, body, challengePath) =>
-  await instance.post('/question/update', { id, title, body, challengePath });
+export const updateQuestion = async (challengePath, title, body, id) =>
+  await instance.post('/question/update', {
+    challengePath,
+    title,
+    body,
+    id
+  });
 
-export const deleteQuestion = async commentId =>
-  await instance.post('/question/delete-soft', commentId);
+export const deleteQuestion = async (challengePath, questionId) =>
+  await instance.post('/question/delete-soft', { challengePath, questionId });

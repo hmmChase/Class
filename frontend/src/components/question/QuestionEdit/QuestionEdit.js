@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
+import { useParams } from 'react-router-dom';
 import { QuestionContext } from '../../../context/contexts';
 // import PropTypes from 'prop-types';
 import * as sc from './QuestionEdit.style';
@@ -9,6 +10,8 @@ const QuestionEdit = props => {
 
   const { updateQuestion } = useContext(QuestionContext);
 
+  const { challengePath } = useParams();
+
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
 
@@ -16,7 +19,7 @@ const QuestionEdit = props => {
   };
 
   const handleClick = async () => {
-    updateQuestion(props.id, title, props.body, props.challengePath);
+    updateQuestion(challengePath, title, props.body, props.id);
 
     props.setIsEditing(false);
   };

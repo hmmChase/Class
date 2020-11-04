@@ -4,7 +4,7 @@ import { CommentContext } from '../../../context/contexts';
 import * as sc from './CommentDropdown.style';
 
 const CommentDropdown = props => {
-  const { handleDeleteComment, promoteAnswer } = useContext(CommentContext);
+  const { promoteAnswer, deleteComment } = useContext(CommentContext);
 
   const handleClickEdit = () => {
     props.setIsEditing(true);
@@ -31,9 +31,7 @@ const CommentDropdown = props => {
       </li>
 
       <li>
-        <span onClick={() => handleDeleteComment(props.commentId)}>
-          Remove Post
-        </span>
+        <span onClick={() => deleteComment(props.commentId)}>Remove Post</span>
       </li>
     </sc.Dropdownn>
   );
