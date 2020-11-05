@@ -9,7 +9,7 @@ const LoginEmail = props => {
 
   const [password, setPassword] = useState('student1');
 
-  const { loginEmail } = useContext(CurrentUserContext);
+  const { loginEmail, isCurrentUserError } = useContext(CurrentUserContext);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -49,7 +49,7 @@ const LoginEmail = props => {
         onChange={handleChange}
       />
 
-      {/* {error && error.error && <p>{error.error}</p>} */}
+      {isCurrentUserError && <p>Invalid creditials, please try again.</p>}
 
       <sc.ForgetPass onClick={props.toggleShowPassReset}>
         Forgot your password?

@@ -5,22 +5,24 @@ import * as api from '../api/userApi';
 const UserProvider = props => {
   const [currentUser, setCurrentUser] = useState({});
   // const [currentUserLoading, setCurrentUserLoading] = useState(false);
-  // const [currentUserError, setCurrentUserError] = useState(false);
+  const [isCurrentUserError, setIsCurrentUserError] = useState(false);
+
+  // Queries
 
   api.useCurrentUser({
     onSuccess: data => setCurrentUser(data.data)
   });
 
-  // if (isLoading) setCurrentUserLoading(isLoading);
-
-  // if (isError) setCurrentUserError(error);
+  // Mutations
 
   const [signup] = api.useSignup({
     onSuccess: data => setCurrentUser(data.data)
   });
 
   const [loginEmail] = api.useLoginEmail({
-    onSuccess: data => setCurrentUser(data.data)
+    onError: (error, mutationVariables) => setIsCurrentUserError(true),
+
+    onSuccess: (data, mutationVariables) => setCurrentUser(data.data)
   });
 
   const [logout] = api.useLogout({
@@ -38,6 +40,7 @@ const UserProvider = props => {
       value={{
         currentUser,
         setCurrentUser,
+        isCurrentUserError,
         signup,
         loginEmail,
         logout,
