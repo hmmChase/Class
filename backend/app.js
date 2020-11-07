@@ -15,7 +15,8 @@ import projectRouter from './routes/project';
 import questionRouter from './routes/question';
 import commentRouter from './routes/comment';
 
-import * as errorHandlers from './handlers/errorHandlers';
+import * as errorHandler from './handlers/errorHandler';
+import logger from './handlers/logger';
 import { port } from './config';
 
 const app = express();
@@ -24,8 +25,7 @@ app.set('view engine', 'ejs');
 
 const whitelist = [
   'http://localhost:3000',
-  'https://challenge-board.vercel.app',
-  'https://challenge-board-backend.vercel.app'
+  'https://challenge-board.vercel.app'
 ];
 
 const corsOptions = {
@@ -36,14 +36,11 @@ const corsOptions = {
   credentials: true
 };
 
-// const corsOptions = {
-//   origin: whitelist,
-//   credentials: true
-// };
-
 app.use(cors(corsOptions));
 
-app.use(logger('dev'));
+const morganLogStyle = app.get('env') === 'development' ? 'dev' : 'common';
+app.use(logger(morganLogStyle));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -66,10 +63,10 @@ v1.use('/project', projectRouter);
 v1.use('/question', questionRouter);
 v1.use('/comment', commentRouter);
 
-app.use(errorHandlers.notFound);
+app.use(errorHandler.notFound);
 
-if (app.get('env') === 'development') app.use(errorHandlers.developmentErrors);
-else app.use(errorHandlers.productionErrors);
+if (app.get('env') === 'development') app.use(errorHandler.developmentErrors);
+else app.use(errorHandler.productionErrors);
 
 // export default app;
 

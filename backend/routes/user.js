@@ -1,6 +1,6 @@
 import express from 'express';
 import * as userController from '../controllers/userController';
-import { asyncErrorWrapper } from '../handlers/errorHandlers';
+import { asyncErrorWrapper } from '../handlers/errorHandler';
 
 const router = express.Router();
 

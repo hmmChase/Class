@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import ejs from 'ejs';
 import juice from 'juice';
+import logger from './logger';
 
 const transport = nodemailer.createTransport({
   host: 'smtp.mailtrap.io',
@@ -22,11 +23,13 @@ export const sendEmail = async options => {
   const emailHtml = await generateHTML(options.filename, options);
 
   const mailOptions = {
-    from: 'Bob <bob@email.com>',
+    from: 'Challenge Board <challengeboard@email.com>',
     to: options.user.email,
     subject: options.subject,
     html: emailHtml
   };
+
+  logger.info(`sending email, subject: ${options.subject}`);
 
   return transport.sendMail(mailOptions);
 };
