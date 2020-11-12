@@ -22,7 +22,7 @@ import {
   productionErrors,
   CustomError
 } from './handlers/errorHandler';
-import logger from './handlers/logHandler';
+// import logger from './handlers/logHandler';
 import { port } from './config';
 
 const app = express();
@@ -45,11 +45,11 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const morganLogStyle = app.get('env') === 'development' ? 'dev' : 'combined';
+// const morganLogStyle = app.get('env') === 'development' ? 'dev' : 'combined';
 
-logger.stream = { write: message => logger.info(message) };
+// logger.stream = { write: message => logger.info(message) };
 
-app.use(morgan(morganLogStyle, { stream: logger.stream }));
+// app.use(morgan(morganLogStyle, { stream: logger.stream }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
