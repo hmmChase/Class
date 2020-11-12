@@ -1,4 +1,4 @@
-import logger from './logger';
+import logger from './logHandler';
 
 export class CustomError extends Error {
   constructor(error, name, status) {
@@ -13,29 +13,30 @@ export class CustomError extends Error {
   }
 }
 
-export const asyncErrorWrapper = fn => (req, res, next) =>
+export const handleErrors = fn => (req, res, next) =>
   fn(req, res, next).catch(next);
 
 export const developmentErrors = (err, req, res, next) => {
   err.stack = err.stack || '';
 
   const errorDetails = {
+    name: err.name,
     status: err.status,
-    message: err.message,
+    error: err.message,
     stack: err.stack
   };
 
   logger.error(err);
 
-  res.status(err.status || 500).json(errorDetails);
+  return res.status(err.status || 500).json(errorDetails);
 };
 
 export const productionErrors = (err, req, res, next) => {
   logger.error(err);
 
-  // res.status(err.status || 500).json({ message: err.message, error: {} });
+  const errorDetails = { name: err.name, error: err.message };
 
-  res.status(err.status || 500).json({ error: err.message });
+  return res.status(err.status || 500).json(errorDetails);
 };
 
 export const notFound = (req, res, next) => {
@@ -47,3 +48,6 @@ export const notFound = (req, res, next) => {
 
   next(err);
 };
+
+// 403 = user record not found
+// 401 = wrong password

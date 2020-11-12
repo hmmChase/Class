@@ -1,6 +1,6 @@
 import express from 'express';
 import * as discordController from '../controllers/discordController';
-// import { asyncErrorWrapper } from '../handlers/errorHandlers';
+// import { handleErrors } from '../handlers/errorHandler';
 
 const router = express.Router();
 

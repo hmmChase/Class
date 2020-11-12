@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import ejs from 'ejs';
 import juice from 'juice';
-import logger from './logger';
+import logger from './logHandler';
 
 const transport = nodemailer.createTransport({
   host: 'smtp.mailtrap.io',

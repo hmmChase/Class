@@ -1,6 +1,6 @@
 import express from 'express';
-import logger from 'morgan';
-import cors from 'cors';
+import morgan from 'morgan';
+// import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
@@ -15,8 +15,14 @@ import projectRouter from './routes/project';
 import questionRouter from './routes/question';
 import commentRouter from './routes/comment';
 
-import * as errorHandler from './handlers/errorHandler';
-import logger from './handlers/logger';
+import {
+  handleErrors,
+  notFound,
+  developmentErrors,
+  productionErrors,
+  CustomError
+} from './handlers/errorHandler';
+import logger from './handlers/logHandler';
 import { port } from './config';
 
 const app = express();
@@ -25,6 +31,7 @@ app.set('view engine', 'ejs');
 
 const whitelist = [
   'http://localhost:3000',
+  'http://localhost:4000',
   'https://challenge-board.vercel.app'
 ];
 
@@ -38,8 +45,11 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const morganLogStyle = app.get('env') === 'development' ? 'dev' : 'common';
-app.use(logger(morganLogStyle));
+const morganLogStyle = app.get('env') === 'development' ? 'dev' : 'combined';
+
+logger.stream = { write: message => logger.info(message) };
+
+app.use(morgan(morganLogStyle, { stream: logger.stream }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -63,10 +73,33 @@ v1.use('/project', projectRouter);
 v1.use('/question', questionRouter);
 v1.use('/comment', commentRouter);
 
-app.use(errorHandler.notFound);
+app.get(
+  '/error',
+  handleErrors(() => {
+    throw new CustomError('This is a custom mock error.', 'mockError', 401);
+  })
+);
 
-if (app.get('env') === 'development') app.use(errorHandler.developmentErrors);
-else app.use(errorHandler.productionErrors);
+app.use(notFound);
+
+if (app.get('env') === 'development') app.use(developmentErrors);
+else app.use(productionErrors);
+
+// app.use(function (err, req, res, next) {
+//   logger.error(
+//     `${req.method} - ${err.message}  - ${req.originalUrl} - ${req.ip}`
+//   );
+//   next(err);
+// });
+
+// // Default Error Handler
+// app.use((err, req, res, next) => {
+//   winstom.error('Internal Server Error');
+
+//   res.status(500).send('500. Internal Server Error');
+
+//   next();
+// });
 
 // export default app;
 

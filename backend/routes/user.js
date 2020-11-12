@@ -1,6 +1,6 @@
 import express from 'express';
 import * as userController from '../controllers/userController';
-import { asyncErrorWrapper } from '../handlers/errorHandler';
+// import { handleErrors } from '../handlers/errorHandler';
 
 const router = express.Router();
 
@@ -8,23 +8,20 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => res.json({ route: 'user' }));
 
-router.get('/all', asyncErrorWrapper(userController.getAllUsers));
+router.get('/all', userController.getAllUsers);
 
-router.get('/current', asyncErrorWrapper(userController.getCurrentUser));
+router.get('/current', userController.getCurrentUser);
 
 /* POST */
 
-router.post('/signup', asyncErrorWrapper(userController.signup));
+router.post('/signup', userController.signup);
 
-router.post('/login', asyncErrorWrapper(userController.login));
+router.post('/login', userController.login);
 
-router.post('/logout', asyncErrorWrapper(userController.logout));
+router.post('/logout', userController.logout);
 
-router.post(
-  '/reset-password-request',
-  asyncErrorWrapper(userController.generatePassReset)
-);
+router.post('/reset-password-request', userController.generatePassReset);
 
-router.post('/reset-password', asyncErrorWrapper(userController.resetPassword));
+router.post('/reset-password', userController.resetPassword);
 
 export default router;

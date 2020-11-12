@@ -9,9 +9,7 @@ export default requiredRoles => async (req, res, next) => {
     Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64')
   );
 
-  const userRecord = await prisma.user.findOne({
-    where: { id: user.user.id }
-  });
+  const userRecord = await prisma.user.findOne({ where: { id: user.user.id } });
 
   const { role } = userRecord;
 
