@@ -1,0 +1,24 @@
+{
+  "alias": "challenge-board-backend",
+  "version": 2,
+  "github": {
+    "silent": true
+  },
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "headers": {
+        "Access-Control-Allow-Origin": "https://challenge-board.vercel.app",
+        "Access-Control-Allow-Credentials": "true"
+      },
+      "dest": "app.js",
+      "continue": true
+    }
+  ]
+}
