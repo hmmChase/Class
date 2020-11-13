@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { ChallengeContext } from './contexts';
 import * as api from '../api/challengeApi';
 
@@ -24,6 +25,10 @@ const ChallengeProvider = props => {
       {props.children}
     </ChallengeContext.Provider>
   );
+};
+
+ChallengeProvider.propTypes = {
+  children: PropTypes.any
 };
 
 export default ChallengeProvider;
