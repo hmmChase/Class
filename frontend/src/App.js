@@ -27,7 +27,6 @@ const App = () => (
                     <SignupDiscordRedirectPage />
                   </Route>
 
-
                   <Route path='/login-discord'>
                     <LoginDiscordRedirectPage />
                   </Route>

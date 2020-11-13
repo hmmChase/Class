@@ -25,7 +25,6 @@ import {
 import logger from './handlers/logHandler';
 import { port } from './config';
 
-
 const app = express();
 
 app.set('view engine', 'ejs');
