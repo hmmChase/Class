@@ -10,6 +10,7 @@ const Challenge = props => {
   const { challengePath } = useParams();
 
   const { challenge, getChallenge } = useContext(ChallengeContext);
+  console.log('challenge:', challenge)
 
   getChallenge(challengePath);
 

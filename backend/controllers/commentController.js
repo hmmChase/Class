@@ -14,7 +14,7 @@ export const getAllComments = async (req, res, next) => {
 export const getComment = async (req, res, next) => {
   const { commentId } = req.params;
 
-  const comment = await prisma.comment.findOne({ where: { id: commentId } });
+  const comment = await prisma.comment.findUnique({ where: { id: commentId } });
 
   return res.json(comment);
 };

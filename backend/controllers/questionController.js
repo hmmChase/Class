@@ -14,7 +14,7 @@ export const getAllQuestions = async (req, res, next) => {
 export const getQuestion = async (req, res, next) => {
   const { questionId } = req.params;
 
-  const questionRecord = await prisma.question.findOne({
+  const questionRecord = await prisma.question.findUnique({
     where: { id: parseInt(questionId) },
     include: { author: true }
   });

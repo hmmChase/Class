@@ -26,7 +26,7 @@ export const signupUserByEmail = async (res, username, email, password) => {
 };
 
 export const resetPasswordLogin = async (res, email, password) => {
-  const userRecord = await prisma.user.findOne({ where: { email } });
+  const userRecord = await prisma.user.findUnique({ where: { email } });
 
   if (!userRecord)
     return res.status(401).json({ error: 'login.invalidCredentials' });

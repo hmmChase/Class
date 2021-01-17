@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { CurrentUserContext } from './contexts';
 import * as api from '../api/userApi';
 
+import instance from '../api/baseApi';
+
 const UserProvider = props => {
   const [currentUser, setCurrentUser] = useState({});
   // const [currentUserLoading, setCurrentUserLoading] = useState(false);
@@ -15,25 +17,52 @@ const UserProvider = props => {
 
   // Mutations
 
-  const [signup] = api.useSignup({
-    onSuccess: data => setCurrentUser(data.data)
-  });
+  // const [signup] = api.useSignup({
+  //   onSuccess: data => setCurrentUser(data.data)
+  // });
 
-  const [loginEmail] = api.useLoginEmail({
-    onError: (error, mutationVariables) => setIsCurrentUserError(true),
+  const signup = async options => {
+    const response = await instance.post('/user/signup', options);
 
-    onSuccess: (data, mutationVariables) => setCurrentUser(data.data)
-  });
+    setCurrentUser(response.data);
+  };
 
-  const [logout] = api.useLogout({
-    onSuccess: () => setCurrentUser({})
-  });
+  // const [loginEmail] = api.useLoginEmail({
+  //   onError: (error, mutationVariables) => setIsCurrentUserError(true),
 
-  const [resetPassReq] = api.useResetPassRequest();
+  //   onSuccess: (data, mutationVariables) => setCurrentUser(data.data)
+  // });
 
-  const [resetPass] = api.useResetPass({
-    onSuccess: data => setCurrentUser(data.data)
-  });
+  const loginEmail = async options => {
+    const response = await instance.post('/user/login', options);
+
+    setCurrentUser(response.data);
+  };
+
+  // const [logout] = api.useLogout({
+  //   onSuccess: () => setCurrentUser({})
+  // });
+
+  const logout = async options => {
+    await instance.post('/user/logout', options);
+
+    setCurrentUser({});
+  };
+
+  // const [resetPassReq] = api.useResetPassRequest();
+
+  const resetPassReq = async options =>
+    await instance.post('/user/reset-password-request', options);
+
+  // const [resetPass] = api.useResetPass({
+  //   onSuccess: data => setCurrentUser(data.data)
+  // });
+
+  const resetPass = async options => {
+    const response = await instance.post(`/user/reset-password`, options);
+
+    setCurrentUser(response.data);
+  };
 
   return (
     <CurrentUserContext.Provider

@@ -67,7 +67,7 @@ export const login = async (res, code) => {
   if (!discordUser)
     return res.status(401).json({ error: 'user.notFoundDiscord' });
 
-  const userRecord = await prisma.user.findOne({
+  const userRecord = await prisma.user.findUnique({
     where: { email: discordUser.email }
   });
 

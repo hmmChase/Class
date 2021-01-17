@@ -24,7 +24,7 @@ export const getCurrentUser = async (req, res) => {
   );
 
   try {
-    const userRecord = await prisma.user.findOne({
+    const userRecord = await prisma.user.findUnique({
       where: { id: user.user.id }
     });
 
@@ -71,7 +71,7 @@ export const login = async (req, res) => {
   if (!email || !password)
     return res.status(401).json({ error: 'login.invalidCredentials' });
 
-  const userRecord = await prisma.user.findOne({ where: { email } });
+  const userRecord = await prisma.user.findUnique({ where: { email } });
 
   if (!userRecord)
     return res.status(401).json({ error: 'login.invalidCredentials' });
@@ -103,7 +103,7 @@ export const generatePassReset = async (req, res) => {
   const { email } = req.body;
 
   // if can find email, begin reset flow
-  const userRecord = await prisma.user.findOne({ where: { email } });
+  const userRecord = await prisma.user.findUnique({ where: { email } });
 
   const emailSentMessage = 'An email has been sent to the specified address';
 
@@ -131,7 +131,7 @@ export const generatePassReset = async (req, res) => {
 export const resetPassword = async (req, res) => {
   const { newPassword, resetToken } = req.body;
 
-  const userRecord = await prisma.user.findOne({
+  const userRecord = await prisma.user.findUnique({
     where: {
       resetPassToken: resetToken
 

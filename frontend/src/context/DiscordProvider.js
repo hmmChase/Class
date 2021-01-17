@@ -2,12 +2,18 @@ import React, { useContext } from 'react';
 import { CurrentUserContext, DiscordContext } from './contexts';
 import * as api from '../api/discordApi';
 
+import instance from '../api/baseApi';
+
 const DiscordProvider = props => {
   // const { setCurrentUser } = useContext(CurrentUserContext);
 
-  const [urlLogin] = api.useUrlLogin();
+  // const [urlLogin] = api.useUrlLogin();
 
-  const [urlSignup] = api.useUrlSignup();
+  const urlLogin = async () => await instance.get('/discord/url-login');
+
+  // const [urlSignup] = api.useUrlSignup();
+
+  const urlSignup = async () => await instance.get('/discord/url-signup');
 
   const loginDiscord = async options => await api.loginDiscord(options);
 

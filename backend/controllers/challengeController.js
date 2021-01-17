@@ -13,7 +13,7 @@ export const getAllChallenges = async (req, res, next) => {
 export const getChallenge = async (req, res, next) => {
   const { challengePath } = req.params;
 
-  const challenge = await prisma.challenge.findOne({
+  const challenge = await prisma.challenge.findUnique({
     where: { path: challengePath }
   });
 
