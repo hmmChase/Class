@@ -3,10 +3,7 @@ import { useQuery } from 'react-query';
 
 /* GET */
 
-const getChallenges = async (_key, variables) =>
-  await instance.get('/challenge/all');
-export const useGetChallenges = config =>
-  useQuery(['challenges', config.variables], getChallenges, config);
+export const getChallenges = async () => await instance.get('/challenge/all');
 
 const getChallenge = async (_key, variables) =>
   await instance.get(`/challenge/path/${variables.challengePath}`);

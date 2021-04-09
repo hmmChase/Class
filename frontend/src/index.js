@@ -4,12 +4,13 @@ import App from './App';
 import './index.css';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query-devtools';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/global.style';
 import theme from './styles/theme.style';
 
-import * as Sentry from '@sentry/react';
+// import * as Sentry from '@sentry/react';
 // import { Integrations } from '@sentry/tracing';
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ ReactDOM.render(
 
         <App />
       </ThemeProvider>
+
       <ReactQueryDevtools initialIsOpen />
     </QueryClientProvider>
   </React.StrictMode>,

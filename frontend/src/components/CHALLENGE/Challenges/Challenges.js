@@ -4,11 +4,14 @@ import { ChallengeContext } from '../../../context/contexts';
 import ChallengeCard from '../ChallengeCard/ChallengeCard';
 import Title from '../../REUSEABLE/Title/Title';
 import * as sc from './Challenges.style';
+import { useGetChallenges } from '../../../hooks/useGetChallenges';
 
 const Challenges = () => {
-  const { challenges, getChallenges } = useContext(ChallengeContext);
+  const { challenges, setChallenges } = useContext(ChallengeContext);
 
-  getChallenges();
+  const { status, error, isLoading, isFetching } = useGetChallenges(
+    setChallenges
+  );
 
   const ChallengeCards = challenges.map(challenge => (
     <ChallengeCard key={challenge.id} challenge={challenge} />
