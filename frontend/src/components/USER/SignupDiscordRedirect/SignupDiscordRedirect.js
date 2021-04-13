@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import getParameterByName from '../../../utils/getQueryParamByName';
-import { DiscordContext, CurrentUserContext } from '../../../context/contexts';
+import { DiscordContext, CurrentUserContext } from '../../../context';
 // import * as sc from './SignupDiscordRedirect.style';
 
 const SignupDiscordRedirect = () => {

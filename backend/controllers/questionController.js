@@ -56,6 +56,8 @@ export const create = async (req, res, next) => {
     include: { author: true, comments: { where: { deletedAt: null } } }
   });
 
+  console.log('questionRecord:', questionRecord);
+
   return res.json(questionRecord);
 };
 

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
-import { CommentContext } from '../../../context/contexts';
+import { CommentContext } from '../../../context';
 // import PropTypes from 'prop-types';
 import * as sc from './CommentEdit.style';
 

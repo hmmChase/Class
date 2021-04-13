@@ -1,29 +1,24 @@
 import instance from './baseApi';
-import { useQuery, useMutation } from 'react-query';
 
 /* GET */
 
-export const getQuestion = async questionId =>
-  await instance.get(`/question/${questionId}`);
+export const getQuestion = async variables =>
+  await instance.get(`/question/${variables.questionId}`);
 
-const getQuestions = async (_key, variables) =>
-  await instance.get(`/question/challenge/${variables.challengePath}`);
-export const useGetQuestions = config =>
-  useQuery(['getQuestions', config.variables], getQuestions, config);
+export const getQuestions = async variables => {
+  return await instance.get(`/question/challenge/${variables.challengePath}`);
+};
 
 /* POST */
 
-export const createQuestion = async (challengePath, title, body) =>
-  await instance.post(`/question/create/${challengePath}`, { title, body });
+export const createQuestion = async variables => {
+  const newQuestion = { title: variables.title, body: variables.body };
 
-// const createQuestion = async options => {
-//   const newQuestion = { title: options.title, body: options.body };
-
-//   await instance.post(`/question/create/${options.challengePath}`, newQuestion);
-// };
-
-// export const useCreateQuestion = variables =>
-//   useMutation(createQuestion, variables);
+  return await instance.post(
+    `/question/create/${variables.challengePath}`,
+    newQuestion
+  );
+};
 
 export const updateQuestion = async (challengePath, title, body, id) =>
   await instance.post('/question/update', {

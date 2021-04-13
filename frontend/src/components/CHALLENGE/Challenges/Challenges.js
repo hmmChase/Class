@@ -1,17 +1,22 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
-import { ChallengeContext } from '../../../context/contexts';
+import { ChallengeContext } from '../../../context';
+import { useGetChallenges } from '../../../hooks/challenge';
 import ChallengeCard from '../ChallengeCard/ChallengeCard';
 import Title from '../../REUSEABLE/Title/Title';
 import * as sc from './Challenges.style';
-import { useGetChallenges } from '../../../hooks/useGetChallenges';
 
 const Challenges = () => {
   const { challenges, setChallenges } = useContext(ChallengeContext);
 
-  const { status, error, isLoading, isFetching } = useGetChallenges(
-    setChallenges
-  );
+  // const { status, data, error, isLoading, isFetching } =
+  useGetChallenges({
+    onSuccess: async data => {
+      const gotData = await data;
+
+      setChallenges(gotData.data);
+    }
+  });
 
   const ChallengeCards = challenges.map(challenge => (
     <ChallengeCard key={challenge.id} challenge={challenge} />

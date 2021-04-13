@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
-import { CommentContext } from '../../../context/contexts';
+import { CommentContext } from '../../../context';
 import * as sc from './AnswerDropdown.style';
 
 const AnswerDropdown = props => {

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 import { useParams } from 'react-router-dom';
-import { QuestionContext } from '../../../context/contexts';
+import { QuestionContext } from '../../../context';
 // import PropTypes from 'prop-types';
 import * as sc from './QuestionEdit.style';
 

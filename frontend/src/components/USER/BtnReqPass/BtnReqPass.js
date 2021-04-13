@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
-import { CurrentUserContext } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context';
 import Button from '../../REUSEABLE/Button/Button';
 import * as sc from './BtnReqPass.style';
 

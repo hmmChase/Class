@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 // import { useHistory } from 'react-router-dom';
-import { CurrentUserContext } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context';
 import * as sc from './ResetPass.style';
 
 const ResetPass = props => {

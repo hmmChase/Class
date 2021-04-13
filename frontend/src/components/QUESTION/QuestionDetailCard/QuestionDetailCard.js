@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
-import { CurrentUserContext } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context';
 import QuestionDropdown from '../QuestionDropdown/QuestionDropdown';
 import TextExpand from '../../REUSEABLE/TextExpand/TextExpand';
 import * as sc from './QuestionDetailCard.style';

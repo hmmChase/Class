@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import AnswerDropdown from '../AnswerDropdown/AnswerDropdown';
-import { CurrentUserContext } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context';
 import { formatDate, timestamp } from '../../../utils/dateTime';
 import * as sc from './AnswerCard.style';
 

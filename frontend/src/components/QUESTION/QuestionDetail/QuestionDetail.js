@@ -4,7 +4,8 @@ import {
   CurrentUserContext,
   CommentContext,
   QuestionContext
-} from '../../../context/contexts';
+} from '../../../context';
+import { useGetComments } from '../../../hooks';
 import Comments from '../../COMMENT/Comments/Comments';
 import QuestionDetailCard from '../QuestionDetailCard/QuestionDetailCard';
 import CommentCreate from '../../COMMENT/CommentCreate/CommentCreate';
@@ -16,13 +17,22 @@ const QuestionDetail = props => {
 
   const { question, getQuestion } = useContext(QuestionContext);
 
-  const { getComments } = useContext(CommentContext);
+  const { setComments } = useContext(CommentContext);
+
+  useGetComments({
+    variables: { questionId: props.questionId },
+    onSuccess: async data => {
+      const gotData = await data;
+
+      setComments(gotData.data);
+    }
+  });
 
   useEffect(() => {
     // (async () => {
     getQuestion(props.questionId);
 
-    getComments(props.questionId);
+    // getComments(props.questionId);
     // })();
 
     // eslint-disable-next-line

@@ -1,15 +1,23 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { QuestionContext } from '../../../context/contexts';
+import { QuestionContext } from '../../../context';
+import { useGetQuestions } from '../../../hooks/question';
 import * as sc from './Questions.style';
 
 const Questions = props => {
-  const { questions, getQuestions } = useContext(QuestionContext);
+  const { questions, setQuestions } = useContext(QuestionContext);
 
   const { challengePath } = useParams();
 
-  getQuestions(challengePath);
+  useGetQuestions({
+    variables: { challengePath },
+    onSuccess: async data => {
+      const gotData = await data;
+
+      setQuestions(gotData.data);
+    }
+  });
 
   const questionCards = questions.map(question => {
     const answerCount = question.comments.reduce((total, comment) => {

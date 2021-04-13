@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CurrentUserContext, DiscordContext } from './contexts';
+import { CurrentUserContext, DiscordContext } from './';
 import * as api from '../api/discordApi';
 
 import instance from '../api/baseApi';

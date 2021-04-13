@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ChallengeContext } from './contexts';
-import instance from '../api/baseApi';
+import { ChallengeContext } from './';
 
 const ChallengeProvider = props => {
   const [challenges, setChallenges] = useState([]);
   const [challenge, setChallenge] = useState([]);
 
-
-  const getChallenge = async challengePath => {
-    const response = await instance.get(`/challenge/path/${challengePath}`);
-
-    setChallenge(response.data);
-  };
-
   return (
     <ChallengeContext.Provider
-      value={{ challenges, setChallenges, getChallenge }}
+      value={{ challenges, setChallenges, challenge, setChallenge }}
     >
       {props.children}
     </ChallengeContext.Provider>

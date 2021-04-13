@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { useParams, useHistory } from 'react-router-dom';
-import { QuestionContext } from '../../../context/contexts';
+import { QuestionContext } from '../../../context';
 import * as sc from './QuestionDropdown.style';
 
 const QuestionDropdown = props => {

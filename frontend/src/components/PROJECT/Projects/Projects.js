@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import ProjectCard from '../ProjectCard/ProjectCard';
-import { ProjectContext } from '../../../context/contexts';
+import { ProjectContext } from '../../../context';
 import * as sc from './Projects.style';
 
 const Projects = () => {

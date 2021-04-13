@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { CurrentUserContext } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context';
 import * as sc from './DropdownUserIcon.style';
 
 const DropdownUserIcon = props => {

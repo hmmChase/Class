@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CurrentUserContext } from './contexts';
+import { CurrentUserContext } from './';
 import * as api from '../api/userApi';
 
 import instance from '../api/baseApi';

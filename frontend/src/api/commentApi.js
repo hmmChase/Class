@@ -1,24 +1,23 @@
 import instance from './baseApi';
-// import { useQuery, useMutation } from 'react-query';
 
 /* GET */
 
-export const getComments = async questionId =>
-  await instance.get(`/comment/question/${questionId}`);
+export const getComments = async variables =>
+  await instance.get(`/comment/question/${variables.questionId}`);
 
 /* POST */
 
-export const commentCreate = async options =>
-  await instance.post('/comment/create', options);
+export const commentCreate = async variables =>
+  await instance.post('/comment/create', variables);
 
-export const commentUpdate = async options =>
-  await instance.post('/comment/update', options);
+export const commentUpdate = async variables =>
+  await instance.post('/comment/update', variables);
 
-export const commentDelete = async options =>
-  await instance.post('/comment/delete-soft', options);
+export const commentDelete = async variables =>
+  await instance.post('/comment/delete-soft', variables);
 
-export const setAnswer = async options =>
-  await instance.post('/comment/answer-promote', options);
+export const setAnswer = async variables =>
+  await instance.post('/comment/answer-promote', variables);
 
-export const unsetAnswer = async options =>
-  await instance.post('/comment/answer-demote', options);
+export const unsetAnswer = async variables =>
+  await instance.post('/comment/answer-demote', variables);

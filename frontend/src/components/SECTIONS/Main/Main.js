@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CurrentUserContext } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context';
 import * as sc from './Main.style';
 
 const Main = () => {

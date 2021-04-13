@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { ChallengeContext } from '../../../context/contexts';
+import { ChallengeContext } from '../../../context';
+import { useGetChallenge } from '../../../hooks/challenge';
 import Label from '../../REUSEABLE/Label/Label';
 import Desc from '../../REUSEABLE/Desc/Desc';
 import * as sc from './Challenge.style';
@@ -9,10 +10,16 @@ import * as sc from './Challenge.style';
 const Challenge = props => {
   const { challengePath } = useParams();
 
-  const { challenge, getChallenge } = useContext(ChallengeContext);
-  console.log('challenge:', challenge)
+  const { challenge, setChallenge } = useContext(ChallengeContext);
 
-  getChallenge(challengePath);
+  useGetChallenge({
+    variables: { challengePath },
+    onSuccess: async data => {
+      const gotData = await data;
+
+      setChallenge(gotData.data);
+    }
+  });
 
   return (
     <sc.Container className={props.className}>

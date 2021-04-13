@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { CurrentUserContext } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context';
 import CommentDropdown from '../CommentDropdown/CommentDropdown';
 import TextExpand from '../../REUSEABLE/TextExpand/TextExpand';
 import CommentEdit from '../CommentEdit/CommentEdit';

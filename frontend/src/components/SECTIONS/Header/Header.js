@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CurrentUserContext } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context';
 import BtnLogIn from '../../USER/BtnLogIn/BtnLogIn';
 import BtnSignup from '../../USER/BtnSignup/BtnSignup';
 import IconKnight from '../../OTHER/IconKnight/IconKnight';

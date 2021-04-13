@@ -1,13 +1,25 @@
 import React, { useState, useContext } from 'react';
 // import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
-import { CommentContext } from '../../../context/contexts';
+import { CommentContext } from '../../../context';
+import { useCommentCreate } from '../../../hooks';
 import * as sc from './CommentCreate.style';
 
 const CommentCreate = props => {
   const [body, setBody] = useState('');
 
-  const { createComment } = useContext(CommentContext);
+  const { comments, setComments } = useContext(CommentContext);
+
+  const mutationCommentCreate = useCommentCreate({
+    variables: { questionId: props.questionId, body },
+    onSuccess: async data => {
+      const gotData = await data;
+
+      const updatedComments = [...comments, gotData.data];
+
+      setComments(updatedComments);
+    }
+  });
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -18,7 +30,7 @@ const CommentCreate = props => {
   const onClick = e => {
     e.preventDefault();
 
-    createComment(props.questionId, body);
+    mutationCommentCreate.mutate(props.questionId, body);
 
     setBody('');
   };

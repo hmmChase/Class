@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ProjectContext } from './contexts';
+import { ProjectContext } from './';
 import * as api from '../api/projectApi';
 
 const ProjectProvider = props => {

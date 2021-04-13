@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
-import { CurrentUserContext } from '../../../context/contexts';
+import { CurrentUserContext } from '../../../context';
 import InputLabel from '../../REUSEABLE/InputLabel/InputLabel';
 import * as sc from './LoginEmail.style';
 

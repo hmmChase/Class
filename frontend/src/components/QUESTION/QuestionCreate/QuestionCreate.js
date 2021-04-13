@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { QuestionContext } from '../../../context/contexts';
+import { QuestionContext } from '../../../context';
+import { useQuestionCreate } from '../../../hooks/question';
 import Desc from '../../REUSEABLE/Desc/Desc';
 import DOMPurify from 'dompurify';
 import * as sc from './QuestionCreate.style';
@@ -10,9 +11,29 @@ const QuestionCreate = props => {
 
   const [body, setBody] = useState('');
 
-  const { createQuestion } = useContext(QuestionContext);
-
   const { challengePath } = useParams();
+
+  const { questions, setQuestions } = useContext(QuestionContext);
+
+  const mutation = useQuestionCreate({
+    // variables: { challengePath },
+
+    onSuccess: (data, variables, context) => {
+      console.log('data:', data);
+
+      const gotData = data;
+
+      console.log('gotData:', gotData);
+
+      const updatedQuestions = [gotData.data, ...questions];
+
+      console.log('updatedQuestions:', updatedQuestions);
+
+      setQuestions(updatedQuestions);
+    }
+  });
+
+  console.log('mutation:', mutation);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -27,7 +48,7 @@ const QuestionCreate = props => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    createQuestion(challengePath, title, body);
+    mutation.mutate({ challengePath, title, body });
 
     props.close();
   };
