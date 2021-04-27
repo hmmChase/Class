@@ -4,8 +4,7 @@ import instance from './baseApi';
 
 export const getChallenges = async () => await instance.get('/challenge/all');
 
-export const getChallenge = async variables => {
-  return await instance.get(`/challenge/path/${variables.challengePath}`);
-};
+export const getChallenge = async variables =>
+  await instance.get(`/challenge/path/${variables.challengePath}`);
 
 /* POST */
