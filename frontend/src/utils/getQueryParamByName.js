@@ -1,4 +1,4 @@
-export default (name, url) => {
+const getUrlParameter = (name, url) => {
   // Get Url from browser
   if (!url) url = window.location.href;
 
@@ -39,3 +39,5 @@ export default (name, url) => {
 
 //   return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 // };
+
+export default getUrlParameter;

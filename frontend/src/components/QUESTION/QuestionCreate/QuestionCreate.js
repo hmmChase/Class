@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { QuestionContext } from '../../../context';
 import { useQuestionCreate } from '../../../hooks/question';
@@ -7,6 +8,8 @@ import DOMPurify from 'dompurify';
 import * as sc from './QuestionCreate.style';
 
 const QuestionCreate = props => {
+  const { className, close } = props;
+
   const [title, setTitle] = useState('');
 
   const [body, setBody] = useState('');
@@ -16,24 +19,12 @@ const QuestionCreate = props => {
   const { questions, setQuestions } = useContext(QuestionContext);
 
   const mutation = useQuestionCreate({
-    // variables: { challengePath },
-
-    onSuccess: (data, variables, context) => {
-      console.log('data:', data);
-
-      const gotData = data;
-
-      console.log('gotData:', gotData);
-
-      const updatedQuestions = [gotData.data, ...questions];
-
-      console.log('updatedQuestions:', updatedQuestions);
+    onSuccess: data => {
+      const updatedQuestions = [data.data, ...questions];
 
       setQuestions(updatedQuestions);
     }
   });
-
-  console.log('mutation:', mutation);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -43,18 +34,18 @@ const QuestionCreate = props => {
     if (e.target.id === 'body') setBody(cleanValue);
   };
 
-  const handleCancel = () => props.close();
+  const handleCancel = () => close();
 
   const handleSubmit = async e => {
     e.preventDefault();
 
     mutation.mutate({ challengePath, title, body });
 
-    props.close();
+    close();
   };
 
   return (
-    <sc.Form className={props.className} onSubmit={handleSubmit}>
+    <sc.Form className={className} onSubmit={handleSubmit}>
       <sc.Titlee>Post a Question</sc.Titlee>
 
       <Desc>Make sure to add enough detail to provide context for others.</Desc>
@@ -80,6 +71,11 @@ const QuestionCreate = props => {
       </sc.Buttonns>
     </sc.Form>
   );
+};
+
+QuestionCreate.propTypes = {
+  className: PropTypes.any,
+  close: PropTypes.func
 };
 
 export default QuestionCreate;

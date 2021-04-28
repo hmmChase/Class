@@ -7,6 +7,8 @@ import TextExpand from '../../REUSEABLE/TextExpand/TextExpand';
 import * as sc from './QuestionDetailCard.style';
 
 const QuestionDetailCard = props => {
+  const { authorId, question, questionId } = props;
+
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const { currentUser } = useContext(CurrentUserContext);
@@ -14,21 +16,21 @@ const QuestionDetailCard = props => {
   const shouldShowMenu =
     currentUser &&
     currentUser.id &&
-    (currentUser.role === 'TEACHER' || currentUser.id === props.authorId);
+    (currentUser.role === 'TEACHER' || currentUser.id === authorId);
 
   return (
     <sc.Container>
       <sc.Row>
         <sc.Group>
-          <sc.Author>{props.question.author.username}</sc.Author>
+          <sc.Author>{question.author.username}</sc.Author>
 
-          <sc.Created>{formatDate(props.question.createdAt)}</sc.Created>
+          <sc.Created>{formatDate(question.createdAt)}</sc.Created>
         </sc.Group>
 
         <sc.Relative>
           {isDropdownOpen && (
             <QuestionDropdown
-              questionId={props.questionId}
+              questionId={questionId}
               role={currentUser.role}
               isDropdownOpen={isDropdownOpen}
               close={() => setDropdownOpen(false)}
@@ -46,17 +48,24 @@ const QuestionDetailCard = props => {
         </sc.Relative>
       </sc.Row>
 
-      <sc.Title>{props.question.title}</sc.Title>
+      <sc.Title>{question.title}</sc.Title>
 
-      <TextExpand>{props.question.body}</TextExpand>
+      <TextExpand>{question.body}</TextExpand>
     </sc.Container>
   );
 };
 
 QuestionDetailCard.propTypes = {
-  createdAt: PropTypes.any,
-  authorName: PropTypes.string,
-  body: PropTypes.string
+  authorId: PropTypes.any,
+  question: PropTypes.shape({
+    author: PropTypes.shape({
+      username: PropTypes.any
+    }),
+    body: PropTypes.any,
+    createdAt: PropTypes.any,
+    title: PropTypes.any
+  }),
+  questionId: PropTypes.any
 };
 
 export default React.memo(QuestionDetailCard);

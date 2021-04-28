@@ -5,10 +5,10 @@ import Button from '../../REUSEABLE/Button/Button';
 import * as sc from './ChallengeCard.style';
 
 const ChallengeCard = props => {
-  const { challenge } = props;
+  const { className, challenge } = props;
 
   return (
-    <sc.Container className={props.className}>
+    <sc.Container className={className}>
       <Link to={`/${challenge.path}`}>
         <Button>
           <h2>{challenge.title}</h2>
@@ -21,10 +21,12 @@ const ChallengeCard = props => {
 };
 
 ChallengeCard.propTypes = {
-  className: PropTypes.string,
-  desc: PropTypes.string,
-  id: PropTypes.number,
-  title: PropTypes.string
+  challenge: PropTypes.shape({
+    desc: PropTypes.any,
+    path: PropTypes.any,
+    title: PropTypes.any
+  }),
+  className: PropTypes.any
 };
 
 export default React.memo(ChallengeCard);

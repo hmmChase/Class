@@ -8,7 +8,7 @@ import QuestionEdit from '../QuestionEdit/QuestionEdit';
 import * as sc from './QuestionCard.style';
 
 const QuestionCard = props => {
-  const { question } = props;
+  const { className, question, isAnswered, answerCount, commentCount } = props;
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
@@ -24,7 +24,7 @@ const QuestionCard = props => {
     (currentUser.role === 'TEACHER' || currentUser.id === question.author.id);
 
   return (
-    <sc.Container className={props.className}>
+    <sc.Container className={className}>
       <sc.Row>
         <sc.Group>
           <sc.Author>{question.author.username}</sc.Author>
@@ -33,7 +33,7 @@ const QuestionCard = props => {
         </sc.Group>
 
         <sc.GroupTopRight>
-          {props.isAnswered && <sc.Answeredd />}
+          {isAnswered && <sc.Answeredd />}
 
           <sc.Relative>
             {isDropdownOpen && (
@@ -74,15 +74,15 @@ const QuestionCard = props => {
 
       <sc.Row>
         <sc.Group>
-          {!!props.answerCount && (
-            <sc.AnswerCount>{`${props.answerCount} Answer${
-              props.answerCount > 1 ? 's' : ''
+          {!!answerCount && (
+            <sc.AnswerCount>{`${answerCount} Answer${
+              answerCount > 1 ? 's' : ''
             }`}</sc.AnswerCount>
           )}
 
-          {!!props.commentCount && (
-            <sc.CommentCount>{`${props.commentCount} Comment${
-              props.commentCount > 1 ? 's' : ''
+          {!!commentCount && (
+            <sc.CommentCount>{`${commentCount} Comment${
+              commentCount > 1 ? 's' : ''
             }`}</sc.CommentCount>
           )}
         </sc.Group>
@@ -96,9 +96,20 @@ const QuestionCard = props => {
 };
 
 QuestionCard.propTypes = {
-  createdAt: PropTypes.any,
-  authorName: PropTypes.string
-  // isAnswer: PropTypes.bool.isRequired
+  answerCount: PropTypes.number,
+  className: PropTypes.any,
+  commentCount: PropTypes.number,
+  isAnswered: PropTypes.any,
+  question: PropTypes.shape({
+    author: PropTypes.shape({
+      id: PropTypes.any,
+      username: PropTypes.any
+    }),
+    body: PropTypes.any,
+    createdAt: PropTypes.any,
+    id: PropTypes.any,
+    title: PropTypes.any
+  })
 };
 
 export default React.memo(QuestionCard);

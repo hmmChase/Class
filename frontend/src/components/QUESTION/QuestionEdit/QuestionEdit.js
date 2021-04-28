@@ -1,16 +1,23 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
 import { useParams } from 'react-router-dom';
 import { QuestionContext } from '../../../context';
-// import PropTypes from 'prop-types';
+import { useQuestionUpdate } from '../../../hooks/question';
 import * as sc from './QuestionEdit.style';
 
 const QuestionEdit = props => {
-  const [title, setTitle] = useState(props.children);
+  const { children, body, id, setIsEditing } = props;
 
-  const { updateQuestion } = useContext(QuestionContext);
+  const [title, setTitle] = useState(children);
 
   const { challengePath } = useParams();
+
+  const { setQuestions } = useContext(QuestionContext);
+
+  const mutation = useQuestionUpdate({
+    onSuccess: data => setQuestions(data.data)
+  });
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -19,9 +26,9 @@ const QuestionEdit = props => {
   };
 
   const handleClick = async () => {
-    updateQuestion(challengePath, title, props.body, props.id);
+    mutation.mutate({ challengePath, title, body, id });
 
-    props.setIsEditing(false);
+    setIsEditing(false);
   };
 
   return (
@@ -29,7 +36,7 @@ const QuestionEdit = props => {
       <sc.TextArea value={title} onChange={handleChange} autoFocus />
 
       <sc.Buttons>
-        <sc.ButtonCancel onClick={() => props.setIsEditing(false)}>
+        <sc.ButtonCancel onClick={() => setIsEditing(false)}>
           Cancel
         </sc.ButtonCancel>
 
@@ -39,8 +46,11 @@ const QuestionEdit = props => {
   );
 };
 
-// QuestionEdit.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
+QuestionEdit.propTypes = {
+  body: PropTypes.any,
+  children: PropTypes.any,
+  id: PropTypes.any,
+  setIsEditing: PropTypes.func
+};
 
 export default React.memo(QuestionEdit);

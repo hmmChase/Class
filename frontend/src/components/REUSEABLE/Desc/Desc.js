@@ -1,11 +1,15 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import * as sc from './Desc.style';
 
-const Desc = props => <sc.P>{props.children}</sc.P>;
+const Desc = props => {
+  const { children } = props;
+
+  return <sc.P>{children}</sc.P>;
+};
 
 Desc.propTypes = {
-  // children: PropTypes.string.isRequired
+  children: PropTypes.any
 };
 
 export default React.memo(Desc);

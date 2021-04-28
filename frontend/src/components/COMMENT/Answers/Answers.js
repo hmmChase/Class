@@ -4,6 +4,8 @@ import { CommentContext } from '../../../context';
 import * as sc from './Answers.style';
 
 const Answers = props => {
+  const { className } = props;
+
   const { comments } = useContext(CommentContext);
 
   const answerCards = comments.map(comment => {
@@ -14,7 +16,7 @@ const Answers = props => {
   });
 
   return (
-    <sc.Container className={props.className}>
+    <sc.Container className={className}>
       <sc.AnswersList>
         {answerCards && answerCards.length > 0 && answerCards}
       </sc.AnswersList>

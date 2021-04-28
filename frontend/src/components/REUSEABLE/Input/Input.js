@@ -2,28 +2,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as sc from './Input.style';
 
-const Input = props => (
-  <sc.Input
-    className={props.className}
-    aria-label={props['aria-label']}
-    id={props.id}
-    name={props.name}
-    type={props.type}
-    value={props.value}
-    onChange={props.onChange}
-    placeholder={props.placeholder}
-    required={props.required}
-  />
-);
+const Input = props => {
+  const {
+    className,
+    id,
+    name,
+    type,
+    value,
+    onChange,
+    placeholder,
+    required
+  } = props;
+
+  return (
+    <sc.Input
+      className={className}
+      aria-label={props['aria-label']}
+      id={id}
+      name={name}
+      type={type}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      required={required}
+    />
+  );
+};
 
 Input.propTypes = {
-  'aria-label': PropTypes.string,
-  className: PropTypes.string,
-  id: PropTypes.string
-  // name: PropTypes.string.isRequired,
-  // onBlur: PropTypes.func.isRequired,
-  // onChange: PropTypes.func.isRequired,
-  // value: PropTypes.string.isRequired
+  className: PropTypes.any,
+  id: PropTypes.any,
+  name: PropTypes.any,
+  onChange: PropTypes.any,
+  placeholder: PropTypes.any,
+  required: PropTypes.any,
+  type: PropTypes.any,
+  value: PropTypes.any
 };
 
 export default React.memo(Input);

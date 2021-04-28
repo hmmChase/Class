@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { CommentContext } from './';
 
 const CommentProvider = props => {
@@ -9,6 +10,10 @@ const CommentProvider = props => {
       {props.children}
     </CommentContext.Provider>
   );
+};
+
+CommentProvider.propTypes = {
+  children: PropTypes.any
 };
 
 export default CommentProvider;

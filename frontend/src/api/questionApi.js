@@ -5,9 +5,8 @@ import instance from './baseApi';
 export const getQuestion = async variables =>
   await instance.get(`/question/${variables.questionId}`);
 
-export const getQuestions = async variables => {
-  return await instance.get(`/question/challenge/${variables.challengePath}`);
-};
+export const getQuestions = async variables =>
+  await instance.get(`/question/challenge/${variables.challengePath}`);
 
 /* POST */
 
@@ -20,13 +19,8 @@ export const createQuestion = async variables => {
   );
 };
 
-export const updateQuestion = async (challengePath, title, body, id) =>
-  await instance.post('/question/update', {
-    challengePath,
-    title,
-    body,
-    id
-  });
+export const updateQuestion = async variables =>
+  await instance.post('/question/update', variables);
 
-export const deleteQuestion = async (challengePath, questionId) =>
-  await instance.post('/question/delete-soft', { challengePath, questionId });
+export const deleteQuestion = async variables =>
+  await instance.post('/question/delete-soft', variables);

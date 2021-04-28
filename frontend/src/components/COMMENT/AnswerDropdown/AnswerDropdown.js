@@ -1,34 +1,40 @@
 import React, { useContext } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { CommentContext } from '../../../context';
 import * as sc from './AnswerDropdown.style';
 
 const AnswerDropdown = props => {
+  const { className, isDropdownOpen, close, role, commentId } = props;
+
   const { demoteAnswer, deleteComment } = useContext(CommentContext);
 
   return (
     <sc.Dropdownn
-      className={props.className}
-      isDropdownOpen={props.isDropdownOpen}
-      close={props.close}
+      className={className}
+      isDropdownOpen={isDropdownOpen}
+      close={close}
     >
-      {props.role === 'TEACHER' && (
+      {role === 'TEACHER' && (
         <li>
-          <span onClick={() => demoteAnswer(props.commentId)}>
+          <span onClick={() => demoteAnswer(commentId)}>
             Demote from Answer
           </span>
         </li>
       )}
 
       <li>
-        <span onClick={() => deleteComment(props.commentId)}>Remove Post</span>
+        <span onClick={() => deleteComment(commentId)}>Remove Post</span>
       </li>
     </sc.Dropdownn>
   );
 };
 
-// AnswerDropdown.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
+AnswerDropdown.propTypes = {
+  className: PropTypes.string,
+  close: PropTypes.any,
+  commentId: PropTypes.any,
+  isDropdownOpen: PropTypes.any,
+  role: PropTypes.string
+};
 
 export default React.memo(AnswerDropdown);

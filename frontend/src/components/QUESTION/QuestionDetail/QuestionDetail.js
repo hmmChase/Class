@@ -1,11 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import {
-  CurrentUserContext,
-  CommentContext,
-  QuestionContext
-} from '../../../context';
-import { useGetComments } from '../../../hooks';
+import { CurrentUserContext, QuestionContext } from '../../../context';
+import { useGetQuestion } from '../../../hooks/question';
 import Comments from '../../COMMENT/Comments/Comments';
 import QuestionDetailCard from '../QuestionDetailCard/QuestionDetailCard';
 import CommentCreate from '../../COMMENT/CommentCreate/CommentCreate';
@@ -13,43 +9,44 @@ import Answers from '../../COMMENT/Answers/Answers';
 import * as sc from './QuestionDetail.style';
 
 const QuestionDetail = props => {
+  const { className, questionId } = props;
+
   const { currentUser } = useContext(CurrentUserContext);
 
-  const { question, getQuestion } = useContext(QuestionContext);
+  const { question, setQuestion } = useContext(QuestionContext);
 
-  const { setComments } = useContext(CommentContext);
+  useGetQuestion({
+    variables: { questionId },
 
-  useGetComments({
-    variables: { questionId: props.questionId },
     onSuccess: async data => {
-      const gotData = await data;
+      const resolvedData = await data;
 
-      setComments(gotData.data);
+      setQuestion(resolvedData.data);
     }
   });
 
-  useEffect(() => {
-    // (async () => {
-    getQuestion(props.questionId);
+  // useEffect(() => {
+  //   // (async () => {
+  //   getQuestion(questionId);
 
-    // getComments(props.questionId);
-    // })();
+  //   // getComments(questionId);
+  //   // })();
 
-    // eslint-disable-next-line
-  }, []);
+  //   // eslint-disable-next-line
+  // }, []);
 
   return (
-    <sc.Container className={props.className}>
+    <sc.Container className={className}>
       {question && question.id && (
         <>
           <QuestionDetailCard question={question} />
 
-          <Answers questionId={props.questionId} />
+          <Answers questionId={questionId} />
 
-          <Comments questionId={props.questionId} />
+          <Comments questionId={questionId} />
 
           {currentUser && currentUser.id && (
-            <CommentCreate questionId={props.questionId} />
+            <CommentCreate questionId={questionId} />
           )}
         </>
       )}
@@ -58,9 +55,8 @@ const QuestionDetail = props => {
 };
 
 QuestionDetail.propTypes = {
-  className: PropTypes.string,
-  // questionId: PropTypes.number
-  questionId: PropTypes.string
+  className: PropTypes.any,
+  questionId: PropTypes.any
 };
 
 export default React.memo(QuestionDetail);

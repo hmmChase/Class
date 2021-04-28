@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BASE_URL, API_VERSION, errorCodeToMessage } from '../config';
-import instance from './baseApi';
+import instance from '../api/baseApi';
 
 // const handleErrorArray = errCodeArray => errCodeArray.map(handleErrors);
 

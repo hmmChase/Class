@@ -1,10 +1,19 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useGetComments } from '../../../hooks/comment';
 import { CommentContext } from '../../../context';
 import * as sc from './Comments.style';
 
 const Comments = props => {
-  const { comments } = useContext(CommentContext);
+  const { className, questionId } = props;
+
+  const { comments, setComments } = useContext(CommentContext);
+
+  useGetComments({
+    variables: { questionId },
+
+    onSuccess: data => setComments(data.data)
+  });
 
   const commentCards = comments.map(comment => {
     if (!comment.isAnswer)
@@ -14,7 +23,7 @@ const Comments = props => {
   });
 
   return (
-    <sc.Container className={props.className}>
+    <sc.Container className={className}>
       <sc.CommentsList>
         {commentCards && commentCards.length > 0 && commentCards}
       </sc.CommentsList>
@@ -23,7 +32,8 @@ const Comments = props => {
 };
 
 Comments.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  questionId: PropTypes.any
 };
 
 export default React.memo(Comments);

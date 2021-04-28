@@ -6,10 +6,12 @@ import Button from '../../REUSEABLE/Button/Button';
 import * as sc from './QuestionNew.style';
 
 const QuestionNew = props => {
+  const { className } = props;
+
   const [isModalOpen, toggleModal] = useModal();
 
   return (
-    <sc.Container className={props.className}>
+    <sc.Container className={className}>
       <Button onClick={toggleModal}>Post a Question</Button>
 
       {isModalOpen && (

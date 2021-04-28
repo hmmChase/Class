@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import PropTypes from 'prop-types';
 import { ChallengeContext } from '../../../context';
 import { useGetChallenges } from '../../../hooks/challenge';
 import ChallengeCard from '../ChallengeCard/ChallengeCard';
@@ -9,12 +8,11 @@ import * as sc from './Challenges.style';
 const Challenges = () => {
   const { challenges, setChallenges } = useContext(ChallengeContext);
 
-  // const { status, data, error, isLoading, isFetching } =
   useGetChallenges({
     onSuccess: async data => {
-      const gotData = await data;
+      const resolvedData = await data;
 
-      setChallenges(gotData.data);
+      setChallenges(resolvedData.data);
     }
   });
 

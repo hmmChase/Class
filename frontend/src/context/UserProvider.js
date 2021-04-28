@@ -1,68 +1,67 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { CurrentUserContext } from './';
-import * as api from '../api/userApi';
-
-import instance from '../api/baseApi';
+// import * as api from '../api/userApi';
 
 const UserProvider = props => {
   const [currentUser, setCurrentUser] = useState({});
   // const [currentUserLoading, setCurrentUserLoading] = useState(false);
   const [isCurrentUserError, setIsCurrentUserError] = useState(false);
 
-  // Queries
+  // // Queries
 
-  api.useCurrentUser({
-    onSuccess: data => setCurrentUser(data.data)
-  });
+  // // api.useCurrentUser({
+  // //   onSuccess: data => setCurrentUser(data.data)
+  // // });
 
-  // Mutations
+  // // Mutations
 
-  // const [signup] = api.useSignup({
-  //   onSuccess: data => setCurrentUser(data.data)
-  // });
+  // // const [signup] = api.useSignup({
+  // //   onSuccess: data => setCurrentUser(data.data)
+  // // });
 
-  const signup = async options => {
-    const response = await instance.post('/user/signup', options);
+  // const signup = async options => {
+  //   const response = await instance.post('/user/signup', options);
 
-    setCurrentUser(response.data);
-  };
+  //   setCurrentUser(response.data);
+  // };
 
-  // const [loginEmail] = api.useLoginEmail({
-  //   onError: (error, mutationVariables) => setIsCurrentUserError(true),
+  // // const [loginEmail] = api.useLoginEmail({
+  // //   onError: (error, mutationVariables) => setIsCurrentUserError(true),
 
-  //   onSuccess: (data, mutationVariables) => setCurrentUser(data.data)
-  // });
+  // //   onSuccess: (data, mutationVariables) => setCurrentUser(data.data)
+  // // });
 
-  const loginEmail = async options => {
-    const response = await instance.post('/user/login', options);
+  // const loginEmail = async options => {
+  //   const response = await instance.post('/user/login', options);
 
-    setCurrentUser(response.data);
-  };
+  //   setCurrentUser(response.data);
+  // };
 
-  // const [logout] = api.useLogout({
-  //   onSuccess: () => setCurrentUser({})
-  // });
+  // // const [logout] = api.useLogout({
+  // //   onSuccess: () => setCurrentUser({})
+  // // });
 
-  const logout = async options => {
-    await instance.post('/user/logout', options);
+  // const logout = async options => {
+  //   await instance.post('/user/logout', options);
 
-    setCurrentUser({});
-  };
+  //   setCurrentUser({});
+  // };
 
-  // const [resetPassReq] = api.useResetPassRequest();
+  // // const [resetPassReq] = api.useResetPassRequest();
 
-  const resetPassReq = async options =>
-    await instance.post('/user/reset-password-request', options);
+  // const resetPassReq = async options =>
+  //   await instance.post('/user/reset-password-request', options);
 
-  // const [resetPass] = api.useResetPass({
-  //   onSuccess: data => setCurrentUser(data.data)
-  // });
+  // // const [resetPass] = api.useResetPass({
+  // //   onSuccess: data => setCurrentUser(data.data)
+  // // });
 
-  const resetPass = async options => {
-    const response = await instance.post(`/user/reset-password`, options);
+  // const resetPass = async options => {
+  //   const response = await instance.post(`/user/reset-password`, options);
 
-    setCurrentUser(response.data);
-  };
+  //   setCurrentUser(response.data);
+  // };
 
   return (
     <CurrentUserContext.Provider
@@ -70,16 +69,16 @@ const UserProvider = props => {
         currentUser,
         setCurrentUser,
         isCurrentUserError,
-        signup,
-        loginEmail,
-        logout,
-        resetPassReq,
-        resetPass
+        setIsCurrentUserError
       }}
     >
       {props.children}
     </CurrentUserContext.Provider>
   );
+};
+
+UserProvider.propTypes = {
+  children: PropTypes.any
 };
 
 export default UserProvider;

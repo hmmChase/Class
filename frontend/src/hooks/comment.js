@@ -8,21 +8,19 @@ import {
   unsetAnswer
 } from '../api/commentApi';
 
-export const useGetComments = options => {
-  return useQuery(
-    ['challenge', options.variables],
+// Queries
+
+export const useGetComments = options =>
+  useQuery(
+    ['comments', options.variables],
     () => getComments(options.variables),
     options
   );
-};
 
-export const useCommentCreate = options => {
-  return useMutation(
-    ['challenge', options.variables],
-    () => commentCreate(options.variables),
-    options
-  );
-};
+// Mutations
+
+export const useCommentCreate = options =>
+  useMutation(variables => commentCreate(variables), options);
 
 // const updateComment = async (id, body) => {
 //   const response = await commentUpdate({ id, body });
@@ -30,13 +28,8 @@ export const useCommentCreate = options => {
 //   setComments(response.data);
 // };
 
-export const useCommentUpdate = options => {
-  return useQuery(
-    ['challenge', options.variables],
-    () => commentUpdate(options.variables),
-    options
-  );
-};
+export const useCommentUpdate = options =>
+  useMutation(variables => commentUpdate(variables), options);
 
 // const deleteComment = async commentId => {
 //   await commentDelete({ commentId });
@@ -46,13 +39,8 @@ export const useCommentUpdate = options => {
 //   setComments(filteredComments);
 // };
 
-export const useCommentDelete = options => {
-  return useQuery(
-    ['challenge', options.variables],
-    () => commentDelete(options.variables),
-    options
-  );
-};
+export const useCommentDelete = options =>
+  useMutation(variables => commentDelete(variables), options);
 
 // const promoteAnswer = async commentId => {
 //   const response = await setAnswer({ commentId });
@@ -60,13 +48,8 @@ export const useCommentDelete = options => {
 //   setComments(response.data);
 // };
 
-export const usePromoteAnswer = options => {
-  return useQuery(
-    ['challenge', options.variables],
-    () => setAnswer(options.variables),
-    options
-  );
-};
+export const usePromoteAnswer = options =>
+  useMutation(variables => setAnswer(variables), options);
 
 // const demoteAnswer = async commentId => {
 //   const response = await unsetAnswer({ commentId });
@@ -74,10 +57,5 @@ export const usePromoteAnswer = options => {
 //   setComments(response.data);
 // };
 
-export const useDemoteAnswer = options => {
-  return useQuery(
-    ['challenge', options.variables],
-    () => unsetAnswer(options.variables),
-    options
-  );
-};
+export const useDemoteAnswer = options =>
+  useMutation(variables => unsetAnswer(variables), options);

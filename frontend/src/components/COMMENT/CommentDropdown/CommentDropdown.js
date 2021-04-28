@@ -1,26 +1,35 @@
 import React, { useContext } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { CommentContext } from '../../../context';
 import * as sc from './CommentDropdown.style';
 
 const CommentDropdown = props => {
+  const {
+    className,
+    setIsEditing,
+    close,
+    isDropdownOpen,
+    role,
+    commentId
+  } = props;
+
   const { promoteAnswer, deleteComment } = useContext(CommentContext);
 
   const handleClickEdit = () => {
-    props.setIsEditing(true);
+    setIsEditing(true);
 
-    props.close();
+    close();
   };
 
   return (
     <sc.Dropdownn
-      className={props.className}
-      isDropdownOpen={props.isDropdownOpen}
-      close={props.close}
+      className={className}
+      isDropdownOpen={isDropdownOpen}
+      close={close}
     >
-      {props.role === 'TEACHER' && (
+      {role === 'TEACHER' && (
         <li>
-          <span onClick={() => promoteAnswer(props.commentId)}>
+          <span onClick={() => promoteAnswer(commentId)}>
             Promote as Answer
           </span>
         </li>
@@ -31,14 +40,19 @@ const CommentDropdown = props => {
       </li>
 
       <li>
-        <span onClick={() => deleteComment(props.commentId)}>Remove Post</span>
+        <span onClick={() => deleteComment(commentId)}>Remove Post</span>
       </li>
     </sc.Dropdownn>
   );
 };
 
-// CommentDropdown.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
+CommentDropdown.propTypes = {
+  className: PropTypes.string,
+  close: PropTypes.func,
+  commentId: PropTypes.any,
+  isDropdownOpen: PropTypes.any,
+  role: PropTypes.string,
+  setIsEditing: PropTypes.func
+};
 
 export default React.memo(CommentDropdown);

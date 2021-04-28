@@ -6,16 +6,19 @@ import { useGetQuestions } from '../../../hooks/question';
 import * as sc from './Questions.style';
 
 const Questions = props => {
+  const { className } = props;
+
   const { questions, setQuestions } = useContext(QuestionContext);
 
   const { challengePath } = useParams();
 
   useGetQuestions({
     variables: { challengePath },
-    onSuccess: async data => {
-      const gotData = await data;
 
-      setQuestions(gotData.data);
+    onSuccess: async data => {
+      const resolvedData = await data;
+
+      setQuestions(resolvedData.data);
     }
   });
 
@@ -44,7 +47,7 @@ const Questions = props => {
   });
 
   return (
-    <sc.Container className={props.className}>
+    <sc.Container className={className}>
       <sc.QuestionsList>
         {questions && questions.length > 0 && questionCards}
       </sc.QuestionsList>

@@ -1,21 +1,20 @@
 import React, { useState, useContext } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
 import { CommentContext } from '../../../context';
-import { useCommentCreate } from '../../../hooks';
+import { useCommentCreate } from '../../../hooks/comment';
 import * as sc from './CommentCreate.style';
 
 const CommentCreate = props => {
+  const { questionId } = props;
+
   const [body, setBody] = useState('');
 
   const { comments, setComments } = useContext(CommentContext);
 
-  const mutationCommentCreate = useCommentCreate({
-    variables: { questionId: props.questionId, body },
-    onSuccess: async data => {
-      const gotData = await data;
-
-      const updatedComments = [...comments, gotData.data];
+  const mutation = useCommentCreate({
+    onSuccess: data => {
+      const updatedComments = [...comments, data.data];
 
       setComments(updatedComments);
     }
@@ -30,7 +29,7 @@ const CommentCreate = props => {
   const onClick = e => {
     e.preventDefault();
 
-    mutationCommentCreate.mutate(props.questionId, body);
+    mutation.mutate({ questionId, body });
 
     setBody('');
   };
@@ -49,8 +48,8 @@ const CommentCreate = props => {
   );
 };
 
-// CommentCreate.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
+CommentCreate.propTypes = {
+  questionId: PropTypes.any
+};
 
 export default React.memo(CommentCreate);

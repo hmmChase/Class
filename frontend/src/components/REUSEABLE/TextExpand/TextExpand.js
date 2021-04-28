@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Truncate from 'react-truncate';
 import * as sc from './TextExpand.style';
 
 const TextExpand = props => {
+  const { className, children } = props;
+
   const [isTruncated, setTruncated] = useState(true);
 
   const handleTruncate = () => setTruncated(!isTruncated);
 
   return (
-    <sc.Container className={props.className}>
+    <sc.Container className={className}>
       {isTruncated ? (
         <Truncate
           lines={3}
@@ -20,8 +22,8 @@ const TextExpand = props => {
             </span>
           }
         >
-          {props.children &&
-            props.children.split('\n').map((line, i, arr) => {
+          {children &&
+            children.split('\n').map((line, i, arr) => {
               const linee = <span key={i}>{line}</span>;
 
               if (i === arr.length - 1) {
@@ -33,7 +35,7 @@ const TextExpand = props => {
         </Truncate>
       ) : (
         <>
-          {props.children.split('\n').map((line, i, arr) => {
+          {children.split('\n').map((line, i, arr) => {
             const linee = <span key={i}>{line}</span>;
 
             if (i === arr.length - 1) {
@@ -48,6 +50,13 @@ const TextExpand = props => {
       )}
     </sc.Container>
   );
+};
+
+TextExpand.propTypes = {
+  children: PropTypes.shape({
+    split: PropTypes.func
+  }),
+  className: PropTypes.any
 };
 
 export default React.memo(TextExpand);

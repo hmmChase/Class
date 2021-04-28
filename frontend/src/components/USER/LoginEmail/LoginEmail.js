@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 import { CurrentUserContext } from '../../../context';
+import { useLoginEmail } from '../../../hooks/user';
 import InputLabel from '../../REUSEABLE/InputLabel/InputLabel';
 import * as sc from './LoginEmail.style';
 
@@ -9,7 +10,17 @@ const LoginEmail = props => {
 
   const [password, setPassword] = useState('student1');
 
-  const { loginEmail, isCurrentUserError } = useContext(CurrentUserContext);
+  const {
+    setCurrentUser,
+    isCurrentUserError,
+    setIsCurrentUserError
+  } = useContext(CurrentUserContext);
+
+  const mutation = useLoginEmail({
+    onError: error => setIsCurrentUserError(true),
+
+    onSuccess: (data, variables, context) => setCurrentUser(data.data)
+  });
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -22,7 +33,7 @@ const LoginEmail = props => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    loginEmail({ email, password });
+    mutation.mutate({ email, password });
   };
 
   return (

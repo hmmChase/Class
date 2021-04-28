@@ -1,11 +1,15 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import * as sc from './InputLabel.style';
 
-const InputLabel = props => <sc.Label>{props.children}</sc.Label>;
+const InputLabel = props => {
+  const { children } = props;
 
-// InputLabel.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
+  return <sc.Label>{children}</sc.Label>;
+};
+
+InputLabel.propTypes = {
+  children: PropTypes.any
+};
 
 export default React.memo(InputLabel);

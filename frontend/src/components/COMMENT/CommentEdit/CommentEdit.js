@@ -1,13 +1,16 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
 import { CommentContext } from '../../../context';
-// import PropTypes from 'prop-types';
+import { useCommentUpdate } from '../../../hooks/comment';
 import * as sc from './CommentEdit.style';
 
 const CommentEdit = props => {
-  const [body, setBody] = useState(props.children);
+  const { children, id, setIsEditing } = props;
 
-  const { updateComment } = useContext(CommentContext);
+  const [body, setBody] = useState(children);
+
+  const { setComments } = useContext(CommentContext);
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -15,10 +18,14 @@ const CommentEdit = props => {
     setBody(cleanValue);
   };
 
-  const handleClick = () => {
-    updateComment(props.id, body);
+  const mutation = useCommentUpdate({
+    onSuccess: data => setComments(data.data)
+  });
 
-    props.setIsEditing(false);
+  const handleClick = () => {
+    mutation.mutate({ id, body });
+
+    setIsEditing(false);
   };
 
   return (
@@ -26,7 +33,7 @@ const CommentEdit = props => {
       <sc.TextArea value={body} onChange={handleChange} autoFocus />
 
       <sc.Buttons>
-        <sc.ButtonCancel onClick={() => props.setIsEditing(false)}>
+        <sc.ButtonCancel onClick={() => setIsEditing(false)}>
           Cancel
         </sc.ButtonCancel>
 
@@ -36,8 +43,10 @@ const CommentEdit = props => {
   );
 };
 
-// CommentEdit.propTypes = {
-//   // myProp: PropTypes.string.isRequired
-// };
+CommentEdit.propTypes = {
+  children: PropTypes.any,
+  id: PropTypes.any,
+  setIsEditing: PropTypes.func
+};
 
 export default React.memo(CommentEdit);

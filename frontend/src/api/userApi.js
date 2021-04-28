@@ -1,28 +1,22 @@
 import instance from './baseApi';
-import { useQuery, useMutation } from 'react-query';
 
 /* GET */
 
-const getCurrentUser = async () => await instance.get('/user/current');
-export const useCurrentUser = config =>
-  useQuery('getCurrentUser', getCurrentUser, config);
+export const getCurrentUser = async () => await instance.get('/user/current');
 
 /* POST */
 
-const signup = async options => await instance.post('/user/signup', options);
-export const useSignup = config => useMutation(signup, config);
+export const signup = async variables =>
+  await instance.post('/user/signup', variables);
 
-const loginEmail = async options => await instance.post('/user/login', options);
-export const useLoginEmail = config => useMutation(loginEmail, config);
+export const loginEmail = async variables =>
+  await instance.post('/user/login', variables);
 
-const logout = async options => await instance.post('/user/logout', options);
-export const useLogout = config => useMutation(logout, config);
+export const logout = async variables =>
+  await instance.post('/user/logout', variables);
 
-const resetPassRequest = async options =>
-  await instance.post('/user/reset-password-request', options);
-export const useResetPassRequest = config =>
-  useMutation(resetPassRequest, config);
+export const resetPassRequest = async variables =>
+  await instance.post('/user/reset-password-request', variables);
 
-const resetPass = async options =>
-  await instance.post(`/user/reset-password`, options);
-export const useResetPass = config => useMutation(resetPass, config);
+export const resetPass = async variables =>
+  await instance.post(`/user/reset-password`, variables);

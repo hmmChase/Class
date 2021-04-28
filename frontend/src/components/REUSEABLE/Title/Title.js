@@ -1,13 +1,16 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import * as sc from './Title.style';
 
-const Title = props => (
-  <sc.H3 className={props.className}>{props.children}</sc.H3>
-);
+const Title = props => {
+  const { className, children } = props;
+
+  return <sc.H3 className={className}>{children}</sc.H3>;
+};
 
 Title.propTypes = {
-  // children: PropTypes.string.isRequired
+  children: PropTypes.any,
+  className: PropTypes.any
 };
 
 export default React.memo(Title);

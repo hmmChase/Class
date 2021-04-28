@@ -6,7 +6,7 @@ import { formatDate, timestamp } from '../../../utils/dateTime';
 import * as sc from './AnswerCard.style';
 
 const AnswerCard = props => {
-  const { comment } = props;
+  const { className, comment } = props;
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
@@ -18,7 +18,7 @@ const AnswerCard = props => {
     (currentUser.role === 'TEACHER' || currentUser.id === comment.author.id);
 
   return (
-    <sc.Container className={props.className}>
+    <sc.Container className={className}>
       <sc.Answeredd />
 
       <sc.GroupCol>
@@ -59,9 +59,16 @@ const AnswerCard = props => {
 };
 
 AnswerCard.propTypes = {
-  createdAt: PropTypes.any,
-  authorName: PropTypes.string,
-  body: PropTypes.string
+  className: PropTypes.any,
+  comment: PropTypes.shape({
+    author: PropTypes.shape({
+      id: PropTypes.any
+    }),
+    authorName: PropTypes.any,
+    body: PropTypes.any,
+    createdAt: PropTypes.any,
+    id: PropTypes.any
+  })
 };
 
 export default React.memo(AnswerCard);
