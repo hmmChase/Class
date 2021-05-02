@@ -3,14 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node app.js",
-    "start": "cross-env NODE_ENV=production node --exec babel-node app.js",
-    "seed": "node ./prisma/seed"
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/app.js",
+    "seed": "node ./src/prisma/seed",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/index.js"
   },
   "dependencies": {
-    "@prisma/client": "^2.18.0",
+    "@prisma/client": "^2.21.2",
     "@sendgrid/mail": "^7.4.2",
-    "argon2": "^0.27.1",
+    "argon2": "^0.27.2",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.5",
@@ -21,21 +24,21 @@
     "ejs": "^3.1.6",
     "express": "4.17.1",
     "express-jwt": "^6.0.0",
-    "helmet": "^4.4.1",
+    "helmet": "^4.6.0",
     "isemail": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
     "juice": "^7.0.0",
     "morgan": "~1.10.0",
-    "nodemailer": "^6.5.0",
+    "nodemailer": "^6.6.0",
     "winston": "^3.3.3",
-    "winston-daily-rotate-file": "^4.5.1"
+    "winston-daily-rotate-file": "^4.5.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
-    "@babel/node": "^7.13.10",
-    "@babel/preset-env": "^7.13.10",
-    "@prisma/cli": "^2.18.0",
+    "@babel/core": "^7.14.0",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.14.0",
     "cross-env": "^7.0.3",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "prisma": "^2.21.2"
   }
 }

@@ -1,14 +1,19 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Do this whenever this files changes:
-// npx prisma migrate save --experimental
-// npx prisma migrate up --experimental
+// Do this one time to initialize database migrations:
+// npx prisma migrate dev --schema=./src/prisma/schema.prisma --name init
 // npx prisma generate
 
+// Do this whenever this files changes:
+// Create a migration from changes in Prisma schema, apply it to the database, trigger generators (e.g. Prisma Client)
+// npx prisma generate --schema=./src/prisma/schema.prisma
+// npx prisma migrate dev --schema=./src/prisma/schema.prisma
+
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 generator client {
