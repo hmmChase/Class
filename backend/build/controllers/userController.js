@@ -19,7 +19,7 @@ var _client = require("@prisma/client");
 
 var _crypto = _interopRequireDefault(require("crypto"));
 
-var _argon = _interopRequireDefault(require("argon2"));
+var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
 
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
@@ -35,6 +35,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+// import argon2 from 'argon2';
 var prisma = new _client.PrismaClient();
 
 var getAllUsers = /*#__PURE__*/function () {
@@ -213,7 +214,7 @@ var login = /*#__PURE__*/function () {
 
           case 8:
             _context4.next = 10;
-            return _argon["default"].verify(userRecord.password, password);
+            return _bcryptjs["default"].compare(userRecord.password, password);
 
           case 10:
             isCorrectPass = _context4.sent;
@@ -394,7 +395,7 @@ var resetPassword = /*#__PURE__*/function () {
 
           case 10:
             _context7.next = 12;
-            return _argon["default"].hash(newPassword);
+            return _bcryptjs["default"].hash(newPassword);
 
           case 12:
             hashedPassword = _context7.sent;

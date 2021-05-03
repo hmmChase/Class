@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import crypto from 'crypto';
-import argon2 from 'argon2';
+// import argon2 from 'argon2';
+import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import * as authService from '../services/authService';
 import * as userService from '../services/userService';
@@ -76,7 +77,8 @@ export const login = async (req, res) => {
   if (!userRecord)
     return res.status(401).json({ error: 'login.invalidCredentials' });
 
-  const isCorrectPass = await argon2.verify(userRecord.password, password);
+  // const isCorrectPass = await argon2.verify(userRecord.password, password);
+  const isCorrectPass = await bcryptjs.compare(userRecord.password, password);
 
   if (!isCorrectPass)
     return res.status(401).json({ error: 'login.invalidCredentials' });
@@ -153,11 +155,13 @@ export const resetPassword = async (req, res) => {
     return res.status(401).json({ error: tokenInvalidMessage });
 
   // hash the password
-  const hashedPassword = await argon2.hash(newPassword);
+  // const hashedPassword = await argon2.hash(newPassword);
+  const hashedPassword = await bcryptjs.hash(newPassword);
 
   // update the record
   const updatedUser = await prisma.user.update({
     where: { id: userRecord.id },
+
     data: {
       password: hashedPassword,
       resetPassToken: null,

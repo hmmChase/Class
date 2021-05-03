@@ -1,7 +1,8 @@
 // 'npm run seed' to seed
 
 const { PrismaClient } = require('@prisma/client');
-const argon2 = require('argon2');
+// const argon2 = require('argon2');
+const bcryptjs = require('bcryptjs');
 
 const prisma = new PrismaClient();
 
@@ -10,7 +11,8 @@ const main = async () => {
     data: {
       email: 'teacher@email.com',
       username: 'Teacher',
-      password: await argon2.hash('teacher', 10),
+      // password: await argon2.hash('teacher', 10),
+      password: await bcryptjs.hash('teacher', 10),
       role: 'TEACHER',
       avatarUrl: 'http://picsum.photos/40'
     }
@@ -20,7 +22,8 @@ const main = async () => {
     data: {
       email: 'student1@email.com',
       username: 'Student 1',
-      password: await argon2.hash('student1', 10),
+      // password: await argon2.hash('student1', 10),
+      password: await bcryptjs.hash('student1', 10),
       role: 'STUDENT',
       avatarUrl: 'http://picsum.photos/40'
       // questions: { create: moreQuestions() }
@@ -31,7 +34,8 @@ const main = async () => {
     data: {
       email: 'student2@email.com',
       username: 'Student 2',
-      password: await argon2.hash('student2', 10),
+      // password: await argon2.hash('student2', 10),
+      password: await bcrypt.hash('student2', 10),
       avatarUrl: 'http://picsum.photos/40',
       role: 'STUDENT',
       hasDiscordLogin: true

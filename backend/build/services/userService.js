@@ -15,7 +15,7 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _client = require("@prisma/client");
 
-var _argon = _interopRequireDefault(require("argon2"));
+var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
 
 var emailHandler = _interopRequireWildcard(require("../handlers/emailHandler"));
 
@@ -25,6 +25,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+// import argon2 from 'argon2';
 var prisma = new _client.PrismaClient();
 
 var signupUserByEmail = /*#__PURE__*/function () {
@@ -35,9 +36,10 @@ var signupUserByEmail = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             emailNormalized = email.trim().toLowerCase();
-            usernameNormalized = username.trim();
+            usernameNormalized = username.trim(); // const passwordHashed = await argon2.hash(password);
+
             _context.next = 4;
-            return _argon["default"].hash(password);
+            return _bcryptjs["default"].hash(password);
 
           case 4:
             passwordHashed = _context.sent;
@@ -100,7 +102,7 @@ var resetPasswordLogin = /*#__PURE__*/function () {
 
           case 5:
             _context2.next = 7;
-            return _argon["default"].verify(userRecord.password, password);
+            return _bcryptjs["default"].compare(userRecord.password, password);
 
           case 7:
             isCorrectPass = _context2.sent;

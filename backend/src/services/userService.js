@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import argon2 from 'argon2';
+// import argon2 from 'argon2';
+import bcryptjs from 'bcryptjs';
 import * as emailHandler from '../handlers/emailHandler';
 import * as authService from '../services/authService';
 
@@ -8,7 +9,8 @@ const prisma = new PrismaClient();
 export const signupUserByEmail = async (res, username, email, password) => {
   const emailNormalized = email.trim().toLowerCase();
   const usernameNormalized = username.trim();
-  const passwordHashed = await argon2.hash(password);
+  // const passwordHashed = await argon2.hash(password);
+  const passwordHashed = await bcryptjs.hash(password);
 
   // authService.validateEmail(res, emailNormalized);
 
@@ -31,7 +33,8 @@ export const resetPasswordLogin = async (res, email, password) => {
   if (!userRecord)
     return res.status(401).json({ error: 'login.invalidCredentials' });
 
-  const isCorrectPass = await argon2.verify(userRecord.password, password);
+  // const isCorrectPass = await argon2.verify(userRecord.password, password);
+  const isCorrectPass = await bcryptjs.compare(userRecord.password, password);
 
   if (!isCorrectPass)
     return res.status(401).json({ error: 'login.invalidCredentials' });

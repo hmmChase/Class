@@ -16,6 +16,7 @@
     "@prisma/client": "^2.21.2",
     "@sendgrid/mail": "^7.4.2",
     "argon2": "^0.27.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.5",

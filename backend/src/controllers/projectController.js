@@ -16,7 +16,6 @@ export const getAllProjects = async (req, res, next) => {
 
 export const getChallengeProjects = async (req, res, next) => {
   const { challengePath } = req.params;
-  console.log('challengePath:', challengePath)
 
   const projects = await prisma.project.findMany({
     where: { challenge: { path: challengePath }, deletedAt: null },

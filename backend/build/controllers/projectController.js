@@ -62,8 +62,7 @@ var getChallengeProjects = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             challengePath = req.params.challengePath;
-            console.log('challengePath:', challengePath);
-            _context2.next = 4;
+            _context2.next = 3;
             return prisma.project.findMany({
               where: {
                 challenge: {
@@ -79,11 +78,11 @@ var getChallengeProjects = /*#__PURE__*/function () {
               }
             });
 
-          case 4:
+          case 3:
             projects = _context2.sent;
             return _context2.abrupt("return", res.json(projects));
 
-          case 6:
+          case 5:
           case "end":
             return _context2.stop();
         }
