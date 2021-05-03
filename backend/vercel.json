@@ -17,7 +17,7 @@
         "Access-Control-Allow-Origin": "https://challenge-board.vercel.app",
         "Access-Control-Allow-Credentials": "true"
       },
-      "dest": "app.js",
+      "dest": "/build/app.js",
       "continue": true
     }
   ]
