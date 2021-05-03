@@ -6,7 +6,7 @@
   },
   "builds": [
     {
-      "src": "*.js",
+      "src": "app.js",
       "use": "@now/node-server"
     }
   ],
