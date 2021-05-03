@@ -4,6 +4,12 @@
   "github": {
     "silent": true
   },
+  "builds": [
+    {
+      "src": "*.js",
+      "use": "@now/node-server"
+    }
+  ],
   "routes": [
     {
       "src": "/api/(.*)",

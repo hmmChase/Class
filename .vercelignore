@@ -62,7 +62,6 @@ typings/
 
 # Other
 .vscode
-build
 dist
 bundles
 package-lock.json
