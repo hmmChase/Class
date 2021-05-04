@@ -8,9 +8,11 @@
     "clean": "rimraf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-babel",
-    "vercel-build": "npm run clean && npm run build-babel && prisma generate",
+    "vercel-build": "prisma migrate deploy && npm run clean && npm run build-babel",
     "start-build": "npm run build && node ./build/index.js",
-    "start": "node ./build/index.js"
+    "start": "node ./build/index.js",
+    "prisma:generate": "prisma generate",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0",
