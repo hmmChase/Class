@@ -108,6 +108,4 @@ dist
 dist
 build
 bundles
-package-lock.json
-yarn.lock
 README.md

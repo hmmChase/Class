@@ -11,8 +11,8 @@
     "vercel-build": "prisma migrate deploy && npm run clean && npm run build-babel",
     "start-build": "npm run build && node ./build/index.js",
     "start": "node ./build/index.js",
-    "prisma:generate": "prisma generate --schema=./build/prisma/schema.prisma",
-    "postinstall": "prisma generate --schema=./build/prisma/schema.prisma"
+    "prisma:generate": "prisma generate --schema=./prisma/schema.prisma",
+    "postinstall": "prisma generate --schema=./prisma/schema.prisma"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0",
