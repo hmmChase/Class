@@ -8,12 +8,13 @@
     "clean": "rimraf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-babel",
+    "vercel-build": "npm run clean && npm run build-babel npx prisma generate",
     "start-build": "npm run build && node ./build/index.js",
     "start": "node ./build/index.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0",
-    "@prisma/client": "^2.21.2",
+    "@prisma/client": "^2.22.0",
     "@sendgrid/mail": "^7.4.2",
     "argon2": "^0.27.2",
     "bcryptjs": "^2.4.3",

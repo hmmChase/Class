@@ -35,10 +35,10 @@ router.post(
   commentController.answerDemote
 );
 
-export default router;
-
 /* PATCH */
 
 // change to patch
 
 router.post('/update', commentController.update);
+
+export default router;
