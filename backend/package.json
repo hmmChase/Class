@@ -8,7 +8,7 @@
     "clean": "rimraf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-babel",
-    "vercel-build": "npm run clean && npm run build-babel npx prisma generate",
+    "vercel-build": "npm run clean && npm run build-babel && prisma generate",
     "start-build": "npm run build && node ./build/index.js",
     "start": "node ./build/index.js"
   },
