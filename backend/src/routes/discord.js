@@ -1,6 +1,6 @@
 import express from 'express';
-import * as discordController from '../controllers/discordController';
-// import { handleErrors } from '../handlers/errorHandler';
+import * as discordController from '../controllers/discordController.js';
+// import { handleErrors } from '../handlers/errorHandler.js';
 
 const router = express.Router();
 

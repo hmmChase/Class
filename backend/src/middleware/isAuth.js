@@ -1,5 +1,10 @@
 import jwt from 'express-jwt';
 
+console.log(
+  'process.env.ACCESS_TOKEN_SECRET:',
+  process.env.ACCESS_TOKEN_SECRET
+);
+
 export const isAuth = jwt({
   secret: Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64'),
   // userProperty: 'jwt', // the encoded data now shows up in req.jwt

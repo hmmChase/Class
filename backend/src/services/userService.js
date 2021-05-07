@@ -1,8 +1,10 @@
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 // import argon2 from 'argon2';
 import bcryptjs from 'bcryptjs';
-import * as emailHandler from '../handlers/emailHandler';
-import * as authService from '../services/authService';
+import * as emailHandler from '../handlers/emailHandler.js';
+import * as authService from '../services/authService.js';
 
 const prisma = new PrismaClient();
 

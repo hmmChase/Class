@@ -19,7 +19,7 @@ const logger = new winston.createLogger({
         winston.format.colorize(),
         winston.format.simple()
       )
-    }),
+    })
 
     // new winston.transports.File({
     //   level: 'info',

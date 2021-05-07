@@ -1,12 +1,14 @@
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 import crypto from 'crypto';
 // import argon2 from 'argon2';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import * as authService from '../services/authService';
-import * as userService from '../services/userService';
-import * as emailHandler from '../handlers/emailHandler';
-import { COOKIE_CONFIG, BASE_URL } from '../config';
+import * as authService from '../services/authService.js';
+import * as userService from '../services/userService.js';
+import * as emailHandler from '../handlers/emailHandler.js';
+import { COOKIE_CONFIG, BASE_URL } from '../config.js';
 
 const prisma = new PrismaClient();
 

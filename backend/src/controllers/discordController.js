@@ -1,7 +1,7 @@
 import crypto from 'crypto';
-import * as authService from '../services/authService';
-import * as discordService from '../services/discordService';
-import { COOKIE_CONFIG } from '../config';
+import * as authService from '../services/authService.js';
+import * as discordService from '../services/discordService.js';
+import { COOKIE_CONFIG } from '../config.js';
 
 export const getSignupUrl = (req, res) => {
   const scope = ['identify', 'email'];

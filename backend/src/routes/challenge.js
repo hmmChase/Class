@@ -1,5 +1,5 @@
 import express from 'express';
-import * as challengeController from '../controllers/challengeController';
+import * as challengeController from '../controllers/challengeController.js';
 
 const router = express.Router();
 

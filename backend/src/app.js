@@ -5,15 +5,18 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import helmet from 'helmet';
-import 'dotenv/config';
+// import 'dotenv/config';
+// import * as dotenv from 'dotenv';
+// dotenv.config();
+import 'dotenv/config.js';
 
-import indexRouter from './routes/index';
-import userRouter from './routes/user';
-import discordRouter from './routes/discord';
-import challengeRouter from './routes/challenge';
-import projectRouter from './routes/project';
-import questionRouter from './routes/question';
-import commentRouter from './routes/comment';
+import indexRouter from './routes/index.js';
+import userRouter from './routes/user.js';
+import discordRouter from './routes/discord.js';
+import challengeRouter from './routes/challenge.js';
+import projectRouter from './routes/project.js';
+import questionRouter from './routes/question.js';
+import commentRouter from './routes/comment.js';
 
 import {
   handleErrors,
@@ -21,9 +24,9 @@ import {
   developmentErrors,
   productionErrors,
   CustomError
-} from './handlers/errorHandler';
-import logger from './handlers/logHandler';
-import { port } from './config';
+} from './handlers/errorHandler.js';
+import logger from './handlers/logHandler.js';
+import { port } from './config.js';
 
 const app = express();
 

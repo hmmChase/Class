@@ -1,4 +1,4 @@
-import logger from './logHandler';
+import logger from './logHandler.js';
 
 export class CustomError extends Error {
   constructor(error, name, status) {

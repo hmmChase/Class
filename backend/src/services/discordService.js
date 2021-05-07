@@ -1,8 +1,10 @@
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 import DiscordOauth2 from 'discord-oauth2';
-import * as authService from './authService';
-// import * as emailHandler from '../handlers/emailHandler';
-import { BASE_URL } from '../config';
+import * as authService from './authService.js';
+// import * as emailHandler from '../handlers/emailHandler.js';
+import { BASE_URL } from '../config.js';
 
 const prisma = new PrismaClient();
 

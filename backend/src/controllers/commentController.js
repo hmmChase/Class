@@ -1,4 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
@@ -21,7 +23,7 @@ export const getComment = async (req, res, next) => {
 
 export const getQuestionComments = async (req, res, next) => {
   const { questionId } = req.params;
-  console.log('questionId:', questionId)
+  console.log('questionId:', questionId);
 
   const comments = await prisma.comment.findMany({
     where: { question: { id: parseInt(questionId) }, deletedAt: null },
