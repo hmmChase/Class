@@ -1,8 +1,10 @@
 // 'npm run seed' to seed
 
-const { PrismaClient } = require('@prisma/client');
+// const { PrismaClient } = require('@prisma/client');
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 // const argon2 = require('argon2');
-const bcryptjs = require('bcryptjs');
+import bcryptjs from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
@@ -35,7 +37,7 @@ const main = async () => {
       email: 'student2@email.com',
       username: 'Student 2',
       // password: await argon2.hash('student2', 10),
-      password: await bcrypt.hash('student2', 10),
+      password: await bcryptjs.hash('student2', 10),
       avatarUrl: 'http://picsum.photos/40',
       role: 'STUDENT',
       hasDiscordLogin: true

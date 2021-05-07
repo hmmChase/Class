@@ -8,7 +8,7 @@ import helmet from 'helmet';
 // import 'dotenv/config';
 // import * as dotenv from 'dotenv';
 // dotenv.config();
-import 'dotenv/config.js';
+import 'dotenv/config';
 
 import indexRouter from './routes/index.js';
 import userRouter from './routes/user.js';

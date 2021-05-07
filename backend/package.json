@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "nodemon ./src/app.js",
     "start": "node ./src/app.js",
-    "seed": "node ./src/prisma/seed",
-    "postinstall": "prisma generate && prisma migrate deploy"
+    "seed": "node ./src/prisma/seed.js",
+    "migrate:dev": "prisma migrate dev --schema ./src/prisma/schema.prisma",
+    "migrate:prod": "prisma migrate deploy",
+    "generate": "prisma generate --schema ./src/prisma/schema.prisma",
+    "postinstall": " npm run generate && npm run migrate:prod"
   },
   "dependencies": {
     "@prisma/client": "^2.22.0",
