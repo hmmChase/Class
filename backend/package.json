@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./src/app.js",
-    "start": "node ./src/app.js",
-    "seed": "node ./src/prisma/seed.js",
-    "migrate:dev": "prisma migrate dev --schema=./src/prisma/schema.prisma",
-    "migrate:prod": "prisma migrate deploy --schema=./src/prisma/schema.prisma",
-    "generate": "prisma generate --schema=./src/prisma/schema.prisma",
+    "dev": "nodemon ./api/app.js",
+    "start": "node ./api/app.js",
+    "seed": "node ./api/prisma/seed.js",
+    "migrate:dev": "prisma migrate dev --schema=./api/prisma/schema.prisma",
+    "migrate:prod": "prisma migrate deploy --schema=./api/prisma/schema.prisma",
+    "generate": "prisma generate --schema=./api/prisma/schema.prisma",
     "postinstall": "npm run generate && npm run migrate:prod"
   },
   "dependencies": {
