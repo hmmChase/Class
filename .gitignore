@@ -106,6 +106,5 @@ dist
 # Other
 .vscode
 dist
-build
 bundles
 README.md

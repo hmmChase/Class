@@ -63,7 +63,6 @@ typings/
 # Other
 .vscode
 dist
-build
 bundles
 package-lock.json
 yarn.lock
