@@ -11,13 +11,11 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _client = _interopRequireDefault(require("@prisma/client"));
+var _client = require("@prisma/client");
 
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
-// import { PrismaClient } from '@prisma/client';
-var PrismaClient = _client["default"].PrismaClient;
-var prisma = new PrismaClient();
+var prisma = new _client.PrismaClient();
 
 var _default = function _default(requiredRoles) {
   return /*#__PURE__*/function () {

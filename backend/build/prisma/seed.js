@@ -6,13 +6,12 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _client = _interopRequireDefault(require("@prisma/client"));
-
 var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
 
 // 'npm run seed' to seed
-// const { PrismaClient } = require('@prisma/client');
-var PrismaClient = _client["default"].PrismaClient; // const argon2 = require('argon2');
+var _require = require('@prisma/client'),
+    PrismaClient = _require.PrismaClient; // const argon2 = require('argon2');
+
 
 var prisma = new PrismaClient();
 

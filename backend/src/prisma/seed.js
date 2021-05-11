@@ -1,8 +1,6 @@
 // 'npm run seed' to seed
 
-// const { PrismaClient } = require('@prisma/client');
-import pkg from '@prisma/client';
-const { PrismaClient } = pkg;
+const { PrismaClient } = require('@prisma/client');
 // const argon2 = require('argon2');
 import bcryptjs from 'bcryptjs';
 
@@ -49,8 +47,7 @@ const main = async () => {
     data: {
       path: 'challenge1',
       title: 'Turn any Design into HTML',
-      desc:
-        'First challenge, turning any design into HTML, and CSS. First challenge, turning any design into HTML, and CSS. First challenge, turning any design into HTML, and CSS.',
+      desc: 'First challenge, turning any design into HTML, and CSS. First challenge, turning any design into HTML, and CSS. First challenge, turning any design into HTML, and CSS.',
       videoUrl:
         'https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG',
       author: { connect: { id: 1 } }
@@ -61,8 +58,7 @@ const main = async () => {
     data: {
       path: 'challenge2',
       title: 'Second challenge',
-      desc:
-        'Quam dolor esse ut. Vel rerum rem eius in deserunt numquam. Ratione repudiandae sint cupiditate. Voluptatem quasi et. Natus libero enim consequatur et aut tempora.',
+      desc: 'Quam dolor esse ut. Vel rerum rem eius in deserunt numquam. Ratione repudiandae sint cupiditate. Voluptatem quasi et. Natus libero enim consequatur et aut tempora.',
       videoUrl:
         'https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG',
       author: { connect: { id: 1 } }
@@ -96,8 +92,7 @@ const main = async () => {
     await prisma.question.create({
       data: {
         title: 'seeded question ' + i,
-        body:
-          'Voluptatem sunt voluptate. Reiciendis vel rerum. Voluptas voluptas numquam. Odit pariatur qui. Quod consequatur inventore. At non consequatur dolore nulla consectetur eveniet illo commodi. Sint commodi possimus mollitia magnam molestiae omnis odio eaque autem. Et nihil fugit aut ab et praesentium minus. Omnis nihil odit commodi et quod voluptates sint a. Nostrum minima odio ut harum. Sunt quia et nisi praesentium et aut est quia.',
+        body: 'Voluptatem sunt voluptate. Reiciendis vel rerum. Voluptas voluptas numquam. Odit pariatur qui. Quod consequatur inventore. At non consequatur dolore nulla consectetur eveniet illo commodi. Sint commodi possimus mollitia magnam molestiae omnis odio eaque autem. Et nihil fugit aut ab et praesentium minus. Omnis nihil odit commodi et quod voluptates sint a. Nostrum minima odio ut harum. Sunt quia et nisi praesentium et aut est quia.',
         author: { connect: { id: twoOrThree } },
         challenge: { connect: { id: oneOrTwo } }
       }
