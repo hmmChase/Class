@@ -1,13 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import helmet from 'helmet';
-// import 'dotenv/config';
-// import * as dotenv from 'dotenv';
-// dotenv.config();
 import 'dotenv/config';
 
 import indexRouter from './routes/index.js';
@@ -26,21 +22,15 @@ import {
   CustomError
 } from './handlers/errorHandler.js';
 import logger from './handlers/logHandler.js';
-import { port } from './config.js';
+import { port, CORSwhitelist } from './config.js';
 
 const app = express();
 
 app.set('view engine', 'ejs');
 
-const whitelist = [
-  'http://localhost:3000',
-  'http://localhost:4000',
-  'https://challenge-board.vercel.app'
-];
-
 const corsOptions = {
   origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) callback(null, true);
+    if (CORSwhitelist.indexOf(origin) !== -1) callback(null, true);
     else callback(new Error('Not allowed by CORS'));
   },
   credentials: true
@@ -56,8 +46,6 @@ app.use(morgan(morganLogStyle, { stream: logger.stream }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(compression());
 app.use(helmet());
@@ -106,7 +94,7 @@ else app.use(productionErrors);
 
 // export default app;
 
-app.listen({ port: port || 4000 }, err => {
+app.listen({ port }, err => {
   if (err) throw err;
 
   console.log(`Server ready at http://localhost:${port}/api/v1/`);

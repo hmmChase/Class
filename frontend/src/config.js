@@ -1,9 +1,11 @@
 export const API_VERSION = 'v1';
 
+const backendUrlDev = 'http://localhost:6969';
+
+const backendUrlProd = 'https://challenge-board-backend.vercel.app';
+
 export const BASE_URL =
-  process.env.NODE_ENV === 'production'
-    ? 'https://challenge-board-backend.vercel.app'
-    : 'http://localhost:4000';
+  process.env.NODE_ENV === 'production' ? backendUrlProd : backendUrlDev;
 
 export const errorCodeToMessage = {
   default: 'Error, please try again.',

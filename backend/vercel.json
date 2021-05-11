@@ -6,8 +6,8 @@
   },
   "builds": [
     {
-      "src": "/src/app.js",
-      "use": "@now/node-server"
+      "src": "build/app.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -17,7 +17,7 @@
         "Access-Control-Allow-Origin": "https://challenge-board.vercel.app",
         "Access-Control-Allow-Credentials": "true"
       },
-      "dest": "/src/app.js",
+      "dest": "/build/app.js",
       "continue": true
     }
   ]
