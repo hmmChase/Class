@@ -1,6 +1,4 @@
-// import { PrismaClient } from '@prisma/client';
-import pkg from '@prisma/client';
-const { PrismaClient } = pkg;
+import { PrismaClient } from '@prisma/client';
 import crypto from 'crypto';
 // import argon2 from 'argon2';
 import bcryptjs from 'bcryptjs';
