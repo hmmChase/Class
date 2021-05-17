@@ -78,7 +78,7 @@ export const login = async (req, res) => {
     return res.status(401).json({ error: 'login.invalidCredentials' });
 
   // const isCorrectPass = await argon2.verify(userRecord.password, password);
-  const isCorrectPass = await bcryptjs.compare(userRecord.password, password);
+  const isCorrectPass = await bcryptjs.compare(password, userRecord.password);
 
   if (!isCorrectPass)
     return res.status(401).json({ error: 'login.invalidCredentials' });

@@ -10,11 +10,8 @@ const LoginEmail = props => {
 
   const [password, setPassword] = useState('student1');
 
-  const {
-    setCurrentUser,
-    isCurrentUserError,
-    setIsCurrentUserError
-  } = useContext(CurrentUserContext);
+  const { setCurrentUser, isCurrentUserError, setIsCurrentUserError } =
+    useContext(CurrentUserContext);
 
   const mutation = useLoginEmail({
     onError: error => setIsCurrentUserError(true),

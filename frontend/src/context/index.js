@@ -1,9 +1,6 @@
 import { createContext } from 'react';
 
-export const CurrentUserContext = createContext({
-  currentUser: {},
-  setCurrentUser: () => {}
-});
+export const CurrentUserContext = createContext({});
 
 export const DiscordContext = createContext({});
 

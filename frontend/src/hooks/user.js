@@ -3,18 +3,18 @@ import * as api from '../api/userApi';
 
 // Queries
 
-export const useCurrentUser = config =>
-  useQuery('getCurrentUser', api.getCurrentUser, config);
+export const useCurrentUser = options =>
+  useQuery('getCurrentUser', api.getCurrentUser, options);
 
 // Mutations
 
-export const useSignup = config => useMutation(api.signup, config);
+export const useSignup = options => useMutation(api.signup, options);
 
-export const useLoginEmail = config => useMutation(api.loginEmail, config);
+export const useLoginEmail = options => useMutation(api.loginEmail, options);
 
-export const useLogout = config => useMutation(api.logout, config);
+export const useLogout = options => useMutation(api.logout, options);
 
-export const useResetPassRequest = config =>
-  useMutation(api.resetPassRequest, config);
+export const useResetPassRequest = options =>
+  useMutation(api.resetPassRequest, options);
 
-export const useResetPass = config => useMutation(api.resetPass, config);
+export const useResetPass = options => useMutation(api.resetPass, options);
