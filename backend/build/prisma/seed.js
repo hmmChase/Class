@@ -6,12 +6,12 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
-
 // 'npm run seed' to seed
 var _require = require('@prisma/client'),
     PrismaClient = _require.PrismaClient; // const argon2 = require('argon2');
 
+
+var bcryptjs = require('bcryptjs');
 
 var prisma = new PrismaClient();
 
@@ -25,7 +25,7 @@ var main = /*#__PURE__*/function () {
           case 0:
             _context.t0 = prisma.user;
             _context.next = 3;
-            return _bcryptjs["default"].hash('teacher', 10);
+            return bcryptjs.hash('teacher', 10);
 
           case 3:
             _context.t1 = _context.sent;
@@ -46,7 +46,7 @@ var main = /*#__PURE__*/function () {
             teacher = _context.sent;
             _context.t4 = prisma.user;
             _context.next = 12;
-            return _bcryptjs["default"].hash('student1', 10);
+            return bcryptjs.hash('student1', 10);
 
           case 12:
             _context.t5 = _context.sent;
@@ -67,7 +67,7 @@ var main = /*#__PURE__*/function () {
             student1 = _context.sent;
             _context.t8 = prisma.user;
             _context.next = 21;
-            return _bcryptjs["default"].hash('student2', 10);
+            return bcryptjs.hash('student2', 10);
 
           case 21:
             _context.t9 = _context.sent;

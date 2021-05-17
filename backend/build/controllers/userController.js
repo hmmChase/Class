@@ -214,7 +214,7 @@ var login = /*#__PURE__*/function () {
 
           case 8:
             _context4.next = 10;
-            return _bcryptjs["default"].compare(userRecord.password, password);
+            return _bcryptjs["default"].compare(password, userRecord.password);
 
           case 10:
             isCorrectPass = _context4.sent;

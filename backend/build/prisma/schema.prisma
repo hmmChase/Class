@@ -3,7 +3,6 @@
 
 // Do this one time to initialize database migrations:
 // npx prisma migrate dev --schema=./src/prisma/schema.prisma --name init
-// npx prisma generate
 
 // Do this whenever this files changes:
 // Create a migration from changes in Prisma schema, apply it to the database, trigger generators (e.g. Prisma Client)
