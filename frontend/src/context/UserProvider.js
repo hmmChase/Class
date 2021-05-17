@@ -38,16 +38,6 @@ const UserProvider = props => {
   //   setCurrentUser(response.data);
   // };
 
-  // // const [logout] = api.useLogout({
-  // //   onSuccess: () => setCurrentUser({})
-  // // });
-
-  // const logout = async options => {
-  //   await instance.post('/user/logout', options);
-
-  //   setCurrentUser({});
-  // };
-
   // // const [resetPassReq] = api.useResetPassRequest();
 
   // const resetPassReq = async options =>

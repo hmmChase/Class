@@ -12,8 +12,7 @@ export const signup = async variables =>
 export const loginEmail = async variables =>
   await instance.post('/user/login', variables);
 
-export const logout = async variables =>
-  await instance.post('/user/logout', variables);
+export const logout = async () => await instance.post('/user/logout');
 
 export const resetPassRequest = async variables =>
   await instance.post('/user/reset-password-request', variables);

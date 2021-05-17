@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../../context';
 import * as sc from './DropdownUserIcon.style';
 
+import { useLogout } from '../../../hooks/user';
+
 const DropdownUserIcon = props => {
-  const { logout } = useContext(CurrentUserContext);
+  const { setCurrentUser } = useContext(CurrentUserContext);
+
+  const mutation = useLogout({ onSuccess: () => setCurrentUser({}) });
 
   return (
     <sc.Dropdownn
@@ -20,7 +24,7 @@ const DropdownUserIcon = props => {
       </li>
 
       <li>
-        <span onClick={() => logout()}>Log Out</span>
+        <span onClick={() => mutation.mutate()}>Log Out</span>
       </li>
     </sc.Dropdownn>
   );
