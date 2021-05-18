@@ -74,28 +74,30 @@ var getCurrentUser = /*#__PURE__*/function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
+            console.log('req.cookies:', req.cookies);
+
             if (!(!req || !req.cookies || !req.cookies.jwt)) {
-              _context2.next = 2;
+              _context2.next = 3;
               break;
             }
 
             return _context2.abrupt("return", res.json({}));
 
-          case 2:
+          case 3:
             user = _jsonwebtoken["default"].verify(req.cookies.jwt, Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64'));
-            _context2.prev = 3;
-            _context2.next = 6;
+            _context2.prev = 4;
+            _context2.next = 7;
             return prisma.user.findUnique({
               where: {
                 id: user.user.id
               }
             });
 
-          case 6:
+          case 7:
             userRecord = _context2.sent;
 
             if (userRecord) {
-              _context2.next = 9;
+              _context2.next = 10;
               break;
             }
 
@@ -103,7 +105,7 @@ var getCurrentUser = /*#__PURE__*/function () {
               error: 'user.notFound'
             }));
 
-          case 9:
+          case 10:
             userJWT = {
               user: {
                 id: userRecord.id
@@ -114,17 +116,17 @@ var getCurrentUser = /*#__PURE__*/function () {
             res.cookie('jwt', newJWT, _config.COOKIE_CONFIG);
             return _context2.abrupt("return", res.json(userClient));
 
-          case 16:
-            _context2.prev = 16;
-            _context2.t0 = _context2["catch"](3);
+          case 17:
+            _context2.prev = 17;
+            _context2.t0 = _context2["catch"](4);
             return _context2.abrupt("return", res.json({}));
 
-          case 19:
+          case 20:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[3, 16]]);
+    }, _callee2, null, [[4, 17]]);
   }));
 
   return function getCurrentUser(_x4, _x5) {
@@ -242,17 +244,18 @@ var login = /*#__PURE__*/function () {
             //   maxAge: 1000 * 60 * 60 * 24 * 7,
             //   sameSite: 'strict'
             // };
-            // res.cookie('jwt', newJWT, COOKIE_CONFIG);
-            // res.cookie('jwt', newJWT, cookieOptions);
-            // res.cookie('name', 'isophy');
 
-            res.cookie('name', 'value', {
-              maxAge: 1000 * 60 * 60 * 24 * 7,
-              httpOnly: true,
-              secure: true,
-              sameSite: 'none',
-              sameParty: false
-            }); // res.setHeader('Set-Cookie', 'name=setHeader');
+            res.cookie('jwt', newJWT, _config.COOKIE_CONFIG); // res.cookie('jwt', newJWT, cookieOptions);
+            // res.cookie('name', 'isophy');
+            // res.cookie('name', 'value', {
+            //   maxAge: 1000 * 60 * 60 * 24 * 7,
+            //   httpOnly: false,
+            //   path: '/',
+            //   secure: false,
+            //   sameSite: 'none',
+            //   sameParty: false
+            // });
+            // res.setHeader('Set-Cookie', 'name=setHeader');
             // res.append('Set-Cookie', 'name=append');
 
             return _context4.abrupt("return", res.json(userClientData));

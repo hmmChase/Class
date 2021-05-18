@@ -17,6 +17,8 @@ export const getAllUsers = async (req, res, next) => {
 };
 
 export const getCurrentUser = async (req, res) => {
+  console.log('req.cookies:', req.cookies);
+
   if (!req || !req.cookies || !req.cookies.jwt) return res.json({});
 
   const user = jwt.verify(
@@ -97,19 +99,20 @@ export const login = async (req, res) => {
   //   sameSite: 'strict'
   // };
 
-  // res.cookie('jwt', newJWT, COOKIE_CONFIG);
+  res.cookie('jwt', newJWT, COOKIE_CONFIG);
 
   // res.cookie('jwt', newJWT, cookieOptions);
 
   // res.cookie('name', 'isophy');
 
-  res.cookie('name', 'value', {
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: true,
-    secure: true,
-    sameSite: 'none',
-    sameParty: false
-  });
+  // res.cookie('name', 'value', {
+  //   maxAge: 1000 * 60 * 60 * 24 * 7,
+  //   httpOnly: false,
+  //   path: '/',
+  //   secure: false,
+  //   sameSite: 'none',
+  //   sameParty: false
+  // });
 
   // res.setHeader('Set-Cookie', 'name=setHeader');
 

@@ -2,7 +2,7 @@ export const port = process.env.PORT || 4000;
 
 export const COOKIE_CONFIG = {
   httpOnly: true,
-  // path: '/',
+  path: '/',
   secure: process.env.NODE_ENV === 'production',
   maxAge: 1000 * 60 * 20, // 20m
   sameSite: 'strict'
