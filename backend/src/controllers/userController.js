@@ -87,8 +87,6 @@ export const login = async (req, res) => {
 
   const newJWT = authService.generateJWT(jwtData);
 
-  console.log('newJWT:', newJWT);
-
   const userClientData = authService.userClientCleaner(userRecord);
 
   // const cookieOptions = {
@@ -103,13 +101,19 @@ export const login = async (req, res) => {
 
   // res.cookie('jwt', newJWT, cookieOptions);
 
-  res.cookie('cookieName', 'cookieValue');
+  // res.cookie('name', 'isophy');
 
-  // cookie.set('token', 'this is a token', { expires: 1 });
+  res.cookie('name', 'value', {
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    sameParty: false
+  });
 
-  // res.setHeader('Set-Cookie', [
-  //   'ck=value; Expires=Tue, 01 Dec 2020 00:00:00 GMT; HttpOnly'
-  // ]);
+  // res.setHeader('Set-Cookie', 'name=setHeader');
+
+  // res.append('Set-Cookie', 'name=append');
 
   return res.json(userClientData);
 };
