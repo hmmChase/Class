@@ -95,7 +95,7 @@ export const login = async (req, res) => {
     httpOnly: true,
     path: '/',
     secure: process.env.NODE_ENV === 'production',
-    maxAge: refreshTokenCookieMaxAge,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
     sameSite: 'strict'
   };
 

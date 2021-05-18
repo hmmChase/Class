@@ -241,7 +241,7 @@ var login = /*#__PURE__*/function () {
               httpOnly: true,
               path: '/',
               secure: process.env.NODE_ENV === 'production',
-              maxAge: refreshTokenCookieMaxAge,
+              maxAge: 1000 * 60 * 60 * 24 * 7,
               sameSite: 'strict'
             }; // res.cookie('jwt', newJWT, COOKIE_CONFIG);
 
