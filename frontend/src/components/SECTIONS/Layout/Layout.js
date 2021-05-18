@@ -7,7 +7,13 @@ import * as sc from './Layout.style';
 const Layout = props => {
   const { setCurrentUser } = useContext(CurrentUserContext);
 
-  useCurrentUser({ onSuccess: data => setCurrentUser(data.data) });
+  useCurrentUser({
+    onSuccess: data => {
+      console.log('data:', data);
+
+      setCurrentUser(data.data);
+    }
+  });
 
   return (
     <sc.Container>

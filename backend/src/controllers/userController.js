@@ -91,17 +91,25 @@ export const login = async (req, res) => {
 
   const userClientData = authService.userClientCleaner(userRecord);
 
-  const cookieOptions = {
-    httpOnly: true,
-    path: '/',
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    sameSite: 'strict'
-  };
+  // const cookieOptions = {
+  //   httpOnly: true,
+  //   path: '/',
+  //   secure: process.env.NODE_ENV === 'production',
+  //   maxAge: 1000 * 60 * 60 * 24 * 7,
+  //   sameSite: 'strict'
+  // };
 
   // res.cookie('jwt', newJWT, COOKIE_CONFIG);
 
-  res.cookie('jwt', newJWT, cookieOptions);
+  // res.cookie('jwt', newJWT, cookieOptions);
+
+  res.cookie('cookieName', 'cookieValue');
+
+  // cookie.set('token', 'this is a token', { expires: 1 });
+
+  // res.setHeader('Set-Cookie', [
+  //   'ck=value; Expires=Tue, 01 Dec 2020 00:00:00 GMT; HttpOnly'
+  // ]);
 
   return res.json(userClientData);
 };

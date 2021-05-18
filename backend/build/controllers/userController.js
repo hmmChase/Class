@@ -175,7 +175,7 @@ exports.signup = signup;
 
 var login = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
-    var _req$body2, email, password, userRecord, isCorrectPass, jwtData, newJWT, userClientData, cookieOptions;
+    var _req$body2, email, password, userRecord, isCorrectPass, jwtData, newJWT, userClientData;
 
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
@@ -236,19 +236,24 @@ var login = /*#__PURE__*/function () {
             };
             newJWT = authService.generateJWT(jwtData);
             console.log('newJWT:', newJWT);
-            userClientData = authService.userClientCleaner(userRecord);
-            cookieOptions = {
-              httpOnly: true,
-              path: '/',
-              secure: process.env.NODE_ENV === 'production',
-              maxAge: 1000 * 60 * 60 * 24 * 7,
-              sameSite: 'strict'
-            }; // res.cookie('jwt', newJWT, COOKIE_CONFIG);
+            userClientData = authService.userClientCleaner(userRecord); // const cookieOptions = {
+            //   httpOnly: true,
+            //   path: '/',
+            //   secure: process.env.NODE_ENV === 'production',
+            //   maxAge: 1000 * 60 * 60 * 24 * 7,
+            //   sameSite: 'strict'
+            // };
+            // res.cookie('jwt', newJWT, COOKIE_CONFIG);
+            // res.cookie('jwt', newJWT, cookieOptions);
 
-            res.cookie('jwt', newJWT, cookieOptions);
+            res.cookie('cookieName', 'cookieValue'); // cookie.set('token', 'this is a token', { expires: 1 });
+            // res.setHeader('Set-Cookie', [
+            //   'ck=value; Expires=Tue, 01 Dec 2020 00:00:00 GMT; HttpOnly'
+            // ]);
+
             return _context4.abrupt("return", res.json(userClientData));
 
-          case 20:
+          case 19:
           case "end":
             return _context4.stop();
         }
