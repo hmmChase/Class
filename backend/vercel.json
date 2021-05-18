@@ -13,11 +13,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
+      "dest": "/build/app.js",
       "headers": {
         "Access-Control-Allow-Origin": "https://challenge-board.vercel.app",
         "Access-Control-Allow-Credentials": "true"
       },
-      "dest": "/build/app.js",
       "continue": true
     }
   ]

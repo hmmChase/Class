@@ -175,7 +175,7 @@ exports.signup = signup;
 
 var login = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
-    var _req$body2, email, password, userRecord, isCorrectPass, jwtData, newJWT, userClientData;
+    var _req$body2, email, password, userRecord, isCorrectPass, jwtData, newJWT, userClientData, cookieOptions;
 
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
@@ -235,11 +235,20 @@ var login = /*#__PURE__*/function () {
               }
             };
             newJWT = authService.generateJWT(jwtData);
+            console.log('newJWT:', newJWT);
             userClientData = authService.userClientCleaner(userRecord);
-            res.cookie('jwt', newJWT, _config.COOKIE_CONFIG);
+            cookieOptions = {
+              httpOnly: true,
+              path: '/',
+              secure: process.env.NODE_ENV === 'production',
+              maxAge: refreshTokenCookieMaxAge,
+              sameSite: 'strict'
+            }; // res.cookie('jwt', newJWT, COOKIE_CONFIG);
+
+            res.cookie('jwt', newJWT, cookieOptions);
             return _context4.abrupt("return", res.json(userClientData));
 
-          case 18:
+          case 20:
           case "end":
             return _context4.stop();
         }

@@ -87,9 +87,21 @@ export const login = async (req, res) => {
 
   const newJWT = authService.generateJWT(jwtData);
 
+  console.log('newJWT:', newJWT);
+
   const userClientData = authService.userClientCleaner(userRecord);
 
-  res.cookie('jwt', newJWT, COOKIE_CONFIG);
+  const cookieOptions = {
+    httpOnly: true,
+    path: '/',
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: refreshTokenCookieMaxAge,
+    sameSite: 'strict'
+  };
+
+  // res.cookie('jwt', newJWT, COOKIE_CONFIG);
+
+  res.cookie('jwt', newJWT, cookieOptions);
 
   return res.json(userClientData);
 };
