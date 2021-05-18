@@ -14,6 +14,10 @@
     {
       "src": "/(.*)",
       "dest": "/build/app.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "https://challenge-board.vercel.app",
+        "Access-Control-Allow-Credentials": "true"
+      },
       "continue": true
     }
   ]
