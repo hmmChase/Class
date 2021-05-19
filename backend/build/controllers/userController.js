@@ -244,18 +244,18 @@ var login = /*#__PURE__*/function () {
             //   maxAge: 1000 * 60 * 60 * 24 * 7,
             //   sameSite: 'strict'
             // };
-
-            res.cookie('jwt', newJWT, _config.COOKIE_CONFIG); // res.cookie('jwt', newJWT, cookieOptions);
+            // res.cookie('jwt', newJWT, COOKIE_CONFIG);
+            // res.cookie('jwt', newJWT, cookieOptions);
             // res.cookie('name', 'isophy');
-            // res.cookie('name', 'value', {
-            //   maxAge: 1000 * 60 * 60 * 24 * 7,
-            //   httpOnly: false,
-            //   path: '/',
-            //   secure: false,
-            //   sameSite: 'none',
-            //   sameParty: false
-            // });
-            // res.setHeader('Set-Cookie', 'name=setHeader');
+
+            res.cookie('name', 'value', {
+              maxAge: 1000 * 60 * 60 * 24 * 7,
+              httpOnly: false,
+              path: '/',
+              secure: false,
+              sameSite: 'none',
+              sameParty: false
+            }); // res.setHeader('Set-Cookie', 'name=setHeader');
             // res.append('Set-Cookie', 'name=append');
 
             return _context4.abrupt("return", res.json(userClientData));
