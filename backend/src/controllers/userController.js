@@ -91,32 +91,7 @@ export const login = async (req, res) => {
 
   const userClientData = authService.userClientCleaner(userRecord);
 
-  // const cookieOptions = {
-  //   httpOnly: true,
-  //   path: '/',
-  //   secure: process.env.NODE_ENV === 'production',
-  //   maxAge: 1000 * 60 * 60 * 24 * 7,
-  //   sameSite: 'strict'
-  // };
-
-  // res.cookie('jwt', newJWT, COOKIE_CONFIG);
-
-  // res.cookie('jwt', newJWT, cookieOptions);
-
-  // res.cookie('name', 'isophy');
-
-  res.cookie('name', 'value', {
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: true,
-    path: '/',
-    secure: true,
-    sameSite: 'none'
-    // sameParty: false
-  });
-
-  // res.setHeader('Set-Cookie', 'name=setHeader');
-
-  // res.append('Set-Cookie', 'name=append');
+  res.cookie('jwt', newJWT, COOKIE_CONFIG);
 
   return res.json(userClientData);
 };

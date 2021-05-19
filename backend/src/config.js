@@ -1,12 +1,23 @@
 export const port = process.env.PORT || 4000;
 
 export const COOKIE_CONFIG = {
-  httpOnly: true,
-  path: '/',
-  secure: process.env.NODE_ENV === 'production',
   maxAge: 1000 * 60 * 20, // 20m
-  sameSite: 'strict'
+  path: '/',
+  httpOnly: process.env.NODE_ENV === 'production',
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'none'
 };
+
+// sameSite: 'strict'
+
+// const stuff = {
+//   maxAge: 1000 * 60 * 60 * 24 * 7,
+//   path: '/',
+//   httpOnly: true,
+//   secure: true,
+//   sameSite: 'none'
+//   // sameParty: false
+// };
 
 const deployedUrl = process.env.VERCEL_URL;
 
