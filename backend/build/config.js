@@ -8,12 +8,14 @@ var port = process.env.PORT || 4000;
 exports.port = port;
 var COOKIE_CONFIG = {
   maxAge: 365 * 52 * 7 * 24 * 60,
-  path: '/',
+  domain: 'vercel.app',
   httpOnly: process.env.NODE_ENV === 'production',
-  secure: process.env.NODE_ENV === 'production',
-  sameSite: 'none' // sameParty: false
+  secure: process.env.NODE_ENV === 'production' // sameSite: 'none'
+  // sameParty: false
 
-}; // sameSite: 'strict'
+}; // default
+// path: '/',
+// sameSite: 'strict'
 
 exports.COOKIE_CONFIG = COOKIE_CONFIG;
 var deployedUrl = process.env.VERCEL_URL;
