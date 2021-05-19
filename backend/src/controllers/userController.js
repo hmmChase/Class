@@ -109,9 +109,9 @@ export const login = async (req, res) => {
     maxAge: 1000 * 60 * 60 * 24 * 7,
     httpOnly: false,
     path: '/',
-    secure: false,
-    sameSite: 'none',
-    sameParty: false
+    secure: false
+    // sameSite: 'none',
+    // sameParty: false
   });
 
   // res.setHeader('Set-Cookie', 'name=setHeader');
