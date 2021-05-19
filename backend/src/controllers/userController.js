@@ -107,10 +107,10 @@ export const login = async (req, res) => {
 
   res.cookie('name', 'value', {
     maxAge: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: false,
+    httpOnly: true,
     path: '/',
-    secure: false
-    // sameSite: 'none',
+    secure: true,
+    sameSite: 'none'
     // sameParty: false
   });
 

@@ -250,10 +250,10 @@ var login = /*#__PURE__*/function () {
 
             res.cookie('name', 'value', {
               maxAge: 1000 * 60 * 60 * 24 * 7,
-              httpOnly: false,
+              httpOnly: true,
               path: '/',
-              secure: false // sameSite: 'none',
-              // sameParty: false
+              secure: true,
+              sameSite: 'none' // sameParty: false
 
             }); // res.setHeader('Set-Cookie', 'name=setHeader');
             // res.append('Set-Cookie', 'name=append');
