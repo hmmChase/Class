@@ -1,23 +1,15 @@
 export const port = process.env.PORT || 4000;
 
 export const COOKIE_CONFIG = {
-  maxAge: 1000 * 60 * 20, // 20m
+  maxAge: 365 * 52 * 7 * 24 * 60,
   path: '/',
   httpOnly: process.env.NODE_ENV === 'production',
-  secure: process.env.NODE_ENV === 'production',
-  sameSite: 'none'
+  secure: process.env.NODE_ENV === 'production'
+  // sameSite: 'none',
+  // sameParty: false
 };
 
 // sameSite: 'strict'
-
-// const stuff = {
-//   maxAge: 1000 * 60 * 60 * 24 * 7,
-//   path: '/',
-//   httpOnly: true,
-//   secure: true,
-//   sameSite: 'none'
-//   // sameParty: false
-// };
 
 const deployedUrl = process.env.VERCEL_URL;
 

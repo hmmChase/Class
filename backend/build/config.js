@@ -7,21 +7,13 @@ exports.CORSwhitelist = exports.BASE_URL = exports.COOKIE_CONFIG = exports.port 
 var port = process.env.PORT || 4000;
 exports.port = port;
 var COOKIE_CONFIG = {
-  maxAge: 1000 * 60 * 20,
-  // 20m
+  maxAge: 365 * 52 * 7 * 24 * 60,
   path: '/',
   httpOnly: process.env.NODE_ENV === 'production',
-  secure: process.env.NODE_ENV === 'production',
-  sameSite: 'none'
+  secure: process.env.NODE_ENV === 'production' // sameSite: 'none',
+  // sameParty: false
+
 }; // sameSite: 'strict'
-// const stuff = {
-//   maxAge: 1000 * 60 * 60 * 24 * 7,
-//   path: '/',
-//   httpOnly: true,
-//   secure: true,
-//   sameSite: 'none'
-//   // sameParty: false
-// };
 
 exports.COOKIE_CONFIG = COOKIE_CONFIG;
 var deployedUrl = process.env.VERCEL_URL;
