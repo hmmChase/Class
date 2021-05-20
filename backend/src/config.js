@@ -4,8 +4,8 @@ export const COOKIE_CONFIG = {
   maxAge: 365 * 52 * 7 * 24 * 60,
   domain: '.vercel.app',
   httpOnly: process.env.NODE_ENV === 'production',
-  secure: process.env.NODE_ENV === 'production'
-  // sameSite: 'none'
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'none'
   // sameParty: false
 };
 
