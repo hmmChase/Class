@@ -2,17 +2,13 @@ export const port = process.env.PORT || 4000;
 
 export const COOKIE_CONFIG = {
   maxAge: 365 * 52 * 7 * 24 * 60,
-  domain: 'vercel.app',
   httpOnly: process.env.NODE_ENV === 'production',
-  secure: process.env.NODE_ENV === 'production'
+  secure: process.env.NODE_ENV === 'production',
   // sameSite: 'none'
+  // domain: 'vercel.app',
   // sameParty: false
+  // path: '/',
 };
-
-// default
-// path: '/',
-
-// sameSite: 'strict'
 
 const deployedUrl = process.env.VERCEL_URL;
 

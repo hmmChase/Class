@@ -17,8 +17,6 @@ export const getAllUsers = async (req, res, next) => {
 };
 
 export const getCurrentUser = async (req, res) => {
-  console.log('req.cookies:', req.cookies);
-
   if (!req || !req.cookies || !req.cookies.jwt) return res.json({});
 
   const user = jwt.verify(
