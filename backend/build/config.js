@@ -9,8 +9,8 @@ exports.port = port;
 var COOKIE_CONFIG = {
   maxAge: 365 * 52 * 7 * 24 * 60,
   httpOnly: process.env.NODE_ENV === 'production',
-  secure: process.env.NODE_ENV === 'production' // sameSite: 'none'
-  // domain: 'vercel.app',
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict' // domain: 'vercel.app',
   // sameParty: false
   // path: '/',
 
