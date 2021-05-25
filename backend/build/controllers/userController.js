@@ -74,30 +74,28 @@ var getCurrentUser = /*#__PURE__*/function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            console.log('req.cookies:', req.cookies);
-
             if (!(!req || !req.cookies || !req.cookies.jwt)) {
-              _context2.next = 3;
+              _context2.next = 2;
               break;
             }
 
             return _context2.abrupt("return", res.json({}));
 
-          case 3:
+          case 2:
             user = _jsonwebtoken["default"].verify(req.cookies.jwt, Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64'));
-            _context2.prev = 4;
-            _context2.next = 7;
+            _context2.prev = 3;
+            _context2.next = 6;
             return prisma.user.findUnique({
               where: {
                 id: user.user.id
               }
             });
 
-          case 7:
+          case 6:
             userRecord = _context2.sent;
 
             if (userRecord) {
-              _context2.next = 10;
+              _context2.next = 9;
               break;
             }
 
@@ -105,7 +103,7 @@ var getCurrentUser = /*#__PURE__*/function () {
               error: 'user.notFound'
             }));
 
-          case 10:
+          case 9:
             userJWT = {
               user: {
                 id: userRecord.id
@@ -116,17 +114,17 @@ var getCurrentUser = /*#__PURE__*/function () {
             res.cookie('jwt', newJWT, _config.COOKIE_CONFIG);
             return _context2.abrupt("return", res.json(userClient));
 
-          case 17:
-            _context2.prev = 17;
-            _context2.t0 = _context2["catch"](4);
+          case 16:
+            _context2.prev = 16;
+            _context2.t0 = _context2["catch"](3);
             return _context2.abrupt("return", res.json({}));
 
-          case 20:
+          case 19:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[4, 17]]);
+    }, _callee2, null, [[3, 16]]);
   }));
 
   return function getCurrentUser(_x4, _x5) {
