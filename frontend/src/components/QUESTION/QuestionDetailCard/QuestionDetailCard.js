@@ -3,20 +3,23 @@ import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
 import { CurrentUserContext } from '../../../context';
 import QuestionDropdown from '../QuestionDropdown/QuestionDropdown';
+import QuestionDetailEdit from '../QuestionDetailEdit/QuestionDetailEdit';
 import TextExpand from '../../REUSEABLE/TextExpand/TextExpand';
 import * as sc from './QuestionDetailCard.style';
 
 const QuestionDetailCard = props => {
-  const { authorId, question, questionId } = props;
+  const { question } = props;
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const [isEditing, setIsEditing] = useState(false);
 
   const { currentUser } = useContext(CurrentUserContext);
 
   const shouldShowMenu =
     currentUser &&
     currentUser.id &&
-    (currentUser.role === 'TEACHER' || currentUser.id === authorId);
+    (currentUser.role === 'TEACHER' || currentUser.id === question.author_id);
 
   return (
     <sc.Container>
@@ -30,10 +33,11 @@ const QuestionDetailCard = props => {
         <sc.Relative>
           {isDropdownOpen && (
             <QuestionDropdown
-              questionId={questionId}
+              questionId={question.questionId}
               role={currentUser.role}
               isDropdownOpen={isDropdownOpen}
               close={() => setDropdownOpen(false)}
+              setIsEditing={setIsEditing}
             />
           )}
 
@@ -48,24 +52,38 @@ const QuestionDetailCard = props => {
         </sc.Relative>
       </sc.Row>
 
-      <sc.Title>{question.title}</sc.Title>
+      <sc.Row>
+        {isEditing && (
+          <QuestionDetailEdit
+            id={question.id}
+            title={question.title}
+            body={question.body}
+            setIsEditing={setIsEditing}
+          />
+        )}
+      </sc.Row>
+      {!isEditing && (
+        <>
+          <sc.Title>{question.title}</sc.Title>
 
-      <TextExpand>{question.body}</TextExpand>
+          <TextExpand>{question.body}</TextExpand>
+        </>
+      )}
     </sc.Container>
   );
 };
 
 QuestionDetailCard.propTypes = {
-  authorId: PropTypes.any,
   question: PropTypes.shape({
     author: PropTypes.shape({
       username: PropTypes.any
     }),
+    author_id: PropTypes.any,
     body: PropTypes.any,
     createdAt: PropTypes.any,
+    questionId: PropTypes.any,
     title: PropTypes.any
-  }),
-  questionId: PropTypes.any
+  })
 };
 
 export default React.memo(QuestionDetailCard);

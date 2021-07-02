@@ -53,9 +53,7 @@ const TextExpand = props => {
 };
 
 TextExpand.propTypes = {
-  children: PropTypes.shape({
-    split: PropTypes.func
-  }),
+  children: PropTypes.string,
   className: PropTypes.any
 };
 

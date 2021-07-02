@@ -28,34 +28,8 @@ export const useGetQuestion = options =>
 export const useQuestionCreate = options =>
   useMutation(variables => createQuestion(variables), options);
 
-// const createQuestion = async (title, body, challengePath) => {
-//   const response = await api.createQuestion(title, body, challengePath);
-
-//   const updatedQuestions = [response.data, ...questions];
-
-//   setQuestions(updatedQuestions);
-// };
-
-// const [createQuestion, response] = useCreateQuestion({
-//   onSuccess: data => {
-//     console.log('data:', data);
-
-//     // const updatedQuestions = [data.data, ...props.questions];
-
-//     // props.setQuestions(updatedQuestions);
-
-//     // props.close();
-//   }
-// });
-
 export const useQuestionUpdate = options =>
   useMutation(variables => updateQuestion(variables), options);
-
-// const updateQuestion = async (challengePath, title, body, id) => {
-//   const response = await api.updateQuestion(challengePath, title, body, id);
-
-//   setQuestions(response.data);
-// };
 
 export const useQuestionDelete = options =>
   useMutation(variables => deleteQuestion(variables), options);

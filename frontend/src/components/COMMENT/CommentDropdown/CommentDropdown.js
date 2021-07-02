@@ -1,25 +1,38 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { CommentContext } from '../../../context';
+import { useCommentDelete, usePromoteAnswer } from '../../../hooks/comment';
 import * as sc from './CommentDropdown.style';
 
 const CommentDropdown = props => {
-  const {
-    className,
-    setIsEditing,
-    close,
-    isDropdownOpen,
-    role,
-    commentId
-  } = props;
+  const { className, setIsEditing, close, isDropdownOpen, role, commentId } =
+    props;
 
-  const { promoteAnswer, deleteComment } = useContext(CommentContext);
+  const { comments, setComments } = useContext(CommentContext);
+
+  const mutationDelete = useCommentDelete({
+    onSuccess: data => {
+      const filteredComments = comments.filter(
+        comment => comment.id !== commentId
+      );
+
+      setComments(filteredComments);
+    }
+  });
+
+  const mutationPromoteAnswer = usePromoteAnswer({
+    onSuccess: data => setComments(data.data)
+  });
 
   const handleClickEdit = () => {
     setIsEditing(true);
 
     close();
   };
+
+  const handleClickDelete = () => mutationDelete.mutate({ commentId });
+
+  const handleClickPromote = () => mutationPromoteAnswer.mutate({ commentId });
 
   return (
     <sc.Dropdownn
@@ -29,9 +42,7 @@ const CommentDropdown = props => {
     >
       {role === 'TEACHER' && (
         <li>
-          <span onClick={() => promoteAnswer(commentId)}>
-            Promote as Answer
-          </span>
+          <span onClick={handleClickPromote}>Promote as Answer</span>
         </li>
       )}
 
@@ -40,7 +51,7 @@ const CommentDropdown = props => {
       </li>
 
       <li>
-        <span onClick={() => deleteComment(commentId)}>Remove Post</span>
+        <span onClick={handleClickDelete}>Remove Post</span>
       </li>
     </sc.Dropdownn>
   );
