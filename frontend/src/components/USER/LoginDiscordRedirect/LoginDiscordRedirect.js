@@ -1,32 +1,28 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import getParameterByName from '../../../utils/getQueryParamByName';
-import { DiscordContext, CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
+import { useLoginDiscord } from '../../../hooks/discord';
 // import * as sc from './LoginDiscordRedirect.style';
 
 const LoginDiscordRedirect = () => {
-  const { loginDiscord } = useContext(DiscordContext);
-
-  const { setCurrentUser } = useContext(CurrentUserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
   const history = useHistory();
 
-  useEffect(() => {
-    (async () => {
-      const code = getParameterByName('code');
-      const state = getParameterByName('state');
+  const code = getParameterByName('code');
 
-      const response = await loginDiscord({ code, state });
+  const state = getParameterByName('state');
 
-      if (response && response.data && response.data.id) {
-        setCurrentUser(response.data);
+  useLoginDiscord({
+    variables: { code, state },
 
-        history.push('/');
-      }
-    })();
+    onSuccess: (data, variables, context) => {
+      setCurrentUser(data.data);
 
-    // eslint-disable-next-line
-  }, []);
+      history.push('/');
+    }
+  });
 
   return <div />;
 };

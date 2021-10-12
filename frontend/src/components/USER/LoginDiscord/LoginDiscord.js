@@ -1,19 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
+
 import IconDiscord from '../../OTHER/IconDiscord/IconDiscord';
-import { DiscordContext } from '../../../context';
+import { useLoginUrl } from '../../../hooks/discord';
 import * as sc from './LoginDiscord.style';
 
 const LoginDiscord = () => {
-  const { urlLogin } = useContext(DiscordContext);
+  const mutation = useLoginUrl({
+    onSuccess: (data, variables, context) => window.location.assign(data.data)
+  });
 
-  const handleClickLogin = async () => {
-    const response = await urlLogin();
-
-    window.location.assign(response.data);
-  };
+  const handleClick = () => mutation.mutate({});
 
   return (
-    <sc.Buttonn onClick={handleClickLogin}>
+    <sc.Buttonn onClick={handleClick}>
       <IconDiscord />
       Log in with Discord
     </sc.Buttonn>

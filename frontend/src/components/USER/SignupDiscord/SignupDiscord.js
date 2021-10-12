@@ -1,16 +1,15 @@
-import React, { useContext } from 'react';
-import { DiscordContext } from '../../../context';
+import React from 'react';
+
 import IconDiscord from '../../OTHER/IconDiscord/IconDiscord';
+import { useSignupUrl } from '../../../hooks/discord';
 import * as sc from './SignupDiscord.style';
 
 const SignupDiscord = () => {
-  const { urlSignup } = useContext(DiscordContext);
+  const mutation = useSignupUrl({
+    onSuccess: (data, variables, context) => window.location.assign(data.data)
+  });
 
-  const handleClick = async () => {
-    const response = await urlSignup();
-
-    window.location.assign(response.data);
-  };
+  const handleClick = () => mutation.mutate({});
 
   return (
     <sc.Buttonn onClick={handleClick}>
