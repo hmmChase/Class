@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import QuestionDetail from '../../QUESTION/QuestionDetail/QuestionDetail';
 import Questions from '../../QUESTION/Questions/Questions';
 import Label from '../../REUSEABLE/Label/Label';
 import * as sc from './Discussion.style';
 
 const Discussion = props => {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(UserContext);
 
   const { questionId } = useParams();
 

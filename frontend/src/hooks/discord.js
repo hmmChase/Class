@@ -17,9 +17,9 @@ export const useLoginDiscord = options =>
 
 // Mutations
 
-export const useUrlLogin = options => useMutation(urlLogin, options);
+export const useLoginUrl = options => useMutation(urlLogin, options);
 
-export const useUrlSignup = options => useMutation(urlSignup, options);
+export const useSignupUrl = options => useMutation(urlSignup, options);
 
 export const useSignupDiscord = options =>
   useMutation(variables => signupDiscord(variables), options);

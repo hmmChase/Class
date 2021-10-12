@@ -1,16 +1,17 @@
 import { PrismaClient } from '@prisma/client';
-// import argon2 from 'argon2';
 import bcryptjs from 'bcryptjs';
+
 import * as emailHandler from '../handlers/emailHandler.js';
 import * as authService from '../services/authService.js';
 
 const prisma = new PrismaClient();
 
 export const signupUserByEmail = async (res, username, email, password) => {
-  const emailNormalized = email.trim().toLowerCase();
   const usernameNormalized = username.trim();
-  // const passwordHashed = await argon2.hash(password);
-  const passwordHashed = await bcryptjs.hash(password);
+
+  const emailNormalized = email.trim().toLowerCase();
+
+  const passwordHashed = await bcryptjs.hash(password, 10);
 
   // authService.validateEmail(res, emailNormalized);
 

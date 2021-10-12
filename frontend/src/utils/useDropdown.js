@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default () => {
+const useDropDown = () => {
   const [isDropdownOpen, setDropdownDisplay] = useState(false);
 
   const openDropdown = () => {
@@ -17,3 +17,5 @@ export default () => {
 
   return [isDropdownOpen, openDropdown];
 };
+
+export default useDropDown;

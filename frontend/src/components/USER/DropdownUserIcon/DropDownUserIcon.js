@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import * as sc from './DropdownUserIcon.style';
 
 import { useLogout } from '../../../hooks/user';
 
 const DropdownUserIcon = props => {
-  const { setCurrentUser } = useContext(CurrentUserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
   const mutation = useLogout({ onSuccess: () => setCurrentUser({}) });
 

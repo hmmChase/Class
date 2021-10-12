@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import { useLoginEmail } from '../../../hooks/user';
 import InputLabel from '../../REUSEABLE/InputLabel/InputLabel';
 import * as sc from './LoginEmail.style';
@@ -11,7 +11,7 @@ const LoginEmail = props => {
   const [password, setPassword] = useState('student1');
 
   const { setCurrentUser, isCurrentUserError, setIsCurrentUserError } =
-    useContext(CurrentUserContext);
+    useContext(UserContext);
 
   const mutation = useLoginEmail({
     onError: error => setIsCurrentUserError(true),

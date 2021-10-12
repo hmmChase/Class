@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import Button from '../../REUSEABLE/Button/Button';
 import * as sc from './BtnReqPass.style';
 
 const BtnReqPass = props => {
-  const { resetPassReq } = useContext(CurrentUserContext);
+  const { resetPassReq } = useContext(UserContext);
 
   const handleClick = e => {
     e.preventDefault();

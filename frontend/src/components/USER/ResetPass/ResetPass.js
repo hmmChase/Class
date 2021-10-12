@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
 // import { useHistory } from 'react-router-dom';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import * as sc from './ResetPass.style';
 
 const ResetPass = props => {
@@ -11,7 +11,7 @@ const ResetPass = props => {
 
   const [isSuccessful, setIsSuccessful] = useState(false);
 
-  const { resetPass } = useContext(CurrentUserContext);
+  const { resetPass } = useContext(UserContext);
 
   // const history = useHistory();
 

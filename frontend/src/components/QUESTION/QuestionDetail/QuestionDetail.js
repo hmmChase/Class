@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { CurrentUserContext, QuestionContext } from '../../../context';
+import { UserContext, QuestionContext } from '../../../context';
 import { useGetQuestion } from '../../../hooks/question';
 import Comments from '../../COMMENT/Comments/Comments';
 import QuestionDetailCard from '../QuestionDetailCard/QuestionDetailCard';
@@ -11,7 +11,7 @@ import * as sc from './QuestionDetail.style';
 const QuestionDetail = props => {
   const { className, questionId } = props;
 
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(UserContext);
 
   const { question, setQuestion } = useContext(QuestionContext);
 

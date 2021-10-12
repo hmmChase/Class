@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useCurrentUser } from '../../../hooks/user';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import * as sc from './Layout.style';
 
 const Layout = props => {
-  const { setCurrentUser } = useContext(CurrentUserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
   useCurrentUser({ onSuccess: data => setCurrentUser(data.data) });
 

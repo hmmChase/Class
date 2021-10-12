@@ -1,60 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { CurrentUserContext } from './';
-// import * as api from '../api/userApi';
+import { UserContext } from './';
 
 const UserProvider = props => {
   const [currentUser, setCurrentUser] = useState({});
-  // const [currentUserLoading, setCurrentUserLoading] = useState(false);
   const [isCurrentUserError, setIsCurrentUserError] = useState(false);
 
-  // // Queries
-
-  // // api.useCurrentUser({
-  // //   onSuccess: data => setCurrentUser(data.data)
-  // // });
-
-  // // Mutations
-
-  // // const [signup] = api.useSignup({
-  // //   onSuccess: data => setCurrentUser(data.data)
-  // // });
-
-  // const signup = async options => {
-  //   const response = await instance.post('/user/signup', options);
-
-  //   setCurrentUser(response.data);
-  // };
-
-  // // const [loginEmail] = api.useLoginEmail({
-  // //   onError: (error, mutationVariables) => setIsCurrentUserError(true),
-
-  // //   onSuccess: (data, mutationVariables) => setCurrentUser(data.data)
-  // // });
-
-  // const loginEmail = async options => {
-  //   const response = await instance.post('/user/login', options);
-
-  //   setCurrentUser(response.data);
-  // };
-
-  // // const [resetPassReq] = api.useResetPassRequest();
-
-  // const resetPassReq = async options =>
-  //   await instance.post('/user/reset-password-request', options);
-
-  // // const [resetPass] = api.useResetPass({
-  // //   onSuccess: data => setCurrentUser(data.data)
-  // // });
-
-  // const resetPass = async options => {
-  //   const response = await instance.post(`/user/reset-password`, options);
-
-  //   setCurrentUser(response.data);
-  // };
-
   return (
-    <CurrentUserContext.Provider
+    <UserContext.Provider
       value={{
         currentUser,
         setCurrentUser,
@@ -63,7 +16,7 @@ const UserProvider = props => {
       }}
     >
       {props.children}
-    </CurrentUserContext.Provider>
+    </UserContext.Provider>
   );
 };
 
@@ -72,9 +25,3 @@ UserProvider.propTypes = {
 };
 
 export default UserProvider;
-
-// const useSignup = config => {
-//   const [signup] = useMutation(api.signup, config);
-
-//   return signup;
-// };

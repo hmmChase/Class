@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import * as sc from './Main.style';
 
 const Main = () => {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <sc.Container>

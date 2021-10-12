@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
 import { useParams, Link } from 'react-router-dom';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import QuestionDropdown from '../QuestionDropdown/QuestionDropdown';
 import QuestionEdit from '../QuestionEdit/QuestionEdit';
 import * as sc from './QuestionCard.style';
@@ -14,7 +14,7 @@ const QuestionCard = props => {
 
   const [isEditing, setIsEditing] = useState(false);
 
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(UserContext);
 
   const { challengePath } = useParams();
 

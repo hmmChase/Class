@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 // import PropTypes from 'prop-types';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import BtnReqPass from '../../USER/BtnReqPass/BtnReqPass';
 import * as sc from './Account.style';
 
 const Account = () => {
   const [issubmitted, setIsSubmitted] = useState(false);
 
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <sc.Container>

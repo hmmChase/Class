@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/dateTime';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import QuestionDropdown from '../QuestionDropdown/QuestionDropdown';
 import QuestionDetailEdit from '../QuestionDetailEdit/QuestionDetailEdit';
 import TextExpand from '../../REUSEABLE/TextExpand/TextExpand';
@@ -14,7 +14,7 @@ const QuestionDetailCard = props => {
 
   const [isEditing, setIsEditing] = useState(false);
 
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(UserContext);
 
   const shouldShowMenu =
     currentUser &&

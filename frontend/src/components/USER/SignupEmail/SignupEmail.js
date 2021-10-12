@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
-import { CurrentUserContext } from '../../../context';
+import { UserContext } from '../../../context';
+import { useSignup } from '../../../hooks/user';
 import InputLabel from '../../REUSEABLE/InputLabel/InputLabel';
 import Input from '../../REUSEABLE/Input/Input';
 import * as sc from './SignupEmail.style';
@@ -12,7 +13,14 @@ const SignupEmail = () => {
 
   const [username, setUsername] = useState('');
 
-  const { signup } = useContext(CurrentUserContext);
+  const { setCurrentUser, isCurrentUserError, setIsCurrentUserError } =
+    useContext(UserContext);
+
+  const mutation = useSignup({
+    onError: error => setIsCurrentUserError(true),
+
+    onSuccess: (data, variables, context) => setCurrentUser(data.data)
+  });
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -27,7 +35,7 @@ const SignupEmail = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    signup({ username, email, password });
+    mutation.mutate({ username, email, password });
   };
 
   return (
@@ -62,6 +70,8 @@ const SignupEmail = () => {
         value={password}
         onChange={handleChange}
       />
+
+      {isCurrentUserError && <p>Invalid creditials, please try again.</p>}
 
       <sc.PassRequirements>
         * Must be at least 8 characters.
