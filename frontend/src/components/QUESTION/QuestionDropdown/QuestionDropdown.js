@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { QuestionContext } from '../../../context';
 import { useQuestionDelete } from '../../../hooks/question';
 import * as sc from './QuestionDropdown.style';
@@ -10,7 +10,7 @@ const QuestionDropdown = props => {
 
   const { challengePath } = useParams();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { setQuestions } = useContext(QuestionContext);
 
@@ -27,7 +27,7 @@ const QuestionDropdown = props => {
   const handleClickDelete = () => {
     mutation.mutate({ challengePath, questionId });
 
-    if (history.pathname !== '/challenge1') history.push(`/${challengePath}`);
+    if (navigate.pathname !== '/challenge1') navigate.push(`/${challengePath}`);
   };
 
   return (

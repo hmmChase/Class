@@ -1,13 +1,16 @@
-import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
 import crypto from 'crypto';
 // import argon2 from 'argon2';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+
 import * as authService from '../services/authService.js';
 import * as userService from '../services/userService.js';
 import * as emailHandler from '../handlers/emailHandler.js';
-import { COOKIE_CONFIG, BASE_URL } from '../config.js';
+import { frontendUrl } from '../constants/config.js';
+import cookieOptions from '../constants/cookie.js';
 
+const { PrismaClient } = pkg;
 const prisma = new PrismaClient();
 
 export const getAllUsers = async (req, res, next) => {
@@ -37,7 +40,7 @@ export const getCurrentUser = async (req, res) => {
 
     const userClient = authService.userClientCleaner(userRecord);
 
-    res.cookie('jwt', newJWT, COOKIE_CONFIG);
+    res.cookie('jwt', newJWT, cookieOptions);
 
     return res.json(userClient);
   } catch (error) {
@@ -61,7 +64,7 @@ export const signup = async (req, res) => {
 
   const userClientData = authService.userClientCleaner(createdUser);
 
-  res.cookie('jwt', newJWT, COOKIE_CONFIG);
+  res.cookie('jwt', newJWT, cookieOptions);
 
   return res.json(userClientData);
 };
@@ -89,7 +92,7 @@ export const login = async (req, res) => {
 
   const userClientData = authService.userClientCleaner(userRecord);
 
-  res.cookie('jwt', newJWT, COOKIE_CONFIG);
+  res.cookie('jwt', newJWT, cookieOptions);
 
   return res.json(userClientData);
 };
@@ -123,7 +126,7 @@ export const generatePassReset = async (req, res) => {
   });
 
   // send email with reset password in a link
-  const resetPasswordUrl = `${BASE_URL}/reset-password?resetToken=${resetPassToken}`;
+  const resetPasswordUrl = `${frontendUrl}/reset-password?resetToken=${resetPassToken}`;
 
   emailHandler.sendEmailPasswordReset(email, resetPasswordUrl);
 
@@ -176,7 +179,7 @@ export const resetPassword = async (req, res) => {
     newPassword
   );
 
-  res.cookie('jwt', jwt, COOKIE_CONFIG);
+  res.cookie('jwt', jwt, cookieOptions);
 
   return res.json(user);
 };

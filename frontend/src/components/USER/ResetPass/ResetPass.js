@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import DOMPurify from 'dompurify';
-// import { useHistory } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../context';
 import * as sc from './ResetPass.style';
 
@@ -13,7 +13,7 @@ const ResetPass = props => {
 
   const { resetPass } = useContext(UserContext);
 
-  // const history = useHistory();
+  // const navigate = useNavigate();
 
   const handleChange = e => {
     const cleanValue = DOMPurify.sanitize(e.target.value);
@@ -28,7 +28,7 @@ const ResetPass = props => {
 
     if (response && response.data && response.data.id) setIsSuccessful(true);
 
-    // history.push('/');
+    // navigate.push('/');
   };
 
   return (

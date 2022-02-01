@@ -1,9 +1,10 @@
-import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
 import bcryptjs from 'bcryptjs';
 
 import * as emailHandler from '../handlers/emailHandler.js';
 import * as authService from '../services/authService.js';
 
+const { PrismaClient } = pkg;
 const prisma = new PrismaClient();
 
 export const signupUserByEmail = async (res, username, email, password) => {

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import getParameterByName from '../../../utils/getQueryParamByName';
 import { UserContext } from '../../../context';
 import { useLoginDiscord } from '../../../hooks/discord';
@@ -8,7 +8,7 @@ import { useLoginDiscord } from '../../../hooks/discord';
 const LoginDiscordRedirect = () => {
   const { setCurrentUser } = useContext(UserContext);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const code = getParameterByName('code');
 
@@ -20,7 +20,7 @@ const LoginDiscordRedirect = () => {
     onSuccess: (data, variables, context) => {
       setCurrentUser(data.data);
 
-      history.push('/');
+      navigate.push('/');
     }
   });
 

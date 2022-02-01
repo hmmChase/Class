@@ -1,21 +1,23 @@
-import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
 import DiscordOauth2 from 'discord-oauth2';
+
 import * as authService from './authService.js';
 // import * as emailHandler from '../handlers/emailHandler.js';
-import { BASE_URL } from '../config.js';
+import { frontendUrl } from '../constants/config.js';
 
+const { PrismaClient } = pkg;
 const prisma = new PrismaClient();
 
 export const oauthSignup = new DiscordOauth2({
   clientId: process.env.DISCORD_CLIENT_ID,
   clientSecret: process.env.DISCORD_SECRET,
-  redirectUri: `${BASE_URL}/signup-discord`
+  redirectUri: `${frontendUrl}/signup-discord`
 });
 
 export const oauthLogin = new DiscordOauth2({
   clientId: process.env.DISCORD_CLIENT_ID,
   clientSecret: process.env.DISCORD_SECRET,
-  redirectUri: `${BASE_URL}/login-discord`
+  redirectUri: `${frontendUrl}/login-discord`
 });
 
 export const signup = async (res, code) => {

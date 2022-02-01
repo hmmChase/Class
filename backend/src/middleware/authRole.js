@@ -1,6 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
 import jwt from 'jsonwebtoken';
 
+const { PrismaClient } = pkg;
 const prisma = new PrismaClient();
 
 export default requiredRoles => async (req, res, next) => {

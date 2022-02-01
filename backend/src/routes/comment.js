@@ -1,4 +1,5 @@
 import express from 'express';
+
 import * as commentController from '../controllers/commentController.js';
 import { isAuth } from '../middleware/isAuth.js';
 import authRole from '../middleware/authRole.js';

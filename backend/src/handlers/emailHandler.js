@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import ejs from 'ejs';
 import juice from 'juice';
+
 import logger from './logHandler.js';
 
 const transport = nodemailer.createTransport({

@@ -1,21 +1,17 @@
 {
-  "alias": "challenge-board-backend",
-  "version": 2,
   "github": {
     "silent": true
   },
   "builds": [
     {
-      "src": "build/app.js",
+      "src": "bin/www.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/build/app.js",
-      "headers": { "Access-Control-Allow-Credentials": "true" },
-      "continue": true
+      "dest": "bin/www.js"
     }
   ]
 }

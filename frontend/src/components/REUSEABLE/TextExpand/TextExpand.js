@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Truncate from 'react-truncate';
+// import Truncate from 'react-truncate';
 import * as sc from './TextExpand.style';
 
 const TextExpand = props => {
@@ -13,7 +13,7 @@ const TextExpand = props => {
   return (
     <sc.Container className={className}>
       {isTruncated ? (
-        <Truncate
+        <div
           lines={3}
           trimWhitespace
           ellipsis={
@@ -32,7 +32,7 @@ const TextExpand = props => {
                 return [linee, <sc.Br key={i + 'br'} />];
               }
             })}
-        </Truncate>
+        </div>
       ) : (
         <>
           {children.split('\n').map((line, i, arr) => {

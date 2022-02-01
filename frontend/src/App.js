@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import ChallengePage from './pages/challenge';
 import LoginDiscordRedirectPage from './pages/login-discord';
 import SignupDiscordRedirectPage from './pages/signup-discord';
@@ -20,39 +21,41 @@ const App = () => (
         <QuestionProvider>
           <CommentProvider>
             <Router>
-              <Switch>
-                <Route path='/signup-discord'>
-                  <SignupDiscordRedirectPage />
-                </Route>
+              <Routes>
+                <Route
+                  path='/signup-discord'
+                  element={<SignupDiscordRedirectPage />}
+                ></Route>
 
-                <Route path='/login-discord'>
-                  <LoginDiscordRedirectPage />
-                </Route>
+                <Route
+                  path='/login-discord'
+                  element={<LoginDiscordRedirectPage />}
+                ></Route>
 
-                <Route path='/account'>
-                  <AccountPage />
-                </Route>
+                <Route path='/account' element={<AccountPage />}></Route>
 
-                <Route path='/reset-password'>
-                  <ResetPasswordPage />
-                </Route>
+                <Route
+                  path='/reset-password'
+                  element={<ResetPasswordPage />}
+                ></Route>
 
-                <Route path='/:challengePath/submissions'>
-                  <SubmissionsPage />
-                </Route>
+                <Route
+                  path='/:challengePath/submissions'
+                  element={<SubmissionsPage />}
+                ></Route>
 
-                <Route path='/:challengePath/:questionId'>
-                  <ChallengePage />
-                </Route>
+                <Route
+                  path='/:challengePath/:questionId'
+                  element={<ChallengePage />}
+                ></Route>
 
-                <Route path='/:challengePath'>
-                  <ChallengePage />
-                </Route>
+                <Route
+                  path='/:challengePath'
+                  element={<ChallengePage />}
+                ></Route>
 
-                <Route path='/'>
-                  <IndexPage />
-                </Route>
-              </Switch>
+                <Route path='/' element={<IndexPage />}></Route>
+              </Routes>
             </Router>
           </CommentProvider>
         </QuestionProvider>

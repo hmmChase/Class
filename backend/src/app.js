@@ -1,11 +1,24 @@
-import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import compression from 'compression';
-import helmet from 'helmet';
+// https://expressjs.com/en/advanced/best-practice-security.html
+// https://expressjs.com/en/advanced/best-practice-performance.html
+
+const production = process.env.NODE_ENV === 'production';
+
+// In production, env vars are defined on the host
+// https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+// if (!production) require('dotenv').config();
 import 'dotenv/config';
 
+import express from 'express';
+import cookieParser from 'cookie-parser';
+// import logger from 'morgan';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+// import http from 'http';
+// import createError from 'http-errors';
+import morgan from 'morgan';
+
+import { corsOptions } from './constants/cors.js';
 import indexRouter from './routes/index.js';
 import userRouter from './routes/user.js';
 import discordRouter from './routes/discord.js';
@@ -22,33 +35,20 @@ import {
   CustomError
 } from './handlers/errorHandler.js';
 import logger from './handlers/logHandler.js';
-import { port, CORSwhitelist } from './config.js';
 
 const app = express();
 
-app.set('view engine', 'ejs');
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (CORSwhitelist.indexOf(origin) !== -1) callback(null, true);
-    else callback(new Error('Not allowed by CORS'));
-  },
-  credentials: true
-};
+const morganLogStyle = app.get('env') === 'development' ? 'dev' : 'combined';
+logger.stream = { write: message => logger.info(message) };
+app.use(morgan(morganLogStyle, { stream: logger.stream }));
+// app.use(logger(production ? 'combined' : 'dev'));
 
 app.use(cors(corsOptions));
-
-const morganLogStyle = app.get('env') === 'development' ? 'dev' : 'combined';
-
-logger.stream = { write: message => logger.info(message) };
-
-app.use(morgan(morganLogStyle, { stream: logger.stream }));
-
+app.use(helmet({ contentSecurityPolicy: production ? undefined : false }));
+app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(compression());
-app.use(helmet());
 
 app.use('/', indexRouter);
 app.use('/api', indexRouter);
@@ -92,10 +92,18 @@ else app.use(productionErrors);
 //   next();
 // });
 
-// export default app;
+// // catch 404 and forward to error handler
+// app.use((req, res, next) => next(createError(404)));
 
-app.listen({ port }, err => {
-  if (err) throw err;
+// // error handler
+// app.use((err, req, res, next) => {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  console.log(`Server ready at http://localhost:${port}/api/v1/`);
-});
+//   // return the error
+//   res.status(err.status || 500);
+//   res.json({ message: err.message, error: err });
+// });
+
+export default app;
