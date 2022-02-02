@@ -1,11 +1,9 @@
 // 'npm run seed' to seed
 
-import pkg from '@prisma/client';
 // const argon2 = require('argon2');
 import bcryptjs from 'bcryptjs';
 
-const { PrismaClient } = pkg;
-const prisma = new PrismaClient();
+import prisma from '../../prisma/prisma.js';
 
 const main = async () => {
   const teacher = await prisma.user.create({

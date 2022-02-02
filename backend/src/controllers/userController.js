@@ -1,17 +1,15 @@
-import pkg from '@prisma/client';
 import crypto from 'crypto';
 // import argon2 from 'argon2';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+import prisma from '../../prisma/prisma.js';
 import * as authService from '../services/authService.js';
 import * as userService from '../services/userService.js';
 import * as emailHandler from '../handlers/emailHandler.js';
 import { frontendUrl } from '../constants/config.js';
 import cookieOptions from '../constants/cookie.js';
-
-const { PrismaClient } = pkg;
-const prisma = new PrismaClient();
+import { createAccessToken } from '../utils/accessToken';
 
 export const getAllUsers = async (req, res, next) => {
   const users = await prisma.user.findMany();
@@ -36,7 +34,7 @@ export const getCurrentUser = async (req, res) => {
 
     const userJWT = { user: { id: userRecord.id } };
 
-    const newJWT = authService.generateJWT(userJWT);
+    const newJWT = createAccessToken(userJWT);
 
     const userClient = authService.userClientCleaner(userRecord);
 
@@ -60,7 +58,7 @@ export const signup = async (req, res) => {
 
   const jwtData = { user: { id: createdUser.id } };
 
-  const newJWT = authService.generateJWT(jwtData);
+  const newJWT = createAccessToken(jwtData);
 
   const userClientData = authService.userClientCleaner(createdUser);
 
@@ -88,7 +86,7 @@ export const login = async (req, res) => {
 
   const jwtData = { user: { id: userRecord.id } };
 
-  const newJWT = authService.generateJWT(jwtData);
+  const newJWT = createAccessToken(jwtData);
 
   const userClientData = authService.userClientCleaner(userRecord);
 

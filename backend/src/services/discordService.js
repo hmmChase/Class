@@ -1,12 +1,9 @@
-import pkg from '@prisma/client';
 import DiscordOauth2 from 'discord-oauth2';
 
+import prisma from '../../prisma/prisma.js';
 import * as authService from './authService.js';
 // import * as emailHandler from '../handlers/emailHandler.js';
 import { frontendUrl } from '../constants/config.js';
-
-const { PrismaClient } = pkg;
-const prisma = new PrismaClient();
 
 export const oauthSignup = new DiscordOauth2({
   clientId: process.env.DISCORD_CLIENT_ID,
