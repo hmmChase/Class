@@ -1,17 +1,9 @@
-import { ForbiddenError } from 'apollo-server-express';
 import jwt from 'jsonwebtoken';
 // import Iron from '@hapi/iron';
 
 import { refreshTokenExpiryTime } from '../constants/config.js';
 
 const secret = Buffer.from(process.env.REFRESH_TOKEN_SECRET, 'base64');
-
-// export const generateRefreshJWT = payload => {
-//   const secret = Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64');
-//   const options = { expiresIn: '6h' };
-
-//   return jwt.sign(payload, secret, options);
-// };
 
 export const createRefreshToken = payload => {
   // const ironAT = await Iron.seal(payload, secret, Iron.defaults);
@@ -38,6 +30,6 @@ export const verifyRefreshToken = refreshToken => {
     console.log('refreshToken verifyRefreshToken error: ', error);
 
     // If not, throw error
-    throw new ForbiddenError(error.message);
+    // throw new ForbiddenError(error.message);
   }
 };

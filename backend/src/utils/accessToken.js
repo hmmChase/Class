@@ -1,4 +1,3 @@
-import { ForbiddenError } from 'apollo-server-express';
 import jwt from 'jsonwebtoken';
 // import Iron from '@hapi/iron';
 
@@ -31,6 +30,6 @@ export const verifyAccessToken = accessToken => {
     console.log('accessToken verifyAccessToken error: ', error);
 
     // If not, throw error
-    throw new ForbiddenError(error.message);
+    // throw new ForbiddenError(error.message);
   }
 };

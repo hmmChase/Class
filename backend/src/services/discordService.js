@@ -4,6 +4,8 @@ import prisma from '../../prisma/prisma.js';
 import * as authService from './authService.js';
 // import * as emailHandler from '../handlers/emailHandler.js';
 import { frontendUrl } from '../constants/config.js';
+import { createAccessToken } from '../utils/accessToken.js';
+import { createRefreshToken } from '../utils/refreshToken.js';
 
 export const oauthSignup = new DiscordOauth2({
   clientId: process.env.DISCORD_CLIENT_ID,
@@ -49,9 +51,11 @@ export const signup = async (res, code) => {
 
   const jwtData = { user: { id: userClientData.id } };
 
-  const jwt = authService.generateJWT(jwtData);
+  const newRefreshToken = createRefreshToken(jwtData);
 
-  return { jwt, user: userClientData };
+  const newAccessJWT = createAccessToken(jwtData);
+
+  return { newRefreshToken, newAccessJWT, user: userClientData };
 };
 
 export const login = async (res, code) => {
@@ -77,7 +81,9 @@ export const login = async (res, code) => {
 
   const jwtData = { user: { id: userClientData.id } };
 
-  const jwt = authService.generateJWT(jwtData);
+  const newRefreshToken = createRefreshToken(jwtData);
 
-  return { jwt, user: userClientData };
+  const newAccessJWT = createAccessToken(jwtData);
+
+  return { newRefreshToken, newAccessJWT, user: userClientData };
 };

@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/global.style';
 import theme from './styles/theme.style';
+import './api/interceptors';
 
 // import * as Sentry from '@sentry/react';
 // import { Integrations } from '@sentry/tracing';

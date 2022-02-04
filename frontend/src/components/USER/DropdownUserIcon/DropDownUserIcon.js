@@ -9,7 +9,7 @@ import { useLogout } from '../../../hooks/user';
 const DropdownUserIcon = props => {
   const { setCurrentUser } = useContext(UserContext);
 
-  const mutation = useLogout({ onSuccess: () => setCurrentUser({}) });
+  const mutation = useLogout({ onSuccess: () => setCurrentUser(false) });
 
   return (
     <sc.Dropdownn

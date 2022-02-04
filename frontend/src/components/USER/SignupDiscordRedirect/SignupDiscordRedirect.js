@@ -20,7 +20,7 @@ const SignupDiscordRedirect = () => {
     onSuccess: (data, variables, context) => {
       setCurrentUser(data.data);
 
-      navigate.push('/');
+      navigate('/');
     }
   });
 

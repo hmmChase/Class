@@ -2,7 +2,11 @@ import crypto from 'crypto';
 
 import * as authService from '../services/authService.js';
 import * as discordService from '../services/discordService.js';
-import cookieOptions from '../constants/cookie.js';
+import {
+  ATcookieOptions,
+  RTcookieOptions,
+  stateCookieOptions
+} from '../constants/cookie.js';
 
 export const getSignupUrl = (req, res) => {
   const scope = ['identify', 'email'];
@@ -10,7 +14,7 @@ export const getSignupUrl = (req, res) => {
 
   const url = discordService.oauthSignup.generateAuthUrl({ scope, state });
 
-  res.cookie('state', state, cookieOptions);
+  res.cookie('state', state, stateCookieOptions);
 
   return res.json(url);
 };
@@ -21,7 +25,7 @@ export const getLoginUrl = (req, res) => {
 
   const url = discordService.oauthLogin.generateAuthUrl({ scope, state });
 
-  res.cookie('state', state, cookieOptions);
+  res.cookie('state', state, stateCookieOptions);
 
   return res.json(url);
 };
@@ -34,9 +38,14 @@ export const signupDiscord = async (req, res) => {
   if (state !== previousState)
     return res.status(401).json({ error: 'login.discordError' });
 
-  const { jwt, user } = await discordService.signup(res, code);
+  const { newRefreshToken, newAccessJWT, user } = await discordService.signup(
+    res,
+    code
+  );
 
-  res.cookie('jwt', jwt, cookieOptions);
+  res.cookie('rt', newRefreshToken, RTcookieOptions);
+
+  res.cookie('at', newAccessJWT, ATcookieOptions);
 
   return res.json(user);
 };
@@ -49,9 +58,14 @@ export const loginDiscord = async (req, res) => {
   if (state !== previousState)
     return res.status(401).json({ error: 'login.discordError' });
 
-  const { user, jwt } = await discordService.login(res, code);
+  const { newRefreshToken, newAccessJWT, user } = await discordService.login(
+    res,
+    code
+  );
 
-  res.cookie('jwt', jwt, cookieOptions);
+  res.cookie('rt', newRefreshToken, RTcookieOptions);
+
+  res.cookie('at', newAccessJWT, ATcookieOptions);
 
   return res.json(user);
 };

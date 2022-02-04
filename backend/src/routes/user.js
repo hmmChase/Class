@@ -25,4 +25,6 @@ router.post('/reset-password-request', userController.generatePassReset);
 
 router.post('/reset-password', userController.resetPassword);
 
+router.post('/refresh', userController.refresh);
+
 export default router;

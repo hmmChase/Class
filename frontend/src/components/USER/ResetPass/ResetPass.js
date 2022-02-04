@@ -28,7 +28,7 @@ const ResetPass = props => {
 
     if (response && response.data && response.data.id) setIsSuccessful(true);
 
-    // navigate.push('/');
+    // navigate('/');
   };
 
   return (

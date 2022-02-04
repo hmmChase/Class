@@ -8,8 +8,9 @@ import * as authService from '../services/authService.js';
 import * as userService from '../services/userService.js';
 import * as emailHandler from '../handlers/emailHandler.js';
 import { frontendUrl } from '../constants/config.js';
-import cookieOptions from '../constants/cookie.js';
-import { createAccessToken } from '../utils/accessToken';
+import { ATcookieOptions, RTcookieOptions } from '../constants/cookie.js';
+import { createAccessToken } from '../utils/accessToken.js';
+import { createRefreshToken } from '../utils/refreshToken.js';
 
 export const getAllUsers = async (req, res, next) => {
   const users = await prisma.user.findMany();
@@ -18,31 +19,24 @@ export const getAllUsers = async (req, res, next) => {
 };
 
 export const getCurrentUser = async (req, res) => {
-  if (!req || !req.cookies || !req.cookies.jwt) return res.json({});
-
-  const user = jwt.verify(
-    req.cookies.jwt,
-    Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64')
-  );
-
   try {
+    const user = jwt.verify(
+      req.cookies.at,
+      Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64')
+    );
+
     const userRecord = await prisma.user.findUnique({
       where: { id: user.user.id }
     });
 
-    if (!userRecord) return req.status(404).json({ error: 'user.notFound' });
-
-    const userJWT = { user: { id: userRecord.id } };
-
-    const newJWT = createAccessToken(userJWT);
+    if (!userRecord)
+      return res.status(401).json({ message: 'unauthenticated' });
 
     const userClient = authService.userClientCleaner(userRecord);
 
-    res.cookie('jwt', newJWT, cookieOptions);
-
     return res.json(userClient);
   } catch (error) {
-    return res.json({});
+    return res.status(401).json({ message: 'unauthenticated' });
   }
 };
 
@@ -56,13 +50,19 @@ export const signup = async (req, res) => {
     password
   );
 
-  const jwtData = { user: { id: createdUser.id } };
+  const refreshJWTdata = { user: { id: userRecord.id } };
 
-  const newJWT = createAccessToken(jwtData);
+  const newRefreshToken = createRefreshToken(refreshJWTdata);
+
+  res.cookie('rt', newRefreshToken, RTcookieOptions);
+
+  const accessJWTdata = { user: { id: createdUser.id } };
+
+  const newAccessToken = createAccessToken(accessJWTdata);
+
+  res.cookie('at', newAccessToken, ATcookieOptions);
 
   const userClientData = authService.userClientCleaner(createdUser);
-
-  res.cookie('jwt', newJWT, cookieOptions);
 
   return res.json(userClientData);
 };
@@ -84,19 +84,26 @@ export const login = async (req, res) => {
   if (!isCorrectPass)
     return res.status(401).json({ error: 'login.invalidCredentials' });
 
-  const jwtData = { user: { id: userRecord.id } };
+  const refreshJWTdata = { user: { id: userRecord.id } };
 
-  const newJWT = createAccessToken(jwtData);
+  const newRefreshToken = createRefreshToken(refreshJWTdata);
+
+  res.cookie('rt', newRefreshToken, RTcookieOptions);
+
+  const accessJWTdata = { user: { id: userRecord.id } };
+
+  const newAccessJWT = createAccessToken(accessJWTdata);
+
+  res.cookie('at', newAccessJWT, ATcookieOptions);
 
   const userClientData = authService.userClientCleaner(userRecord);
-
-  res.cookie('jwt', newJWT, cookieOptions);
 
   return res.json(userClientData);
 };
 
 export const logout = async (req, res) => {
-  res.clearCookie('jwt');
+  res.clearCookie('at');
+  res.clearCookie('rt');
   res.clearCookie('state');
 
   return res.json(true);
@@ -177,7 +184,38 @@ export const resetPassword = async (req, res) => {
     newPassword
   );
 
-  res.cookie('jwt', jwt, cookieOptions);
+  res.cookie('at', jwt, ATcookieOptions);
 
   return res.json(user);
+};
+
+export const refresh = async (req, res) => {
+  try {
+    const refreshToken = req.cookies.rt;
+
+    const refreshSecret = Buffer.from(
+      process.env.REFRESH_TOKEN_SECRET,
+      'base64'
+    );
+
+    const payload = jwt.verify(refreshToken, refreshSecret);
+
+    if (!payload) return res.status(401).send({ message: 'unauthenticated' });
+
+    const user = await prisma.user.findUnique({
+      where: { id: payload.user.id }
+    });
+
+    if (!user) return res.status(401).send({ message: 'unauthenticated' });
+
+    const accessJWTdata = { user: { id: user.id } };
+
+    const newAccessToken = createAccessToken(accessJWTdata);
+
+    res.cookie('at', newAccessToken, ATcookieOptions);
+
+    res.send(true);
+  } catch (err) {
+    return res.status(401).send({ message: 'unauthenticated' });
+  }
 };

@@ -2,7 +2,7 @@ import bcryptjs from 'bcryptjs';
 
 import prisma from '../../prisma/prisma.js';
 import * as emailHandler from '../handlers/emailHandler.js';
-import * as authService from '../services/authService.js';
+import { createAccessToken } from '../utils/accessToken.js';
 
 export const signupUserByEmail = async (res, username, email, password) => {
   const usernameNormalized = username.trim();
@@ -40,9 +40,9 @@ export const resetPasswordLogin = async (res, email, password) => {
 
   const userJWT = { user: { id: userRecord.id } };
 
-  const newJWT = authService.generateJWT(userJWT);
+  const newAccessJWT = createAccessToken(userJWT);
 
   const userClientData = authService.userClientCleaner(userRecord);
 
-  return [newJWT, userClientData];
+  return [newAccessJWT, userClientData];
 };

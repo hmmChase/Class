@@ -27,7 +27,7 @@ const QuestionDropdown = props => {
   const handleClickDelete = () => {
     mutation.mutate({ challengePath, questionId });
 
-    if (navigate.pathname !== '/challenge1') navigate.push(`/${challengePath}`);
+    if (navigate.pathname !== '/challenge1') navigate(`/${challengePath}`);
   };
 
   return (
